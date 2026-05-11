@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { BookingDemo } from "./booking-demo";
 
 const solutions = [
   {
@@ -155,93 +156,7 @@ function SolutionCard({
             <div className="rounded-xl bg-secondary/50 p-6">
               {/* Mockup UI */}
               {solution.tag === "Visit a Unit" ? (
-                <>
-                  {/* Month navigation header */}
-                  <div className="mb-4 flex items-center justify-center gap-4">
-                    <button className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <span className="text-base font-semibold text-foreground">May 2026</span>
-                    <button className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Week strip with day cards */}
-                  <div className="mb-6 flex items-center gap-2">
-                    <button className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-foreground">
-                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <div className="flex flex-1 justify-center gap-1">
-                      {[
-                        { day: "Sun", date: 10, selected: false },
-                        { day: "Mon", date: 11, selected: false },
-                        { day: "Tue", date: 12, selected: true },
-                        { day: "Wed", date: 13, selected: false },
-                        { day: "Thu", date: 14, selected: false },
-                        { day: "Fri", date: 15, selected: false },
-                        { day: "Sat", date: 16, selected: false },
-                      ].map((item, i) => (
-                        <div
-                          key={i}
-                          className={`flex w-12 flex-col items-center rounded-xl py-2 transition-colors ${
-                            item.selected
-                              ? "bg-primary text-primary-foreground"
-                              : "border border-border bg-background/50 text-foreground hover:bg-muted"
-                          }`}
-                        >
-                          <span className={`text-xs ${item.selected ? "text-primary-foreground" : "text-muted-foreground"}`}>{item.day}</span>
-                          <span className="text-sm font-semibold">{item.date}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <button className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-foreground">
-                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Time slot section heading */}
-                  <div className="mb-3 text-center text-sm font-medium text-foreground">
-                    Select Hours for Tuesday, May 12
-                  </div>
-
-                  {/* Time slot grid - 4 columns */}
-                  <div className="grid grid-cols-4 gap-2">
-                    {[
-                      "09:00", "09:30", "10:00", "10:30",
-                      "11:00", "11:30", "12:00", "12:30",
-                      "13:00", "13:30", "14:00", "14:30",
-                      "15:00", "15:30", "16:00", "16:30",
-                    ].map((time, i) => {
-                      const isSelected = time === "09:30";
-                      return (
-                        <button
-                          key={i}
-                          className={`rounded-xl py-2 text-sm font-medium transition-colors ${
-                            isSelected
-                              ? "bg-primary text-primary-foreground"
-                              : "border border-border bg-background/50 text-foreground hover:bg-muted"
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Selection summary */}
-                  <div className="mt-4 text-center text-sm text-muted-foreground">
-                    You selected time from <span className="font-semibold text-foreground">09:30</span> to <span className="font-semibold text-foreground">10:00</span>
-                  </div>
-                </>
+                <BookingDemo />
               ) : solution.tag === "Buyers Capability" ? (
                 <>
                   {/* Hold a Unit - Header with unit name and countdown */}
