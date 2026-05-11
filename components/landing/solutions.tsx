@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { CheckCircle2, Bot, Sparkles, ChevronRight, User, MoreHorizontal, Home, Users, FileText, Calendar, BarChart3, MessageSquare } from "lucide-react";
 
 const solutions = [
   {
@@ -62,6 +62,296 @@ const solutions = [
     gradient: "from-primary to-chart-4",
   },
 ];
+
+// Compact AI Dashboard Visual for Solutions Section
+function AIHandleVisual() {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [showTyping, setShowTyping] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
+  const [typedPrompt, setTypedPrompt] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  
+  const fullPrompt = "Who is 5360220352?";
+
+  useEffect(() => {
+    if (isInView) {
+      const sidebarTimer = setTimeout(() => setShowSidebar(true), 300);
+      
+      const typingStart = setTimeout(() => {
+        let index = 0;
+        const typeInterval = setInterval(() => {
+          if (index <= fullPrompt.length) {
+            setTypedPrompt(fullPrompt.slice(0, index));
+            index++;
+          } else {
+            clearInterval(typeInterval);
+            setTimeout(() => setShowTyping(true), 200);
+            setTimeout(() => {
+              setShowTyping(false);
+              setShowResponse(true);
+            }, 1200);
+          }
+        }, 70);
+        return () => clearInterval(typeInterval);
+      }, 800);
+
+      return () => {
+        clearTimeout(sidebarTimer);
+        clearTimeout(typingStart);
+      };
+    }
+  }, [isInView]);
+
+  const sidebarItems = [
+    { icon: Home, active: true },
+    { icon: Users },
+    { icon: FileText },
+    { icon: Calendar },
+    { icon: BarChart3 },
+    { icon: MessageSquare },
+  ];
+
+  const requests = [
+    { id: "5360220352", name: "Matt Fakri", status: "pending" },
+    { id: "5360220348", name: "Sarah Chen", status: "assigned" },
+    { id: "5360220341", name: "Omar Hassan", status: "done" },
+  ];
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Mini dashboard mockup */}
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl">
+        {/* Browser bar */}
+        <div className="flex items-center gap-2 border-b border-border/50 bg-secondary/50 px-3 py-2">
+          <div className="flex gap-1">
+            <div className="h-2 w-2 rounded-full bg-destructive/60" />
+            <div className="h-2 w-2 rounded-full bg-chart-5/60" />
+            <div className="h-2 w-2 rounded-full bg-chart-4/60" />
+          </div>
+          <div className="ml-2 flex-1 rounded bg-background/50 px-2 py-0.5 text-xs text-muted-foreground">
+            app.propertycare.io/dashboard
+          </div>
+        </div>
+
+        {/* Dashboard content */}
+        <div className="relative flex h-[320px]">
+          {/* Mini sidebar */}
+          <div className={`flex w-10 flex-col gap-1 border-r border-border/50 bg-secondary/30 py-2 transition-all duration-300 ${showSidebar ? "opacity-40 blur-[1px]" : ""}`}>
+            {sidebarItems.map((item, i) => (
+              <div
+                key={i}
+                className={`mx-1 flex h-7 w-7 items-center justify-center rounded-lg ${item.active ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+              >
+                <item.icon className="h-3.5 w-3.5" />
+              </div>
+            ))}
+          </div>
+
+          {/* Main area */}
+          <div className={`flex-1 overflow-hidden transition-all duration-300 ${showSidebar ? "opacity-30 blur-[2px]" : ""}`}>
+            {/* Header */}
+            <div className="border-b border-border/50 px-3 py-2">
+              <div className="text-xs font-semibold">Requests</div>
+              <div className="text-[10px] text-muted-foreground">3 pending</div>
+            </div>
+
+            {/* Mini stats */}
+            <div className="grid grid-cols-3 gap-2 p-2">
+              {[
+                { label: "Pending", val: "3", color: "text-chart-5" },
+                { label: "Active", val: "12", color: "text-primary" },
+                { label: "Done", val: "48", color: "text-chart-4" },
+              ].map((s) => (
+                <div key={s.label} className="rounded-lg bg-secondary/50 p-2 text-center">
+                  <div className={`text-sm font-bold ${s.color}`}>{s.val}</div>
+                  <div className="text-[9px] text-muted-foreground">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mini table */}
+            <div className="px-2">
+              <div className="rounded-lg border border-border/50 bg-secondary/20">
+                {requests.map((r, i) => (
+                  <div key={r.id} className={`flex items-center gap-2 px-2 py-1.5 ${i !== requests.length - 1 ? "border-b border-border/50" : ""}`}>
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary">
+                      <User className="h-2.5 w-2.5 text-muted-foreground" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="truncate text-[10px] font-medium">{r.name}</div>
+                      <div className="text-[8px] text-muted-foreground">#{r.id}</div>
+                    </div>
+                    <span className={`rounded-full px-1.5 py-0.5 text-[8px] ${
+                      r.status === "pending" ? "bg-chart-5/10 text-chart-5" :
+                      r.status === "assigned" ? "bg-primary/10 text-primary" : "bg-chart-4/10 text-chart-4"
+                    }`}>
+                      {r.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* AI Sidebar overlay */}
+          <AnimatePresence>
+            {showSidebar && (
+              <motion.div
+                initial={{ x: 260, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 260, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="absolute right-0 top-0 flex h-full w-[260px] flex-col border-l border-primary/20 bg-card/95 backdrop-blur-xl"
+                style={{ boxShadow: "-10px 0 40px -10px rgba(var(--primary), 0.15)" }}
+              >
+                {/* Sidebar header */}
+                <motion.div 
+                  className="flex items-center gap-2 border-b border-border/50 px-3 py-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="relative">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+                      <Bot className="h-3.5 w-3.5 text-primary-foreground" />
+                    </div>
+                    <motion.div
+                      className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-card bg-chart-4"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs font-semibold">AI Assistant</div>
+                    <div className="text-[9px] text-muted-foreground">Ready to help</div>
+                  </div>
+                  <Sparkles className="h-3.5 w-3.5 text-primary" />
+                </motion.div>
+
+                {/* Chat area */}
+                <div className="flex-1 overflow-hidden p-2">
+                  <div className="space-y-2">
+                    {/* User message */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="flex justify-end"
+                    >
+                      <div className="rounded-xl rounded-tr-sm bg-primary px-2.5 py-1.5 text-[10px] text-primary-foreground">
+                        {typedPrompt}<span className="animate-pulse">|</span>
+                      </div>
+                    </motion.div>
+
+                    {/* Typing indicator */}
+                    <AnimatePresence>
+                      {showTyping && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          className="flex justify-start"
+                        >
+                          <div className="rounded-xl rounded-tl-sm bg-secondary/80 px-2.5 py-1.5">
+                            <div className="flex gap-0.5">
+                              {[0, 0.1, 0.2].map((d, i) => (
+                                <motion.div
+                                  key={i}
+                                  className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60"
+                                  animate={{ y: [0, -2, 0] }}
+                                  transition={{ repeat: Infinity, duration: 0.5, delay: d }}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* AI Response */}
+                    <AnimatePresence>
+                      {showResponse && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="space-y-2"
+                        >
+                          {/* Response card */}
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="overflow-hidden rounded-xl border border-border/50 bg-secondary/50"
+                          >
+                            {/* Client header */}
+                            <div className="border-b border-border/50 bg-secondary/80 px-2 py-1.5">
+                              <div className="flex items-center gap-2">
+                                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-chart-1 to-chart-2 text-[8px] font-semibold text-primary-foreground">
+                                  MF
+                                </div>
+                                <div>
+                                  <div className="text-[10px] font-medium">Matt Fakri</div>
+                                  <div className="text-[8px] text-muted-foreground">#5360220352</div>
+                                </div>
+                                <span className="ml-auto rounded-full bg-chart-5/10 px-1.5 py-0.5 text-[7px] text-chart-5">
+                                  Pending
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="p-2 text-[9px] leading-relaxed text-foreground/80">
+                              Request belongs to <span className="font-medium">Matt Fakri</span>, marked as <span className="text-chart-5 font-medium">pending unit inquiry</span>.
+                            </div>
+
+                            {/* Recommendation */}
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              className="mx-2 mb-2 rounded-lg border border-primary/20 bg-primary/5 p-1.5"
+                            >
+                              <div className="mb-1 flex items-center gap-1">
+                                <Sparkles className="h-2.5 w-2.5 text-primary" />
+                                <span className="text-[8px] font-medium text-primary">Recommended</span>
+                              </div>
+                              <p className="text-[8px] leading-relaxed text-foreground/70">
+                                Assign to <span className="font-medium">Ali</span> - speaks Spanish, better timezone.
+                              </p>
+                            </motion.div>
+                          </motion.div>
+
+                          {/* Action buttons */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-wrap gap-1"
+                          >
+                            {["Assign to Ali", "Send Follow-up", "View Summary"].map((action, i) => (
+                              <motion.button
+                                key={action}
+                                whileHover={{ scale: 1.02 }}
+                                className="flex items-center gap-1 rounded-lg border border-border/50 bg-secondary/50 px-2 py-1 text-[8px] font-medium transition-colors hover:bg-secondary hover:border-primary/30"
+                              >
+                                {action}
+                                <ChevronRight className="h-2 w-2" />
+                              </motion.button>
+                            ))}
+                          </motion.div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Solutions() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -154,7 +444,9 @@ function SolutionCard({
           <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 p-1 shadow-2xl backdrop-blur-sm">
             <div className="rounded-xl bg-secondary/50 p-6">
               {/* Mockup UI */}
-              {solution.tag === "Visit a Unit" ? (
+              {solution.tag === "Ai" ? (
+                <AIHandleVisual />
+              ) : solution.tag === "Visit a Unit" ? (
                 <>
                   {/* Month navigation header */}
                   <div className="mb-4 flex items-center justify-center gap-4">
