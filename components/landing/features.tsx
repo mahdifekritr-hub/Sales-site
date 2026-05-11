@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import {
   Building2,
   CalendarCheck,
@@ -92,12 +92,128 @@ const features = [
   },
 ];
 
+// Split features into 2 rows
+const row1Features = features.slice(0, 6);
+const row2Features = features.slice(6, 12);
+
+interface FeatureCardProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
+
+function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
+  return (
+    <div className="group relative flex-shrink-0 w-[320px] sm:w-[360px] rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+        <Icon className="h-6 w-6" />
+      </div>
+      <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+      <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+
+interface ScrollingRowProps {
+  items: typeof features;
+  direction: "left" | "right";
+  speed?: number;
+}
+
+function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef<number>();
+  const scrollPositionRef = useRef(0);
+
+  const duplicatedItems = [...items, ...items, ...items];
+
+  const animate = useCallback(() => {
+    if (!scrollRef.current || isPaused) {
+      animationRef.current = requestAnimationFrame(animate);
+      return;
+    }
+
+    const container = scrollRef.current;
+    const scrollWidth = container.scrollWidth;
+    const singleSetWidth = scrollWidth / 3;
+
+    if (direction === "left") {
+      scrollPositionRef.current += speed;
+      if (scrollPositionRef.current >= singleSetWidth) {
+        scrollPositionRef.current = 0;
+      }
+    } else {
+      scrollPositionRef.current -= speed;
+      if (scrollPositionRef.current <= 0) {
+        scrollPositionRef.current = singleSetWidth;
+      }
+    }
+
+    container.scrollLeft = scrollPositionRef.current;
+    animationRef.current = requestAnimationFrame(animate);
+  }, [isPaused, direction, speed]);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    // Initialize scroll position
+    const scrollWidth = container.scrollWidth;
+    const singleSetWidth = scrollWidth / 3;
+    
+    if (direction === "right") {
+      scrollPositionRef.current = singleSetWidth;
+      container.scrollLeft = singleSetWidth;
+    }
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [animate, direction]);
+
+  const handlePause = () => setIsPaused(true);
+  const handleResume = () => setIsPaused(false);
+
+  return (
+    <div className="relative">
+      {/* Left fade gradient */}
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
+      
+      {/* Right fade gradient */}
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-hidden py-2"
+        onMouseEnter={handlePause}
+        onMouseLeave={handleResume}
+        onTouchStart={handlePause}
+        onTouchEnd={handleResume}
+      >
+        {duplicatedItems.map((feature, index) => (
+          <FeatureCard
+            key={`${feature.title}-${index}`}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Features() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="features" className="relative py-32" ref={ref}>
+    <section id="features" className="relative py-32 overflow-hidden" ref={ref}>
       {/* Background elements */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
@@ -127,26 +243,21 @@ export function Features() {
             rentals, and tenant management.
           </p>
         </motion.div>
-
-        {/* Features grid */}
-        <div className="mt-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group relative rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                <feature.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
+
+      {/* Scrolling feature rows - full width */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="mt-20 space-y-6"
+      >
+        {/* Row 1 - scrolls left */}
+        <ScrollingRow items={row1Features} direction="left" speed={0.5} />
+        
+        {/* Row 2 - scrolls right */}
+        <ScrollingRow items={row2Features} direction="right" speed={0.5} />
+      </motion.div>
     </section>
   );
 }
