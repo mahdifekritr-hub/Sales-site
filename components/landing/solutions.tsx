@@ -2,7 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { CheckCircle2, Bot, Sparkles, ChevronRight, User, MoreHorizontal, Home, Users, FileText, Calendar, BarChart3, MessageSquare } from "lucide-react";
+import { CheckCircle2, Bot, Sparkles, ChevronRight, User, MoreHorizontal, Home, Users, FileText, Calendar, BarChart3, MessageSquare, Building2, MapPin } from "lucide-react";
 
 const solutions = [
   {
@@ -353,6 +353,276 @@ function AIHandleVisual() {
   );
 }
 
+// Premium Tower Visual for Seamless Selling Experience
+function TowerVisual() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [currentFloor, setCurrentFloor] = useState(0);
+  const [showPanel, setShowPanel] = useState(false);
+  const [highlightedUnit, setHighlightedUnit] = useState(0);
+
+  const floors = [
+    { number: 35, units: 8 },
+    { number: 28, units: 6 },
+    { number: 20, units: 8 },
+    { number: 12, units: 6 },
+  ];
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const floorInterval = setInterval(() => {
+      setCurrentFloor((prev) => {
+        const next = (prev + 1) % floors.length;
+        setShowPanel(false);
+        setHighlightedUnit(0);
+        
+        // Show panel after floor highlight
+        setTimeout(() => setShowPanel(true), 600);
+        
+        // Animate unit highlights
+        setTimeout(() => {
+          let unitIndex = 0;
+          const unitInterval = setInterval(() => {
+            setHighlightedUnit(unitIndex + 1);
+            unitIndex++;
+            if (unitIndex >= 4) clearInterval(unitInterval);
+          }, 400);
+        }, 1200);
+        
+        return next;
+      });
+    }, 5000);
+
+    // Initial animation
+    setTimeout(() => setShowPanel(true), 800);
+    setTimeout(() => {
+      let unitIndex = 0;
+      const unitInterval = setInterval(() => {
+        setHighlightedUnit(unitIndex + 1);
+        unitIndex++;
+        if (unitIndex >= 4) clearInterval(unitInterval);
+      }, 400);
+    }, 1400);
+
+    return () => clearInterval(floorInterval);
+  }, [isInView]);
+
+  const currentFloorData = floors[currentFloor];
+
+  // Calculate floor highlight position (tower is ~320px tall in the visual)
+  const getFloorPosition = (floorNum: number) => {
+    // Map floor 12-35 to visual positions (higher floor = higher position)
+    const minFloor = 12;
+    const maxFloor = 35;
+    const normalized = (floorNum - minFloor) / (maxFloor - minFloor);
+    // Position from bottom: 75% to 15% of tower height
+    return 75 - (normalized * 60);
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-gradient-to-b from-secondary/30 to-card/80 shadow-xl">
+        {/* Browser bar */}
+        <div className="flex items-center gap-2 border-b border-border/50 bg-secondary/50 px-3 py-2">
+          <div className="flex gap-1">
+            <div className="h-2 w-2 rounded-full bg-destructive/60" />
+            <div className="h-2 w-2 rounded-full bg-chart-5/60" />
+            <div className="h-2 w-2 rounded-full bg-chart-4/60" />
+          </div>
+          <div className="ml-2 flex-1 rounded bg-background/50 px-2 py-0.5 text-xs text-muted-foreground">
+            app.propertycare.io/sales/tower-view
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div className="relative flex h-[380px] overflow-hidden">
+          {/* Tower section */}
+          <div className="relative flex-1 flex items-end justify-center pb-4 pt-4">
+            {/* Subtle background pattern */}
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(var(--primary),0.1),transparent_50%)]" />
+            </div>
+
+            {/* Tower image container */}
+            <motion.div
+              className="relative z-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              {/* Tower image */}
+              <div className="relative h-[320px] w-[140px]">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
+                  alt="Luxury Tower"
+                  className="h-full w-full object-contain drop-shadow-2xl"
+                />
+
+                {/* Floor highlight overlay */}
+                <motion.div
+                  className="absolute left-0 right-0 h-[12px] pointer-events-none"
+                  style={{ top: `${getFloorPosition(currentFloorData.number)}%` }}
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: [0.4, 0.8, 0.4],
+                    boxShadow: [
+                      "0 0 10px 2px rgba(var(--primary), 0.3)",
+                      "0 0 20px 4px rgba(var(--primary), 0.5)",
+                      "0 0 10px 2px rgba(var(--primary), 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <div className="h-full w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-full" />
+                </motion.div>
+
+                {/* Floor tooltip */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentFloorData.number}
+                    className="absolute -right-2 flex items-center gap-1.5"
+                    style={{ top: `${getFloorPosition(currentFloorData.number)}%`, transform: "translateY(-50%)" }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <div className="h-px w-6 bg-gradient-to-r from-primary/60 to-primary" />
+                    <div className="flex items-center gap-1.5 rounded-lg border border-primary/30 bg-card/95 px-2 py-1 shadow-lg backdrop-blur-sm">
+                      <Building2 className="h-3 w-3 text-primary" />
+                      <span className="text-[10px] font-semibold text-foreground">Floor {currentFloorData.number}</span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Base label */}
+              <motion.div
+                className="mt-2 text-center"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="text-[9px] font-medium text-muted-foreground">SKYLINE TOWER</div>
+                <div className="text-[8px] text-muted-foreground/70">42 Floors • 280 Units</div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Floor plan panel */}
+          <AnimatePresence>
+            {showPanel && (
+              <motion.div
+                initial={{ x: 220, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 220, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="absolute right-0 top-0 flex h-full w-[220px] flex-col border-l border-primary/20 bg-card/95 backdrop-blur-xl"
+                style={{ boxShadow: "-10px 0 40px -10px rgba(var(--primary), 0.15)" }}
+              >
+                {/* Panel header */}
+                <motion.div
+                  className="flex items-center gap-2 border-b border-border/50 px-3 py-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+                    <MapPin className="h-3.5 w-3.5 text-primary-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs font-semibold">Floor {currentFloorData.number}</div>
+                    <div className="text-[9px] text-muted-foreground">{currentFloorData.units} units available</div>
+                  </div>
+                </motion.div>
+
+                {/* Floor plan image */}
+                <div className="relative flex-1 p-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="relative h-full w-full overflow-hidden rounded-lg border border-border/50 bg-secondary/30"
+                  >
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final_unit-a4G7TxEW0vgXh4gdDQabkSgKeElGbs.jpg"
+                      alt="Floor Plan"
+                      className="h-full w-full object-cover"
+                    />
+
+                    {/* Unit highlight overlays */}
+                    {[
+                      { top: "15%", left: "20%", size: "18%" },
+                      { top: "25%", left: "55%", size: "20%" },
+                      { top: "55%", left: "15%", size: "22%" },
+                      { top: "60%", left: "60%", size: "18%" },
+                    ].map((pos, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute rounded-lg pointer-events-none"
+                        style={{
+                          top: pos.top,
+                          left: pos.left,
+                          width: pos.size,
+                          height: pos.size,
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={highlightedUnit > i ? {
+                          opacity: [0, 0.8, 0.5],
+                          boxShadow: [
+                            "0 0 0 0 rgba(var(--primary), 0)",
+                            "0 0 15px 3px rgba(var(--primary), 0.6)",
+                            "0 0 10px 2px rgba(var(--primary), 0.4)"
+                          ]
+                        } : { opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <div className="h-full w-full rounded-lg border-2 border-primary/70 bg-primary/20" />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {/* Unit list */}
+                <motion.div
+                  className="border-t border-border/50 p-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <div className="grid grid-cols-2 gap-1">
+                    {["A1", "A2", "B1", "B2"].map((unit, i) => (
+                      <motion.div
+                        key={unit}
+                        className={`flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-[9px] transition-colors ${
+                          highlightedUnit > i
+                            ? "border border-primary/30 bg-primary/10"
+                            : "border border-border/50 bg-secondary/30"
+                        }`}
+                        animate={highlightedUnit > i ? { scale: [1, 1.02, 1] } : {}}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className={`h-1.5 w-1.5 rounded-full ${
+                          highlightedUnit > i ? "bg-primary" : "bg-muted-foreground/50"
+                        }`} />
+                        <span className="font-medium">Unit {unit}</span>
+                        <span className="ml-auto text-muted-foreground">
+                          {highlightedUnit > i ? "Available" : "—"}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Solutions() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
@@ -444,7 +714,9 @@ function SolutionCard({
           <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 p-1 shadow-2xl backdrop-blur-sm">
             <div className="rounded-xl bg-secondary/50 p-6">
               {/* Mockup UI */}
-              {solution.tag === "Ai" ? (
+              {solution.tag === "Sales Module" ? (
+                <TowerVisual />
+              ) : solution.tag === "Ai" ? (
                 <AIHandleVisual />
               ) : solution.tag === "Visit a Unit" ? (
                 <>
