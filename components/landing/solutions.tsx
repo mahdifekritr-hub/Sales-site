@@ -504,7 +504,7 @@ function TowerVisual() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 240, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-4 bottom-4 flex w-[290px] flex-col rounded-xl border border-border/30 bg-card/90 backdrop-blur-xl overflow-hidden"
+              className="absolute right-0 top-4 bottom-4 flex h-[330px] w-[290px] flex-col rounded-xl border border-border/30 bg-card/90 backdrop-blur-xl overflow-hidden"
               style={{ boxShadow: "-10px 0 50px -10px rgba(0,0,0,0.2)" }}
             >
               {/* Panel header */}
@@ -539,8 +539,8 @@ function TowerVisual() {
 
                   {/* Unit highlight overlays */}
                   {[
-                    { top: "6%", left: "35%", size: "18%" },
-                    { top: "25%", left: "55%", size: "20%" },
+                    { top: "9%", left: "35%", size: "15%" },
+                    { top: "28%", left: "55%", size: "16%" },
 
                   ].map((pos, i) => (
                     <motion.div
@@ -551,7 +551,7 @@ function TowerVisual() {
                         left: pos.left,
                         width: pos.size,
                         height: pos.size,
-                        transform: "rotate(-45deg) skewX(-6deg) scaleY(0.8)", // ایزومتریک
+                        transform: "skewX(-50deg) skewY(22deg)", // ایزومتریک
                       }}
                       initial={{ opacity: 0 }}
                       animate={highlightedUnit > i ? {
@@ -564,7 +564,7 @@ function TowerVisual() {
                       } : { opacity: 0 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <div className="h-full w-full rounded-sm border-2 border-primary/70 bg-primary/20" />
+                      <div className="h-full w-full  border-2 border-primary/70 bg-primary/20" />
                     </motion.div>
                   ))}
                 </motion.div>
