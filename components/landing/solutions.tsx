@@ -20,8 +20,8 @@ const solutions = [
     gradient: "from-primary to-accent",
   },
   {
-    tag: "Rental Module",
-    title: "Flexible Rental Management",
+    tag: "Ai",
+    title: "Let AI Handle it",
     description:
       "An intelligent AI sidebar is available in both Ask and Agent modes, acting as your always-on assistant within the platform. Simply describe what you need, and the AI will execute tasks, answer questions, and support your workflow instantly.From generating reports on staff performance to summarizing work orders, CRM, and tickets in any language, the AI turns complex operations into clear, actionable insights.It can also suggest responses, recommend next steps, and help you manage communication effortlessly.Send messages to customers, create reports, or generate automated greetings — all powered by AI.No need to navigate multiple sections; just ask, and it gets done.",
     features: [
