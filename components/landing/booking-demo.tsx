@@ -20,11 +20,11 @@ const timeSlots = [
   "15:00", "15:30", "16:00", "16:30",
 ];
 
-// Cycle config: day index -> selected time
+// Cycle config: day index -> selected times (both slots highlighted)
 const cycleConfig = [
-  { dayIndex: 2, time: "09:30", endTime: "10:00" }, // Tue
-  { dayIndex: 3, time: "11:00", endTime: "11:30" }, // Wed
-  { dayIndex: 4, time: "14:30", endTime: "15:00" }, // Thu
+  { dayIndex: 2, selectedSlots: ["09:30", "10:00"], startTime: "09:30", endTime: "10:00" }, // Tue
+  { dayIndex: 3, selectedSlots: ["11:00", "11:30"], startTime: "11:00", endTime: "11:30" }, // Wed
+  { dayIndex: 4, selectedSlots: ["14:00", "14:30"], startTime: "14:00", endTime: "14:30" }, // Thu
 ];
 
 export function BookingDemo() {
@@ -33,7 +33,7 @@ export function BookingDemo() {
 
   const currentConfig = cycleConfig[cycleIndex];
   const selectedDayIndex = currentConfig.dayIndex;
-  const selectedTime = currentConfig.time;
+  const selectedSlots = currentConfig.selectedSlots;
   const selectedDay = daysData[selectedDayIndex];
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export function BookingDemo() {
           className="grid grid-cols-4 gap-2"
         >
           {timeSlots.map((time, i) => {
-            const isSelected = time === selectedTime;
+            const isSelected = selectedSlots.includes(time);
             return (
               <motion.button
                 key={i}
@@ -150,7 +150,7 @@ export function BookingDemo() {
           transition={{ duration: 0.2 }}
           className="mt-4 text-center text-sm text-muted-foreground"
         >
-          You selected time from <span className="font-semibold text-foreground">{currentConfig.time}</span> to <span className="font-semibold text-foreground">{currentConfig.endTime}</span>
+          You selected time from <span className="font-semibold text-foreground">{currentConfig.startTime}</span> to <span className="font-semibold text-foreground">{currentConfig.endTime}</span>
         </motion.div>
       </AnimatePresence>
     </>
