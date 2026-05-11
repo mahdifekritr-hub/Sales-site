@@ -104,8 +104,8 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
   return (
-    <div className="group relative flex-shrink-0 w-[320px] sm:w-[360px] rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+    <div className="group relative flex-shrink-0 w-[320px] sm:w-[360px] h-[200px] rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80">
+      <div className="mb-4 flex h-10 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <Icon className="h-6 w-6" />
       </div>
       <h3 className="mb-2 text-lg font-semibold">{title}</h3>
@@ -161,7 +161,7 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
     // Initialize scroll position
     const scrollWidth = container.scrollWidth;
     const singleSetWidth = scrollWidth / 3;
-    
+
     if (direction === "right") {
       scrollPositionRef.current = singleSetWidth;
       container.scrollLeft = singleSetWidth;
@@ -183,7 +183,7 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
     <div className="relative">
       {/* Left fade gradient */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
-      
+
       {/* Right fade gradient */}
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 
@@ -254,7 +254,7 @@ export function Features() {
       >
         {/* Row 1 - scrolls left */}
         <ScrollingRow items={row1Features} direction="left" speed={0.5} />
-        
+
         {/* Row 2 - scrolls right */}
         <ScrollingRow items={row2Features} direction="right" speed={0.5} />
       </motion.div>
