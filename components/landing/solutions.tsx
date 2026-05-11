@@ -190,11 +190,10 @@ function SolutionCard({
                       ].map((item, i) => (
                         <div
                           key={i}
-                          className={`flex w-12 flex-col items-center rounded-xl py-2 transition-colors ${
-                            item.selected
+                          className={`flex w-12 flex-col items-center rounded-xl py-2 transition-colors ${item.selected
                               ? "bg-primary text-primary-foreground"
                               : "border border-border bg-background/50 text-foreground hover:bg-muted"
-                          }`}
+                            }`}
                         >
                           <span className={`text-xs ${item.selected ? "text-primary-foreground" : "text-muted-foreground"}`}>{item.day}</span>
                           <span className="text-sm font-semibold">{item.date}</span>
@@ -225,11 +224,10 @@ function SolutionCard({
                       return (
                         <button
                           key={i}
-                          className={`rounded-xl py-2 text-sm font-medium transition-colors ${
-                            isSelected
+                          className={`rounded-xl py-2 text-sm font-medium transition-colors ${isSelected
                               ? "bg-primary text-primary-foreground"
                               : "border border-border bg-background/50 text-foreground hover:bg-muted"
-                          }`}
+                            }`}
                         >
                           {time}
                         </button>
@@ -290,8 +288,8 @@ function SolutionCard({
                       <div className="mt-1 text-xs text-muted-foreground">Holds Today</div>
                     </div>
                     <div className="rounded-lg bg-background/50 p-3 text-center">
-                      <div className="text-2xl font-bold text-primary">18m</div>
-                      <div className="mt-1 text-xs text-muted-foreground">Avg. Wait</div>
+                      <div className="text-2xl font-bold text-primary">80%</div>
+                      <div className="mt-1 text-xs text-muted-foreground">Signed</div>
                     </div>
                   </div>
                 </>
