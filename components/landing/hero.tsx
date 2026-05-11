@@ -63,7 +63,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
           >
-            Transform property sales and rentals with AI-powered matching, immersive virtual tours, 
+            Transform property sales and rentals with AI-powered matching, immersive virtual tours,
             and seamless contract management. Built for the modern real estate professional.
           </motion.p>
 
@@ -114,7 +114,7 @@ export function Hero() {
         </div>
 
         {/* Dashboard preview */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -128,9 +128,9 @@ export function Hero() {
               <div className="h-3 w-3 rounded-full bg-chart-2/60" />
               <span className="ml-4 text-xs text-muted-foreground">PropertyCare Dashboard</span>
             </div>
-            <div className="p-6 lg:p-8">
-              {/* Dashboard mockup content */}
-              <div className="grid gap-4 lg:grid-cols-4">
+            <div className="p-6 lg:p-8"> */}
+        {/* Dashboard mockup content */}
+        {/* <div className="grid gap-4 lg:grid-cols-4">
                 <DashboardCard title="Active Listings" value="247" change="+12%" />
                 <DashboardCard title="Virtual Tours" value="1,842" change="+28%" />
                 <DashboardCard title="Contracts Signed" value="89" change="+8%" />
@@ -168,7 +168,7 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
