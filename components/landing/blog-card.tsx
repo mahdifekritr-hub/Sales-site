@@ -71,7 +71,7 @@ export function BlogCard({
         </p>
 
         {/* Meta info */}
-        <div className="mb-4 space-y-2">
+        {/* <div className="mb-4 space-y-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="h-4 w-4" />
             <span>{publishDate}</span>
@@ -79,11 +79,11 @@ export function BlogCard({
             <Clock className="h-4 w-4" />
             <span>{readTime}</span>
           </div>
-        </div>
+        </div> */}
 
         {/* Author & CTA */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             {authorAvatar ? (
               <Image
                 src={authorAvatar}
@@ -98,7 +98,7 @@ export function BlogCard({
               </div>
             )}
             <span className="text-sm font-medium text-foreground">{author}</span>
-          </div>
+          </div> */}
           <button className="flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80 group/btn">
             Read Article
             <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
