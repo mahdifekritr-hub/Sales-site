@@ -540,7 +540,7 @@ function TowerVisual() {
                   {/* Unit highlight overlays */}
                   {[
                     { top: "9%", left: "35%", size: "15%" },
-                    { top: "28%", left: "55%", size: "16%" },
+                    { top: "29%", left: "55%", size: "16%" },
 
                   ].map((pos, i) => (
                     <motion.div
