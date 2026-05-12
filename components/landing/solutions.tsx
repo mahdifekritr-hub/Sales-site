@@ -13,7 +13,7 @@ const solutions = [
     features: [
       "Interactive floor navigation",
       "Immersive 360° virtual tours",
-      "Instant unit reservation",
+      "Unit Holding",
       "Integrated deposit payments",
       "Multi-platform support",
     ],
