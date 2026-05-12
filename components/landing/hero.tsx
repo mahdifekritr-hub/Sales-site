@@ -64,8 +64,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 sm:mt-8 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg md:text-xl px-2 sm:px-0"
           >
-            Transform property sales and rentals with AI-powered matching, immersive virtual tours,
-            and seamless contract management. Built for the modern real estate professional.
+            Our mission is to bring innovation and automation to building projects by providing powerful, AI-driven tools that simplify unit presentation, sales coordination, and customer interaction.
           </motion.p>
 
           {/* CTA buttons */}
