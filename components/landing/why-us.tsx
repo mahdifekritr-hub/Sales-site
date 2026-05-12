@@ -17,36 +17,50 @@ const reasons = [
     icon: Globe,
     title: "International & Trusted",
     description: "Registered in Canada · 8 Countries · 40K+ Users",
+    stat: "40K+",
+    statLabel: "Active Users",
   },
   {
     icon: Bot,
     title: "AI-Powered Platform",
-    description: "Smart assistance at every step",
+    description: "Smart assistance at every step of your journey",
+    stat: "24/7",
+    statLabel: "AI Support",
   },
   {
     icon: Tag,
     title: "White-Label Solution",
-    description: "Fully branded under your name",
+    description: "Fully branded under your name with complete customization",
+    stat: "100%",
+    statLabel: "Customizable",
   },
   {
     icon: Wrench,
     title: "All-in-One Software",
-    description: "Maintenance, CRM, Sales & more",
+    description: "Maintenance, CRM, Sales & more unified in one platform",
+    stat: "15+",
+    statLabel: "Modules",
   },
   {
     icon: Languages,
     title: "Multi-Language Support",
-    description: "Arabic, Turkish, English & more",
+    description: "Arabic, Turkish, English & more languages available",
+    stat: "8+",
+    statLabel: "Languages",
   },
   {
     icon: Zap,
     title: "Fast Setup & Training",
-    description: "From blueprint to go-live in no time",
+    description: "From blueprint to go-live in record time",
+    stat: "48h",
+    statLabel: "Avg Setup",
   },
   {
     icon: Clock,
     title: "24/7 Dedicated Support",
-    description: "Always here via chat, phone & ticket",
+    description: "Always here via chat, phone & ticket system",
+    stat: "99.9%",
+    statLabel: "Uptime",
   },
 ];
 
@@ -55,7 +69,7 @@ export function WhyUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32" ref={ref}>
+    <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden" ref={ref}>
       {/* Background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-0 top-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
@@ -84,39 +98,113 @@ export function WhyUs() {
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-10 sm:mt-16 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        >
-          {reasons.map((reason, index) => (
+        {/* Alternating spotlight layout with timeline */}
+        <div className="relative mt-16 sm:mt-20 lg:mt-24">
+          {/* Central timeline line - hidden on mobile */}
+          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block w-px -translate-x-1/2">
             <motion.div
-              key={reason.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5"
-            >
-              {/* Subtle gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              
-              {/* Icon */}
-              <div className="relative mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
-                <reason.icon className="h-6 w-6" />
-              </div>
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 1.2, delay: 0.3 }}
+              className="h-full w-full bg-gradient-to-b from-transparent via-primary/40 to-transparent origin-top"
+            />
+          </div>
 
-              {/* Content */}
-              <h3 className="relative mb-2 text-lg font-semibold tracking-tight">
-                {reason.title}
-              </h3>
-              <p className="relative text-sm leading-relaxed text-muted-foreground">
-                {reason.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Spotlight items */}
+          <div className="space-y-8 sm:space-y-12 lg:space-y-0">
+            {reasons.map((reason, index) => {
+              const isLeft = index % 2 === 0;
+              const Icon = reason.icon;
+              
+              return (
+                <motion.div
+                  key={reason.title}
+                  initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.15 * index }}
+                  className={`relative lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center ${
+                    index !== 0 ? "lg:mt-20" : ""
+                  }`}
+                >
+                  {/* Timeline node - hidden on mobile */}
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block z-10">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ duration: 0.4, delay: 0.2 + 0.15 * index }}
+                      className="relative"
+                    >
+                      {/* Outer ring */}
+                      <div className="absolute inset-0 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-sm" />
+                      {/* Inner node */}
+                      <div className="relative h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary bg-background flex items-center justify-center">
+                        <span className="text-sm font-bold text-primary">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Content card */}
+                  <div
+                    className={`${
+                      isLeft ? "lg:pr-16 lg:text-right" : "lg:col-start-2 lg:pl-16"
+                    }`}
+                  >
+                    <div
+                      className={`group relative rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-6 sm:p-8 transition-all duration-500 hover:border-primary/30 hover:bg-card/80 hover:shadow-xl hover:shadow-primary/5 ${
+                        isLeft ? "lg:ml-auto" : ""
+                      } max-w-xl`}
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                      
+                      {/* Mobile number badge */}
+                      <div className="lg:hidden absolute -top-3 left-6 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+
+                      <div className={`relative flex flex-col sm:flex-row gap-4 sm:gap-6 ${isLeft ? "lg:flex-row-reverse lg:text-left" : ""}`}>
+                        {/* Icon container */}
+                        <div className="flex-shrink-0">
+                          <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                            <Icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary transition-colors duration-300 group-hover:text-accent" />
+                          </div>
+                        </div>
+
+                        {/* Text content */}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-2">
+                            {reason.title}
+                          </h3>
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                            {reason.description}
+                          </p>
+                          
+                          {/* Stat badge */}
+                          <div className={`inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 ${isLeft ? "lg:ml-auto" : ""}`}>
+                            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                              {reason.stat}
+                            </span>
+                            <span className="text-xs sm:text-sm text-muted-foreground">
+                              {reason.statLabel}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Decorative corner accent */}
+                      <div className={`absolute ${isLeft ? "right-0 top-0 rounded-tr-2xl rounded-bl-2xl" : "left-0 top-0 rounded-tl-2xl rounded-br-2xl"} w-16 h-16 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+                    </div>
+                  </div>
+
+                  {/* Empty space for alternating layout */}
+                  <div className={`hidden lg:block ${isLeft ? "lg:col-start-2" : "lg:col-start-1 lg:row-start-1"}`} />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
