@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Bot, Building, Heart, MapPin, MessageSquare, Sparkles, Star, X, Check } from "lucide-react";
+import { Bot, Building, Heart, MapPin, MessageSquare, Sparkles, Star } from "lucide-react";
 
 const conversationSteps = [
   { role: "ai", message: "Hi! I'm here to find your perfect property. What's your ideal location?" },
@@ -24,24 +24,6 @@ export function AIMatching() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeStep, setActiveStep] = useState(0);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [rejections, setRejections] = useState<string[]>([]);
-
-  const toggleFavorite = (name: string) => {
-    setFavorites((prev) =>
-      prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
-    );
-    // Remove from rejections if favorited
-    setRejections((prev) => prev.filter((n) => n !== name));
-  };
-
-  const toggleReject = (name: string) => {
-    setRejections((prev) =>
-      prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
-    );
-    // Remove from favorites if rejected
-    setFavorites((prev) => prev.filter((n) => n !== name));
-  };
 
   return (
     <section id="ai-matching" className="relative py-16 sm:py-24 lg:py-32" ref={ref}>
@@ -154,160 +136,57 @@ export function AIMatching() {
                 </span>
               </div>
               <div className="space-y-4">
-                {matchedProperties.map((property, index) => {
-                  const isFavorited = favorites.includes(property.name);
-                  const isRejected = rejections.includes(property.name);
-                  
-                  return (
-                    <motion.div
-                      key={property.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                      className={`group relative overflow-hidden rounded-xl border p-4 transition-all ${
-                        isRejected 
-                          ? "border-destructive/30 bg-destructive/5 opacity-60" 
-                          : isFavorited 
-                            ? "border-chart-4/50 bg-chart-4/10" 
-                            : "border-border/50 bg-secondary/30 hover:border-primary/30 hover:bg-secondary/50"
-                      }`}
-                    >
-                      <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
-                        <div className="flex gap-3 sm:gap-4">
-                          <div className={`flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl ${
-                            isRejected ? "bg-destructive/10" : isFavorited ? "bg-chart-4/20" : "bg-primary/10"
-                          }`}>
-                            <Building className={`h-5 w-5 sm:h-6 sm:w-6 ${
-                              isRejected ? "text-destructive" : isFavorited ? "text-chart-4" : "text-primary"
-                            }`} />
-                          </div>
-                          <div>
-                            <p className={`font-medium ${isRejected ? "line-through text-muted-foreground" : ""}`}>
-                              {property.name}
-                            </p>
-                            <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
-                              <span className="flex items-center gap-1">
-                                <MapPin className="h-3 w-3" />
-                                Downtown
-                              </span>
-                              <span>{property.beds} beds</span>
-                            </div>
-                          </div>
+                {matchedProperties.map((property, index) => (
+                  <motion.div
+                    key={property.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                    className="group relative overflow-hidden rounded-xl border border-border/50 bg-secondary/30 p-4 transition-all hover:border-primary/30 hover:bg-secondary/50"
+                  >
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+                      <div className="flex gap-3 sm:gap-4">
+                        <div className="flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl bg-primary/10">
+                          <Building className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="text-right">
-                            <p className="font-semibold">{property.price}</p>
-                            <div className="mt-1 flex items-center gap-1 text-sm">
-                              <Star className="h-3 w-3 fill-chart-4 text-chart-4" />
-                              <span className="text-chart-4">{property.match}% match</span>
-                            </div>
-                          </div>
-                          {/* Action buttons */}
-                          <div className="flex flex-col gap-1.5">
-                            <button
-                              onClick={() => toggleFavorite(property.name)}
-                              className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-all ${
-                                isFavorited 
-                                  ? "border-chart-4/50 bg-chart-4/20 text-chart-4" 
-                                  : "border-border/50 bg-secondary/50 text-muted-foreground hover:border-chart-4/50 hover:bg-chart-4/10 hover:text-chart-4"
-                              }`}
-                              title={isFavorited ? "Remove from favorites" : "Add to favorites"}
-                            >
-                              <Heart className={`h-4 w-4 ${isFavorited ? "fill-chart-4" : ""}`} />
-                            </button>
-                            <button
-                              onClick={() => toggleReject(property.name)}
-                              className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-all ${
-                                isRejected 
-                                  ? "border-destructive/50 bg-destructive/20 text-destructive" 
-                                  : "border-border/50 bg-secondary/50 text-muted-foreground hover:border-destructive/50 hover:bg-destructive/10 hover:text-destructive"
-                              }`}
-                              title={isRejected ? "Undo rejection" : "Not interested"}
-                            >
-                              <X className="h-4 w-4" />
-                            </button>
+                        <div>
+                          <p className="font-medium">{property.name}</p>
+                          <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <MapPin className="h-3 w-3" />
+                              Downtown
+                            </span>
+                            <span>{property.beds} beds</span>
                           </div>
                         </div>
                       </div>
-                      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-secondary">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${property.match}%` } : {}}
-                          transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                          className={`h-full rounded-full ${
-                            isRejected 
-                              ? "bg-destructive/50" 
-                              : "bg-gradient-to-r from-primary to-accent"
-                          }`}
-                        />
-                      </div>
-                      {/* Status badge */}
-                      {(isFavorited || isRejected) && (
-                        <div className={`absolute top-2 right-2 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                          isFavorited 
-                            ? "bg-chart-4/20 text-chart-4" 
-                            : "bg-destructive/20 text-destructive"
-                        }`}>
-                          {isFavorited ? (
-                            <>
-                              <Check className="h-3 w-3" />
-                              Favorited
-                            </>
-                          ) : (
-                            <>
-                              <X className="h-3 w-3" />
-                              Rejected
-                            </>
-                          )}
+                      <div className="text-right">
+                        <p className="font-semibold">{property.price}</p>
+                        <div className="mt-1 flex items-center gap-1 text-sm">
+                          <Star className="h-3 w-3 fill-chart-4 text-chart-4" />
+                          <span className="text-chart-4">{property.match}% match</span>
                         </div>
-                      )}
-                    </motion.div>
-                  );
-                })}
+                      </div>
+                    </div>
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-secondary">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${property.match}%` } : {}}
+                        transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                        className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
-
-            {/* AI Learning Feedback */}
-            {(favorites.length > 0 || rejections.length > 0) && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-xl border border-primary/30 bg-primary/5 p-4 backdrop-blur-sm"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20">
-                    <Bot className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">AI Learning Your Preferences</p>
-                    <p className="text-xs text-muted-foreground">Improving future recommendations</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2 rounded-lg bg-chart-4/10 px-3 py-2">
-                    <Heart className="h-4 w-4 fill-chart-4 text-chart-4" />
-                    <span className="text-sm">
-                      <span className="font-semibold text-chart-4">{favorites.length}</span>
-                      <span className="text-muted-foreground"> favorited</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2">
-                    <X className="h-4 w-4 text-destructive" />
-                    <span className="text-sm">
-                      <span className="font-semibold text-destructive">{rejections.length}</span>
-                      <span className="text-muted-foreground"> rejected</span>
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
 
             {/* Feature highlights */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: MessageSquare, label: "Conversational UI", value: "Natural language" },
                 { icon: Heart, label: "Preference Learning", value: "Weighted priorities" },
-              ].map((item) => (
+              ].map((item, index) => (
                 <div
                   key={item.label}
                   className="rounded-xl border border-border/50 bg-card/50 p-4 backdrop-blur-sm"
