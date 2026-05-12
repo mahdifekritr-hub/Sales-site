@@ -6,7 +6,7 @@ import {
   Handshake,
   FileSignature,
   Heart,
-  Ticket,
+  Headphones,
   CreditCard,
   Clock,
   PhoneCall,
@@ -39,7 +39,7 @@ const features = [
       "Let clients save and compare their preferred properties for faster decision-making.",
   },
   {
-    icon: Ticket,
+    icon: Headphones,
     title: "Tickets",
     description:
       "Manage support requests and maintenance issues with a centralized ticketing system.",
