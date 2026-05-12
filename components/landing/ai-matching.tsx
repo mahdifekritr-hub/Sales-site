@@ -40,10 +40,10 @@ export function AIMatching() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary">
+          {/* <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary">
             <Sparkles className="h-4 w-4" />
             AI-Powered
-          </span>
+          </span> */}
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
             Intelligent Property
             <br className="hidden sm:block" />
@@ -87,11 +87,10 @@ export function AIMatching() {
                       className={`flex ${step.role === "user" ? "justify-end" : "justify-start"}`}
                     >
                       <div
-                        className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                          step.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-secondary text-foreground"
-                        }`}
+                        className={`max-w-[80%] rounded-2xl px-4 py-3 ${step.role === "user"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-foreground"
+                          }`}
                       >
                         <p className="text-sm">{step.message}</p>
                       </div>
