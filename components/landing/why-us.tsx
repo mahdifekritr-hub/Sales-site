@@ -39,12 +39,12 @@ function CanadaFlag() {
 }
 
 const reasons = [
-  { icon: CanadaFlag, title: "International & Trusted", stat: "40K+", statLabel: "Users" },
-  { icon: Bot, title: "AI-Powered Platform", stat: "24/7", statLabel: "Support" },
+  { icon: CanadaFlag, title: "International & Trusted", stat: "400K+", statLabel: "Users" },
+  { icon: Bot, title: "AI-Powered Platform", stat: "24/7", statLabel: "Assistance " },
   { icon: Tag, title: "White-Label Solution", stat: "100%", statLabel: "Custom" },
-  { icon: Wrench, title: "All-in-One Software", stat: "15+", statLabel: "Modules" },
-  { icon: Languages, title: "Multi-Language", stat: "8+", statLabel: "Languages" },
-  { icon: Zap, title: "Fast Setup", stat: "48h", statLabel: "Go-Live" },
+  { icon: Wrench, title: "All-in-One Software", stat: "35+", statLabel: "Modules" },
+  { icon: Languages, title: "Multi-Language", stat: "20+", statLabel: "Languages" },
+  { icon: Zap, title: "Fast Setup", stat: "1min", statLabel: "Go-Live" },
   { icon: Clock, title: "Dedicated Support", stat: "99.9%", statLabel: "Uptime" },
 ];
 
