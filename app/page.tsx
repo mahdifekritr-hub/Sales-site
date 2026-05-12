@@ -12,12 +12,14 @@ import { FAQSection } from "@/components/landing/faq-section";
 import { CTA } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
 import { WhyUs } from "@/components/landing/why-us";
+import { VideoShowcase } from "@/components/landing/video-showcase";
 
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
+      <VideoShowcase />
       <Solutions />
       <AIMatching />
       <Features />
