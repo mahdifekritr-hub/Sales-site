@@ -835,7 +835,7 @@ function SolutionCard({
                       <div className="mt-1 text-xs text-muted-foreground">Holds Today</div>
                     </div>
                     <div className="rounded-lg bg-background/50 p-3 text-center">
-                      <div className="text-2xl font-bold text-primary">80%</div>
+                      <div className="text-2xl font-bold text-primary">83%</div>
                       <div className="mt-1 text-xs text-muted-foreground">Signed</div>
                     </div>
                   </div>
