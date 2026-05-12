@@ -35,10 +35,10 @@ export function Hero() {
             className="mb-8"
           >
             {/* <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-border bg-secondary/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm backdrop-blur-sm"> */}
-              {/* <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
+            {/* <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
               <span className="text-muted-foreground">AI-Powered Property Matching</span>
               <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-primary" /> */}
-            
+
           </motion.div>
 
           {/* Main heading */}
@@ -88,7 +88,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="gap-2 border-border bg-transparent text-foreground hover:bg-secondary"
+                className="gap-2 border-border bg-transparent text-foreground hover:bg-secondary hover:text-black"
               >
                 <Play className="h-4 w-4" />
                 Book a Demo
