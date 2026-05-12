@@ -420,7 +420,7 @@ function TowerVisual() {
   };
 
   return (
-    <div ref={ref} className="relative h-[520px] sm:h-[420px] overflow-hidden">
+    <div ref={ref} className="relative h-[520px] sm:h-[380px] md:h-[400px] lg:h-[420px] overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/4 h-32 w-1/2 bg-primary/5 blur-3xl" />
@@ -437,8 +437,8 @@ function TowerVisual() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Tower image - significantly larger */}
-            <div className="relative h-[220px] w-[280px] sm:h-[450px] sm:w-[280px]">
+            {/* Tower image - responsive sizing */}
+            <div className="relative h-[220px] w-[200px] sm:h-[320px] sm:w-[180px] md:h-[360px] md:w-[200px] lg:h-[400px] lg:w-[240px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
@@ -467,17 +467,17 @@ function TowerVisual() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentFloorData.number}
-                  className="absolute -right-2 hidden sm:flex items-center gap-1.5"
+                  className="absolute -right-1 sm:-right-2 hidden sm:flex items-center gap-1 sm:gap-1.5"
                   style={{ top: `${getFloorPosition(currentFloorData.number)}%`, transform: "translateY(-50%)" }}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  <div className="h-px w-6 bg-gradient-to-r from-primary/60 to-primary" />
-                  <div className="flex items-center gap-1.5 rounded-lg border border-primary/30 bg-card/95 px-2 py-1 shadow-lg backdrop-blur-sm">
-                    <Building2 className="h-3 w-3 text-primary" />
-                    <span className="text-[10px] font-semibold text-foreground">Floor {currentFloorData.number}</span>
+                  <div className="h-px w-3 sm:w-4 lg:w-6 bg-gradient-to-r from-primary/60 to-primary" />
+                  <div className="flex items-center gap-1 sm:gap-1.5 rounded-md sm:rounded-lg border border-primary/30 bg-card/95 px-1.5 sm:px-2 py-0.5 sm:py-1 shadow-lg backdrop-blur-sm">
+                    <Building2 className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary" />
+                    <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold text-foreground">Floor {currentFloorData.number}</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -504,7 +504,7 @@ function TowerVisual() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute left-3 right-3 bottom-0 sm:left-auto sm:right-0 sm:top-4 sm:bottom-4 flex h-[260px] sm:h-[330px] w-auto sm:w-[290px] flex-col rounded-t-xl sm:rounded-xl border border-border/30 bg-card/95 sm:bg-card/90 backdrop-blur-xl overflow-hidden"
+              className="absolute left-3 right-3 bottom-0 sm:left-auto sm:right-0 sm:top-4 sm:bottom-4 flex h-[260px] sm:h-[280px] md:h-[300px] lg:h-[330px] w-auto sm:w-[200px] md:w-[240px] lg:w-[280px] flex-col rounded-t-xl sm:rounded-xl border border-border/30 bg-card/95 sm:bg-card/90 backdrop-blur-xl overflow-hidden"
               style={{ boxShadow: "0 -10px 50px -10px rgba(0,0,0,0.2)" }}
             >
               {/* Panel header */}
@@ -514,17 +514,17 @@ function TowerVisual() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
-                  <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-primary-foreground" />
+                <div className="flex h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+                  <MapPin className="h-2.5 w-2.5 sm:h-3 sm:w-3 lg:h-3.5 lg:w-3.5 text-primary-foreground" />
                 </div>
-                <div className="flex-1">
-                  <div className="text-[10px] sm:text-xs font-semibold">Floor {currentFloorData.number}</div>
-                  <div className="text-[8px] sm:text-[9px] text-muted-foreground">{currentFloorData.units} units available</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[9px] sm:text-[10px] lg:text-xs font-semibold truncate">Floor {currentFloorData.number}</div>
+                  <div className="text-[7px] sm:text-[8px] lg:text-[9px] text-muted-foreground truncate">{currentFloorData.units} units available</div>
                 </div>
               </motion.div>
 
               {/* Floor plan image */}
-              <div className="relative flex-1 p-2 sm:p-3">
+              <div className="relative flex-1 p-1.5 sm:p-2 lg:p-3">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -572,26 +572,26 @@ function TowerVisual() {
 
               {/* Unit list */}
               <motion.div
-                className="border-t border-border/50 p-1.5 sm:p-2"
+                className="border-t border-border/50 p-1 sm:p-1.5 lg:p-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="grid grid-cols-2 gap-1">
+                <div className="grid grid-cols-2 gap-0.5 sm:gap-1">
                   {["A1", "A2",].map((unit, i) => (
                     <motion.div
                       key={unit}
-                      className={`flex items-center gap-1 sm:gap-1.5 rounded-lg px-1.5 sm:px-2 py-1 sm:py-1.5 text-[8px] sm:text-[9px] transition-colors ${highlightedUnit > i
+                      className={`flex items-center gap-0.5 sm:gap-1 lg:gap-1.5 rounded-md sm:rounded-lg px-1 sm:px-1.5 lg:px-2 py-0.5 sm:py-1 lg:py-1.5 text-[7px] sm:text-[8px] lg:text-[9px] transition-colors ${highlightedUnit > i
                         ? "border border-primary/30 bg-primary/10"
                         : "border border-border/50 bg-secondary/30"
                         }`}
                       animate={highlightedUnit > i ? { scale: [1, 1.02, 1] } : {}}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full ${highlightedUnit > i ? "bg-primary" : "bg-muted-foreground/50"
+                      <div className={`h-1 w-1 rounded-full ${highlightedUnit > i ? "bg-primary" : "bg-muted-foreground/50"
                         }`} />
-                      <span className="font-medium">Unit {unit}</span>
-                      <span className="ml-auto text-muted-foreground hidden sm:inline">
+                      <span className="font-medium truncate">Unit {unit}</span>
+                      <span className="ml-auto text-muted-foreground hidden lg:inline">
                         {highlightedUnit > i ? "Available" : "—"}
                       </span>
                     </motion.div>
