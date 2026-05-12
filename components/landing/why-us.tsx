@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
-  Globe,
   Bot,
   Tag,
   Wrench,
@@ -12,8 +11,35 @@ import {
   Clock,
 } from "lucide-react";
 
+// Canada Flag Icon Component
+function CanadaFlag() {
+  return (
+    <svg
+      viewBox="0 0 32 20"
+      className="h-5 w-5 text-primary"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Red left stripe */}
+      <rect x="0" y="0" width="7.2" height="20" fill="currentColor" />
+      
+      {/* White middle section */}
+      <rect x="7.2" y="0" width="17.6" height="20" fill="white" stroke="currentColor" strokeWidth="0.5" />
+      
+      {/* Red right stripe */}
+      <rect x="24.8" y="0" width="7.2" height="20" fill="currentColor" />
+      
+      {/* Maple leaf - simplified */}
+      <path
+        d="M16 4 L16.6 6.5 L19 7 L17.3 8.5 L17.8 11 L16 9.5 L14.2 11 L14.7 8.5 L13 7 L15.4 6.5 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 const reasons = [
-  { icon: Globe, title: "International & Trusted", stat: "40K+", statLabel: "Users" },
+  { icon: CanadaFlag, title: "International & Trusted", stat: "40K+", statLabel: "Users" },
   { icon: Bot, title: "AI-Powered Platform", stat: "24/7", statLabel: "Support" },
   { icon: Tag, title: "White-Label Solution", stat: "100%", statLabel: "Custom" },
   { icon: Wrench, title: "All-in-One Software", stat: "15+", statLabel: "Modules" },
