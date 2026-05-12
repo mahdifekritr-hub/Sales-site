@@ -7,9 +7,7 @@ import { Quote, Star } from "lucide-react";
 const testimonials = [
   {
     quote:
-      ""From the moment we started using this app, we saw a significant improvement in how we handle property transactions and resident communications. The custom design perfectly matches our brand, and the 24/7 support is truly exceptional!"
-
-James Carter, Tower Administrator",
+      "PropertyCare transformed how we manage our 12 high-rise towers. The AI matching alone increased our conversion rate by 40%.",
     author: "Sarah Chen",
     role: "Director of Sales",
     company: "Skyline Developments",
