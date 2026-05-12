@@ -107,7 +107,7 @@ export function Hero() {
               Integrations
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-              {["FCM", "Apple", "Amazon Hub", "Google Analytics", "Vista Homes", "Google", "Zego", "Expert Texting", "Google", "Quick Books"].map(
+              {["FCM", "Apple", "Amazon Hub", "Google Analytics", "Google Calendar", "Zego", "Expert Texting",  "Quick Books"].map(
                 (company) => (
                   <span key={company} className="text-lg font-medium tracking-tight">
                     {company}
