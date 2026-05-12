@@ -36,7 +36,7 @@ export function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-16 sm:py-24 lg:py-10" ref={ref}>
+    <section className="relative  bg-[#FAFAFB] py-16 sm:py-24 lg:py-10" ref={ref}>
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]" />
