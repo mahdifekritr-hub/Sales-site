@@ -25,17 +25,22 @@ const footerLinks = {
     { name: "HOAs & Communities", href: "https://propertycareapp.com/improving-hoa-resident-communication-with-app-based-platforms/" },
   ],
   Resources: [
-    { name: "Documentation", href: "#" },
-    { name: "API Reference", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "Support", href: "#" },
-    { name: "Status", href: "#" },
+    { name: "Documentation", href: "https://docs.propertycareapp.com/?lang=en" },
+    { name: "API Reference", href: "https://docs.propertycareapp.com/api-reference" },
+    { name: "Changelog", href: "https://docs.propertycareapp.com/changelog?lang=en" },
+    { name: "FAQs", href: "#faq" },
+    { name: "Pricing", href: "https://pricing.propertycareapp.com/en" },
+    { name: "Contact us", href: "https://propertycareapp.com/contact-us/" },
+
   ],
   Platforms: [
-    { name: "Web Application", href: "#" },
-    { name: "iOS App", href: "#" },
-    { name: "Android App", href: "#" },
-    { name: "Admin Panel", href: "#" },
+    { name: "Web Application (Sales)", href: "https://site.propertycareapp.com/siraj/" },
+    { name: "Web Application (Maintenance)", href: "https://app.propertycareapp.com/pca/" },
+    { name: "Admin Panel", href: "https://admin.propertycareapp.com/" },
+    { name: "iOS App for Management", href: "" },
+    { name: "iOS App for Residents & owners", href: "https://apps.apple.com/us/app/propertycareapp/id6757750680" },
+    { name: "Android App for Management", href: "https://play.google.com/store/apps/details?id=admin.propertycareapp.com" },
+    { name: "Android app for residents & owners", href: "#" },
   ],
 };
 
