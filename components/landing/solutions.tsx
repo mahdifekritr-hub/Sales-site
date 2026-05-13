@@ -624,10 +624,10 @@ export function Solutions() {
             Solutions
           </span> */}
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Comprehensive modules for
+            Smart Modules for Modern
             <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              every workflow
+              Property Sales
             </span>
           </h2>
         </motion.div>
