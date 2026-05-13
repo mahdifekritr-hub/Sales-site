@@ -7,9 +7,14 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'PropertyCare — Intelligent Property Management',
-  description: 'Transform your property management with AI-powered sales, rentals, virtual tours, and seamless tenant relations. The premium platform for modern real estate.',
+  title: 'Real Estate Software - PropertyCareApp Sales System',
+  description: 'We are based in Canada and operate internationally, Our mission is to bring innovation and automation to building projects by providing powerful, AI-driven tools that simplify unit presentation, sales coordination, and customer interaction.',
+  keywords: 'sales software, lead tracking, real estate software, sales software for developers, sales software for real estates, property care app',
   generator: 'v0.app',
+  openGraph: {
+    title: 'real-estate-software for developers',
+    description: 'We are based in Canada and operate internationally, Our mission is to bring innovation and automation to building projects by providing powerful, AI-driven tools that simplify unit presentation, sales coordination, and customer interaction.',
+  },
   icons: {
     icon: [
       {
