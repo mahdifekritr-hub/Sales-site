@@ -325,11 +325,11 @@ export function CTA() {
 
                         <p className="text-center text-xs text-muted-foreground">
                           By signing up, you agree to our{" "}
-                          <a href="#" className="underline hover:text-foreground">
+                          <a href="https://propertycareapp.com/terms-conditions-propertycareapp/" className="underline hover:text-foreground">
                             Terms of Service
                           </a>{" "}
                           and{" "}
-                          <a href="#" className="underline hover:text-foreground">
+                          <a href="https://propertycareapp.com/privacy-policy/" className="underline hover:text-foreground">
                             Privacy Policy
                           </a>
                         </p>
