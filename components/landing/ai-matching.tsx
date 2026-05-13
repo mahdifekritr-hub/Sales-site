@@ -152,20 +152,19 @@ export function AIMatching() {
                 {matchedProperties.map((property, index) => {
                   const isFavorited = favorites.includes(property.name);
                   const isRejected = rejected.includes(property.name);
-                  
+
                   return (
                     <motion.div
                       key={property.name}
                       initial={{ opacity: 0, y: 20 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                      className={`group relative overflow-hidden rounded-xl border-2 bg-secondary/30 p-4 transition-all ${
-                        isFavorited 
-                          ? "border-primary bg-primary/5" 
-                          : isRejected 
-                            ? "border-destructive bg-destructive/5" 
+                      className={`group relative overflow-hidden rounded-xl border-2 bg-secondary/30 p-4 transition-all ${isFavorited
+                          ? "border-primary bg-primary/5"
+                          : isRejected
+                            ? "border-destructive bg-destructive/5"
                             : "border-border/50 hover:border-primary/30 hover:bg-secondary/50"
-                      }`}
+                        }`}
                     >
                       {/* Status Badge */}
                       {(isFavorited || isRejected) && (
@@ -187,12 +186,10 @@ export function AIMatching() {
 
                       <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
                         <div className="flex gap-3 sm:gap-4">
-                          <div className={`flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl ${
-                            isRejected ? "bg-destructive/10" : "bg-primary/10"
-                          }`}>
-                            <Building className={`h-5 w-5 sm:h-6 sm:w-6 ${
-                              isRejected ? "text-destructive" : "text-primary"
-                            }`} />
+                          <div className={`flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl ${isRejected ? "bg-destructive/10" : "bg-primary/10"
+                            }`}>
+                            <Building className={`h-5 w-5 sm:h-6 sm:w-6 ${isRejected ? "text-destructive" : "text-primary"
+                              }`} />
                           </div>
                           <div>
                             <p className={`font-medium ${isRejected ? "line-through text-muted-foreground" : ""}`}>
@@ -220,22 +217,20 @@ export function AIMatching() {
                           <div className="flex flex-col gap-2">
                             <button
                               onClick={() => toggleFavorite(property.name)}
-                              className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all ${
-                                isFavorited
+                              className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all ${isFavorited
                                   ? "bg-primary text-primary-foreground"
                                   : "border border-border/50 text-muted-foreground hover:border-primary hover:text-primary"
-                              }`}
+                                }`}
                               title="Favorite"
                             >
                               <Heart className={`h-4 w-4 ${isFavorited ? "fill-current" : ""}`} />
                             </button>
                             <button
                               onClick={() => toggleRejected(property.name)}
-                              className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all ${
-                                isRejected
+                              className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all ${isRejected
                                   ? "bg-destructive text-destructive-foreground"
                                   : "border border-border/50 text-muted-foreground hover:border-destructive hover:text-destructive"
-                              }`}
+                                }`}
                               title="Reject"
                             >
                               <X className="h-4 w-4" />
@@ -248,11 +243,10 @@ export function AIMatching() {
                           initial={{ width: 0 }}
                           animate={isInView ? { width: `${property.match}%` } : {}}
                           transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                          className={`h-full rounded-full ${
-                            isRejected 
-                              ? "bg-gradient-to-r from-destructive to-red-400" 
+                          className={`h-full rounded-full ${isRejected
+                              ? "bg-gradient-to-r from-destructive to-red-400"
                               : "bg-gradient-to-r from-primary to-accent"
-                          }`}
+                            }`}
                         />
                       </div>
                     </motion.div>
@@ -295,7 +289,7 @@ export function AIMatching() {
             )}
 
             {/* Feature highlights */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: MessageSquare, label: "Conversational UI", value: "Natural language" },
                 { icon: Heart, label: "Preference Learning", value: "Weighted priorities" },
@@ -309,7 +303,7 @@ export function AIMatching() {
                   <p className="font-medium">{item.value}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>
