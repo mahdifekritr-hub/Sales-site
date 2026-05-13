@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import {
   Handshake,
   FileSignature,
@@ -136,50 +136,56 @@ interface ScrollingRowProps {
 
 function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
   const animationRef = useRef<number>();
   const scrollPositionRef = useRef(0);
+  const initializedRef = useRef(false);
 
   const duplicatedItems = [...items, ...items, ...items];
-
-  const animate = useCallback(() => {
-    if (!scrollRef.current || isPaused) {
-      animationRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
-    const container = scrollRef.current;
-    const scrollWidth = container.scrollWidth;
-    const singleSetWidth = scrollWidth / 3;
-
-    if (direction === "left") {
-      scrollPositionRef.current += speed;
-      if (scrollPositionRef.current >= singleSetWidth) {
-        scrollPositionRef.current = 0;
-      }
-    } else {
-      scrollPositionRef.current -= speed;
-      if (scrollPositionRef.current <= 0) {
-        scrollPositionRef.current = singleSetWidth;
-      }
-    }
-
-    container.scrollLeft = scrollPositionRef.current;
-    animationRef.current = requestAnimationFrame(animate);
-  }, [isPaused, direction, speed]);
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
-    // Initialize scroll position
-    const scrollWidth = container.scrollWidth;
-    const singleSetWidth = scrollWidth / 3;
+    // Initialize scroll position once
+    if (!initializedRef.current) {
+      const scrollWidth = container.scrollWidth;
+      const singleSetWidth = scrollWidth / 3;
 
-    if (direction === "right") {
-      scrollPositionRef.current = singleSetWidth;
-      container.scrollLeft = singleSetWidth;
+      if (direction === "right") {
+        scrollPositionRef.current = singleSetWidth;
+        container.scrollLeft = singleSetWidth;
+      }
+      initializedRef.current = true;
     }
+
+    const animate = () => {
+      if (!scrollRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (!isPausedRef.current) {
+        const scrollWidth = scrollRef.current.scrollWidth;
+        const singleSetWidth = scrollWidth / 3;
+
+        if (direction === "left") {
+          scrollPositionRef.current += speed;
+          if (scrollPositionRef.current >= singleSetWidth) {
+            scrollPositionRef.current = 0;
+          }
+        } else {
+          scrollPositionRef.current -= speed;
+          if (scrollPositionRef.current <= 0) {
+            scrollPositionRef.current = singleSetWidth;
+          }
+        }
+
+        scrollRef.current.scrollLeft = scrollPositionRef.current;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
 
     animationRef.current = requestAnimationFrame(animate);
 
@@ -188,13 +194,24 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [animate, direction]);
+  }, [direction, speed]);
 
-  const handlePause = () => setIsPaused(true);
-  const handleResume = () => setIsPaused(false);
+  const handlePause = () => {
+    isPausedRef.current = true;
+  };
+
+  const handleResume = () => {
+    isPausedRef.current = false;
+  };
 
   return (
-    <div className="relative">
+    <div 
+      className="relative"
+      onMouseEnter={handlePause}
+      onMouseLeave={handleResume}
+      onTouchStart={handlePause}
+      onTouchEnd={handleResume}
+    >
       {/* Left fade gradient */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
 
@@ -204,10 +221,6 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
       <div
         ref={scrollRef}
         className="flex gap-4 overflow-x-hidden py-2"
-        onMouseEnter={handlePause}
-        onMouseLeave={handleResume}
-        onTouchStart={handlePause}
-        onTouchEnd={handleResume}
       >
         {duplicatedItems.map((feature, index) => (
           <FeatureCard
