@@ -121,18 +121,18 @@ export function Footer() {
           className="mt-8 sm:mt-16 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-6 sm:pt-8 sm:flex-row"
         >
           <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
-            © {new Date().getFullYear()} PropertyCare. All rights reserved.
+            {new Date().getFullYear()} Copyright © 2024 All Rights Reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+            <a href="https://propertycareapp.com/privacy-policy/" className="text-muted-foreground transition-colors hover:text-foreground">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+            <a href="https://propertycareapp.com/terms-conditions-propertycareapp/" className="text-muted-foreground transition-colors hover:text-foreground">
               Terms of Service
             </a>
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+            {/* <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
               Cookie Settings
-            </a>
+            </a> */}
           </div>
         </motion.div>
       </div>
