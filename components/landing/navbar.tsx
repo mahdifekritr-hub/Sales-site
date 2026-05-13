@@ -54,7 +54,7 @@ export function Navbar() {
           </a>
 
           <nav className="hidden items-center gap-1 md:flex">
-            <NavigationMenu>
+            <NavigationMenu viewport={false}>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent text-muted-foreground hover:bg-secondary hover:text-foreground data-[state=open]:bg-secondary">
@@ -77,23 +77,26 @@ export function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
 
-                {navLinks.map((link) => (
-                  <NavigationMenuItem key={link.name}>
-                    <a
-                      href={link.href}
-                      className="rounded-lg px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground inline-flex items-center justify-center"
-                    >
-                      {link.name}
-                    </a>
-                  </NavigationMenuItem>
-                ))}
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="rounded-lg px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground inline-flex items-center justify-center"
+              >
+                {link.name}
+              </a>
+            ))}
 
-                <NavigationMenuItem className="relative">
+            <NavigationMenu viewport={false}>
+              <NavigationMenuList>
+                <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent text-muted-foreground hover:bg-secondary hover:text-foreground data-[state=open]:bg-secondary">
                     Our Company
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="!left-0">
+                  <NavigationMenuContent>
                     <ul className="grid w-[180px] gap-1 p-2">
                       {companyItems.map((item) => (
                         <li key={item.name}>
