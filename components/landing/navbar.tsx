@@ -14,10 +14,10 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const productItems = [
-  { name: "Maintenance", href: "#" },
-  { name: "Assets & Parts", href: "#" },
-  { name: "Communication", href: "#" },
-  { name: "CRM", href: "#" },
+  { name: "Maintenance", href: "https://propertycareapp.com/maintenance" },
+  { name: "Assets & Parts", href: "https://propertycareapp.com/assets-parts" },
+  { name: "Communication", href: "https://propertycareapp.com/communication" },
+  { name: "CRM", href: "https://propertycareapp.com/crm" },
   { name: "Sales & Rentals", href: "#" },
 ];
 
