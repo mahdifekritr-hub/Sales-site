@@ -23,9 +23,7 @@ const productItems = [
 
 const companyItems = [
   { name: "About Us", href: "#" },
-  { name: "Careers", href: "#" },
-  { name: "Contact", href: "#" },
-  { name: "Partners", href: "#" },
+  { name: "Contact US", href: "#" },
 ];
 
 const navLinks = [
