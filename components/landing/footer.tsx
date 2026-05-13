@@ -7,18 +7,22 @@ import { Building2, Github, Linkedin, Twitter } from "lucide-react";
 const footerLinks = {
   Products: [
     { name: "Rental & Sales Software", href: "#" },
-    { name: "Work Orders", href: "#" },
-    { name: "Assets & Parts", href: "#" },
-    { name: "Communication", href: "#" },
+    { name: "Work Orders", href: "https://propertycareapp.com/maintenance/" },
+    { name: "Assets & Parts", href: "https://propertycareapp.com/assets-parts/" },
+    { name: "Communication", href: "https://propertycareapp.com/communication/" },
+    { name: "CRM & Customer Care", href: "https://propertycareapp.com/crm/" },
     { name: "Real State Filing", href: "#" },
 
   ],
   Company: [
-    { name: "About Us", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Property managers", href: "https://propertycareapp.com/ai-powered-property-management/" },
+    { name: "Sales and rental offices", href: "https://propertycareapp.com/smart-property-sales-system/" },
+    { name: "Real-States", href: "https://propertycareapp.com/digital-marketing-strategies-that-drive-more-leads-for-real-estate-agencies/" },
+    { name: "Property Owners", href: "https://propertycareapp.com/improving-owner-tenant-communication-through-digital-property-management-tools/" },
+    { name: "Facility managers", href: "https://propertycareapp.com/predicting-and-preventing-failures-using-data-and-analytics-in-facility-management/" },
+    { name: "Security managers", href: "https://propertycareapp.com/integrating-security-systems-with-property-management-software-best-practices-for-monitoring-and-reporting/" },
+    { name: "Condos & Co-ops", href: "https://propertycareapp.com/the-future-of-condo-co-op-management-how-digital-platforms-reduce-board-workload/" },
+    { name: "HOAs & Communities", href: "https://propertycareapp.com/improving-hoa-resident-communication-with-app-based-platforms/" },
   ],
   Resources: [
     { name: "Documentation", href: "#" },
