@@ -72,8 +72,7 @@ export function Footer() {
               <span className="text-xl font-semibold tracking-tight">PropertyCare</span>
             </a>
             <p className="mt-3 sm:mt-4 max-w-xs text-sm sm:text-base text-muted-foreground">
-              Simplify residential building management with our smart SaaS solution designed for
-              seamless maintenance and communication.
+              Simplify residential building management with Property Care App – a smart SaaS solution designed for seamless maintenance, resident communication, and service request tracking. Stay organized, enhance efficiency, and ensure hassle-free property care with our innovative platform.
             </p>
             <div className="mt-4 sm:mt-6 flex gap-3 sm:gap-4">
               {socialLinks.map((social) => (
