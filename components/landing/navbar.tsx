@@ -22,8 +22,8 @@ const productItems = [
 ];
 
 const companyItems = [
-  { name: "About Us", href: "#" },
-  { name: "Contact US", href: "#" },
+  { name: "About Us", href: "https://propertycareapp.com/about-us/" },
+  { name: "Contact US", href: "https://propertycareapp.com/contact-us" },
 ];
 
 const navLinks = [
