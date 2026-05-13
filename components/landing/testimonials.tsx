@@ -8,10 +8,11 @@ const testimonials = [
   {
     quote:
       "Before this platform, we were managing unit reservations across spreadsheets and dealing with double-bookings almost every week. Three months in — not a single conflict. Our contract closing time has been cut in half.",
-    author: "Ali Heydar",
+    author: "Ali Heydari",
     role: "Sales Management",
     company: "Aseman Tower",
     rating: 5,
+    image: "/testimonials/ali-heydari.jpg",
   },
   {
     quote:
@@ -20,6 +21,7 @@ const testimonials = [
     role: "Project Owner",
     company: "Reyes Development Group",
     rating: 5,
+    image: "/testimonials/michael-johnson.jpg",
   },
   {
     quote:
@@ -28,6 +30,7 @@ const testimonials = [
     role: "Real Estate Agency",
     company: "Apex Towers",
     rating: 5,
+    image: "/testimonials/marcus-liu.jpg",
   },
 ];
 
@@ -83,13 +86,15 @@ export function Testimonials() {
                 &quot;{testimonial.quote}&quot;
               </p>
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-lg font-bold text-primary-foreground">
-                  {testimonial.author[0]}
-                </div>
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.author}
+                  className="h-12 w-12 rounded-full object-cover"
+                />
                 <div>
                   <p className="font-semibold">{testimonial.author}</p>
                   <p className="text-sm text-muted-foreground">
-                    {testimonial.role} {testimonial.company}
+                    {testimonial.role} at {testimonial.company}
                   </p>
                 </div>
               </div>
