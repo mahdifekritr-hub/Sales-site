@@ -28,7 +28,6 @@ export default function Home() {
       <Testimonials />
       <BlogSection />
       <FAQSection />
-
       <CTA />
       <Footer />
     </main>
