@@ -297,7 +297,7 @@
       "ai": {
         "tag": "Yapay Zeka",
         "title": "Yapay Zekaya Bırakın",
-        "description": "Hem Sor hem de Temsilci modlarında kullanılabilen akıllı bir yapay zeka kenar çubuğu, platform içindeki her zaman açık asistanınız olarak hareket eder. İhtiyacınız olanı tanımlayın, yapay zeka görevleri yürütür, soruları yanıtlar ve iş akışınızı anında destekler. Personel performansı raporları oluşturmaktan i�� emirlerini, CRM'i ve biletleri herhangi bir dilde özetlemeye kadar, yapay zeka karmaşık operasyonları net, eyleme geçirilebilir içgörülere dönüştürür. Ayrıca yanıtlar önerebilir, sonraki adımları tavsiye edebilir ve iletişimi zahmetsizce yönetmenize yardımcı olabilir. Müşterilere mesaj gönderin, raporlar oluşturun veya otomatik selamlamalar oluşturun — hepsi yapay zeka tarafından desteklenmektedir. Birden fazla bölümde gezinmeye gerek yok; sadece sorun, yapılır."
+        "description": "Hem Sor hem de Temsilci modlarında kullanılabilen akıllı bir yapay zeka kenar çubuğu, platform içindeki her zaman açık asistanınız olarak hareket eder. İhtiyacınız olanı tanımlayın, yapay zeka görevleri yürütür, soruları yanıtlar ve iş akışınızı anında destekler. Personel performansı raporları oluşturmaktan i���� emirlerini, CRM'i ve biletleri herhangi bir dilde özetlemeye kadar, yapay zeka karmaşık operasyonları net, eyleme geçirilebilir içgörülere dönüştürür. Ayrıca yanıtlar önerebilir, sonraki adımları tavsiye edebilir ve iletişimi zahmetsizce yönetmenize yardımcı olabilir. Müşterilere mesaj gönderin, raporlar oluşturun veya otomatik selamlamalar oluşturun — hepsi yapay zeka tarafından desteklenmektedir. Birden fazla bölümde gezinmeye gerek yok; sadece sorun, yapılır."
       },
       "visit": {
         "tag": "Bir Birimi Ziyaret Et",
@@ -320,7 +320,11 @@
       "recommended": "Önerilen",
       "assignTo": "Ali'ye Ata",
       "sendFollowUp": "Takip Gönder",
-      "viewSummary": "Özeti Görüntüle"
+      "viewSummary": "Özeti Görüntüle",
+      "requestBelongsTo": "Talep şu kişiye ait",
+      "markedAs": "olarak işaretlendi",
+      "pendingUnitInquiry": "bekleyen birim sorgusu",
+      "assignToAliReason": "İspanyolca konuşuyor, daha iyi saat dilimi"
     },
     "tower": {
       "floor": "Kat",
@@ -346,12 +350,22 @@
       "afternoon": "Öğleden Sonra",
       "bookTour": "Tur Rezervasyonu",
       "booking": "Rezervasyon yapılıyor...",
-      "confirmationSent": "Onay gönderildi!"
+      "confirmationSent": "Onay gönderildi!",
+      "selectHoursFor": "Saat Seçin",
+      "selectedTimeFrom": "Seçtiğiniz zaman",
+      "to": "ile",
+      "sun": "Paz",
+      "mon": "Pzt",
+      "tue": "Sal",
+      "wed": "Çar",
+      "thu": "Per",
+      "fri": "Cum",
+      "sat": "Cmt"
     },
     "queue": {
       "reservationQueue": "Rezervasyon Kuyruğu",
       "yourPosition": "Konumunuz",
-      "inQueue": "kuyrukta",
+      "inQueue": "Kuyrukta",
       "estimatedTime": "Tahmini süre:",
       "hours": "saat",
       "position": "Konum",
@@ -362,7 +376,13 @@
       "notified": "bilgilendirildi",
       "yourTurn": "Sıranız Geldi!",
       "unitAvailable": "Birim artık sizin için mevcut",
-      "claimNow": "Şimdi Talep Et"
+      "claimNow": "Şimdi Talep Et",
+      "activeHold": "Aktif Rezervasyon",
+      "holdsToday": "Bugünkü Rezervasyonlar",
+      "signed": "İmzalandı",
+      "minAgo": "dk önce",
+      "hourAgo": "saat önce",
+      "hoursAgo": "saat önce"
     }
   },
 "videoShowcase": {

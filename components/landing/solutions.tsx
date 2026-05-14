@@ -14,7 +14,7 @@ const solutionGradients = [
 ];
 
 // Compact AI Dashboard Visual for Solutions Section
-function AIHandleVisual() {
+function AIHandleVisual({ t }: { t: (key: string) => string }) {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showTyping, setShowTyping] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
@@ -63,9 +63,9 @@ function AIHandleVisual() {
   ];
 
   const requests = [
-    { id: "5360220352", name: "Matt Fakri", status: "pending" },
-    { id: "5360220348", name: "Sarah Chen", status: "assigned" },
-    { id: "5360220341", name: "Omar Hassan", status: "done" },
+    { id: "5360220352", name: "Matt Fakri", statusKey: "pending" as const },
+    { id: "5360220348", name: "Sarah Chen", statusKey: "active" as const },
+    { id: "5360220341", name: "Omar Hassan", statusKey: "done" as const },
   ];
 
   return (
@@ -102,16 +102,16 @@ function AIHandleVisual() {
           <div className={`flex-1 overflow-hidden transition-all duration-300 ${showSidebar ? "opacity-30 blur-[2px]" : ""}`}>
             {/* Header */}
             <div className="border-b border-border/50 px-3 py-2">
-              <div className="text-xs font-semibold">Requests</div>
-              <div className="text-[10px] text-muted-foreground">3 pending</div>
+              <div className="text-xs font-semibold">{t("dashboard.requests")}</div>
+              <div className="text-[10px] text-muted-foreground">3 {t("dashboard.pending")}</div>
             </div>
 
             {/* Mini stats */}
             <div className="grid grid-cols-3 gap-2 p-2">
               {[
-                { label: "Pending", val: "3", color: "text-chart-5" },
-                { label: "Active", val: "12", color: "text-primary" },
-                { label: "Done", val: "48", color: "text-chart-4" },
+                { label: t("dashboard.pending"), val: "3", color: "text-chart-5" },
+                { label: t("dashboard.active"), val: "12", color: "text-primary" },
+                { label: t("dashboard.done"), val: "48", color: "text-chart-4" },
               ].map((s) => (
                 <div key={s.label} className="rounded-lg bg-secondary/50 p-2 text-center">
                   <div className={`text-sm font-bold ${s.color}`}>{s.val}</div>
@@ -132,10 +132,10 @@ function AIHandleVisual() {
                       <div className="truncate text-[10px] font-medium">{r.name}</div>
                       <div className="text-[8px] text-muted-foreground">#{r.id}</div>
                     </div>
-                    <span className={`rounded-full px-1.5 py-0.5 text-[8px] ${r.status === "pending" ? "bg-chart-5/10 text-chart-5" :
-                      r.status === "assigned" ? "bg-primary/10 text-primary" : "bg-chart-4/10 text-chart-4"
+                    <span className={`rounded-full px-1.5 py-0.5 text-[8px] ${r.statusKey === "pending" ? "bg-chart-5/10 text-chart-5" :
+                      r.statusKey === "active" ? "bg-primary/10 text-primary" : "bg-chart-4/10 text-chart-4"
                       }`}>
-                      {r.status}
+                      {t(`dashboard.${r.statusKey}`)}
                     </span>
                   </div>
                 ))}
@@ -172,8 +172,8 @@ function AIHandleVisual() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="text-xs font-semibold">AI Assistant</div>
-                    <div className="text-[9px] text-muted-foreground">Ready to help</div>
+                    <div className="text-xs font-semibold">{t("dashboard.aiAssistant")}</div>
+                    <div className="text-[9px] text-muted-foreground">{t("dashboard.readyToHelp")}</div>
                   </div>
                   <Sparkles className="h-3.5 w-3.5 text-primary" />
                 </motion.div>
@@ -244,13 +244,13 @@ function AIHandleVisual() {
                                   <div className="text-[8px] text-muted-foreground">#5360220352</div>
                                 </div>
                                 <span className="ml-auto rounded-full bg-chart-5/10 px-1.5 py-0.5 text-[7px] text-chart-5">
-                                  Pending
+                                  {t("dashboard.pending")}
                                 </span>
                               </div>
                             </div>
 
                             <div className="p-2 text-[9px] leading-relaxed text-foreground/80">
-                              Request belongs to <span className="font-medium">Matt Fakri</span>, marked as <span className="text-chart-5 font-medium">pending unit inquiry</span>.
+                              {t("dashboard.requestBelongsTo")} <span className="font-medium">Matt Fakri</span>, {t("dashboard.markedAs")} <span className="text-chart-5 font-medium">{t("dashboard.pendingUnitInquiry")}</span>.
                             </div>
 
                             {/* Recommendation */}
@@ -262,10 +262,10 @@ function AIHandleVisual() {
                             >
                               <div className="mb-1 flex items-center gap-1">
                                 <Sparkles className="h-2.5 w-2.5 text-primary" />
-                                <span className="text-[8px] font-medium text-primary">Recommended</span>
+                                <span className="text-[8px] font-medium text-primary">{t("dashboard.recommended")}</span>
                               </div>
                               <p className="text-[8px] leading-relaxed text-foreground/70">
-                                Assign to <span className="font-medium">Ali</span> - speaks Spanish, better timezone.
+                                {t("dashboard.assignTo")} - {t("dashboard.assignToAliReason")}.
                               </p>
                             </motion.div>
                           </motion.div>
@@ -277,7 +277,7 @@ function AIHandleVisual() {
                             transition={{ delay: 0.3 }}
                             className="flex flex-wrap gap-1"
                           >
-                            {["Assign to Ali", "Send Follow-up", "View Summary"].map((action, i) => (
+                            {[t("dashboard.assignTo"), t("dashboard.sendFollowUp"), t("dashboard.viewSummary")].map((action, i) => (
                               <motion.button
                                 key={action}
                                 whileHover={{ scale: 1.02 }}
@@ -303,7 +303,7 @@ function AIHandleVisual() {
 }
 
 // Premium Tower Visual for Seamless Selling Experience
-function TowerVisual() {
+function TowerVisual({ t }: { t: (key: string) => string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [currentFloor, setCurrentFloor] = useState(0);
@@ -427,7 +427,7 @@ function TowerVisual() {
                   <div className="h-px w-6 bg-gradient-to-r from-primary/60 to-primary" />
                   <div className="flex items-center gap-1.5 rounded-lg border border-primary/30 bg-card/95 px-2 py-1 shadow-lg backdrop-blur-sm">
                     <Building2 className="h-3 w-3 text-primary" />
-                    <span className="text-[10px] font-semibold text-foreground">Floor {currentFloorData.number}</span>
+                    <span className="text-[10px] font-semibold text-foreground">{t("tower.floor")} {currentFloorData.number}</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -468,8 +468,8 @@ function TowerVisual() {
                   <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-primary-foreground" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-[10px] sm:text-xs font-semibold">Floor {currentFloorData.number}</div>
-                  <div className="text-[8px] sm:text-[9px] text-muted-foreground">{currentFloorData.units} units available</div>
+                  <div className="text-[10px] sm:text-xs font-semibold">{t("tower.floor")} {currentFloorData.number}</div>
+                  <div className="text-[8px] sm:text-[9px] text-muted-foreground">{currentFloorData.units} {t("tower.units")} {t("tower.available")}</div>
                 </div>
               </motion.div>
 
@@ -540,9 +540,9 @@ function TowerVisual() {
                     >
                       <div className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full ${highlightedUnit > i ? "bg-primary" : "bg-muted-foreground/50"
                         }`} />
-                      <span className="font-medium">Unit {unit}</span>
+                      <span className="font-medium">{t("tower.unit")} {unit}</span>
                       <span className="ml-auto text-muted-foreground hidden sm:inline">
-                        {highlightedUnit > i ? "Available" : "—"}
+                        {highlightedUnit > i ? t("tower.available") : "—"}
                       </span>
                     </motion.div>
                   ))}
@@ -664,9 +664,9 @@ function SolutionCard({
             <div className="rounded-xl bg-secondary/50 p-6">
               {/* Mockup UI */}
               {solutionKey === "sales" ? (
-                <TowerVisual />
+                <TowerVisual t={t} />
               ) : solutionKey === "ai" ? (
-                <AIHandleVisual />
+                <AIHandleVisual t={t} />
               ) : solutionKey === "visit" ? (
                 <>
                   {/* Month navigation header */}
@@ -693,13 +693,13 @@ function SolutionCard({
                     </button>
                     <div className="flex flex-1 justify-center gap-1">
                       {[
-                        { day: "Sun", date: 10, selected: false },
-                        { day: "Mon", date: 11, selected: false },
-                        { day: "Tue", date: 12, selected: true },
-                        { day: "Wed", date: 13, selected: false },
-                        { day: "Thu", date: 14, selected: false },
-                        { day: "Fri", date: 15, selected: false },
-                        { day: "Sat", date: 16, selected: false },
+                        { dayKey: "sun", date: 10, selected: false },
+                        { dayKey: "mon", date: 11, selected: false },
+                        { dayKey: "tue", date: 12, selected: true },
+                        { dayKey: "wed", date: 13, selected: false },
+                        { dayKey: "thu", date: 14, selected: false },
+                        { dayKey: "fri", date: 15, selected: false },
+                        { dayKey: "sat", date: 16, selected: false },
                       ].map((item, i) => (
                         <div
                           key={i}
@@ -708,7 +708,7 @@ function SolutionCard({
                             : "border border-border bg-background/50 text-foreground hover:bg-muted"
                             }`}
                         >
-                          <span className={`text-xs ${item.selected ? "text-primary-foreground" : "text-muted-foreground"}`}>{item.day}</span>
+                          <span className={`text-xs ${item.selected ? "text-primary-foreground" : "text-muted-foreground"}`}>{t(`calendar.${item.dayKey}`)}</span>
                           <span className="text-sm font-semibold">{item.date}</span>
                         </div>
                       ))}
@@ -722,7 +722,7 @@ function SolutionCard({
 
                   {/* Time slot section heading */}
                   <div className="mb-3 text-center text-sm font-medium text-foreground">
-                    Select Hours for Tuesday, May 12
+                    {t("calendar.selectHoursFor")} {t("calendar.tue")}, May 12
                   </div>
 
                   {/* Time slot grid - 4 columns */}
@@ -750,7 +750,7 @@ function SolutionCard({
 
                   {/* Selection summary */}
                   <div className="mt-4 text-center text-sm text-muted-foreground">
-                    You selected time from <span className="font-semibold text-foreground">09:30</span> to <span className="font-semibold text-foreground">10:00</span>
+                    {t("calendar.selectedTimeFrom")} <span className="font-semibold text-foreground">09:30</span> {t("calendar.to")} <span className="font-semibold text-foreground">10:00</span>
                   </div>
                 </>
               ) : solutionKey === "buyers" ? (
@@ -761,8 +761,8 @@ function SolutionCard({
                       <span className="text-xs font-bold text-primary">A12</span>
                     </div>
                     <div className="flex-1">
-                      <div className="text-sm font-semibold text-foreground">Unit A-1204</div>
-                      <div className="text-xs text-muted-foreground">Tower A, Floor 12</div>
+                      <div className="text-sm font-semibold text-foreground">{t("tower.unit")} A-1204</div>
+                      <div className="text-xs text-muted-foreground">Tower A, {t("tower.floor")} 12</div>
                     </div>
                     <div className="rounded-lg bg-primary/10 px-3 py-1">
                       <span className="text-xs font-mono font-semibold text-primary">23:45:12</span>
@@ -771,10 +771,10 @@ function SolutionCard({
                   {/* Buyer queue list */}
                   <div className="space-y-3">
                     {[
-                      { initials: "JD", name: "John Davidson", time: "2 min ago", active: true },
-                      { initials: "SM", name: "Sarah Miller", time: "15 min ago", active: false },
-                      { initials: "AK", name: "Ahmed Khan", time: "1 hour ago", active: false },
-                      { initials: "LC", name: "Lisa Chen", time: "3 hours ago", active: false },
+                      { initials: "JD", name: "John Davidson", timeKey: "2", timeUnit: "minAgo", active: true },
+                      { initials: "SM", name: "Sarah Miller", timeKey: "15", timeUnit: "minAgo", active: false },
+                      { initials: "AK", name: "Ahmed Khan", timeKey: "1", timeUnit: "hourAgo", active: false },
+                      { initials: "LC", name: "Lisa Chen", timeKey: "3", timeUnit: "hoursAgo", active: false },
                     ].map((buyer, i) => (
                       <div key={i} className="flex items-center gap-3 rounded-lg bg-background/50 p-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -782,10 +782,10 @@ function SolutionCard({
                         </div>
                         <div className="flex-1">
                           <div className="text-sm font-medium text-foreground">{buyer.name}</div>
-                          <div className="text-xs text-muted-foreground">{buyer.time}</div>
+                          <div className="text-xs text-muted-foreground">{buyer.timeKey} {t(`queue.${buyer.timeUnit}`)}</div>
                         </div>
                         <div className={`rounded-full px-3 py-1 text-xs font-medium ${buyer.active ? "bg-green-500/20 text-green-600" : "bg-muted text-muted-foreground"}`}>
-                          {buyer.active ? "Active Hold" : "In Queue"}
+                          {buyer.active ? t("queue.activeHold") : t("queue.inQueue")}
                         </div>
                       </div>
                     ))}
@@ -794,15 +794,15 @@ function SolutionCard({
                   <div className="mt-4 grid grid-cols-3 gap-3">
                     <div className="rounded-lg bg-background/50 p-3 text-center">
                       <div className="text-2xl font-bold text-primary">4</div>
-                      <div className="mt-1 text-xs text-muted-foreground">In Queue</div>
+                      <div className="mt-1 text-xs text-muted-foreground">{t("queue.inQueue")}</div>
                     </div>
                     <div className="rounded-lg bg-background/50 p-3 text-center">
                       <div className="text-2xl font-bold text-primary">12</div>
-                      <div className="mt-1 text-xs text-muted-foreground">Holds Today</div>
+                      <div className="mt-1 text-xs text-muted-foreground">{t("queue.holdsToday")}</div>
                     </div>
                     <div className="rounded-lg bg-background/50 p-3 text-center">
                       <div className="text-2xl font-bold text-primary">83%</div>
-                      <div className="mt-1 text-xs text-muted-foreground">Signed</div>
+                      <div className="mt-1 text-xs text-muted-foreground">{t("queue.signed")}</div>
                     </div>
                   </div>
                 </>

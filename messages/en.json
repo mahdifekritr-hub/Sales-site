@@ -320,7 +320,11 @@
       "recommended": "Recommended",
       "assignTo": "Assign to Ali",
       "sendFollowUp": "Send Follow-up",
-      "viewSummary": "View Summary"
+      "viewSummary": "View Summary",
+      "requestBelongsTo": "Request belongs to",
+      "markedAs": "marked as",
+      "pendingUnitInquiry": "pending unit inquiry",
+      "assignToAliReason": "speaks Spanish, better timezone"
     },
     "tower": {
       "floor": "Floor",
@@ -346,12 +350,22 @@
       "afternoon": "Afternoon",
       "bookTour": "Book Tour",
       "booking": "Booking...",
-      "confirmationSent": "Confirmation sent!"
+      "confirmationSent": "Confirmation sent!",
+      "selectHoursFor": "Select Hours for",
+      "selectedTimeFrom": "You selected time from",
+      "to": "to",
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
     },
     "queue": {
       "reservationQueue": "Reservation Queue",
       "yourPosition": "Your Position",
-      "inQueue": "in queue",
+      "inQueue": "In Queue",
       "estimatedTime": "Estimated time:",
       "hours": "hours",
       "position": "Position",
@@ -362,7 +376,13 @@
       "notified": "notified",
       "yourTurn": "Your Turn!",
       "unitAvailable": "Unit is now available for you",
-      "claimNow": "Claim Now"
+      "claimNow": "Claim Now",
+      "activeHold": "Active Hold",
+      "holdsToday": "Holds Today",
+      "signed": "Signed",
+      "minAgo": "min ago",
+      "hourAgo": "hour ago",
+      "hoursAgo": "hours ago"
     }
   },
   "videoShowcase": {
