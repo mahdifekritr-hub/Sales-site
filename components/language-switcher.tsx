@@ -23,7 +23,7 @@ export function LanguageSwitcher() {
           className="gap-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
         >
           <Globe className="h-4 w-4" />
-          <span>{locale === "en" ? "English" : "Türkçe"}</span>
+          <span>{locale === "en" ? "EN" : "TR"}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[120px]">
@@ -51,11 +51,10 @@ export function LanguageSwitcherInline() {
         <button
           key={loc}
           onClick={() => setLocale(loc)}
-          className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
-            locale === loc
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
-          }`}
+          className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${locale === loc
+            ? "bg-primary text-primary-foreground"
+            : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
+            }`}
         >
           <span>{loc === "en" ? "English" : "Türkçe"}</span>
         </button>
