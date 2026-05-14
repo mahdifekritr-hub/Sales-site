@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
         <Button
           variant="ghost"
           size="sm"
-          className="gap-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+          className="gap-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground "
         >
           <Globe className="h-4 w-4" />
           <span>{locale === "en" ? "EN" : "TR"}</span>
