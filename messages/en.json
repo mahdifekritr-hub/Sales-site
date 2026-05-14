@@ -279,6 +279,8 @@
     }
   },
   "solutions": {
+    "sectionTitle": "Smart Modules for Modern",
+    "sectionTitleHighlight": "Property Sales",
     "items": {
       "sales": {
         "tag": "Sales Module",
@@ -369,6 +371,10 @@
     "sectionTitleEnd": "property management",
     "subtitle": "Discover how our platform streamlines your workflow, automates tedious tasks, and helps you close deals faster.",
     "productDemo": "Product Demo"
+  },
+  "blog": {
+    "sectionTitle": "Latest from our blog",
+    "subtitle": "Stay ahead with expert insights, industry trends, and practical guides for modern property management."
   },
   "aiMatching": {
     "sectionTitle": "Intelligent Property",

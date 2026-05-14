@@ -279,6 +279,8 @@
     }
   },
   "solutions": {
+    "sectionTitle": "Modern için Akıllı Modüller",
+    "sectionTitleHighlight": "Mülk Satışları",
     "items": {
       "sales": {
         "tag": "Satış Modülü",
