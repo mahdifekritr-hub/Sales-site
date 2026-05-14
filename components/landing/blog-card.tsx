@@ -91,7 +91,7 @@ export function BlogCard({
           </div>
           
           <button className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold text-primary transition-colors hover:text-primary/80 group/btn">
-            Read Article
+            Makaleyi Oku
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 transition-transform group-hover/btn:translate-x-0.5" />
           </button>
         </div>

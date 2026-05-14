@@ -571,12 +571,12 @@ export function Solutions() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Smart Modules for Modern
-            <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Property Sales
-            </span>
+<h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
+Modern Gayrimenkul Satisi Icin
+<br className="hidden sm:block" />
+<span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+Akilli Moduller
+</span>
           </h2>
         </motion.div>
 

@@ -113,10 +113,10 @@ export function BlogSection() {
           Insights & Resources
         </span> */}
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-balance text-foreground">
-          Latest from our blog
+          Blogumuzdan Son Yazilar
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-          Stay ahead with expert insights, industry trends, and practical guides for modern property management.
+          Uzman gorusleri, sektor trendleri ve modern mulk yonetimi icin pratik rehberlerle bir adim onde olun.
         </p>
       </div>
 
