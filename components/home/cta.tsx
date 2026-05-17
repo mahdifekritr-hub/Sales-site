@@ -13,11 +13,11 @@ export function HomeCTA() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden" style={{ background: 'linear-gradient(135deg, #701951, #4a0f36)' }}>
+    <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden bg-white">
       {/* Animated background */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Gradient base - now part of section style */}
-        <div className="absolute inset-0" />
+        {/* White base background */}
+        <div className="absolute inset-0 bg-white" />
 
         {/* Animated orbs */}
         <motion.div
@@ -71,7 +71,7 @@ export function HomeCTA() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-medium text-white mb-8"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-8"
           >
             <Sparkles className="h-4 w-4" />
             {t("badge")}
@@ -82,11 +82,11 @@ export function HomeCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground"
           >
             {t("title")}
             <br />
-            <span className="text-white/90">
+            <span className="bg-gradient-to-r from-primary via-[oklch(0.55_0.15_200)] to-primary bg-clip-text text-transparent">
               {t("titleHighlight")}
             </span>
           </motion.h2>
@@ -96,7 +96,7 @@ export function HomeCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-white/80 text-base sm:text-lg mb-10"
+            className="max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg mb-10"
           >
             {t("subtitle")}
           </motion.p>
@@ -109,14 +109,14 @@ export function HomeCTA() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button size="lg" className="group gap-2 px-8 text-base bg-white hover:bg-white/90" style={{ color: '#701951' }}>
+              <Button size="lg" className="group gap-2 px-8 text-base">
                 {t("startTrial")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
-              <Button size="lg" variant="outline" className="gap-2 px-8 text-base border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+              <Button size="lg" variant="outline" className="gap-2 px-8 text-base">
                 <Play className="h-4 w-4" />
                 {t("bookDemo")}
               </Button>
@@ -128,7 +128,7 @@ export function HomeCTA() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/70"
+            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground"
           >
             {[
               { text: t("noCredit"), icon: "credit" },
@@ -136,8 +136,8 @@ export function HomeCTA() {
               { text: t("cancelAnytime"), icon: "cancel" },
             ].map((item) => (
               <div key={item.icon} className="flex items-center gap-2">
-                <div className="h-5 w-5 rounded-full bg-white/20 flex items-center justify-center">
-                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-5 w-5 rounded-full bg-chart-4/20 flex items-center justify-center">
+                  <svg className="h-3 w-3 text-chart-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
