@@ -18,7 +18,7 @@ export default function Home() {
       <PlatformOverview />
       <ProductsSection />
       <AIFeaturesSection />
-      <WhyChooseUs />
+      <WhyChooseUsSection />
       <WorkflowSection />
       <HomeTestimonials />
       <HomeIntegrations />
