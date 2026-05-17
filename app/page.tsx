@@ -1,34 +1,28 @@
 import { Navbar } from "@/components/landing/navbar";
-import { Hero } from "@/components/landing/hero";
-import { Features } from "@/components/landing/features";
-import { Solutions } from "@/components/landing/solutions";
-import { AIMatching } from "@/components/landing/ai-matching";
-import { LetAIHandle } from "@/components/landing/let-ai-handle";
-import { Stats } from "@/components/landing/stats";
-import { Testimonials } from "@/components/landing/testimonials";
-import { Analytics } from "@/components/landing/analytics";
-import { BlogSection } from "@/components/landing/blog-section";
-import { FAQSection } from "@/components/landing/faq-section";
-import { CTA } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
-import { WhyUs } from "@/components/landing/why-us";
-import { VideoShowcase } from "@/components/landing/video-showcase";
-import { Integrations } from "@/components/landing/integrations";
+import { HomeHero } from "@/components/home/hero";
+import { PlatformOverview } from "@/components/home/platform-overview";
+import { ProductsSection } from "@/components/home/products-section";
+import { AIFeatures } from "@/components/home/ai-features";
+import { WhyChooseUs } from "@/components/home/why-choose-us";
+import { WorkflowSection } from "@/components/home/workflow-section";
+import { HomeTestimonials } from "@/components/home/testimonials";
+import { HomeCTA } from "@/components/home/cta";
+import { HomeIntegrations } from "@/components/home/integrations";
 
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
-      <Hero />
-      <VideoShowcase />
-      <Solutions />
-      <AIMatching />
-      <Features />
-      <WhyUs />
-      <Testimonials />
-      <BlogSection />
-      <FAQSection />
-      <CTA />
+      <HomeHero />
+      <PlatformOverview />
+      <ProductsSection />
+      <AIFeatures />
+      <WhyChooseUs />
+      <WorkflowSection />
+      <HomeTestimonials />
+      <HomeIntegrations />
+      <HomeCTA />
       <Footer />
     </main>
   );

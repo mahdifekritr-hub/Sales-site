@@ -297,7 +297,7 @@
       "ai": {
         "tag": "Yapay Zeka",
         "title": "Yapay Zekaya Bırakın",
-        "description": "Hem Sor hem de Temsilci modlarında kullanılabilen akıllı bir yapay zeka kenar çubuğu, platform içindeki her zaman açık asistanınız olarak hareket eder. İhtiyacınız olanı tanımlayın, yapay zeka görevleri yürütür, soruları yanıtlar ve iş akışınızı anında destekler. Personel performansı raporları oluşturmaktan i���� emirlerini, CRM'i ve biletleri herhangi bir dilde özetlemeye kadar, yapay zeka karmaşık operasyonları net, eyleme geçirilebilir içgörülere dönüştürür. Ayrıca yanıtlar önerebilir, sonraki adımları tavsiye edebilir ve iletişimi zahmetsizce yönetmenize yardımcı olabilir. Müşterilere mesaj gönderin, raporlar oluşturun veya otomatik selamlamalar oluşturun — hepsi yapay zeka tarafından desteklenmektedir. Birden fazla bölümde gezinmeye gerek yok; sadece sorun, yapılır."
+        "description": "Hem Sor hem de Temsilci modlarında kullanılabilen akıllı bir yapay zeka kenar çubuğu, platform içindeki her zaman açık asistanınız olarak hareket eder. İhtiyacınız olanı tanımlayın, yapay zeka görevleri yürütür, soruları yanıtlar ve iş akışınızı anında destekler. Personel performansı raporları oluşturmaktan i������ emirlerini, CRM'i ve biletleri herhangi bir dilde özetlemeye kadar, yapay zeka karmaşık operasyonları net, eyleme geçirilebilir içgörülere dönüştürür. Ayrıca yanıtlar önerebilir, sonraki adımları tavsiye edebilir ve iletişimi zahmetsizce yönetmenize yardımcı olabilir. Müşterilere mesaj gönderin, raporlar oluşturun veya otomatik selamlamalar oluşturun — hepsi yapay zeka tarafından desteklenmektedir. Birden fazla bölümde gezinmeye gerek yok; sadece sorun, yapılır."
       },
       "visit": {
         "tag": "Bir Birimi Ziyaret Et",
@@ -425,5 +425,273 @@
     "improvingRecommendations": "Gelecek öneriler geliştiriliyor",
     "favoritedCount": "favorilere eklendi",
     "rejectedCount": "reddedildi"
+  },
+  "homeHero": {
+    "badge": "Hepsi Bir Arada Emlak Platformu",
+    "titleLine1": "Mülk Yönetimi İçin",
+    "titleLine2": "Eksiksiz Platform",
+    "subtitle": "Satış, bakım, CRM ve operasyonları tek bir güçlü platformda birleştirin. Mülk yönetimini basitleştiren ve büyümeyi hızlandıran yapay zeka destekli araçlar.",
+    "startFreeTrial": "Ücretsiz Deneyin",
+    "bookDemo": "Demo Talep Edin",
+    "trustedBy": "Önde gelen emlak şirketleri tarafından tercih ediliyor"
+  },
+  "platformOverview": {
+    "badge": "Platform Ekosistemi",
+    "title": "Tek Platform,",
+    "titleHighlight": "Sonsuz Olasılıklar",
+    "subtitle": "Tüm mülk yönetim araçlarınız tek bir kesintisiz ekosistemde birbirine bağlı. Satıştan bakıma, her konuda yanınızdayız.",
+    "learnMore": "Daha fazla",
+    "modules": {
+      "sales": {
+        "title": "Satış ve Kiralama",
+        "description": "Sanal turlar, envanter yönetimi ve anlaşma takibi"
+      },
+      "crm": {
+        "title": "CRM",
+        "description": "Potansiyel müşteri yönetimi ve müşteri ilişkileri araçları"
+      },
+      "maintenance": {
+        "title": "Bakım",
+        "description": "İş emirleri, zamanlama ve varlık takibi"
+      },
+      "accounting": {
+        "title": "Muhasebe",
+        "description": "Faturalama, ödemeler ve finansal raporlar"
+      },
+      "property": {
+        "title": "Mülk",
+        "description": "Birim yönetimi, kiralamalar ve kiracı portalı"
+      },
+      "ai": {
+        "title": "Yapay Zeka Araçları",
+        "description": "Akıllı otomasyon ve zeki içgörüler"
+      }
+    },
+    "stats": {
+      "users": "Aktif Kullanıcı",
+      "countries": "Ülke",
+      "integrations": "Entegrasyon",
+      "uptime": "Çalışma Süresi"
+    }
+  },
+  "productsSection": {
+    "badge": "Ürünlerimiz",
+    "title": "Her İhtiyaç İçin Güçlü Modüller",
+    "subtitle": "İş akışınıza uyan araçları seçin. Her modül bağımsız veya eksiksiz mülk yönetim paketinizin bir parçası olarak çalışacak şekilde tasarlanmıştır.",
+    "exploreModule": "Modülü Keşfet",
+    "customSolution": "Özel bir çözüme mi ihtiyacınız var? Platformumuzu özel gereksinimlerinize göre uyarlıyoruz.",
+    "startTrial": "Ücretsiz Deneyin",
+    "contactSales": "Satışla İletişime Geçin",
+    "products": {
+      "sales": {
+        "title": "Satış ve Kiralama",
+        "description": "Sürükleyici sanal turlar, akıllı envanter yönetimi ve kolaylaştırılmış anlaşma takibi ile mülk satış ve kiralama şeklinizi dönüştürün.",
+        "features": {
+          "virtualTours": "360° Sanal Turlar",
+          "inventory": "Gerçek Zamanlı Envanter",
+          "analytics": "Satış Analitiği",
+          "agents": "Temsilci Yönetimi"
+        }
+      },
+      "crm": {
+        "title": "CRM",
+        "description": "Güçlü potansiyel müşteri yönetimi, otomatik takipler ve kapsamlı müşteri içgörüleri ile daha güçlü ilişkiler kurun.",
+        "features": {
+          "leads": "Potansiyel Müşteri Puanlama",
+          "pipeline": "Görsel Pipeline",
+          "automation": "E-posta Otomasyonu",
+          "reports": "Özel Raporlar"
+        }
+      },
+      "maintenance": {
+        "title": "Bakım",
+        "description": "Verimli iş emri yönetimi, önleyici bakım planlaması ve satıcı koordinasyonu ile operasyonları kolaylaştırın.",
+        "features": {
+          "workOrders": "İş Emri Takibi",
+          "assets": "Varlık Yönetimi",
+          "scheduling": "Akıllı Zamanlama",
+          "vendors": "Satıcı Portalı"
+        }
+      },
+      "accounting": {
+        "title": "Muhasebe",
+        "description": "Otomatik faturalama, ödeme takibi ve kapsamlı finansal raporlama ile mali yönetimi basitleştirin.",
+        "features": {
+          "invoicing": "Otomatik Faturalama",
+          "payments": "Ödeme Geçidi",
+          "budgets": "Bütçe Planlama",
+          "reports": "Finansal Raporlar"
+        }
+      },
+      "property": {
+        "title": "Mülk Yönetimi",
+        "description": "Birim takibi, kira yönetimi ve modern kiracı iletişim portalı ile tüm portföyünüzü yönetin.",
+        "features": {
+          "units": "Birim Veritabanı",
+          "tenants": "Kiracı Portalı",
+          "leases": "Kira Takibi",
+          "amenities": "Tesis Rezervasyonu"
+        }
+      },
+      "communication": {
+        "title": "İletişim",
+        "description": "Çok kanallı bildirimler, topluluk duyuruları ve entegre mesajlaşma ile herkesi bağlı tutun.",
+        "features": {
+          "notifications": "Anlık Bildirimler",
+          "announcements": "Duyurular",
+          "chat": "Uygulama İçi Sohbet",
+          "surveys": "Geri Bildirim Anketleri"
+        }
+      }
+    }
+  },
+  "aiFeatures": {
+    "badge": "Yapay Zeka Destekli",
+    "title": "İş Akışınızı Güçlendirin",
+    "titleHighlight": "Yapay Zeka ile",
+    "subtitle": "Yapay zeka asistanımız ihtiyaçlarınızı anlar, tekrarlayan görevleri otomatikleştirir ve daha akıllı çalışmanıza yardımcı olacak zeki öneriler sunar.",
+    "alwaysReady": "Her zaman yardıma hazır",
+    "askAnything": "Bir şey sorun...",
+    "features": {
+      "assistant": {
+        "title": "Yapay Zeka Asistanı",
+        "description": "Doğal konuşma yoluyla anında yanıtlar alın ve karmaşık görevleri gerçekleştirin"
+      },
+      "translation": {
+        "title": "Otomatik Çeviri",
+        "description": "Gerçek zamanlı çeviri ile 12'den fazla dilde müşterilerle iletişim kurun"
+      },
+      "insights": {
+        "title": "Akıllı İçgörüler",
+        "description": "Veri kalıplarınıza göre kişiselleştirilmiş öneriler alın"
+      },
+      "automation": {
+        "title": "Görev Otomasyonu",
+        "description": "Tekrarlayan iş akışlarını otomatikleştirin ve önemli olana odaklanın"
+      },
+      "summaries": {
+        "title": "Akıllı Özetler",
+        "description": "Uzun belgeler ve konuşmaların özlü özetlerini alın"
+      },
+      "predictions": {
+        "title": "Tahmine Dayalı Analitik",
+        "description": "Yapay zeka tahminleri ile trendleri öngörün ve veriye dayalı kararlar alın"
+      }
+    }
+  },
+  "whyChooseUs": {
+    "badge": "Neden PropertyCare",
+    "title": "Ölçek İçin Tasarlandı, Size Göre Üretildi",
+    "subtitle": "Kurumsal düzeyde güvenilirliği, ekibinizin seveceği sezgisel bir deneyimle birleştiriyoruz.",
+    "items": {
+      "security": {
+        "title": "Kurumsal Güvenlik",
+        "description": "Verilerinizi güvende tutmak için banka düzeyinde şifreleme, SOC2 uyumluluğu ve GDPR'a hazır altyapı.",
+        "stat": "Garantili Çalışma Süresi"
+      },
+      "speed": {
+        "title": "Işık Hızında",
+        "description": "Optimize edilmiş performans, tüm operasyonlarda anında yanıt sağlar."
+      },
+      "global": {
+        "title": "Küresel Erişim",
+        "description": "Birden fazla ülke ve bölgede mülk yöneticilerine hizmet veriyoruz."
+      },
+      "support": {
+        "title": "7/24 Destek",
+        "description": "Ekibimiz her zaman ihtiyacınız olduğunda yardım etmek için burada."
+      },
+      "integrations": {
+        "title": "Sorunsuz Entegrasyonlar",
+        "description": "Favori araçlarınız ve hizmetlerinizle zahmetsizce bağlanın."
+      },
+      "growth": {
+        "title": "Kanıtlanmış Sonuçlar",
+        "description": "Müşterilerimiz operasyonel verimlilikte dramatik iyileşmeler görüyor."
+      }
+    }
+  },
+  "workflow": {
+    "badge": "Nasıl Çalışır",
+    "title": "Fikirden Uygulamaya",
+    "subtitle": "Kişiselleştirilmiş destek ve uzman rehberliği ile dijital dönüşüm yolculuğunuzun her adımında size rehberlik ediyoruz.",
+    "steps": {
+      "blueprint": {
+        "title": "Plan Tasarımı",
+        "description": "Binanızın ihtiyaçlarına göre özelleştirilmiş mükemmel çözümü tasarlamak için sizinle işbirliği yapıyoruz.",
+        "features": {
+          "1": "Gereksinim Analizi",
+          "2": "Özel Wireframe'ler",
+          "3": "Özellik Planlama"
+        }
+      },
+      "design": {
+        "title": "UI ve UX Tasarımı",
+        "description": "Tasarımcılarımız marka kimliğinize uygun çarpıcı bir arayüz oluşturur.",
+        "features": {
+          "1": "Marka Entegrasyonu",
+          "2": "Mobil Öncelikli Tasarım",
+          "3": "Kullanıcı Testi"
+        }
+      },
+      "delivery": {
+        "title": "Teslimat ve Eğitim",
+        "description": "Tüm ekibiniz için kapsamlı eğitimle sorunsuz devir.",
+        "features": {
+          "1": "Canlı Eğitim Oturumları",
+          "2": "Dokümantasyon",
+          "3": "Başlangıç Desteği"
+        }
+      },
+      "support": {
+        "title": "Sürekli Destek",
+        "description": "Başarınızı sağlamak için yapay zeka destekli 7/24 destek.",
+        "features": {
+          "1": "Yapay Zeka Asistanı",
+          "2": "Bilet Sistemi",
+          "3": "Telefon ve Sohbet"
+        }
+      }
+    },
+    "stats": {
+      "projects": "Teslim Edilen Proje",
+      "weeks": "Hafta İçinde Lansman",
+      "satisfaction": "Memnuniyet Oranı"
+    }
+  },
+  "homeTestimonials": {
+    "badge": "Müşteri Hikayeleri",
+    "title": "Mülk Yöneticileri Tarafından Sevildi",
+    "subtitle": "Müşterilerimizin PropertyCare deneyimleri hakkında ne söylediklerini görün.",
+    "items": {
+      "testimonial1": {
+        "quote": "Bu platform bina operasyonlarımızı yönetme şeklimizi tamamen dönüştürdü. Sezgisel özellikler ve kesintisiz iletişim araçları hayatımızı çok kolaylaştırdı. Yapay zeka asistanı oyunun kurallarını değiştiriyor!"
+      },
+      "testimonial2": {
+        "quote": "Bu uygulamayı kullanmaya başladığımız andan itibaren, mülk işlemlerini ve sakin iletişimlerini nasıl ele aldığımızda önemli bir iyileşme gördük. Özel tasarım markamızla mükemmel uyum sağlıyor."
+      },
+      "testimonial3": {
+        "quote": "Sadece bakım modülü bile bize her hafta sayısız saat kazandırdı. Otomatik zamanlama ve satıcı koordinasyon özellikleri tam ihtiyacımız olan şeydi."
+      },
+      "testimonial4": {
+        "quote": "PropertyCare'in CRM'i satış sürecimizi devrimleştirdi. Platformu uyguladığımızdan beri %40 daha fazla anlaşma kapattık. Raporlama özellikleri daha önce hiç sahip olmadığımız içgörüler sunuyor."
+      }
+    }
+  },
+  "homeCTA": {
+    "badge": "Bugün Başlayın",
+    "title": "Dönüştürmeye Hazır mısınız",
+    "titleHighlight": "Mülk Yönetiminizi?",
+    "subtitle": "Operasyonlarını PropertyCare ile kolaylaştıran binlerce mülk yöneticisine katılın. Ücretsiz denemenizi bugün başlatın.",
+    "startTrial": "Ücretsiz Deneyin",
+    "bookDemo": "Demo Talep Edin",
+    "noCredit": "Kredi kartı gerekmez",
+    "freeSetup": "Ücretsiz kurulum desteği",
+    "cancelAnytime": "İstediğiniz zaman iptal edin"
+  },
+  "homeIntegrations": {
+    "badge": "Entegrasyonlar",
+    "title": "Favori Araçlarınızla Çalışır",
+    "subtitle": "Zaten kullandığınız ve sevdiğiniz hizmetlerle sorunsuzca bağlanın."
   }
 }
