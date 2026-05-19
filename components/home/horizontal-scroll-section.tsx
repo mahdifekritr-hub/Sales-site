@@ -50,11 +50,11 @@ export function HorizontalScrollSection() {
   const [isLocked, setIsLocked] = useState(false);
   const [hasCompletedForward, setHasCompletedForward] = useState(false);
   const [hasCompletedBackward, setHasCompletedBackward] = useState(true); // Start at beginning
-  
+
   // Motion value for horizontal translation
   const x = useMotionValue(0);
   const smoothX = useSpring(x, { stiffness: 300, damping: 40 });
-  
+
   // Track scroll progress for dots (0-1)
   const progress = useMotionValue(0);
 
@@ -74,7 +74,7 @@ export function HorizontalScrollSection() {
     if (!section) return;
 
     let maxScroll = getMaxScroll();
-    
+
     const handleResize = () => {
       maxScroll = getMaxScroll();
     };
@@ -84,13 +84,13 @@ export function HorizontalScrollSection() {
       const sectionTop = rect.top;
       const sectionBottom = rect.bottom;
       const viewportHeight = window.innerHeight;
-      
+
       // Check if section is in view (vertically centered or taking most of viewport)
       const isSectionInView = sectionTop <= 100 && sectionBottom >= viewportHeight - 100;
-      
+
       // Get current x position
       const currentX = x.get();
-      
+
       // Scrolling down (positive deltaY)
       if (e.deltaY > 0) {
         // If section is in view and we haven't scrolled all cards yet
@@ -98,12 +98,12 @@ export function HorizontalScrollSection() {
           e.preventDefault();
           setIsLocked(true);
           setHasCompletedBackward(false);
-          
+
           // Calculate new position
           const newX = Math.max(currentX - e.deltaY * 1.5, -maxScroll);
           x.set(newX);
           progress.set(Math.abs(newX) / maxScroll);
-          
+
           // Check if we've reached the end
           if (newX <= -maxScroll) {
             setHasCompletedForward(true);
@@ -124,12 +124,12 @@ export function HorizontalScrollSection() {
           e.preventDefault();
           setIsLocked(true);
           setHasCompletedForward(false);
-          
+
           // Calculate new position
           const newX = Math.min(currentX - e.deltaY * 1.5, 0);
           x.set(newX);
           progress.set(Math.abs(newX) / maxScroll);
-          
+
           // Check if we've reached the beginning
           if (newX >= 0) {
             setHasCompletedBackward(true);
@@ -159,13 +159,13 @@ export function HorizontalScrollSection() {
       const sectionTop = rect.top;
       const sectionBottom = rect.bottom;
       const viewportHeight = window.innerHeight;
-      
+
       const isSectionInView = sectionTop <= 100 && sectionBottom >= viewportHeight - 100;
-      
+
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
       const currentX = x.get();
-      
+
       // Scrolling down
       if (deltaY > 0 && isSectionInView && currentX > -maxScroll) {
         e.preventDefault();
@@ -173,7 +173,7 @@ export function HorizontalScrollSection() {
         x.set(newX);
         progress.set(Math.abs(newX) / maxScroll);
         touchStartY = touchY;
-        
+
         if (newX <= -maxScroll) {
           setHasCompletedForward(true);
         }
@@ -185,7 +185,7 @@ export function HorizontalScrollSection() {
         x.set(newX);
         progress.set(Math.abs(newX) / maxScroll);
         touchStartY = touchY;
-        
+
         if (newX >= 0) {
           setHasCompletedBackward(true);
         }
@@ -231,7 +231,7 @@ export function HorizontalScrollSection() {
                 height: "62vh",
                 minHeight: "480px",
                 maxHeight: "600px",
-                backgroundColor: "#EDD5E8",
+                backgroundColor: "#f0eef8",
               }}
             >
               <div className="flex flex-row items-stretch gap-10 h-full px-12 py-10">
@@ -275,7 +275,7 @@ export function HorizontalScrollSection() {
                 </div>
 
                 {/* RIGHT: mockup */}
-                <div className="w-[420px] flex-shrink-0 bg-white rounded-xl p-4 overflow-hidden shadow-[0_4px_30px_rgba(112,25,81,0.08)] flex flex-col gap-2 self-center" style={{ maxHeight: "85%" }}>
+                <div className="w-[720px] flex-shrink-0 bg-white rounded-xl p-4 overflow-hidden shadow-[0_4px_30px_rgba(112,25,81,0.08)] flex flex-col gap-2 self-center" style={{ maxHeight: "85%" }}>
                   {card.mockup}
                 </div>
               </div>
@@ -325,7 +325,7 @@ function DotItem({
       const center = index / (count - 1);
       const radius = 0.5 / (count - 1);
       const distance = Math.abs(v - center);
-      
+
       if (distance < radius) {
         const t = 1 - distance / radius;
         setOpacity(0.25 + 0.75 * t);
@@ -452,39 +452,40 @@ function TowerVisual() {
   return (
     <div ref={ref} className="relative h-full w-full overflow-hidden">
       {/* Main content - side by side */}
-      <div className="relative flex flex-row h-full gap-2">
-        {/* Tower section */}
-        <div className="relative flex-shrink-0 flex items-end justify-center w-[180px]">
+      <div className="relative flex flex-col sm:flex-row h-full">
+        {/* Tower section - takes more space */}
+        <div className="relative flex-shrink-0 sm:flex-1 flex items-end justify-center sm:justify-start">
+          {/* Tower image container */}
           <motion.div
-            className="relative z-10 h-full flex items-end"
+            className="relative z-10"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Tower image */}
-            <div className="relative h-[340px] w-[140px]">
+            {/* Tower image - significantly larger */}
+            <div className="relative h-[220px] w-[280px] sm:h-[450px] sm:w-[280px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
-                className="h-full w-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+                className="h-full w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
               />
 
               {/* Floor highlight overlay */}
               <motion.div
-                className="absolute left-16 right-0 h-[10px] w-[0px] pointer-events-none"
+                className="absolute left-25 right-0 h-[14px] w-[0px] pointer-events-none"
                 style={{ top: `${getFloorPosition(currentFloorData.number)}%` }}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: [0.5, 0.9, 0.5],
                   boxShadow: [
-                    "0 0 10px 2px rgba(158, 42, 110, 0.4)",
-                    "0 0 20px 4px rgba(158, 42, 110, 0.6)",
-                    "0 0 10px 2px rgba(158, 42, 110, 0.4)"
+                    "0 0 15px 3px rgba(var(--primary), 0.4)",
+                    "0 0 30px 6px rgba(var(--primary), 0.6)",
+                    "0 0 15px 3px rgba(var(--primary), 0.4)"
                   ]
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="h-full w-full bg-gradient-to-r from-transparent via-[#9E2A6E]/70 to-transparent rounded-full" />
+                <div className="h-full w-full bg-gradient-to-r from-transparent via-primary/70 to-transparent rounded-full" />
               </motion.div>
 
               {/* Floor tooltip */}
@@ -513,11 +514,12 @@ function TowerVisual() {
         <AnimatePresence>
           {showPanel && (
             <motion.div
-              initial={{ y: 50, opacity: 0 }}
+              initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
+              exit={{ y: 100, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="flex-1 flex flex-col rounded-lg border border-gray-100 bg-white/95 overflow-hidden shadow-sm"
+              className="absolute left-3 right-3 bottom-0 sm:left-auto sm:right-0 sm:top-4 sm:bottom-4 flex h-[260px] sm:h-[330px] w-auto sm:w-[290px] flex-col rounded-t-xl sm:rounded-xl border border-border/30 bg-card/95 sm:bg-card/90 backdrop-blur-xl overflow-hidden"
+              style={{ boxShadow: "0 -10px 50px -10px rgba(0,0,0,0.2)" }}
             >
               {/* Panel header */}
               <motion.div
@@ -536,18 +538,19 @@ function TowerVisual() {
               </motion.div>
 
               {/* Floor plan image */}
-              <div className="relative flex-1 p-1.5">
+              <div className="relative flex-1 p-2 sm:p-3">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="relative h-full w-full overflow-hidden rounded-md border border-gray-100 bg-gray-50"
+                  className="relative h-full w-full overflow-hidden rounded-lg border border-border/50 bg-secondary/30"
                 >
                   <img
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final_unit-a4G7TxEW0vgXh4gdDQabkSgKeElGbs.jpg"
                     alt="Floor Plan"
                     className="h-full w-full object-cover"
                   />
+
 
                   {/* Unit highlight overlays */}
                   {[
