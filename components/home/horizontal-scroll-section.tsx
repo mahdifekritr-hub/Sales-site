@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { motion, useMotionValue, useSpring, animate } from "framer-motion";
 
 const CARDS = [
   {
@@ -38,51 +38,195 @@ const CARDS = [
   },
 ];
 
+// Card width in pixels (will be calculated based on viewport)
+const CARD_WIDTH_VW = 70;
+const CARD_GAP_PX = 16;
+const INITIAL_PADDING_VW = 30;
+
 export function HorizontalScrollSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isLocked, setIsLocked] = useState(false);
+  const [hasCompletedForward, setHasCompletedForward] = useState(false);
+  const [hasCompletedBackward, setHasCompletedBackward] = useState(true); // Start at beginning
+  
+  // Motion value for horizontal translation
+  const x = useMotionValue(0);
+  const smoothX = useSpring(x, { stiffness: 300, damping: 40 });
+  
+  // Track scroll progress for dots (0-1)
+  const progress = useMotionValue(0);
 
-  // scrollYProgress goes 0 → 1 over the full height of the outer wrapper
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  // Calculate max scroll distance
+  const getMaxScroll = useCallback(() => {
+    if (typeof window === "undefined") return 0;
+    const vw = window.innerWidth / 100;
+    const cardWidth = CARD_WIDTH_VW * vw;
+    const totalCardsWidth = CARDS.length * cardWidth + (CARDS.length - 1) * CARD_GAP_PX;
+    const initialPadding = INITIAL_PADDING_VW * vw;
+    // Max scroll = total width - viewport + initial padding
+    return totalCardsWidth - window.innerWidth + initialPadding + 32; // 32px for right padding
+  }, []);
 
-  // translateX goes from 0 to -(3 * cardWidth) as user scrolls through the section
-  // Each card is 70vw + 16px gap (~71vw). 3 steps × 71vw ≈ -213vw
-  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-213vw"]);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let maxScroll = getMaxScroll();
+    
+    const handleResize = () => {
+      maxScroll = getMaxScroll();
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const viewportHeight = window.innerHeight;
+      
+      // Check if section is in view (vertically centered or taking most of viewport)
+      const isSectionInView = sectionTop <= 100 && sectionBottom >= viewportHeight - 100;
+      
+      // Get current x position
+      const currentX = x.get();
+      
+      // Scrolling down (positive deltaY)
+      if (e.deltaY > 0) {
+        // If section is in view and we haven't scrolled all cards yet
+        if (isSectionInView && currentX > -maxScroll) {
+          e.preventDefault();
+          setIsLocked(true);
+          setHasCompletedBackward(false);
+          
+          // Calculate new position
+          const newX = Math.max(currentX - e.deltaY * 1.5, -maxScroll);
+          x.set(newX);
+          progress.set(Math.abs(newX) / maxScroll);
+          
+          // Check if we've reached the end
+          if (newX <= -maxScroll) {
+            setHasCompletedForward(true);
+            setIsLocked(false);
+          }
+        } else if (sectionTop > 100) {
+          // Section hasn't been reached yet, normal scroll
+          setIsLocked(false);
+        } else if (currentX <= -maxScroll) {
+          // Already scrolled through all cards, allow normal scroll
+          setIsLocked(false);
+        }
+      }
+      // Scrolling up (negative deltaY)
+      else if (e.deltaY < 0) {
+        // If section is in view and we've scrolled some cards
+        if (isSectionInView && currentX < 0) {
+          e.preventDefault();
+          setIsLocked(true);
+          setHasCompletedForward(false);
+          
+          // Calculate new position
+          const newX = Math.min(currentX - e.deltaY * 1.5, 0);
+          x.set(newX);
+          progress.set(Math.abs(newX) / maxScroll);
+          
+          // Check if we've reached the beginning
+          if (newX >= 0) {
+            setHasCompletedBackward(true);
+            setIsLocked(false);
+          }
+        } else if (sectionBottom < viewportHeight - 100) {
+          // Section is above viewport, normal scroll
+          setIsLocked(false);
+        } else if (currentX >= 0) {
+          // Already at beginning, allow normal scroll
+          setIsLocked(false);
+        }
+      }
+    };
+
+    // Touch handling for mobile
+    let touchStartY = 0;
+    let touchStartX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const viewportHeight = window.innerHeight;
+      
+      const isSectionInView = sectionTop <= 100 && sectionBottom >= viewportHeight - 100;
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      const currentX = x.get();
+      
+      // Scrolling down
+      if (deltaY > 0 && isSectionInView && currentX > -maxScroll) {
+        e.preventDefault();
+        const newX = Math.max(currentX - deltaY * 2, -maxScroll);
+        x.set(newX);
+        progress.set(Math.abs(newX) / maxScroll);
+        touchStartY = touchY;
+        
+        if (newX <= -maxScroll) {
+          setHasCompletedForward(true);
+        }
+      }
+      // Scrolling up
+      else if (deltaY < 0 && isSectionInView && currentX < 0) {
+        e.preventDefault();
+        const newX = Math.min(currentX - deltaY * 2, 0);
+        x.set(newX);
+        progress.set(Math.abs(newX) / maxScroll);
+        touchStartY = touchY;
+        
+        if (newX >= 0) {
+          setHasCompletedBackward(true);
+        }
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("resize", handleResize);
+    section.addEventListener("touchstart", handleTouchStart, { passive: true });
+    section.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("resize", handleResize);
+      section.removeEventListener("touchstart", handleTouchStart);
+      section.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [x, progress, getMaxScroll]);
 
   return (
-    /*
-     * OUTER WRAPPER
-     * Height = 100vh (the sticky window) + scroll distance needed to traverse 3 card-widths.
-     * Each card is 100vw wide, we need to scroll through 3 gaps → 300vh is a good proxy
-     * (you can tune this multiplier: more = slower scroll, less = faster).
-     */
-    <div ref={sectionRef} style={{ height: "500vh" }}>
-      {/* STICKY CONTAINER — pins to the top of the viewport */}
+    <section
+      ref={sectionRef}
+      className="relative bg-background"
+      style={{ height: "100vh" }}
+    >
       <div
-        style={{
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          overflow: "hidden",
-        }}
-        className="bg-background"
+        ref={containerRef}
+        className="h-full overflow-hidden flex items-center"
       >
-        {/* CARDS TRACK — translated horizontally by scroll */}
-        {/* pl-[50vw] so first card starts from center of page, pb-16 for bottom spacing */}
+        {/* CARDS TRACK — translated horizontally */}
         <motion.div
-          style={{ x }}
-          className="flex flex-row items-center gap-4 pl-[30vw] pr-8 h-full pb-16"
+          style={{ x: smoothX }}
+          className="flex flex-row items-center gap-4 h-full pb-16"
+          // Initial padding to start cards from ~30vw
+          style={{ x: smoothX, paddingLeft: `${INITIAL_PADDING_VW}vw`, paddingRight: "2rem" }}
         >
           {CARDS.map((card, i) => (
-            /* Each card is a standalone rounded box — NOT full screen width.
-               Width ~70vw and height ~55vh so cards are smaller like reference. */
             <div
               key={i}
               className="flex-shrink-0 rounded-2xl overflow-hidden"
               style={{
-                width: "70vw",
+                width: `${CARD_WIDTH_VW}vw`,
                 height: "55vh",
                 minHeight: "420px",
                 maxHeight: "520px",
@@ -139,24 +283,24 @@ export function HorizontalScrollSection() {
         </motion.div>
 
         {/* Progress dots */}
-        <ProgressDots scrollYProgress={scrollYProgress} count={4} />
+        <ProgressDots progress={progress} count={4} />
       </div>
-    </div>
+    </section>
   );
 }
 
 /* ─── Progress dots ─────────────────────────────────────── */
 function ProgressDots({
-  scrollYProgress,
+  progress,
   count,
 }: {
-  scrollYProgress: any;
+  progress: any;
   count: number;
 }) {
   return (
     <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
       {Array.from({ length: count }).map((_, i) => (
-        <DotItem key={i} index={i} count={count} scrollYProgress={scrollYProgress} />
+        <DotItem key={i} index={i} count={count} progress={progress} />
       ))}
     </div>
   );
@@ -165,31 +309,39 @@ function ProgressDots({
 function DotItem({
   index,
   count,
-  scrollYProgress,
+  progress,
 }: {
   index: number;
   count: number;
-  scrollYProgress: any;
+  progress: any;
 }) {
-  // Each dot is "active" when scrollYProgress is near index/(count-1)
-  const center = index / (count - 1);
-  const radius = 0.5 / (count - 1);
-  // Clamp keyframes to [0, 1] to ensure monotonically increasing values
-  const start = Math.max(0, center - radius);
-  const end = Math.min(1, center + radius);
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, center, end],
-    [0.25, 1, 0.25]
-  );
-  const scale = useTransform(
-    scrollYProgress,
-    [start, center, end],
-    [1, 1.5, 1]
-  );
+  const [opacity, setOpacity] = useState(index === 0 ? 1 : 0.25);
+  const [scale, setScale] = useState(index === 0 ? 1.5 : 1);
+
+  useEffect(() => {
+    const unsubscribe = progress.on("change", (v: number) => {
+      // Each dot corresponds to a card position
+      const center = index / (count - 1);
+      const radius = 0.5 / (count - 1);
+      const distance = Math.abs(v - center);
+      
+      if (distance < radius) {
+        const t = 1 - distance / radius;
+        setOpacity(0.25 + 0.75 * t);
+        setScale(1 + 0.5 * t);
+      } else {
+        setOpacity(0.25);
+        setScale(1);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [progress, index, count]);
+
   return (
     <motion.div
-      style={{ opacity, scale }}
+      animate={{ opacity, scale }}
+      transition={{ duration: 0.2 }}
       className="w-2 h-2 rounded-full bg-[#701951]"
     />
   );
