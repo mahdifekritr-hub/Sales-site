@@ -1,301 +1,444 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import {
   Building2,
   Users,
   Wrench,
-  BarChart3,
-  Home,
-  MessageSquare,
+  ClipboardList,
   ArrowRight,
-  Check,
   Play,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const products = [
   {
     key: "sales",
     icon: Building2,
-    gradient: "from-primary via-[oklch(0.45_0.16_320)] to-[oklch(0.4_0.14_340)]",
-    accentColor: "primary",
-    features: ["virtualTours", "inventory", "analytics", "agents"],
-    mockupType: "dashboard",
+    title: "Sales & Rentals",
+    description: "Manage property sales, rentals, listings and customer operations from one platform.",
+    bgColor: "bg-[#f5f5f0]",
+    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
+    position: "left-top",
   },
   {
     key: "crm",
     icon: Users,
-    gradient: "from-[oklch(0.55_0.18_200)] via-[oklch(0.5_0.15_210)] to-[oklch(0.45_0.12_220)]",
-    accentColor: "[oklch(0.55_0.18_200)]",
-    features: ["leads", "pipeline", "automation", "reports"],
-    mockupType: "pipeline",
+    title: "CRM",
+    description: "Choose talent and collaborate with your team effectively.",
+    bgColor: "bg-[#f0eef8]",
+    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
+    position: "right-top",
   },
   {
     key: "maintenance",
     icon: Wrench,
-    gradient: "from-chart-5 via-[oklch(0.55_0.16_35)] to-[oklch(0.5_0.14_50)]",
-    accentColor: "chart-5",
-    features: ["workOrders", "assets", "scheduling", "vendors"],
-    mockupType: "tickets",
+    title: "Maintenance",
+    description: "All DMs are finally in one app. Streamline communication.",
+    bgColor: "bg-[#f0f5f5]",
+    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
+    position: "left-bottom",
   },
   {
-    key: "accounting",
-    icon: BarChart3,
-    gradient: "from-chart-4 via-[oklch(0.5_0.14_140)] to-[oklch(0.45_0.12_160)]",
-    accentColor: "chart-4",
-    features: ["invoicing", "payments", "budgets", "reports"],
-    mockupType: "charts",
-  },
-  {
-    key: "property",
-    icon: Home,
-    gradient: "from-[oklch(0.5_0.16_280)] via-[oklch(0.45_0.14_290)] to-[oklch(0.4_0.12_300)]",
-    accentColor: "[oklch(0.5_0.16_280)]",
-    features: ["units", "tenants", "leases", "amenities"],
-    mockupType: "units",
-  },
-  {
-    key: "communication",
-    icon: MessageSquare,
-    gradient: "from-[oklch(0.6_0.16_190)] via-[oklch(0.55_0.14_200)] to-[oklch(0.5_0.12_210)]",
-    accentColor: "[oklch(0.6_0.16_190)]",
-    features: ["notifications", "announcements", "chat", "surveys"],
-    mockupType: "chat",
+    key: "requests",
+    icon: ClipboardList,
+    title: "Maintenance Requests",
+    description: "Choose talent on rating and reviews. Build trust with transparency.",
+    bgColor: "bg-[#faf5f5]",
+    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
+    position: "right-bottom",
   },
 ];
 
-// Mini mockup components for visual interest
-function DashboardMockup() {
+// Product card mockup components
+function CreateProjectMockup() {
   return (
-    <div className="absolute top-4 right-4 w-24 h-16 rounded-lg bg-secondary/50 border border-border/30 overflow-hidden opacity-60 group-hover:opacity-100 transition-opacity">
-      <div className="h-2 bg-primary/30 m-1.5 rounded" />
-      <div className="flex gap-1 px-1.5">
-        <div className="h-6 w-6 rounded bg-primary/20" />
-        <div className="flex-1 space-y-1">
-          <div className="h-1.5 bg-border rounded w-full" />
-          <div className="h-1.5 bg-border rounded w-3/4" />
+    <div className="relative w-full h-full flex items-center justify-end pr-4">
+      {/* Left info panel */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg p-4 w-40 space-y-3 z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-primary" />
+          <span className="text-xs text-muted-foreground">Austin</span>
+        </div>
+        <div className="text-[10px] text-muted-foreground">TX, USA</div>
+        <div className="flex items-center gap-2 pt-2 border-t">
+          <div className="w-4 h-4 rounded bg-muted" />
+          <span className="text-xs">Sunday, 28 Mar</span>
+        </div>
+        <div className="text-[10px] text-primary font-medium">Expires in 3 days</div>
+        <div className="text-[9px] text-muted-foreground">Close applications 3 days before the start of the project</div>
+      </div>
+      
+      {/* Phone mockup */}
+      <div className="relative w-36 h-64 bg-white rounded-[2rem] shadow-xl border-4 border-gray-200 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-xl" />
+        <div className="p-3 pt-6 h-full">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[8px] text-muted-foreground">9:41</span>
+            <span className="text-[8px] font-medium">Create Project</span>
+            <span className="text-[8px]">×</span>
+          </div>
+          <div className="text-[8px] text-muted-foreground mb-2">References (4)</div>
+          <div className="grid grid-cols-2 gap-1">
+            <div className="aspect-square rounded-lg bg-gradient-to-br from-amber-100 to-amber-200" />
+            <div className="aspect-square rounded-lg bg-gradient-to-br from-rose-100 to-rose-200" />
+            <div className="aspect-square rounded-lg bg-gradient-to-br from-sky-100 to-sky-200" />
+            <div className="aspect-square rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-200" />
+          </div>
+          <button className="mt-3 text-[8px] flex items-center gap-1 text-muted-foreground">
+            + Add more
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-function PipelineMockup() {
+function HireTalentMockup() {
   return (
-    <div className="absolute top-4 right-4 flex gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-      {[3, 2, 4, 1].map((count, i) => (
-        <div key={i} className="w-5 rounded-md bg-secondary/50 border border-border/30 p-0.5">
-          {[...Array(count)].map((_, j) => (
-            <div key={j} className="h-1.5 rounded-sm bg-[oklch(0.55_0.18_200)]/30 mb-0.5 last:mb-0" />
-          ))}
+    <div className="relative w-full h-full flex items-center justify-center p-4">
+      {/* Main image card */}
+      <div className="relative w-48 h-56 rounded-2xl overflow-hidden shadow-xl rotate-2">
+        <div className="absolute inset-0 bg-gradient-to-b from-rose-200 to-pink-300" />
+        <div className="absolute top-3 left-3 flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-white/80" />
+          <div>
+            <div className="text-[10px] font-semibold">James Smith</div>
+            <div className="text-[8px] text-muted-foreground flex items-center gap-1">
+              <span className="text-amber-500">5.0★</span> • Photographer
+            </div>
+          </div>
         </div>
-      ))}
+        <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur p-3 rounded-t-2xl">
+          <p className="text-[9px] text-muted-foreground">Hi, I can give you 15 edited images for $220</p>
+          <div className="flex items-center gap-1 mt-1">
+            <span className="text-[10px]">💰</span>
+            <span className="text-[11px] font-semibold">$220</span>
+          </div>
+        </div>
+      </div>
+      
+      {/* Floating secondary images */}
+      <div className="absolute top-4 right-4 w-20 h-24 rounded-xl bg-gradient-to-br from-violet-100 to-violet-200 shadow-lg -rotate-6" />
+      <div className="absolute bottom-8 left-4 w-16 h-20 rounded-xl bg-gradient-to-br from-sky-100 to-sky-200 shadow-lg rotate-3" />
     </div>
   );
 }
 
-function ChartMockup() {
+function CommunicationMockup() {
   return (
-    <div className="absolute top-4 right-4 w-20 h-12 flex items-end gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-      {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
-        <div
-          key={i}
-          className="flex-1 rounded-t bg-gradient-to-t from-chart-4/60 to-chart-4/20"
-          style={{ height: `${h}%` }}
-        />
-      ))}
+    <div className="relative w-full h-full flex items-center justify-center p-4">
+      {/* Phone mockup - inbox */}
+      <div className="relative w-52 h-72 bg-white rounded-[2rem] shadow-xl border-4 border-gray-200 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-xl" />
+        <div className="p-4 pt-8 h-full">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[9px] text-muted-foreground">9:41</span>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-2 bg-muted rounded-sm" />
+              <div className="w-3 h-2 bg-muted rounded-sm" />
+            </div>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold">Inbox</h3>
+            <div className="w-4 h-4 rounded bg-muted" />
+          </div>
+          
+          <div className="flex gap-2 mb-4">
+            <span className="text-[9px] px-2 py-1 bg-foreground text-background rounded-full">Active</span>
+            <span className="text-[9px] px-2 py-1 text-muted-foreground">Completed</span>
+            <span className="text-[9px] px-2 py-1 text-muted-foreground">Archive</span>
+          </div>
+          
+          {/* Message items */}
+          <div className="space-y-3">
+            <div className="flex items-start gap-2 p-2 bg-muted/30 rounded-lg">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-medium">James Smith</span>
+                  <span className="text-[8px] text-muted-foreground">09:00 AM</span>
+                </div>
+                <p className="text-[8px] text-muted-foreground truncate">Portrait Photo Shoot • Sun, 16 Apr...</p>
+                <p className="text-[8px] text-muted-foreground">I can arrive at 8 am</p>
+              </div>
+              <div className="w-4 h-4 rounded-full bg-primary text-[8px] text-white flex items-center justify-center">1</div>
+            </div>
+            
+            <div className="flex items-start gap-2 p-2 rounded-lg opacity-60">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-medium">James Smith</span>
+                  <span className="text-[8px] text-muted-foreground">09:00 AM</span>
+                </div>
+                <p className="text-[8px] text-muted-foreground truncate">Portrait Photo Shoot • Sun, 16 Apr...</p>
+                <p className="text-[8px] text-muted-foreground">I can arrive at 8 am</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  );
+}
+
+function TrustMockup() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center p-4 overflow-hidden">
+      {/* Main project card */}
+      <div className="relative bg-white rounded-2xl shadow-xl p-4 w-44 -rotate-2">
+        <div className="text-sm font-semibold mb-1">Portrait photo shoot</div>
+        <div className="text-primary text-xs italic mb-2">28 Mar</div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-[9px] px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
+            ❤️ 123
+          </span>
+          <span className="text-[9px] px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
+            🔗 13
+          </span>
+        </div>
+        <p className="text-[8px] text-muted-foreground leading-relaxed">
+          Captured the essence of elegance. Stunning dresses was styled for...
+        </p>
+        <div className="text-[8px] font-medium mt-2">$2,500 • Austin, Texas • 28 Mar</div>
+        <div className="text-[8px] text-muted-foreground">293k views</div>
+      </div>
+      
+      {/* Review card */}
+      <div className="absolute top-6 right-2 bg-white rounded-xl shadow-lg p-3 w-40 rotate-3">
+        <div className="flex text-amber-400 text-xs mb-1">★★★★☆</div>
+        <p className="text-[8px] text-muted-foreground mb-2">
+          Loved working together — the photos turned out even better than expected!
+        </p>
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-rose-300 to-rose-400" />
+          <div>
+            <div className="text-[9px] font-medium">Linda White</div>
+            <div className="text-[7px] text-muted-foreground">5.0★ • Photographer</div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Heart counter */}
+      <div className="absolute bottom-4 right-4 bg-rose-50 rounded-full px-3 py-1.5 flex items-center gap-1 shadow-md">
+        <span className="text-rose-500">❤️</span>
+        <span className="text-xs font-semibold text-rose-600">123</span>
+      </div>
+    </div>
+  );
+}
+
+interface ProductCardProps {
+  product: typeof products[0];
+  index: number;
+  scrollProgress: any;
+  isInView: boolean;
+}
+
+function ProductCard({ product, index, scrollProgress, isInView }: ProductCardProps) {
+  // Calculate initial offsets based on position
+  const getInitialOffset = () => {
+    switch (product.position) {
+      case "left-top":
+        return { x: -60, y: -40 };
+      case "right-top":
+        return { x: 60, y: -30 };
+      case "left-bottom":
+        return { x: -50, y: 40 };
+      case "right-bottom":
+        return { x: 50, y: 50 };
+      default:
+        return { x: 0, y: 0 };
+    }
+  };
+
+  const initialOffset = getInitialOffset();
+  
+  // Scroll-based transforms
+  const x = useTransform(scrollProgress, [0, 0.5, 1], [initialOffset.x, initialOffset.x * 0.3, 0]);
+  const y = useTransform(scrollProgress, [0, 0.5, 1], [initialOffset.y, initialOffset.y * 0.3, 0]);
+  const scale = useTransform(scrollProgress, [0, 0.5, 1], [0.92, 0.96, 1]);
+  const opacity = useTransform(scrollProgress, [0, 0.3, 1], [0.7, 0.9, 1]);
+
+  const getMockup = () => {
+    switch (index) {
+      case 0:
+        return <CreateProjectMockup />;
+      case 1:
+        return <HireTalentMockup />;
+      case 2:
+        return <CommunicationMockup />;
+      case 3:
+        return <TrustMockup />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <motion.div
+      style={{ x, y, scale, opacity }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+      className="group relative"
+    >
+      <div
+        className={`relative h-[380px] sm:h-[420px] lg:h-[460px] rounded-3xl ${product.bgColor} overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-1`}
+      >
+        {/* Content */}
+        <div className="absolute top-6 left-6 z-10">
+          <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            {product.title}
+          </h3>
+          <p className="text-sm text-muted-foreground max-w-[200px]">
+            {product.description}
+          </p>
+        </div>
+
+        {/* Mockup area */}
+        <div className="absolute inset-0 pt-24">
+          {getMockup()}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
 export function ProductsSection() {
   const t = useTranslations("productsSection");
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeProduct, setActiveProduct] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState<"hirer" | "talent">("hirer");
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
 
   return (
-    <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden" style={{ backgroundColor: '#F9F0F5' }}>
-      {/* Background with multiple layers */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* Soft tint background */}
-        <div className="absolute inset-0" style={{ backgroundColor: '#F9F0F5' }} />
-        
-        {/* Accent orbs */}
-        <motion.div
-          className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.38 0.16 330 / 0.1) 0%, transparent 60%)",
-            filter: "blur(80px)",
-          }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[10%] right-[15%] w-[600px] h-[600px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.08) 0%, transparent 60%)",
-            filter: "blur(100px)",
-          }}
-          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        />
-        <motion.div
-          className="absolute top-[50%] right-[30%] w-[300px] h-[300px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.55 0.18 40 / 0.06) 0%, transparent 60%)",
-            filter: "blur(60px)",
-          }}
-          animate={{ y: [0, -30, 0], opacity: [0.2, 0.35, 0.2] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-      </div>
-
+    <section
+      ref={containerRef}
+      className="relative py-24 sm:py-32 lg:py-40 overflow-hidden bg-background"
+    >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-6"
-          >
-            <Sparkles className="h-4 w-4" />
-            {t("badge")}
-          </motion.div>
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
+            transition={{ duration: 0.6 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic tracking-tight text-foreground mb-4"
           >
-            {t("title")}
+            We&apos;ve done the hard part,
+            <br />
+            now it&apos;s your turn to create
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-xl mx-auto text-muted-foreground text-sm sm:text-base mb-8"
           >
-            {t("subtitle")}
+            Whether you&apos;re looking for work or finding talent,
+            <br />
+            everything is designed to flow effortlessly.
           </motion.p>
-        </div>
 
-        {/* Products grid with staggered layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {products.map((product, index) => (
-            <motion.div
-              key={product.key}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.08 }}
-              onMouseEnter={() => setActiveProduct(index)}
-              className="group relative"
+          {/* Toggle tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-1 p-1 rounded-full border border-border bg-card"
+          >
+            <button
+              onClick={() => setActiveTab("hirer")}
+              className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                activeTab === "hirer"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
             >
-              <div
-                className="relative h-full rounded-2xl border bg-white backdrop-blur-sm transition-all duration-500 overflow-hidden"
-                style={{ borderColor: '#e8d0de' }}
-              >
-                {/* Top gradient bar */}
-                <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${product.gradient} opacity-60 group-hover:opacity-100 transition-opacity`} />
-                
-                {/* Hover background glow */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
-                
-                {/* Corner accent */}
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${product.gradient} opacity-[0.03] group-hover:opacity-[0.08] transition-opacity rounded-bl-full`} />
-
-                <div className="relative p-6 sm:p-7">
-                  {/* Mini mockup visual */}
-                  {product.mockupType === "dashboard" && <DashboardMockup />}
-                  {product.mockupType === "pipeline" && <PipelineMockup />}
-                  {product.mockupType === "charts" && <ChartMockup />}
-
-                  {/* Icon with gradient ring */}
-                  <div className={`relative h-14 w-14 rounded-2xl bg-gradient-to-br ${product.gradient} p-[2px] mb-5 shadow-lg group-hover:shadow-xl transition-shadow`}>
-                    <div className="h-full w-full rounded-[14px] bg-card flex items-center justify-center">
-                      <product.icon className="h-6 w-6 text-foreground" />
-                    </div>
-                    {/* Glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3">
-                    {t(`products.${product.key}.title`)}
-                  </h3>
-                  <p className="text-muted-foreground text-sm sm:text-base mb-5 line-clamp-3">
-                    {t(`products.${product.key}.description`)}
-                  </p>
-
-                  {/* Features list with icons */}
-                  <ul className="space-y-2.5 mb-6">
-                    {product.features.map((feature, i) => (
-                      <motion.li 
-                        key={feature} 
-                        className="flex items-center gap-2.5 text-sm"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.4 + index * 0.08 + i * 0.05 }}
-                      >
-                        <div className={`h-5 w-5 rounded-full bg-gradient-to-br ${product.gradient} p-[1px]`}>
-                          <div className="h-full w-full rounded-full bg-card flex items-center justify-center">
-                            <Check className="h-3 w-3 text-foreground" />
-                          </div>
-                        </div>
-                        <span className="text-muted-foreground">{t(`products.${product.key}.features.${feature}`)}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <div className={`flex items-center gap-2 font-medium text-sm transition-all group-hover:gap-3`}>
-                    <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary/70 transition-all">
-                      {t("exploreModule")}
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              Hirer
+            </button>
+            <button
+              onClick={() => setActiveTab("talent")}
+              className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                activeTab === "talent"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Talent
+            </button>
+          </motion.div>
         </div>
 
-        {/* Bottom CTA with enhanced styling */}
+        {/* 2x2 Asymmetric grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          {/* Top row */}
+          <div className="md:mt-0">
+            <ProductCard
+              product={products[0]}
+              index={0}
+              scrollProgress={scrollYProgress}
+              isInView={isInView}
+            />
+          </div>
+          <div className="md:mt-12 lg:mt-16">
+            <ProductCard
+              product={products[1]}
+              index={1}
+              scrollProgress={scrollYProgress}
+              isInView={isInView}
+            />
+          </div>
+
+          {/* Bottom row */}
+          <div className="md:-mt-8 lg:-mt-12">
+            <ProductCard
+              product={products[2]}
+              index={2}
+              scrollProgress={scrollYProgress}
+              isInView={isInView}
+            />
+          </div>
+          <div className="md:mt-4 lg:mt-8">
+            <ProductCard
+              product={products[3]}
+              index={3}
+              scrollProgress={scrollYProgress}
+              isInView={isInView}
+            />
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-16 sm:mt-20"
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-16 sm:mt-20 text-center"
         >
-          <div className="relative rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl p-8 sm:p-12 overflow-hidden">
-            {/* Background effects */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-[oklch(0.55_0.15_200)]/5" />
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[oklch(0.55_0.15_200)]/10 rounded-full blur-[100px]" />
-            
-            <div className="relative text-center">
-              <p className="text-muted-foreground text-lg mb-6 max-w-xl mx-auto">{t("customSolution")}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-                  <Button size="lg" className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
-                    {t("startTrial")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
-                  <Button size="lg" variant="outline" className="gap-2 bg-card/50 hover:bg-card">
-                    <Play className="h-4 w-4" />
-                    {t("contactSales")}
-                  </Button>
-                </Link>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+              <Button size="lg" className="gap-2">
+                {t("startTrial")}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
+              <Button size="lg" variant="outline" className="gap-2">
+                <Play className="h-4 w-4" />
+                {t("contactSales")}
+              </Button>
+            </Link>
           </div>
         </motion.div>
       </div>
