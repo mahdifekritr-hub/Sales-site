@@ -321,7 +321,8 @@ function ProductCard({ product, index, isInView }: ProductCardProps) {
 export function ProductsSection() {
   const t = useTranslations("productsSection");
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  // Trigger animation when 30% of section is visible, only once
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   const [activeTab, setActiveTab] = useState<"hirer" | "talent">("hirer");
 
   return (
