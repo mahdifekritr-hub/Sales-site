@@ -66,24 +66,14 @@ export function HorizontalScrollSection() {
           top: 0,
           height: "100vh",
           overflow: "hidden",
-          backgroundColor: "#F9E8F2",
         }}
+        className="bg-background"
       >
-        {/* Section heading */}
-        <div className="px-16 pt-8 pb-4">
-          <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-2">
-            Features
-          </p>
-          <h2 className="text-2xl font-medium text-[#3D0A2C]">
-            A super-powered system, working together.
-          </h2>
-        </div>
-
         {/* CARDS TRACK — translated horizontally by scroll */}
-        {/* px-8 on track + gap-5 between cards so first/last card peek at edges */}
+        {/* pl-[50vw] so first card starts from center of page, pb-16 for bottom spacing */}
         <motion.div
           style={{ x }}
-          className="flex flex-row items-center gap-4 px-8"
+          className="flex flex-row items-center gap-4 pl-[50vw] pr-8 h-full pb-16"
         >
           {CARDS.map((card, i) => (
             /* Each card is a standalone rounded box — NOT full screen width.
@@ -102,6 +92,17 @@ export function HorizontalScrollSection() {
               <div className="flex flex-row items-center gap-8 h-full px-10 py-8">
                 {/* LEFT: text */}
                 <div className="flex-shrink-0 w-[280px] flex flex-col gap-3">
+                  {/* Section title - only show on first card */}
+                  {i === 0 && (
+                    <div className="mb-4">
+                      <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-2">
+                        Features
+                      </p>
+                      <h2 className="text-2xl font-medium text-[#3D0A2C]">
+                        A super-powered system, working together.
+                      </h2>
+                    </div>
+                  )}
                   <span className="text-[10px] font-medium text-[#701951] bg-white/50 rounded-full px-2.5 py-0.5 w-fit">
                     {card.num} / 04
                   </span>
