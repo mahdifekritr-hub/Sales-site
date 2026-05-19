@@ -2,386 +2,371 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Check, MessageSquare, Calendar, ClipboardList, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
-const features = [
+const CARDS = [
   {
-    id: "work-orders",
-    title: "Work Orders that run smoothly",
-    description:
-      "A system that manages maintenance requests, tracks progress, sends notifications, and hands off cleanly to other teams without third-party tools or integrations.",
-    pills: [
-      "Higher completion rates",
-      "Fewer handoffs",
-      "Less manual work",
-      "Native to platform",
-    ],
+    num: "01",
+    title: "Work Orders",
+    desc: "Track, assign, and resolve maintenance requests in one place. Never lose a task again.",
+    pills: ["Quick assignment", "Status tracking", "Photo uploads", "Vendor management"],
     cta: "Explore Work Orders",
-    ctaLink: "/products/maintenance",
+    mockup: <WorkOrderMockup />,
   },
   {
-    id: "selling",
+    num: "02",
     title: "Seamless Selling Experience",
-    description:
-      "A native sales engine that powers expert property services with real-time visibility, fast follow-up, and transparent reporting.",
-    pills: [
-      "Faster closings",
-      "Fewer delays",
-      "Real-time visibility",
-      "AI-assisted workflows",
-    ],
-    cta: "Explore Sales",
-    ctaLink: "/products/sales",
+    desc: "Convert leads faster with a guided listing and inquiry flow built for modern renters and buyers.",
+    pills: ["Lead capture", "Auto follow-up", "Pipeline view", "One-click proposals"],
+    cta: "Explore Selling",
+    mockup: <SellingMockup />,
   },
   {
-    id: "ai-chat",
-    title: "AI Chat that understands",
-    description:
-      "An AI assistant built for speed and efficiency. AI-powered responses let tenants spend time with answers, not waiting.",
-    pills: [
-      "Instant responses",
-      "AI documentation",
-      "Higher satisfaction",
-      "Faster resolution",
-    ],
+    num: "03",
+    title: "AI Chat",
+    desc: "Answer tenant and buyer questions instantly — 24/7 — with an AI assistant trained on your properties.",
+    pills: ["Instant responses", "Lead qualification", "Handoff to agent", "Multi-language"],
     cta: "Explore AI Chat",
-    ctaLink: "/products/ai",
+    mockup: <AIChatMockup />,
   },
   {
-    id: "reservations",
-    title: "Reservations made simple",
-    description:
-      "A reservation system that manages bookings, tracks availability, sends confirmations, and syncs with your calendar seamlessly.",
-    pills: [
-      "Real-time availability",
-      "Automated confirmations",
-      "Calendar sync",
-      "Easy rescheduling",
-    ],
+    num: "04",
+    title: "Reservations",
+    desc: "Let prospects book property tours directly from your listing — no back-and-forth required.",
+    pills: ["Online booking", "Calendar sync", "Auto reminders", "Confirmation flow"],
     cta: "Explore Reservations",
-    ctaLink: "/products/reservations",
+    mockup: <ReservationMockup />,
   },
 ];
 
-// Work Orders Mockup - Kanban style
-function WorkOrdersMockup() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md">
-        <div className="flex gap-4">
-          {/* New Column */}
-          <div className="flex-1">
-            <h4 className="text-sm font-medium text-muted-foreground mb-3">New Requests</h4>
-            <div className="space-y-2">
-              <div className="bg-amber-50 rounded-xl p-3 border border-amber-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center">
-                    <span className="text-xs font-medium">AK</span>
-                  </div>
-                  <span className="font-medium text-sm">Alex Kim</span>
-                </div>
-                <p className="text-xs text-muted-foreground">AC not working</p>
-              </div>
-              <div className="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center">
-                    <span className="text-xs font-medium">DC</span>
-                  </div>
-                  <span className="font-medium text-sm">Daniel Cruz</span>
-                </div>
-                <p className="text-xs text-muted-foreground">Leaky faucet</p>
-              </div>
-            </div>
-          </div>
-          {/* In Progress Column */}
-          <div className="flex-1">
-            <h4 className="text-sm font-medium text-muted-foreground mb-3">In Progress</h4>
-            <div className="space-y-2">
-              <div className="bg-green-50 rounded-xl p-3 border border-green-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <Image
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
-                    alt="Emma Smith"
-                    width={32}
-                    height={32}
-                    className="rounded-full"
-                  />
-                  <span className="font-medium text-sm">Emma Smith</span>
-                </div>
-                <div className="flex items-center gap-1 text-green-600">
-                  <Check className="w-3 h-3" />
-                  <span className="text-xs">Assigned</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Selling Mockup - Property cards
-function SellingMockup() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <div className="relative">
-        {/* Main property card */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-72">
-          <div className="relative h-40">
-            <Image
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop"
-              alt="Property"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute top-3 left-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-              For Sale
-            </div>
-          </div>
-          <div className="p-4">
-            <h4 className="font-semibold">Modern Villa</h4>
-            <p className="text-sm text-muted-foreground">Austin, TX</p>
-            <p className="text-lg font-bold text-primary mt-2">$425,000</p>
-          </div>
-        </div>
-        {/* Floating offer card */}
-        <div className="absolute -right-8 top-12 bg-white rounded-xl shadow-lg p-3 w-48">
-          <div className="flex items-center gap-2 mb-2">
-            <Image
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
-              alt="James Smith"
-              width={28}
-              height={28}
-              className="rounded-full"
-            />
-            <div>
-              <p className="text-xs font-medium">James Smith</p>
-              <p className="text-[10px] text-muted-foreground">5.0★ • Buyer</p>
-            </div>
-          </div>
-          <p className="text-xs bg-green-50 text-green-700 p-2 rounded-lg">
-            Offering $430,000
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// AI Chat Mockup
-function AIChatMockup() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl p-4 w-full max-w-sm">
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b">
-          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-            <MessageSquare className="w-4 h-4 text-primary" />
-          </div>
-          <span className="font-medium text-sm">AI Assistant</span>
-          <span className="ml-auto text-xs text-green-500 flex items-center gap-1">
-            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            Online
-          </span>
-        </div>
-        <div className="space-y-3">
-          <div className="flex gap-2">
-            <div className="w-6 h-6 rounded-full bg-muted flex-shrink-0"></div>
-            <div className="bg-muted rounded-xl rounded-tl-none p-3 max-w-[80%]">
-              <p className="text-xs">When is my rent due?</p>
-            </div>
-          </div>
-          <div className="flex gap-2 justify-end">
-            <div className="bg-primary text-primary-foreground rounded-xl rounded-tr-none p-3 max-w-[80%]">
-              <p className="text-xs">Your rent of $1,850 is due on the 1st of each month. You can pay through the portal or set up autopay.</p>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <div className="w-6 h-6 rounded-full bg-muted flex-shrink-0"></div>
-            <div className="bg-muted rounded-xl rounded-tl-none p-3">
-              <p className="text-xs">Can I submit a maintenance request?</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Reservations Mockup - Calendar style
-function ReservationsMockup() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl p-4 w-full max-w-sm">
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="font-medium">May 2026</h4>
-          <div className="flex gap-1">
-            <button className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs">←</button>
-            <button className="w-6 h-6 rounded bg-muted flex items-center justify-center text-xs">→</button>
-          </div>
-        </div>
-        <div className="grid grid-cols-7 gap-1 text-center text-xs mb-2">
-          {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-            <span key={i} className="text-muted-foreground py-1">{d}</span>
-          ))}
-        </div>
-        <div className="grid grid-cols-7 gap-1 text-center text-xs">
-          {[...Array(31)].map((_, i) => (
-            <span
-              key={i}
-              className={`py-2 rounded-lg ${
-                i === 18 || i === 19 || i === 20
-                  ? "bg-primary text-primary-foreground"
-                  : i === 14 || i === 15
-                  ? "bg-amber-100 text-amber-700"
-                  : "hover:bg-muted"
-              }`}
-            >
-              {i + 1}
-            </span>
-          ))}
-        </div>
-        {/* Reservation card */}
-        <div className="mt-4 p-3 bg-primary/5 rounded-xl border border-primary/20">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-primary" />
-            <div>
-              <p className="text-xs font-medium">Amenity Booking</p>
-              <p className="text-[10px] text-muted-foreground">May 19-21 • Pool Area</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
-  const getMockup = () => {
-    switch (index) {
-      case 0:
-        return <WorkOrdersMockup />;
-      case 1:
-        return <SellingMockup />;
-      case 2:
-        return <AIChatMockup />;
-      case 3:
-        return <ReservationsMockup />;
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="flex-shrink-0 w-[90vw] md:w-[80vw] lg:w-[70vw] h-full px-4 md:px-8">
-      <div className="h-full bg-[#e8ede5] rounded-3xl overflow-hidden flex flex-col lg:flex-row">
-        {/* Left content */}
-        <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 leading-tight">
-            {feature.title}
-          </h3>
-          <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-md">
-            {feature.description}
-          </p>
-          
-          {/* Feature pills */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {feature.pills.map((pill, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/60 backdrop-blur-sm px-3 py-1.5 rounded-full text-foreground/80"
-              >
-                <span className="w-1 h-1 bg-foreground/40 rounded-full"></span>
-                {pill}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <Button className="w-fit group" asChild>
-            <a href={feature.ctaLink}>
-              {feature.cta}
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
-        </div>
-
-        {/* Right mockup */}
-        <div className="flex-1 relative min-h-[300px] lg:min-h-0">
-          {getMockup()}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function HorizontalScrollSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
-  // Card width in vw units - 90vw on mobile, 80vw on md, 70vw on lg
-  // Using 75vw as approximate average for calculation
-  const cardCount = features.length;
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
 
-  // Transform: move from 0 to -(cardCount - 1) * cardWidth
-  // This ensures the last card is fully visible when scrollYProgress = 1
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0vw", `-${(cardCount - 1) * 75}vw`]
-  );
+  // scrollYProgress goes 0 → 1 over the full height of the outer wrapper
+  const { scrollYProgress } = useScroll({ target: sectionRef });
+
+  // translateX goes from 0 to -(3 * 100vw) as user scrolls through the section
+  // Each card is 88vw + 20px gap. 3 steps × ~89.5vw ≈ -268vw
+  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-268vw"]);
 
   return (
-    <>
-      {/* Section title - outside the scroll container */}
-      <div className="bg-background py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif italic tracking-tight text-center text-foreground"
-          >
-            Everything you need to manage properties
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto"
-          >
-            Powerful tools designed to streamline every aspect of property management
-          </motion.p>
-        </div>
-      </div>
-
-      {/* Outer wrapper - height = 100vh + (cardCount * 75vw) for enough scroll distance */}
-      <section 
-        ref={sectionRef} 
-        className="relative"
-        style={{ height: `calc(100vh + ${cardCount * 75}vw)` }}
+    /*
+     * OUTER WRAPPER
+     * Height = 100vh (the sticky window) + scroll distance needed to traverse 3 card-widths.
+     * Each card is 100vw wide, we need to scroll through 3 gaps → 300vh is a good proxy
+     * (you can tune this multiplier: more = slower scroll, less = faster).
+     */
+    <div ref={sectionRef} style={{ height: "500vh" }}>
+      {/* STICKY CONTAINER — pins to the top of the viewport */}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          overflow: "hidden",
+          backgroundColor: "#F9E8F2",
+        }}
       >
-        {/* Sticky container - pins to viewport */}
-        <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-          {/* Cards track - moves horizontally */}
-          <motion.div
-            style={{ x }}
-            className="flex"
-          >
-            {features.map((feature, index) => (
-              <FeatureCard key={feature.id} feature={feature} index={index} />
-            ))}
-          </motion.div>
+        {/* Section heading */}
+        <div className="px-16 pt-12 pb-6">
+          <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-2">
+            Features
+          </p>
+          <h2 className="text-3xl font-medium text-[#3D0A2C]">
+            A super-powered system, working together.
+          </h2>
         </div>
-      </section>
+
+        {/* CARDS TRACK — translated horizontally by scroll */}
+        {/* px-8 on track + gap-5 between cards so first/last card peek at edges */}
+        <motion.div
+          style={{ x }}
+          className="flex flex-row items-center gap-5 px-8 h-full"
+        >
+          {CARDS.map((card, i) => (
+            /* Each card is a standalone rounded box — NOT full screen width.
+               Width ~88vw so the next card peeks in from the right edge. */
+            <div
+              key={i}
+              className="flex-shrink-0 rounded-3xl overflow-hidden"
+              style={{
+                width: "88vw",
+                height: "calc(100vh - 160px)",
+                backgroundColor: "#EDD5E8",
+              }}
+            >
+              <div className="flex flex-row items-center gap-12 h-full px-14 py-10">
+                {/* LEFT: text */}
+                <div className="flex-shrink-0 w-[320px] flex flex-col gap-4">
+                  <span className="text-xs font-medium text-[#701951] bg-white/50 rounded-full px-3 py-1 w-fit">
+                    {card.num} / 04
+                  </span>
+                  <h3 className="text-2xl font-medium text-[#3D0A2C] leading-snug">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-[#701951] leading-relaxed">{card.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {card.pills.map((p) => (
+                      <span
+                        key={p}
+                        className="text-xs text-[#701951] bg-white/60 border border-[#9E2A6E]/30 rounded-full px-3 py-1 flex items-center gap-1"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#9E2A6E] inline-block" />
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                  <button className="mt-2 flex items-center gap-2 bg-[#701951] text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit hover:bg-[#3D0A2C] transition-colors">
+                    {card.cta}
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* RIGHT: mockup */}
+                <div className="flex-1 h-full bg-white rounded-2xl p-6 overflow-hidden shadow-[0_4px_40px_rgba(112,25,81,0.1)] flex flex-col gap-3">
+                  {card.mockup}
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Progress dots */}
+        <ProgressDots scrollYProgress={scrollYProgress} count={4} />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Progress dots ─────────────────────────────────────── */
+function ProgressDots({
+  scrollYProgress,
+  count,
+}: {
+  scrollYProgress: any;
+  count: number;
+}) {
+  return (
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+      {Array.from({ length: count }).map((_, i) => (
+        <DotItem key={i} index={i} count={count} scrollYProgress={scrollYProgress} />
+      ))}
+    </div>
+  );
+}
+
+function DotItem({
+  index,
+  count,
+  scrollYProgress,
+}: {
+  index: number;
+  count: number;
+  scrollYProgress: any;
+}) {
+  // Each dot is "active" when scrollYProgress is near index/(count-1)
+  const center = index / (count - 1);
+  const radius = 0.5 / (count - 1);
+  const opacity = useTransform(
+    scrollYProgress,
+    [center - radius, center, center + radius],
+    [0.25, 1, 0.25]
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [center - radius, center, center + radius],
+    [1, 1.5, 1]
+  );
+  return (
+    <motion.div
+      style={{ opacity, scale }}
+      className="w-2 h-2 rounded-full bg-[#701951]"
+    />
+  );
+}
+
+/* ─── Mockup components ──────────────────────────────────── */
+
+function WorkOrderMockup() {
+  const rows = [
+    { unit: "Unit 4B", issue: "Leaky faucet", assignee: "John M.", due: "May 22", status: "In Progress", statusColor: "bg-amber-100 text-amber-800" },
+    { unit: "Unit 2A", issue: "AC not cooling", assignee: "Sara K.", due: "May 20", status: "Completed", statusColor: "bg-green-100 text-green-800" },
+    { unit: "Unit 7C", issue: "Broken lock", assignee: "—", due: "May 25", status: "Pending", statusColor: "bg-gray-100 text-gray-600" },
+    { unit: "Unit 1D", issue: "Water heater", assignee: "John M.", due: "May 28", status: "Pending", statusColor: "bg-gray-100 text-gray-600" },
+    { unit: "Unit 5F", issue: "Window seal", assignee: "Mike T.", due: "May 19", status: "Completed", statusColor: "bg-green-100 text-green-800" },
+  ];
+  return (
+    <>
+      <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+        <span className="text-sm font-medium text-gray-800">Work Orders</span>
+        <button className="text-xs bg-[#701951] text-white rounded-full px-3 py-1">+ New Order</button>
+      </div>
+      <div className="grid grid-cols-5 text-xs text-gray-400 font-medium px-1">
+        <span>Unit</span><span>Issue</span><span>Assigned To</span><span>Due Date</span><span>Status</span>
+      </div>
+      {rows.map((r, i) => (
+        <div key={i} className="grid grid-cols-5 text-xs text-gray-700 items-center py-2 border-b border-gray-50 px-1">
+          <span className="font-medium">{r.unit}</span>
+          <span>{r.issue}</span>
+          <span>{r.assignee}</span>
+          <span>{r.due}</span>
+          <span className={`text-xs px-2 py-0.5 rounded-full font-medium w-fit ${r.statusColor}`}>{r.status}</span>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function SellingMockup() {
+  const cols = [
+    {
+      title: "NEW LEAD",
+      cards: [
+        { initials: "AM", name: "Alex Moreno", tag: "Studio · Downtown" },
+        { initials: "DC", name: "Daniel Cruz", tag: "2BR · Midtown" },
+      ],
+    },
+    {
+      title: "IN CONVERSATION",
+      cards: [
+        { initials: "ES", name: "Emma Smith", tag: "1BR · West Side", active: true },
+        { initials: "OB", name: "Olivia Bennett", tag: "3BR · Uptown" },
+      ],
+    },
+    {
+      title: "OFFER SENT",
+      cards: [{ initials: "PP", name: "Priya Patel", tag: "2BR · East End" }],
+    },
+  ];
+  return (
+    <>
+      <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+        <span className="text-sm font-medium text-gray-800">Lead Pipeline</span>
+        <span className="text-xs text-gray-400">6 active leads</span>
+      </div>
+      <div className="flex gap-3 flex-1 overflow-hidden">
+        {cols.map((col) => (
+          <div key={col.title} className="flex-1 flex flex-col gap-2">
+            <p className="text-[10px] font-semibold text-gray-400 tracking-wider">{col.title}</p>
+            {col.cards.map((c) => (
+              <div
+                key={c.name}
+                className={`bg-gray-50 rounded-xl p-3 text-xs ${
+                  (c as any).active ? "border border-[#9E2A6E]" : ""
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded-full bg-[#F2C4DF] flex items-center justify-center text-[9px] font-semibold text-[#701951]">
+                    {c.initials}
+                  </div>
+                  <span className="font-medium text-gray-800">{c.name}</span>
+                </div>
+                <p className="text-gray-400 text-[11px]">{c.tag}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function AIChatMockup() {
+  const messages = [
+    { role: "ai", text: "Hi! I'm here to help you find your perfect home. What are you looking for?" },
+    { role: "user", text: "Is Unit 3A still available?" },
+    { role: "ai", text: "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?" },
+    { role: "user", text: "Yes please!" },
+    { role: "ai", text: "Great! Connecting you with our team now. You'll get a confirmation shortly." },
+  ];
+  return (
+    <>
+      <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+        <span className="text-sm font-medium text-gray-800">AI Assistant</span>
+        <span className="text-xs text-[#9E2A6E] flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#9E2A6E] inline-block" /> Online
+        </span>
+      </div>
+      <div className="flex flex-col gap-3 flex-1 overflow-hidden justify-end">
+        {messages.map((m, i) => (
+          <div key={i} className={`flex gap-2 ${m.role === "user" ? "flex-row-reverse" : ""}`}>
+            {m.role === "ai" && (
+              <div className="w-6 h-6 rounded-full bg-[#9E2A6E] flex items-center justify-center text-[9px] text-white font-semibold flex-shrink-0 mt-0.5">
+                AI
+              </div>
+            )}
+            <div
+              className={`text-xs px-3 py-2 rounded-xl max-w-[75%] leading-relaxed ${
+                m.role === "ai"
+                  ? "bg-gray-100 text-gray-800 rounded-tl-sm"
+                  : "bg-[#701951] text-white rounded-tr-sm"
+              }`}
+            >
+              {m.text}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function ReservationMockup() {
+  const days = [
+    null, null, null, 1, 2, 3, 4,
+    5, 6, 7, 8, 9, 10, 11,
+    12, 13, 14, 15, 16, 17, 18,
+    19, 20, 21, 22, 23, 24, 25,
+  ];
+  const available = new Set([7, 9, 12, 14, 16, 20, 22]);
+  const selected = 15;
+  return (
+    <>
+      <div className="flex justify-between items-center pb-3 border-b border-gray-100">
+        <span className="text-sm font-medium text-gray-800">Book a Tour — May 2026</span>
+      </div>
+      <div className="grid grid-cols-7 text-[10px] text-center text-gray-400 mb-1">
+        {["M","T","W","T","F","S","S"].map((d, i) => <span key={i}>{d}</span>)}
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-[11px] text-center">
+        {days.map((d, i) =>
+          d === null ? (
+            <span key={i} />
+          ) : (
+            <span
+              key={i}
+              className={`py-1.5 rounded-md font-medium ${
+                d === selected
+                  ? "bg-[#701951] text-white"
+                  : available.has(d)
+                  ? "bg-[#EAF3DE] text-[#701951] cursor-pointer"
+                  : "text-gray-400"
+              }`}
+            >
+              {d}
+            </span>
+          )
+        )}
+      </div>
+      <p className="text-xs text-gray-400 mt-1">Available times — May 15</p>
+      <div className="flex gap-2 flex-wrap">
+        {["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"].map((t) => (
+          <span
+            key={t}
+            className={`text-xs px-3 py-1.5 rounded-full border cursor-pointer ${
+              t === "11:30 AM"
+                ? "bg-[#701951] text-white border-[#701951]"
+                : "text-gray-500 border-gray-200"
+            }`}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+      <button className="mt-auto flex items-center gap-2 bg-[#701951] text-white text-xs font-medium px-4 py-2 rounded-full w-fit">
+        Confirm Booking
+      </button>
     </>
   );
 }
