@@ -454,15 +454,15 @@ function TowerVisual() {
       {/* Main content - side by side */}
       <div className="relative flex flex-row h-full gap-2">
         {/* Tower section */}
-        <div className="relative flex-shrink-0 flex items-end justify-center">
+        <div className="relative flex-shrink-0 flex items-end justify-center w-[180px]">
           <motion.div
-            className="relative z-10"
+            className="relative z-10 h-full flex items-end"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Tower image */}
-            <div className="relative h-[280px] w-[160px]">
+            <div className="relative h-[340px] w-[140px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
@@ -471,7 +471,7 @@ function TowerVisual() {
 
               {/* Floor highlight overlay */}
               <motion.div
-                className="absolute left-20 right-0 h-[10px] w-[0px] pointer-events-none"
+                className="absolute left-16 right-0 h-[10px] w-[0px] pointer-events-none"
                 style={{ top: `${getFloorPosition(currentFloorData.number)}%` }}
                 initial={{ opacity: 0 }}
                 animate={{
@@ -491,7 +491,7 @@ function TowerVisual() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentFloorData.number}
-                  className="absolute -right-1 flex items-center gap-1"
+                  className="absolute -right-2 flex items-center gap-1"
                   style={{ top: `${getFloorPosition(currentFloorData.number)}%`, transform: "translateY(-50%)" }}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
