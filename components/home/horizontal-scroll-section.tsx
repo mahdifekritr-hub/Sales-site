@@ -234,48 +234,48 @@ export function HorizontalScrollSection() {
                 backgroundColor: "#EDD5E8",
               }}
             >
-              <div className="flex flex-row items-center gap-8 h-full px-10 py-8">
+              <div className="flex flex-row items-stretch gap-10 h-full px-12 py-10">
                 {/* LEFT: text */}
-                <div className="flex-shrink-0 w-[280px] flex flex-col gap-3">
+                <div className="flex-1 flex flex-col gap-4 justify-center max-w-[340px]">
                   {/* Section title - only show on first card */}
                   {i === 0 && (
-                    <div className="mb-4">
-                      <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-2">
+                    <div className="mb-2">
+                      <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-3">
                         Features
                       </p>
-                      <h2 className="text-2xl font-medium text-[#3D0A2C]">
+                      <h2 className="text-2xl font-medium text-[#3D0A2C] leading-tight">
                         A super-powered system, working together.
                       </h2>
                     </div>
                   )}
-                  <span className="text-[10px] font-medium text-[#701951] bg-white/50 rounded-full px-2.5 py-0.5 w-fit">
+                  <span className="text-[10px] font-medium text-[#701951] bg-white/50 rounded-full px-2.5 py-1 w-fit">
                     {card.num} / 04
                   </span>
                   <h3 className="text-xl font-medium text-[#3D0A2C] leading-snug">
                     {card.title}
                   </h3>
-                  <p className="text-xs text-[#701951] leading-relaxed">{card.desc}</p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <p className="text-sm text-[#701951] leading-relaxed">{card.desc}</p>
+                  <div className="flex flex-wrap gap-2 mt-1">
                     {card.pills.map((p) => (
                       <span
                         key={p}
-                        className="text-[10px] text-[#701951] bg-white/60 border border-[#9E2A6E]/30 rounded-full px-2.5 py-0.5 flex items-center gap-1"
+                        className="text-[11px] text-[#701951] bg-white/60 border border-[#9E2A6E]/30 rounded-full px-3 py-1 flex items-center gap-1.5"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[#9E2A6E] inline-block" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#9E2A6E] inline-block" />
                         {p}
                       </span>
                     ))}
                   </div>
-                  <button className="mt-1 flex items-center gap-2 bg-[#701951] text-white text-xs font-medium px-4 py-2 rounded-full w-fit hover:bg-[#3D0A2C] transition-colors">
+                  <button className="mt-3 flex items-center gap-2 bg-[#701951] text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit hover:bg-[#3D0A2C] transition-colors">
                     {card.cta}
-                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                 </div>
 
                 {/* RIGHT: mockup */}
-                <div className="flex-1 h-full bg-white rounded-xl p-4 overflow-hidden shadow-[0_4px_30px_rgba(112,25,81,0.08)] flex flex-col gap-2">
+                <div className="w-[420px] flex-shrink-0 bg-white rounded-xl p-4 overflow-hidden shadow-[0_4px_30px_rgba(112,25,81,0.08)] flex flex-col gap-2 self-center" style={{ maxHeight: "85%" }}>
                   {card.mockup}
                 </div>
               </div>
