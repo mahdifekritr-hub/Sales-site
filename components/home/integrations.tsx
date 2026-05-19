@@ -3,38 +3,69 @@
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
-import { 
-  Layers, 
-  Zap,
-  Smartphone,
-  Cloud,
-  CreditCard,
-  Mail,
-  MessageSquare,
-  Calendar,
-  BarChart3,
-  ShoppingBag,
-  Bell,
-  FileText,
-  Link as LinkIcon,
-  Settings,
-} from "lucide-react";
+import Image from "next/image";
 
 const integrations = [
-  { name: "FCM", icon: Bell, gradient: "from-chart-5 to-[oklch(0.55_0.16_35)]" },
-  { name: "Apple", icon: Smartphone, gradient: "from-foreground to-muted-foreground" },
-  { name: "Amazon Hub", icon: ShoppingBag, gradient: "from-chart-5 to-[oklch(0.5_0.14_50)]" },
-  { name: "Google Analytics", icon: BarChart3, gradient: "from-chart-4 to-[oklch(0.5_0.14_140)]" },
-  { name: "Google Calendar", icon: Calendar, gradient: "from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)]" },
-  { name: "Zego", icon: CreditCard, gradient: "from-primary to-[oklch(0.45_0.18_340)]" },
-  { name: "Expert Texting", icon: MessageSquare, gradient: "from-chart-4 to-[oklch(0.5_0.12_130)]" },
-  { name: "QuickBooks", icon: FileText, gradient: "from-chart-4 to-[oklch(0.55_0.15_150)]" },
-  { name: "Stripe", icon: CreditCard, gradient: "from-[oklch(0.5_0.16_280)] to-[oklch(0.4_0.14_300)]" },
-  { name: "Zapier", icon: Zap, gradient: "from-chart-5 to-[oklch(0.55_0.18_50)]" },
-  { name: "Twilio", icon: Smartphone, gradient: "from-chart-5 to-[oklch(0.5_0.15_30)]" },
-  { name: "SendGrid", icon: Mail, gradient: "from-[oklch(0.55_0.18_200)] to-[oklch(0.5_0.15_210)]" },
-  { name: "Slack", icon: MessageSquare, gradient: "from-[oklch(0.5_0.15_280)] to-primary" },
-  { name: "Microsoft", icon: Cloud, gradient: "from-[oklch(0.55_0.15_200)] to-[oklch(0.45_0.12_220)]" },
+  {
+    name: "QuickBooks",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-2-8PSkcqrlTnNijwQpOoLFeYDQ7G300O.png",
+    rotation: -4,
+  },
+  {
+    name: "Google Analytics",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-2-9RZs7XDSrhvlLlfXETeCoiXIm8zXHv.png",
+    rotation: 3,
+  },
+  {
+    name: "Google",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-1-Yqr0RYdUAhsPQNsusuhu8veBjXWPTZ.png",
+    rotation: -2,
+  },
+  {
+    name: "ZEGO",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-1-5NBzuJvOCtdE0LpJBNTBhxaD8Ikkks.png",
+    rotation: 5,
+  },
+  {
+    name: "Stripe",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-gYbSAAi2SLfLqfOnYEahccNjsWb0d6.png",
+    rotation: -3,
+  },
+  {
+    name: "FCM",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-2-e1736105602199-Vz3RjfJ4XeZ6vIVmsemJ2J5fs0L9Xq.png",
+    rotation: 4,
+  },
+  {
+    name: "Amazon Hub",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled-design-11-lQdkTG42lMFb16NshA5xQAsfMTCxt3.png",
+    rotation: -5,
+  },
+  {
+    name: "ExpertTexting",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-1-FxONxPL802t3rXVZUOwSMJosr5myBK.png",
+    rotation: 2,
+  },
+  {
+    name: "Zapier",
+    logo: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",
+    rotation: -3,
+  },
+  {
+    name: "Twilio",
+    logo: "https://cdn.worldvectorlogo.com/logos/twilio-2.svg",
+    rotation: 4,
+  },
+  {
+    name: "SendGrid",
+    logo: "https://cdn.worldvectorlogo.com/logos/sendgrid-1.svg",
+    rotation: -2,
+  },
+  {
+    name: "Slack",
+    logo: "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg",
+    rotation: 3,
+  },
 ];
 
 export function HomeIntegrations() {
@@ -42,172 +73,108 @@ export function HomeIntegrations() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  return (
-    <section ref={ref} className="relative py-20 sm:py-28 overflow-hidden" style={{ backgroundColor: '#1a0412' }}>
-      {/* Multi-layered background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0" style={{ backgroundColor: '#1a0412' }} />
-        
-        {/* Animated accent orbs */}
-        <motion.div
-          className="absolute top-[30%] left-[5%] w-[300px] h-[300px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.38 0.16 330 / 0.08) 0%, transparent 60%)",
-            filter: "blur(60px)",
-          }}
-          animate={{ scale: [1, 1.2, 1], y: [0, -20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.06) 0%, transparent 60%)",
-            filter: "blur(80px)",
-          }}
-          animate={{ scale: [1, 1.15, 1], x: [0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-      </div>
+  const firstRow = integrations.slice(0, 6);
+  const secondRow = integrations.slice(6);
 
+  return (
+    <section ref={ref} className="relative py-20 sm:py-28 overflow-hidden bg-background">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-6"
-          >
-            <LinkIcon className="h-4 w-4" />
-            {t("badge")}
-          </motion.div>
+        <div className="text-center mb-14 sm:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
-            style={{ color: '#fdf0f6' }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-serif italic tracking-tight text-foreground"
           >
             {t("title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-xl mx-auto text-sm sm:text-base"
-            style={{ color: '#e8b8d4' }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="max-w-xl mx-auto mt-4 text-sm sm:text-base text-muted-foreground"
           >
             {t("subtitle")}
           </motion.p>
         </div>
 
-        {/* Scrolling integrations with cards */}
-        <div className="relative">
-          {/* Gradient fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10" style={{ background: 'linear-gradient(to right, #1a0412, transparent)' }} />
-          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10" style={{ background: 'linear-gradient(to left, #1a0412, transparent)' }} />
-
-          {/* First row - scrolling right */}
-          <div className="flex overflow-hidden mb-4">
-            <motion.div
-              className="flex gap-4"
-              animate={{ x: [0, -1200] }}
-              transition={{
-                x: {
-                  duration: 35,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...integrations.slice(0, 7), ...integrations.slice(0, 7)].map((integration, index) => (
-                <motion.div
-                  key={`row1-${integration.name}-${index}`}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="flex-shrink-0 group"
+        {/* Two rows of floating integration items */}
+        <div className="space-y-6 sm:space-y-8">
+          {/* First row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 lg:gap-x-14"
+          >
+            {firstRow.map((integration, index) => (
+              <motion.div
+                key={integration.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.2 + index * 0.05 }}
+                className="group flex items-center gap-2.5 sm:gap-3"
+              >
+                {/* Small rounded logo thumbnail with rotation */}
+                <div
+                  className="relative h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden bg-muted/50 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:scale-105"
+                  style={{ transform: `rotate(${integration.rotation}deg)` }}
                 >
-                  <div 
-                    className="flex items-center gap-3 px-5 py-4 rounded-2xl backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                    style={{ 
-                      backgroundColor: 'rgba(255,255,255,0.05)', 
-                      border: '1px solid rgba(112,25,81,0.4)' 
-                    }}
-                  >
-                    <div className={`h-10 w-10 rounded-xl bg-gradient-to-br ${integration.gradient} p-[1.5px] shadow-md`}>
-                      <div className="h-full w-full rounded-[10px] flex items-center justify-center" style={{ backgroundColor: '#2d0a1f' }}>
-                        <integration.icon className="h-5 w-5" style={{ color: '#fdf0f6' }} />
-                      </div>
-                    </div>
-                    <span className="text-sm sm:text-base font-semibold transition-colors whitespace-nowrap" style={{ color: '#e8b8d4' }}>
-                      {integration.name}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                  <Image
+                    src={integration.logo}
+                    alt={integration.name}
+                    fill
+                    className="object-contain p-1.5 sm:p-2"
+                    sizes="48px"
+                  />
+                </div>
 
-          {/* Second row - scrolling left */}
-          <div className="flex overflow-hidden">
-            <motion.div
-              className="flex gap-4"
-              animate={{ x: [-1200, 0] }}
-              transition={{
-                x: {
-                  duration: 40,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...integrations.slice(7), ...integrations.slice(7)].map((integration, index) => (
-                <motion.div
-                  key={`row2-${integration.name}-${index}`}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="flex-shrink-0 group"
+                {/* Integration name */}
+                <span className="text-sm sm:text-base font-medium text-foreground/70 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
+                  {integration.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Second row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 lg:gap-x-14"
+          >
+            {secondRow.map((integration, index) => (
+              <motion.div
+                key={integration.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
+                className="group flex items-center gap-2.5 sm:gap-3"
+              >
+                {/* Small rounded logo thumbnail with rotation */}
+                <div
+                  className="relative h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden bg-muted/50 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:scale-105"
+                  style={{ transform: `rotate(${integration.rotation}deg)` }}
                 >
-                  <div 
-                    className="flex items-center gap-3 px-5 py-4 rounded-2xl backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-                    style={{ 
-                      backgroundColor: 'rgba(255,255,255,0.05)', 
-                      border: '1px solid rgba(112,25,81,0.4)' 
-                    }}
-                  >
-                    <div className={`h-10 w-10 rounded-xl bg-gradient-to-br ${integration.gradient} p-[1.5px] shadow-md`}>
-                      <div className="h-full w-full rounded-[10px] flex items-center justify-center" style={{ backgroundColor: '#2d0a1f' }}>
-                        <integration.icon className="h-5 w-5" style={{ color: '#fdf0f6' }} />
-                      </div>
-                    </div>
-                    <span className="text-sm sm:text-base font-semibold transition-colors whitespace-nowrap" style={{ color: '#e8b8d4' }}>
-                      {integration.name}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                  <Image
+                    src={integration.logo}
+                    alt={integration.name}
+                    fill
+                    className="object-contain p-1.5 sm:p-2"
+                    sizes="48px"
+                  />
+                </div>
+
+                {/* Integration name */}
+                <span className="text-sm sm:text-base font-medium text-foreground/70 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
+                  {integration.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-
-        {/* Integration stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8 sm:gap-12"
-        >
-          {[
-            { value: "14+", label: "Integrations" },
-            { value: "API", label: "Access" },
-            { value: "24/7", label: "Sync" },
-          ].map((stat, i) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-br from-primary to-[oklch(0.55_0.15_200)] bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="text-sm" style={{ color: '#e8b8d4' }}>{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
