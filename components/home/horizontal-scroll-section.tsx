@@ -7,19 +7,19 @@ import { Building2, MapPin } from "lucide-react";
 const CARDS = [
   {
     num: "01",
-    title: "Work Orders",
-    desc: "Track, assign, and resolve maintenance requests in one place. Never lose a task again.",
-    pills: ["Quick assignment", "Status tracking", "Photo uploads", "Vendor management"],
-    cta: "Explore Work Orders",
-    mockup: <WorkOrderMockup />,
-  },
-  {
-    num: "02",
     title: "Seamless Selling Experience",
     desc: "Convert leads faster with a guided listing and inquiry flow built for modern renters and buyers.",
     pills: ["Lead capture", "Auto follow-up", "Pipeline view", "One-click proposals"],
     cta: "Explore Selling",
     mockup: <SellingMockup />,
+  },
+  {
+    num: "02",
+    title: "Work Orders",
+    desc: "Track, assign, and resolve maintenance requests in one place. Never lose a task again.",
+    pills: ["Quick assignment", "Status tracking", "Photo uploads", "Vendor management"],
+    cta: "Explore Work Orders",
+    mockup: <WorkOrderMockup />,
   },
   {
     num: "03",
@@ -228,9 +228,9 @@ export function HorizontalScrollSection() {
               className="flex-shrink-0 rounded-2xl overflow-hidden"
               style={{
                 width: `${CARD_WIDTH_VW}vw`,
-                height: "55vh",
-                minHeight: "420px",
-                maxHeight: "520px",
+                height: "62vh",
+                minHeight: "480px",
+                maxHeight: "600px",
                 backgroundColor: "#EDD5E8",
               }}
             >
