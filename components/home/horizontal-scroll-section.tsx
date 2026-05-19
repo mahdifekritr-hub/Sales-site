@@ -47,9 +47,9 @@ export function HorizontalScrollSection() {
     offset: ["start start", "end end"],
   });
 
-  // translateX goes from 0 to -(3 * 100vw) as user scrolls through the section
-  // Each card is 88vw + 20px gap. 3 steps × ~89.5vw ≈ -268vw
-  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-268vw"]);
+  // translateX goes from 0 to -(3 * cardWidth) as user scrolls through the section
+  // Each card is 70vw + 16px gap (~71vw). 3 steps × 71vw ≈ -213vw
+  const x = useTransform(scrollYProgress, [0, 1], ["0vw", "-213vw"]);
 
   return (
     /*
@@ -70,11 +70,11 @@ export function HorizontalScrollSection() {
         }}
       >
         {/* Section heading */}
-        <div className="px-16 pt-12 pb-6">
+        <div className="px-16 pt-8 pb-4">
           <p className="text-xs font-medium tracking-widest uppercase text-[#701951] mb-2">
             Features
           </p>
-          <h2 className="text-3xl font-medium text-[#3D0A2C]">
+          <h2 className="text-2xl font-medium text-[#3D0A2C]">
             A super-powered system, working together.
           </h2>
         </div>
@@ -83,51 +83,53 @@ export function HorizontalScrollSection() {
         {/* px-8 on track + gap-5 between cards so first/last card peek at edges */}
         <motion.div
           style={{ x }}
-          className="flex flex-row items-center gap-5 px-8 h-full"
+          className="flex flex-row items-center gap-4 px-8"
         >
           {CARDS.map((card, i) => (
             /* Each card is a standalone rounded box — NOT full screen width.
-               Width ~88vw so the next card peeks in from the right edge. */
+               Width ~70vw and height ~55vh so cards are smaller like reference. */
             <div
               key={i}
-              className="flex-shrink-0 rounded-3xl overflow-hidden"
+              className="flex-shrink-0 rounded-2xl overflow-hidden"
               style={{
-                width: "88vw",
-                height: "calc(100vh - 160px)",
+                width: "70vw",
+                height: "55vh",
+                minHeight: "420px",
+                maxHeight: "520px",
                 backgroundColor: "#EDD5E8",
               }}
             >
-              <div className="flex flex-row items-center gap-12 h-full px-14 py-10">
+              <div className="flex flex-row items-center gap-8 h-full px-10 py-8">
                 {/* LEFT: text */}
-                <div className="flex-shrink-0 w-[320px] flex flex-col gap-4">
-                  <span className="text-xs font-medium text-[#701951] bg-white/50 rounded-full px-3 py-1 w-fit">
+                <div className="flex-shrink-0 w-[280px] flex flex-col gap-3">
+                  <span className="text-[10px] font-medium text-[#701951] bg-white/50 rounded-full px-2.5 py-0.5 w-fit">
                     {card.num} / 04
                   </span>
-                  <h3 className="text-2xl font-medium text-[#3D0A2C] leading-snug">
+                  <h3 className="text-xl font-medium text-[#3D0A2C] leading-snug">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-[#701951] leading-relaxed">{card.desc}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="text-xs text-[#701951] leading-relaxed">{card.desc}</p>
+                  <div className="flex flex-wrap gap-1.5">
                     {card.pills.map((p) => (
                       <span
                         key={p}
-                        className="text-xs text-[#701951] bg-white/60 border border-[#9E2A6E]/30 rounded-full px-3 py-1 flex items-center gap-1"
+                        className="text-[10px] text-[#701951] bg-white/60 border border-[#9E2A6E]/30 rounded-full px-2.5 py-0.5 flex items-center gap-1"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#9E2A6E] inline-block" />
+                        <span className="w-1 h-1 rounded-full bg-[#9E2A6E] inline-block" />
                         {p}
                       </span>
                     ))}
                   </div>
-                  <button className="mt-2 flex items-center gap-2 bg-[#701951] text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit hover:bg-[#3D0A2C] transition-colors">
+                  <button className="mt-1 flex items-center gap-2 bg-[#701951] text-white text-xs font-medium px-4 py-2 rounded-full w-fit hover:bg-[#3D0A2C] transition-colors">
                     {card.cta}
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
                       <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                 </div>
 
                 {/* RIGHT: mockup */}
-                <div className="flex-1 h-full bg-white rounded-2xl p-6 overflow-hidden shadow-[0_4px_40px_rgba(112,25,81,0.1)] flex flex-col gap-3">
+                <div className="flex-1 h-full bg-white rounded-xl p-4 overflow-hidden shadow-[0_4px_30px_rgba(112,25,81,0.08)] flex flex-col gap-2">
                   {card.mockup}
                 </div>
               </div>
