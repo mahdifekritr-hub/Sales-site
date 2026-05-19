@@ -168,14 +168,17 @@ function DotItem({
   // Each dot is "active" when scrollYProgress is near index/(count-1)
   const center = index / (count - 1);
   const radius = 0.5 / (count - 1);
+  // Clamp keyframes to [0, 1] to ensure monotonically increasing values
+  const start = Math.max(0, center - radius);
+  const end = Math.min(1, center + radius);
   const opacity = useTransform(
     scrollYProgress,
-    [center - radius, center, center + radius],
+    [start, center, end],
     [0.25, 1, 0.25]
   );
   const scale = useTransform(
     scrollYProgress,
-    [center - radius, center, center + radius],
+    [start, center, end],
     [1, 1.5, 1]
   );
   return (
