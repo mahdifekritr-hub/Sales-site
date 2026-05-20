@@ -51,9 +51,8 @@ export function HorizontalScrollSection() {
   // Track lock state with refs to avoid stale closures
   const isLockedRef = useRef(false);
   const scrollPositionRef = useRef(0);
-  const hasEnteredRef = useRef(false);
-  const hasExitedForwardRef = useRef(false);
-  const hasExitedBackwardRef = useRef(true); // Start as true (at beginning)
+  const horizontalProgressRef = useRef(0); // 0 = start, 1 = end
+  const directionRef = useRef<"forward" | "backward" | null>(null);
 
   // Motion value for horizontal translation
   const x = useMotionValue(0);
@@ -78,13 +77,12 @@ export function HorizontalScrollSection() {
 
     let maxScroll = getMaxScroll();
 
-    const lockBodyScroll = () => {
+    const lockBodyScroll = (scrollY: number) => {
       if (!isLockedRef.current) {
-        // Store current scroll position
-        scrollPositionRef.current = window.scrollY;
+        scrollPositionRef.current = scrollY;
         document.body.style.overflow = "hidden";
         document.body.style.position = "fixed";
-        document.body.style.top = `-${scrollPositionRef.current}px`;
+        document.body.style.top = `-${scrollY}px`;
         document.body.style.width = "100%";
         document.body.style.touchAction = "none";
         isLockedRef.current = true;
@@ -93,13 +91,13 @@ export function HorizontalScrollSection() {
 
     const unlockBodyScroll = () => {
       if (isLockedRef.current) {
+        const scrollY = scrollPositionRef.current;
         document.body.style.overflow = "";
         document.body.style.position = "";
         document.body.style.top = "";
         document.body.style.width = "";
         document.body.style.touchAction = "";
-        // Restore scroll position
-        window.scrollTo(0, scrollPositionRef.current);
+        window.scrollTo(0, scrollY);
         isLockedRef.current = false;
       }
     };
@@ -108,44 +106,95 @@ export function HorizontalScrollSection() {
       maxScroll = getMaxScroll();
     };
 
-    // Global wheel handler - always active, checks lock state
+    // Global wheel handler
     const handleWheel = (e: WheelEvent) => {
-      if (!isLockedRef.current) return;
-
-      // Always prevent default when locked
-      e.preventDefault();
-      e.stopPropagation();
-
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const viewportHeight = window.innerHeight;
+      
+      // Check if section is in viewport (allowing some tolerance)
+      const sectionInView = sectionTop < viewportHeight - 50 && sectionBottom > 50;
+      // Check if section top is near viewport top (entering/in the section)
+      const sectionAtTop = sectionTop <= 100 && sectionTop >= -100;
+      // Check if section bottom is near viewport bottom (re-entering from below)
+      const sectionAtBottom = sectionBottom >= viewportHeight - 100 && sectionBottom <= viewportHeight + 100;
+      
       const currentX = x.get();
       const atStart = currentX >= -5;
       const atEnd = currentX <= -maxScroll + 5;
+      
+      // Calculate current horizontal progress
+      horizontalProgressRef.current = Math.abs(currentX) / maxScroll;
 
-      // Scrolling down (positive deltaY) - scroll cards left
+      // Scrolling DOWN (positive deltaY)
       if (e.deltaY > 0) {
-        if (!atEnd) {
-          const delta = Math.min(Math.abs(e.deltaY) * 1.2, 150);
-          const newX = Math.max(currentX - delta, -maxScroll);
-          x.set(newX);
-          progress.set(Math.abs(newX) / maxScroll);
-        } else {
-          // Reached end, unlock and allow scroll down
-          hasExitedForwardRef.current = true;
-          hasExitedBackwardRef.current = false;
-          unlockBodyScroll();
+        // If locked, handle horizontal scroll
+        if (isLockedRef.current) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          if (!atEnd) {
+            const delta = Math.min(Math.abs(e.deltaY) * 1.2, 150);
+            const newX = Math.max(currentX - delta, -maxScroll);
+            x.set(newX);
+            progress.set(Math.abs(newX) / maxScroll);
+          } else {
+            // Reached end, unlock and continue scrolling down
+            directionRef.current = "forward";
+            unlockBodyScroll();
+          }
+          return;
+        }
+        
+        // Not locked - check if we should lock
+        // Lock when section top reaches viewport top and we haven't scrolled through yet
+        if (sectionAtTop && !atEnd) {
+          e.preventDefault();
+          e.stopPropagation();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "forward";
+          return;
         }
       }
-      // Scrolling up (negative deltaY) - scroll cards right
+      
+      // Scrolling UP (negative deltaY)
       else if (e.deltaY < 0) {
-        if (!atStart) {
-          const delta = Math.min(Math.abs(e.deltaY) * 1.2, 150);
-          const newX = Math.min(currentX + delta, 0);
-          x.set(newX);
-          progress.set(Math.abs(newX) / maxScroll);
-        } else {
-          // Reached start, unlock and allow scroll up
-          hasExitedBackwardRef.current = true;
-          hasExitedForwardRef.current = false;
-          unlockBodyScroll();
+        // If locked, handle horizontal scroll
+        if (isLockedRef.current) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          if (!atStart) {
+            const delta = Math.min(Math.abs(e.deltaY) * 1.2, 150);
+            const newX = Math.min(currentX + delta, 0);
+            x.set(newX);
+            progress.set(Math.abs(newX) / maxScroll);
+          } else {
+            // Reached start, unlock and continue scrolling up
+            directionRef.current = "backward";
+            unlockBodyScroll();
+          }
+          return;
+        }
+        
+        // Not locked - check if we should lock when scrolling back up
+        // Lock when section bottom reaches viewport bottom and we're at the end
+        if (sectionAtBottom && atEnd) {
+          e.preventDefault();
+          e.stopPropagation();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "backward";
+          return;
+        }
+        
+        // Also lock if section is in view and we're partially scrolled
+        if (sectionInView && sectionTop <= 0 && !atStart && horizontalProgressRef.current > 0.05) {
+          e.preventDefault();
+          e.stopPropagation();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "backward";
+          return;
         }
       }
     };
@@ -158,9 +207,14 @@ export function HorizontalScrollSection() {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!isLockedRef.current) return;
-
-      e.preventDefault();
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const viewportHeight = window.innerHeight;
+      
+      const sectionInView = sectionTop < viewportHeight - 50 && sectionBottom > 50;
+      const sectionAtTop = sectionTop <= 100 && sectionTop >= -100;
+      const sectionAtBottom = sectionBottom >= viewportHeight - 100 && sectionBottom <= viewportHeight + 100;
 
       const touchY = e.touches[0].clientY;
       const deltaY = lastTouchY - touchY;
@@ -171,86 +225,66 @@ export function HorizontalScrollSection() {
       const atEnd = currentX <= -maxScroll + 5;
 
       // Scrolling down (finger moving up)
-      if (deltaY > 2) {
-        if (!atEnd) {
-          const newX = Math.max(currentX - deltaY * 1.5, -maxScroll);
-          x.set(newX);
-          progress.set(Math.abs(newX) / maxScroll);
-        } else {
-          hasExitedForwardRef.current = true;
-          hasExitedBackwardRef.current = false;
-          unlockBodyScroll();
+      if (deltaY > 3) {
+        if (isLockedRef.current) {
+          e.preventDefault();
+          if (!atEnd) {
+            const newX = Math.max(currentX - deltaY * 1.5, -maxScroll);
+            x.set(newX);
+            progress.set(Math.abs(newX) / maxScroll);
+          } else {
+            directionRef.current = "forward";
+            unlockBodyScroll();
+          }
+          return;
+        }
+        
+        if (sectionAtTop && !atEnd) {
+          e.preventDefault();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "forward";
+          return;
         }
       }
+      
       // Scrolling up (finger moving down)
-      else if (deltaY < -2) {
-        if (!atStart) {
-          const newX = Math.min(currentX + Math.abs(deltaY) * 1.5, 0);
-          x.set(newX);
-          progress.set(Math.abs(newX) / maxScroll);
-        } else {
-          hasExitedBackwardRef.current = true;
-          hasExitedForwardRef.current = false;
-          unlockBodyScroll();
+      else if (deltaY < -3) {
+        if (isLockedRef.current) {
+          e.preventDefault();
+          if (!atStart) {
+            const newX = Math.min(currentX + Math.abs(deltaY) * 1.5, 0);
+            x.set(newX);
+            progress.set(Math.abs(newX) / maxScroll);
+          } else {
+            directionRef.current = "backward";
+            unlockBodyScroll();
+          }
+          return;
+        }
+        
+        if (sectionAtBottom && atEnd) {
+          e.preventDefault();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "backward";
+          return;
+        }
+        
+        if (sectionInView && sectionTop <= 0 && !atStart) {
+          e.preventDefault();
+          lockBodyScroll(window.scrollY);
+          directionRef.current = "backward";
+          return;
         }
       }
     };
 
-    // IntersectionObserver to detect when section enters/leaves viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        const rect = section.getBoundingClientRect();
-        
-        if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-          // Section is entering viewport
-          const currentX = x.get();
-          const atStart = currentX >= -5;
-          const atEnd = currentX <= -maxScroll + 5;
-          
-          // Entering from top (scrolling down) - section top is near viewport top
-          if (rect.top <= 100 && rect.top >= -100) {
-            // Only lock if we haven't already scrolled through forward
-            if (!hasExitedForwardRef.current || !atEnd) {
-              hasEnteredRef.current = true;
-              lockBodyScroll();
-            }
-          }
-          // Entering from bottom (scrolling up) - section bottom is near viewport bottom  
-          else if (rect.bottom >= window.innerHeight - 100 && rect.bottom <= window.innerHeight + 100) {
-            // Only lock if we haven't already scrolled through backward
-            if (!hasExitedBackwardRef.current || !atStart) {
-              hasEnteredRef.current = true;
-              // Reset to end position when re-entering from bottom
-              if (hasExitedForwardRef.current) {
-                x.set(-maxScroll);
-                progress.set(1);
-              }
-              lockBodyScroll();
-            }
-          }
-        } else if (!entry.isIntersecting) {
-          // Section left viewport
-          hasEnteredRef.current = false;
-          unlockBodyScroll();
-        }
-      },
-      {
-        threshold: [0, 0.1, 0.3, 0.5, 0.7, 0.9, 1],
-        rootMargin: "-50px 0px -50px 0px"
-      }
-    );
-
-    observer.observe(section);
-
-    // Add global wheel listener (not passive to allow preventDefault)
+    // Add global listeners
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", handleResize);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("touchstart", handleTouchStart);
