@@ -69,17 +69,14 @@ export function AIFeaturesSection() {
   }, []);
 
   return (
-    <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden" style={{ backgroundColor: '#1a0412' }}>
-      {/* Futuristic multi-layered background */}
+    <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden bg-background">
+      {/* Subtle background elements */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Dark base background */}
-        <div className="absolute inset-0" style={{ backgroundColor: '#1a0412' }} />
-
-        {/* Large animated gradient orbs */}
+        {/* Soft gradient orbs */}
         <motion.div
           className="absolute top-[10%] left-[20%] w-[600px] h-[600px] rounded-full"
           style={{
-            background: "radial-gradient(circle, oklch(0.45 0.2 330 / 0.2) 0%, oklch(0.38 0.16 330 / 0.05) 40%, transparent 70%)",
+            background: "radial-gradient(circle, oklch(0.45 0.2 330 / 0.08) 0%, oklch(0.38 0.16 330 / 0.02) 40%, transparent 70%)",
             filter: "blur(80px)",
           }}
           animate={{
@@ -92,7 +89,7 @@ export function AIFeaturesSection() {
         <motion.div
           className="absolute bottom-[10%] right-[20%] w-[500px] h-[500px] rounded-full"
           style={{
-            background: "radial-gradient(circle, oklch(0.55 0.18 200 / 0.15) 0%, oklch(0.5 0.15 200 / 0.03) 50%, transparent 70%)",
+            background: "radial-gradient(circle, oklch(0.55 0.18 200 / 0.06) 0%, oklch(0.5 0.15 200 / 0.01) 50%, transparent 70%)",
             filter: "blur(100px)",
           }}
           animate={{
@@ -102,26 +99,14 @@ export function AIFeaturesSection() {
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
-        <motion.div
-          className="absolute top-[40%] right-[10%] w-[350px] h-[350px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.6 0.18 40 / 0.1) 0%, transparent 60%)",
-            filter: "blur(60px)",
-          }}
-          animate={{
-            y: [0, -50, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
 
-        {/* Grid pattern with glow */}
+        {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.2]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `
-              linear-gradient(oklch(0.5 0.18 330 / 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, oklch(0.5 0.18 330 / 0.3) 1px, transparent 1px)
+              linear-gradient(oklch(0.5 0.18 330 / 0.5) 1px, transparent 1px),
+              linear-gradient(90deg, oklch(0.5 0.18 330 / 0.5) 1px, transparent 1px)
             `,
             backgroundSize: "60px 60px",
             maskImage: "radial-gradient(ellipse at center, black 20%, transparent 70%)",
@@ -130,17 +115,17 @@ export function AIFeaturesSection() {
 
         {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute h-1 w-1 rounded-full bg-primary/50"
+              className="absolute h-1 w-1 rounded-full bg-primary/30"
               style={{
                 left: `${10 + Math.random() * 80}%`,
                 top: `${10 + Math.random() * 80}%`,
               }}
               animate={{
                 y: [0, -20, 0],
-                opacity: [0.2, 0.8, 0.2],
+                opacity: [0.1, 0.4, 0.1],
                 scale: [1, 1.5, 1],
               }}
               transition={{
@@ -170,8 +155,7 @@ export function AIFeaturesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
-            style={{ color: '#fdf0f6' }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground"
           >
             {t("title")}
             <br />
@@ -183,8 +167,7 @@ export function AIFeaturesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-base sm:text-lg"
-            style={{ color: '#e8b8d4' }}
+            className="max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground"
           >
             {t("subtitle")}
           </motion.p>
@@ -349,9 +332,9 @@ export function AIFeaturesSection() {
                 className={`relative group cursor-pointer rounded-xl border p-4 transition-all duration-300 overflow-hidden ${
                   activeFeature === index
                     ? "border-primary/50 shadow-lg shadow-primary/10"
-                    : "border-[rgba(112,25,81,0.3)] hover:border-[rgba(112,25,81,0.5)]"
+                    : "border-border/40 hover:border-primary/30"
                 }`}
-                style={{ backgroundColor: 'rgba(255,255,255,0.07)' }}
+                style={{ backgroundColor: 'rgba(112,25,81,0.05)' }}
               >
                 {/* Active gradient accent */}
                 {activeFeature === index && (
@@ -360,7 +343,7 @@ export function AIFeaturesSection() {
                 
                 {/* Background glow on active */}
                 {activeFeature === index && (
-                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${feature.gradient} opacity-[0.05] blur-2xl`} />
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${feature.gradient} opacity-[0.08] blur-2xl`} />
                 )}
                 
                 <div className="relative flex items-start gap-4">
@@ -374,8 +357,8 @@ export function AIFeaturesSection() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold mb-1" style={{ color: '#fdf0f6' }}>{t(`features.${feature.key}.title`)}</h3>
-                    <p className="text-sm" style={{ color: '#e8b8d4' }}>
+                    <h3 className="font-semibold mb-1 text-foreground">{t(`features.${feature.key}.title`)}</h3>
+                    <p className="text-sm text-muted-foreground">
                       {t(`features.${feature.key}.description`)}
                     </p>
                   </div>
