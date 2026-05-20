@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -9,35 +9,36 @@ import {
   Rocket,
   HeadphonesIcon,
   Check,
-  Sparkles,
   MessageCircle,
   User,
 } from "lucide-react";
+
+const ACCENT_COLOR = "#1D9E75";
 
 const steps = [
   {
     key: "blueprint",
     icon: FileText,
-    gradient: "from-primary to-[oklch(0.45_0.18_340)]",
-    bgGlow: "primary",
+    title: "Blueprint Design",
+    description: "We analyze your needs and create a detailed plan",
   },
   {
     key: "design",
     icon: Palette,
-    gradient: "from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)]",
-    bgGlow: "[oklch(0.55_0.18_200)]",
+    title: "UI & UX Design",
+    description: "Beautiful, intuitive interfaces tailored to you",
   },
   {
     key: "delivery",
     icon: Rocket,
-    gradient: "from-chart-4 to-[oklch(0.5_0.14_140)]",
-    bgGlow: "chart-4",
+    title: "Delivery & Training",
+    description: "Seamless deployment with comprehensive training",
   },
   {
     key: "support",
     icon: HeadphonesIcon,
-    gradient: "from-chart-5 to-[oklch(0.55_0.16_40)]",
-    bgGlow: "chart-5",
+    title: "Ongoing Support",
+    description: "24/7 assistance to keep everything running smoothly",
   },
 ];
 
@@ -53,21 +54,21 @@ function BlueprintMockup() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-secondary/30 border border-dashed border-border/60 p-2 overflow-hidden">
+    <div className="relative h-full w-full rounded-lg bg-gray-50 border border-dashed border-gray-300 p-4 overflow-hidden">
       {/* Header placeholder */}
       <motion.div
-        className="h-2 w-12 rounded-sm bg-border/40 mb-2"
+        className="h-3 w-20 rounded bg-gray-300 mb-4"
         initial={{ width: 0 }}
-        animate={{ width: animationPhase >= 0 ? 48 : 0 }}
+        animate={{ width: animationPhase >= 0 ? 80 : 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       />
       
       {/* Grid layout */}
-      <div className="grid grid-cols-3 gap-1.5 mb-2">
+      <div className="grid grid-cols-3 gap-3 mb-4">
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
-            className="h-8 rounded-sm border border-dashed border-primary/30 bg-primary/5"
+            className="h-16 rounded border border-dashed border-gray-400 bg-gray-100"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: animationPhase >= 1 ? 1 : 0, 
@@ -79,11 +80,11 @@ function BlueprintMockup() {
       </div>
       
       {/* Content blocks */}
-      <div className="space-y-1.5">
+      <div className="space-y-3">
         {[0, 1].map((i) => (
           <motion.div
             key={i}
-            className="h-4 rounded-sm border border-dashed border-border/50 bg-border/20"
+            className="h-6 rounded border border-dashed border-gray-300 bg-gray-100"
             initial={{ width: 0 }}
             animate={{ width: animationPhase >= 2 ? "100%" : 0 }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -93,7 +94,8 @@ function BlueprintMockup() {
       
       {/* Footer element */}
       <motion.div
-        className="absolute bottom-2 right-2 h-3 w-8 rounded-sm bg-primary/20 border border-dashed border-primary/40"
+        className="absolute bottom-4 right-4 h-5 w-16 rounded"
+        style={{ backgroundColor: ACCENT_COLOR }}
         initial={{ opacity: 0 }}
         animate={{ opacity: animationPhase >= 3 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -101,10 +103,11 @@ function BlueprintMockup() {
       
       {/* Animated drawing cursor */}
       <motion.div
-        className="absolute h-1 w-1 rounded-full bg-primary shadow-[0_0_6px_2px_rgba(var(--primary),0.4)]"
+        className="absolute h-2 w-2 rounded-full"
+        style={{ backgroundColor: ACCENT_COLOR, boxShadow: `0 0 8px 2px ${ACCENT_COLOR}40` }}
         animate={{
-          x: [8, 60, 60, 8],
-          y: [8, 8, 50, 50],
+          x: [16, 120, 120, 16],
+          y: [16, 16, 100, 100],
         }}
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       />
@@ -124,51 +127,48 @@ function UIDesignMockup() {
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-card border border-border/40 overflow-hidden shadow-sm">
+    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 overflow-hidden">
       {/* Mini nav bar */}
-      <div className="flex items-center gap-1 px-2 py-1.5 border-b border-border/30 bg-secondary/20">
-        <div className="h-1.5 w-1.5 rounded-full bg-destructive/60" />
-        <div className="h-1.5 w-1.5 rounded-full bg-chart-5/60" />
-        <div className="h-1.5 w-1.5 rounded-full bg-chart-4/60" />
-        <div className="ml-2 h-1.5 flex-1 rounded-sm bg-border/30" />
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 bg-gray-50">
+        <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
+        <div className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+        <div className="h-2.5 w-2.5 rounded-full bg-green-400" />
+        <div className="ml-3 h-2.5 flex-1 max-w-32 rounded bg-gray-200" />
       </div>
       
       {/* Tab navigation */}
-      <div className="flex gap-1 px-2 py-1 border-b border-border/20">
+      <div className="flex gap-2 px-4 py-2 border-b border-gray-100">
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
-            className={`h-1.5 rounded-sm transition-all ${
-              activeTab === i ? "w-6 bg-primary" : "w-4 bg-border/40"
-            }`}
-            animate={{ 
-              backgroundColor: activeTab === i ? "var(--primary)" : "var(--border)"
+            className="h-2.5 rounded transition-all"
+            style={{
+              width: activeTab === i ? 32 : 20,
+              backgroundColor: activeTab === i ? ACCENT_COLOR : "#e5e7eb"
             }}
           />
         ))}
       </div>
       
       {/* Content area with cards */}
-      <div className="p-2 space-y-1.5">
+      <div className="p-4 space-y-3">
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
-            className="flex items-center gap-1.5 p-1.5 rounded bg-secondary/40 border border-border/20"
-            initial={{ opacity: 0, y: 5 }}
+            className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border transition-all"
             animate={{ 
-              opacity: 1, 
-              y: 0,
+              borderColor: activeTab === i ? ACCENT_COLOR : "#e5e7eb",
               scale: activeTab === i ? 1.02 : 1,
-              borderColor: activeTab === i ? "var(--primary)" : "var(--border)"
             }}
-            transition={{ duration: 0.3, delay: i * 0.1 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className={`h-4 w-4 rounded ${
-              i === 0 ? "bg-primary/20" : i === 1 ? "bg-chart-4/20" : "bg-chart-5/20"
-            }`} />
-            <div className="flex-1 space-y-0.5">
-              <div className="h-1 w-8 rounded-sm bg-foreground/20" />
-              <div className="h-1 w-12 rounded-sm bg-border/40" />
+            <div 
+              className="h-8 w-8 rounded"
+              style={{ backgroundColor: activeTab === i ? `${ACCENT_COLOR}20` : "#f3f4f6" }}
+            />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-2 w-16 rounded bg-gray-300" />
+              <div className="h-2 w-24 rounded bg-gray-200" />
             </div>
           </motion.div>
         ))}
@@ -176,11 +176,12 @@ function UIDesignMockup() {
       
       {/* Action button */}
       <motion.div
-        className="absolute bottom-2 right-2 h-4 w-10 rounded bg-primary flex items-center justify-center"
+        className="absolute bottom-4 right-4 h-8 w-20 rounded-lg flex items-center justify-center"
+        style={{ backgroundColor: ACCENT_COLOR }}
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="h-1 w-6 rounded-sm bg-primary-foreground/80" />
+        <div className="h-2 w-12 rounded bg-white/80" />
       </motion.div>
     </div>
   );
@@ -205,53 +206,51 @@ function DeliveryMockup() {
   ];
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-card border border-border/40 p-2 overflow-hidden">
+    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 p-5 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-1.5 mb-2">
-        <div className="h-3 w-3 rounded bg-chart-4/20 flex items-center justify-center">
-          <Rocket className="h-2 w-2 text-chart-4" />
+      <div className="flex items-center gap-3 mb-4">
+        <div 
+          className="h-8 w-8 rounded-lg flex items-center justify-center"
+          style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+        >
+          <Rocket className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
         </div>
-        <div className="h-1.5 w-10 rounded-sm bg-foreground/20" />
+        <div className="h-3 w-24 rounded bg-gray-200" />
       </div>
       
       {/* Progress bar */}
-      <div className="relative h-1.5 w-full rounded-full bg-border/30 mb-2.5 overflow-hidden">
+      <div className="relative h-2.5 w-full rounded-full bg-gray-100 mb-5 overflow-hidden">
         <motion.div
-          className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-chart-4 to-chart-4/70"
+          className="absolute inset-y-0 left-0 rounded-full"
+          style={{ backgroundColor: ACCENT_COLOR }}
           animate={{ width: `${(completedSteps / 4) * 100}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         />
       </div>
       
       {/* Checklist */}
-      <div className="space-y-1.5">
+      <div className="space-y-3">
         {checklistItems.map((item, i) => (
           <motion.div
             key={i}
-            className="flex items-center gap-1.5"
-            animate={{ 
-              opacity: completedSteps > i ? 1 : 0.5
-            }}
+            className="flex items-center gap-3"
+            animate={{ opacity: completedSteps > i ? 1 : 0.5 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className={`h-3 w-3 rounded-full border flex items-center justify-center ${
-                completedSteps > i 
-                  ? "bg-chart-4 border-chart-4" 
-                  : "bg-transparent border-border/50"
-              }`}
-              animate={{ 
-                scale: completedSteps === i + 1 ? [1, 1.2, 1] : 1
+              className="h-5 w-5 rounded-full border-2 flex items-center justify-center"
+              style={{
+                backgroundColor: completedSteps > i ? ACCENT_COLOR : "transparent",
+                borderColor: completedSteps > i ? ACCENT_COLOR : "#d1d5db"
               }}
+              animate={{ scale: completedSteps === i + 1 ? [1, 1.2, 1] : 1 }}
               transition={{ duration: 0.3 }}
             >
               {completedSteps > i && (
-                <Check className="h-2 w-2 text-white" />
+                <Check className="h-3 w-3 text-white" />
               )}
             </motion.div>
-            <span className={`text-[8px] ${
-              completedSteps > i ? "text-foreground" : "text-muted-foreground"
-            }`}>
+            <span className={`text-sm ${completedSteps > i ? "text-gray-900" : "text-gray-400"}`}>
               {item}
             </span>
           </motion.div>
@@ -261,18 +260,19 @@ function DeliveryMockup() {
       {/* Completion indicator */}
       {completedSteps === 4 && (
         <motion.div
-          className="absolute inset-0 flex items-center justify-center bg-card/80 backdrop-blur-sm"
+          className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="flex items-center gap-1 text-chart-4"
+            className="flex items-center gap-2"
+            style={{ color: ACCENT_COLOR }}
             animate={{ scale: [0.8, 1.1, 1] }}
             transition={{ duration: 0.5 }}
           >
-            <Check className="h-4 w-4" />
-            <span className="text-[10px] font-medium">Complete!</span>
+            <Check className="h-6 w-6" />
+            <span className="text-base font-semibold">Complete!</span>
           </motion.div>
         </motion.div>
       )}
@@ -287,37 +287,29 @@ function SupportMockup() {
 
   useEffect(() => {
     const sequence = async () => {
-      // Reset
       setMessages([]);
       setIsTyping(false);
       
-      // User message appears
       await new Promise(r => setTimeout(r, 800));
       setMessages([0]);
       
-      // Typing indicator
       await new Promise(r => setTimeout(r, 600));
       setIsTyping(true);
       
-      // Support response
       await new Promise(r => setTimeout(r, 1200));
       setIsTyping(false);
       setMessages([0, 1]);
       
-      // Second user message
       await new Promise(r => setTimeout(r, 1000));
       setMessages([0, 1, 2]);
       
-      // Typing again
       await new Promise(r => setTimeout(r, 600));
       setIsTyping(true);
       
-      // Final response
       await new Promise(r => setTimeout(r, 1000));
       setIsTyping(false);
       setMessages([0, 1, 2, 3]);
       
-      // Wait before restart
       await new Promise(r => setTimeout(r, 2000));
     };
 
@@ -327,49 +319,61 @@ function SupportMockup() {
   }, []);
 
   const chatMessages = [
-    { type: "user", text: "Need help!" },
-    { type: "support", text: "Hi! How can I assist?" },
-    { type: "user", text: "Dashboard issue" },
-    { type: "support", text: "I'll help fix that now" },
+    { type: "user", text: "Need help with setup!" },
+    { type: "support", text: "Hi! Happy to assist you." },
+    { type: "user", text: "Dashboard not loading" },
+    { type: "support", text: "Let me fix that for you now" },
   ];
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-card border border-border/40 overflow-hidden">
+    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 overflow-hidden">
       {/* Chat header */}
-      <div className="flex items-center gap-1.5 px-2 py-1.5 border-b border-border/30 bg-chart-5/5">
+      <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100" style={{ backgroundColor: `${ACCENT_COLOR}08` }}>
         <div className="relative">
-          <div className="h-4 w-4 rounded-full bg-chart-5/20 flex items-center justify-center">
-            <MessageCircle className="h-2.5 w-2.5 text-chart-5" />
+          <div 
+            className="h-8 w-8 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+          >
+            <MessageCircle className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
           </div>
-          <div className="absolute -bottom-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-chart-4 border border-card" />
+          <div 
+            className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-white"
+            style={{ backgroundColor: ACCENT_COLOR }}
+          />
         </div>
         <div className="flex-1">
-          <div className="h-1.5 w-8 rounded-sm bg-foreground/20" />
-          <div className="h-1 w-5 rounded-sm bg-chart-4/40 mt-0.5" />
+          <div className="h-2.5 w-16 rounded bg-gray-300" />
+          <div className="h-2 w-10 rounded mt-1" style={{ backgroundColor: `${ACCENT_COLOR}40` }} />
         </div>
       </div>
       
       {/* Messages */}
-      <div className="p-1.5 space-y-1 h-[calc(100%-28px)] overflow-hidden">
+      <div className="p-3 space-y-2.5 h-[calc(100%-52px)] overflow-hidden">
         {chatMessages.map((msg, i) => (
           messages.includes(i) && (
             <motion.div
               key={i}
               className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
-              initial={{ opacity: 0, y: 5, scale: 0.9 }}
+              initial={{ opacity: 0, y: 8, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.3 }}
             >
               {msg.type === "support" && (
-                <div className="h-3 w-3 rounded-full bg-chart-5/20 flex items-center justify-center mr-1 flex-shrink-0">
-                  <User className="h-1.5 w-1.5 text-chart-5" />
+                <div 
+                  className="h-6 w-6 rounded-full flex items-center justify-center mr-2 flex-shrink-0"
+                  style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+                >
+                  <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
                 </div>
               )}
-              <div className={`max-w-[70%] px-1.5 py-1 rounded-lg text-[7px] ${
-                msg.type === "user" 
-                  ? "bg-primary text-primary-foreground rounded-tr-sm" 
-                  : "bg-secondary/60 text-foreground rounded-tl-sm"
-              }`}>
+              <div 
+                className={`max-w-[75%] px-3 py-2 rounded-xl text-xs ${
+                  msg.type === "user" 
+                    ? "text-white rounded-tr-sm" 
+                    : "bg-gray-100 text-gray-800 rounded-tl-sm"
+                }`}
+                style={msg.type === "user" ? { backgroundColor: ACCENT_COLOR } : {}}
+              >
                 {msg.text}
               </div>
             </motion.div>
@@ -383,15 +387,18 @@ function SupportMockup() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="h-3 w-3 rounded-full bg-chart-5/20 flex items-center justify-center mr-1">
-              <User className="h-1.5 w-1.5 text-chart-5" />
+            <div 
+              className="h-6 w-6 rounded-full flex items-center justify-center mr-2"
+              style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+            >
+              <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
             </div>
-            <div className="bg-secondary/60 px-2 py-1 rounded-lg rounded-tl-sm flex gap-0.5">
+            <div className="bg-gray-100 px-3 py-2 rounded-xl rounded-tl-sm flex gap-1">
               {[0, 0.15, 0.3].map((delay, i) => (
                 <motion.div
                   key={i}
-                  className="h-1 w-1 rounded-full bg-muted-foreground/60"
-                  animate={{ y: [0, -2, 0] }}
+                  className="h-1.5 w-1.5 rounded-full bg-gray-400"
+                  animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity, delay }}
                 />
               ))}
@@ -414,220 +421,139 @@ const mockupComponents: Record<string, React.FC> = {
 export function WorkflowSection() {
   const t = useTranslations("workflow");
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const lineProgress = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section ref={containerRef} className="relative py-24 sm:py-32 overflow-hidden" style={{ backgroundColor: '#F9F0F5' }}>
-      {/* Background with gradient orbs */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* Base soft tint */}
-        <div className="absolute inset-0" style={{ backgroundColor: '#F9F0F5' }} />
-        
-        {/* Animated orbs */}
-        <motion.div
-          className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.38 0.16 330 / 0.12) 0%, transparent 60%)",
-            filter: "blur(80px)",
-          }}
-          animate={{ scale: [1, 1.2, 1], y: [0, -30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.08) 0%, transparent 60%)",
-            filter: "blur(100px)",
-          }}
-          animate={{ scale: [1, 1.15, 1], x: [0, 30, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-        <motion.div
-          className="absolute top-[50%] right-[30%] w-[300px] h-[300px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, oklch(0.55 0.18 40 / 0.08) 0%, transparent 60%)",
-            filter: "blur(60px)",
-          }}
-          animate={{ y: [0, 40, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-
-        {/* Dot pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.15]"
-          style={{
-            backgroundImage: `radial-gradient(oklch(0.38 0.16 330 / 0.5) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-            maskImage: "linear-gradient(to bottom, transparent, black 30%, black 70%, transparent)",
-          }}
-        />
-      </div>
-
+    <section className="relative py-24 sm:py-32 overflow-hidden" style={{ backgroundColor: '#F5F5F0' }}>
       <div ref={ref} className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <motion.div
+        <div className="text-center mb-16">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-6"
+            className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4"
           >
-            <Sparkles className="h-4 w-4" />
-            {t("badge")}
-          </motion.div>
+            How It Works
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-4"
           >
-            {t("title")}
+            From Idea to Implementation
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg"
+            className="max-w-2xl mx-auto text-gray-500 text-base sm:text-lg"
           >
-            {t("subtitle")}
+            Our streamlined process takes your vision from concept to reality with precision and care.
           </motion.p>
         </div>
 
-        {/* Timeline with enhanced visuals */}
-        <div className="relative">
-          {/* Connecting line - Desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2">
-            {/* Background line */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-            {/* Animated progress line */}
-            <motion.div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary via-[oklch(0.55_0.15_200)] to-chart-4 rounded-full"
-              style={{ scaleX: lineProgress, transformOrigin: "left" }}
-            />
-            {/* Glow effect */}
-            <motion.div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary/50 via-[oklch(0.55_0.15_200)]/50 to-chart-4/50 blur-sm rounded-full"
-              style={{ scaleX: lineProgress, transformOrigin: "left" }}
-            />
-          </div>
-
-          {/* Steps grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Two-column layout */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col lg:flex-row gap-8 lg:gap-12"
+        >
+          {/* Left column - Tab list */}
+          <div className="lg:w-[35%] space-y-3">
             {steps.map((step, index) => {
-              const MockupComponent = mockupComponents[step.key];
+              const Icon = step.icon;
+              const isActive = activeTab === index;
+              
               return (
-                <motion.div
+                <motion.button
                   key={step.key}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.12 }}
-                  className="relative group"
+                  onClick={() => setActiveTab(index)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
+                    isActive 
+                      ? "border-gray-300 bg-white" 
+                      : "border-gray-200 bg-white/50 hover:bg-white hover:border-gray-300"
+                  }`}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
-                  {/* Card */}
-                  <div className="relative rounded-2xl border border-border/40 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 overflow-hidden">
-                    {/* Top gradient accent */}
-                    <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${step.gradient} opacity-60 group-hover:opacity-100 transition-opacity`} />
-                    
-                    {/* Background glow on hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
-                    
-                    {/* Step number badge */}
-                    <div className="absolute -top-3 -left-3 z-10">
-                      <div className="relative">
-                        <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} blur-lg opacity-50`} />
-                        <div className={`relative h-10 w-10 rounded-xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-sm font-bold shadow-lg`}>
-                          {(index + 1).toString().padStart(2, "0")}
-                        </div>
-                      </div>
+                  {/* Number label */}
+                  <span className="text-xs font-medium text-gray-400 mb-2 block">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  
+                  <div className="flex items-center gap-3">
+                    {/* Icon box */}
+                    <div 
+                      className="h-10 w-10 rounded-lg flex items-center justify-center transition-all duration-300"
+                      style={{ 
+                        backgroundColor: isActive ? ACCENT_COLOR : "#f3f4f6",
+                      }}
+                    >
+                      <Icon 
+                        className="h-5 w-5 transition-colors duration-300" 
+                        style={{ color: isActive ? "white" : "#9ca3af" }}
+                      />
                     </div>
-
-                    <div className="p-6 pt-8">
-                      {/* Icon with gradient background */}
-                      <div className={`relative h-14 w-14 rounded-2xl bg-gradient-to-br ${step.gradient} p-[2px] mb-5 shadow-lg group-hover:shadow-xl transition-shadow`}>
-                        <div className="h-full w-full rounded-[14px] bg-card flex items-center justify-center">
-                          <step.icon className="h-6 w-6 text-foreground" />
-                        </div>
-                        {/* Icon glow */}
-                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
-                      </div>
-
-                      {/* Content */}
-                      <h3 className="text-xl font-bold mb-3">{t(`steps.${step.key}.title`)}</h3>
-                      <p className="text-muted-foreground text-sm mb-5">{t(`steps.${step.key}.description`)}</p>
-
-                      {/* Features list */}
-                      <ul className="space-y-2.5 mb-5">
-                        {[1, 2, 3].map((i) => (
-                          <motion.li 
-                            key={i} 
-                            className="flex items-center gap-2.5 text-sm"
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ delay: 0.4 + index * 0.12 + i * 0.05 }}
-                          >
-                            <div className={`h-5 w-5 rounded-full bg-gradient-to-br ${step.gradient} p-[1px] flex-shrink-0`}>
-                              <div className="h-full w-full rounded-full bg-card flex items-center justify-center">
-                                <Check className="h-3 w-3 text-foreground" />
-                              </div>
-                            </div>
-                            <span className="text-muted-foreground">{t(`steps.${step.key}.features.${i}`)}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-
-                      {/* Animated UI Mockup Preview */}
-                      <div className="h-28 w-full">
-                        <MockupComponent />
-                      </div>
+                    
+                    {/* Text */}
+                    <div className="flex-1">
+                      <h3 className={`font-semibold transition-colors duration-300 ${
+                        isActive ? "text-gray-900" : "text-gray-700"
+                      }`}>
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 mt-0.5">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
-        </div>
 
-        {/* Stats at bottom with glass effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-16 sm:mt-20"
-        >
-          <div className="relative rounded-3xl border border-border/40 bg-card/30 backdrop-blur-xl overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-[oklch(0.55_0.15_200)]/5" />
-            <div className="absolute top-0 left-1/4 w-48 h-48 bg-primary/10 rounded-full blur-[80px]" />
-            <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-chart-4/10 rounded-full blur-[80px]" />
-            
-            <div className="relative py-8 sm:py-10 px-6 sm:px-8">
-              <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-16 lg:gap-24">
-                {[
-                  { value: "500+", label: t("stats.projects"), gradient: "from-primary to-[oklch(0.55_0.15_200)]" },
-                  { value: "2-4", label: t("stats.weeks"), gradient: "from-[oklch(0.55_0.15_200)] to-chart-4" },
-                  { value: "100%", label: t("stats.satisfaction"), gradient: "from-chart-4 to-chart-5" },
-                ].map((stat, i) => (
-                  <motion.div 
-                    key={stat.label} 
-                    className="text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.9 + i * 0.1 }}
+          {/* Right column - Browser mockup */}
+          <div className="lg:w-[65%]">
+            <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+              {/* Browser top bar */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200">
+                <div className="flex items-center gap-1.5">
+                  <div className="h-3 w-3 rounded-full bg-red-400" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-400" />
+                  <div className="h-3 w-3 rounded-full bg-green-400" />
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="h-6 w-64 rounded-md bg-gray-200 flex items-center justify-center">
+                    <span className="text-xs text-gray-400">propease.app/dashboard</span>
+                  </div>
+                </div>
+                <div className="w-12" /> {/* Spacer for symmetry */}
+              </div>
+              
+              {/* Content area */}
+              <div className="p-6 h-[400px] bg-gray-50">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
                   >
-                    <div className={`text-3xl sm:text-4xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-1`}>
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    {(() => {
+                      const MockupComponent = mockupComponents[steps[activeTab].key];
+                      return <MockupComponent />;
+                    })()}
                   </motion.div>
-                ))}
+                </AnimatePresence>
               </div>
             </div>
           </div>
