@@ -13,7 +13,7 @@ import {
   User,
 } from "lucide-react";
 
-const ACCENT_COLOR = "#1D9E75";
+const ACCENT_COLOR = "#701951";
 
 const steps = [
   {
