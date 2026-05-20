@@ -111,14 +111,28 @@ export function HorizontalScrollSection() {
       const rect = section.getBoundingClientRect();
       const sectionTop = rect.top;
       const sectionBottom = rect.bottom;
+      const sectionHeight = rect.height;
       const viewportHeight = window.innerHeight;
       
-      // Check if section is in viewport (allowing some tolerance)
-      const sectionInView = sectionTop < viewportHeight - 50 && sectionBottom > 50;
-      // Check if section top is near viewport top (entering/in the section)
-      const sectionAtTop = sectionTop <= 100 && sectionTop >= -100;
-      // Check if section bottom is near viewport bottom (re-entering from below)
-      const sectionAtBottom = sectionBottom >= viewportHeight - 100 && sectionBottom <= viewportHeight + 100;
+      // Calculate how much of the section is visible in viewport
+      const visibleTop = Math.max(0, sectionTop);
+      const visibleBottom = Math.min(viewportHeight, sectionBottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const visibilityRatio = visibleHeight / sectionHeight;
+      
+      // Section is majority visible (80%+)
+      const sectionMajorityVisible = visibilityRatio >= 0.8;
+      
+      // Check if section top is near viewport top (scrolling down into section)
+      const sectionTopAtViewportTop = sectionTop <= 50 && sectionTop >= -50;
+      
+      // Check if section is fully visible with its top at or above viewport top
+      // This means we've scrolled down enough that the section fills the viewport
+      const sectionFillingViewport = sectionTop <= 0 && sectionBottom >= viewportHeight * 0.8;
+      
+      // Check if section bottom is entering from above when scrolling up
+      // The section top should be above viewport (negative) and section should be mostly visible
+      const sectionEnteringFromAbove = sectionTop < 0 && sectionBottom > viewportHeight * 0.5 && visibilityRatio >= 0.7;
       
       const currentX = x.get();
       const atStart = currentX >= -5;
@@ -149,7 +163,7 @@ export function HorizontalScrollSection() {
         
         // Not locked - check if we should lock
         // Lock when section top reaches viewport top and we haven't scrolled through yet
-        if (sectionAtTop && !atEnd) {
+        if (sectionTopAtViewportTop && !atEnd) {
           e.preventDefault();
           e.stopPropagation();
           lockBodyScroll(window.scrollY);
@@ -179,17 +193,9 @@ export function HorizontalScrollSection() {
         }
         
         // Not locked - check if we should lock when scrolling back up
-        // Lock when section bottom reaches viewport bottom and we're at the end
-        if (sectionAtBottom && atEnd) {
-          e.preventDefault();
-          e.stopPropagation();
-          lockBodyScroll(window.scrollY);
-          directionRef.current = "backward";
-          return;
-        }
-        
-        // Also lock if section is in view and we're partially scrolled
-        if (sectionInView && sectionTop <= 0 && !atStart && horizontalProgressRef.current > 0.05) {
+        // Only lock when section is majority visible AND we're at the end position
+        // This ensures we don't lock before the section is actually visible
+        if (sectionMajorityVisible && sectionFillingViewport && atEnd) {
           e.preventDefault();
           e.stopPropagation();
           lockBodyScroll(window.scrollY);
@@ -210,11 +216,18 @@ export function HorizontalScrollSection() {
       const rect = section.getBoundingClientRect();
       const sectionTop = rect.top;
       const sectionBottom = rect.bottom;
+      const sectionHeight = rect.height;
       const viewportHeight = window.innerHeight;
       
-      const sectionInView = sectionTop < viewportHeight - 50 && sectionBottom > 50;
-      const sectionAtTop = sectionTop <= 100 && sectionTop >= -100;
-      const sectionAtBottom = sectionBottom >= viewportHeight - 100 && sectionBottom <= viewportHeight + 100;
+      // Calculate visibility
+      const visibleTop = Math.max(0, sectionTop);
+      const visibleBottom = Math.min(viewportHeight, sectionBottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const visibilityRatio = visibleHeight / sectionHeight;
+      
+      const sectionMajorityVisible = visibilityRatio >= 0.8;
+      const sectionTopAtViewportTop = sectionTop <= 50 && sectionTop >= -50;
+      const sectionFillingViewport = sectionTop <= 0 && sectionBottom >= viewportHeight * 0.8;
 
       const touchY = e.touches[0].clientY;
       const deltaY = lastTouchY - touchY;
@@ -239,7 +252,7 @@ export function HorizontalScrollSection() {
           return;
         }
         
-        if (sectionAtTop && !atEnd) {
+        if (sectionTopAtViewportTop && !atEnd) {
           e.preventDefault();
           lockBodyScroll(window.scrollY);
           directionRef.current = "forward";
@@ -262,14 +275,8 @@ export function HorizontalScrollSection() {
           return;
         }
         
-        if (sectionAtBottom && atEnd) {
-          e.preventDefault();
-          lockBodyScroll(window.scrollY);
-          directionRef.current = "backward";
-          return;
-        }
-        
-        if (sectionInView && sectionTop <= 0 && !atStart) {
+        // Only lock when section is majority visible and we're at the end
+        if (sectionMajorityVisible && sectionFillingViewport && atEnd) {
           e.preventDefault();
           lockBodyScroll(window.scrollY);
           directionRef.current = "backward";
