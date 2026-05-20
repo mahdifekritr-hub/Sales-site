@@ -8,42 +8,42 @@ import Image from "next/image";
 const integrations = [
   {
     name: "QuickBooks",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-2-8PSkcqrlTnNijwQpOoLFeYDQ7G300O.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/quickbooks-2.svg",
     rotation: -4,
   },
   {
     name: "Google Analytics",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-2-9RZs7XDSrhvlLlfXETeCoiXIm8zXHv.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/google-analytics-4.svg",
     rotation: 3,
   },
   {
     name: "Google",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-1-Yqr0RYdUAhsPQNsusuhu8veBjXWPTZ.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/google-g-2015.svg",
     rotation: -2,
   },
   {
     name: "ZEGO",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-1-5NBzuJvOCtdE0LpJBNTBhxaD8Ikkks.png",
+    logo: "https://www.zegocloud.com/favicon.svg",
     rotation: 5,
   },
   {
     name: "Stripe",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-gYbSAAi2SLfLqfOnYEahccNjsWb0d6.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg",
     rotation: -3,
   },
   {
     name: "FCM",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-2-e1736105602199-Vz3RjfJ4XeZ6vIVmsemJ2J5fs0L9Xq.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg",
     rotation: 4,
   },
   {
     name: "Amazon Hub",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled-design-11-lQdkTG42lMFb16NshA5xQAsfMTCxt3.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/amazon-icon-1.svg",
     rotation: -5,
   },
   {
     name: "ExpertTexting",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-1-FxONxPL802t3rXVZUOwSMJosr5myBK.png",
+    logo: "https://cdn.worldvectorlogo.com/logos/sms-1.svg",
     rotation: 2,
   },
   {
