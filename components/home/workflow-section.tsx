@@ -11,6 +11,12 @@ import {
   Check,
   MessageCircle,
   User,
+  Bell,
+  Home,
+  Settings,
+  Users,
+  Calendar,
+  BarChart3,
 } from "lucide-react";
 
 const ACCENT_COLOR = "#701951";
@@ -21,390 +27,668 @@ const steps = [
     icon: FileText,
     title: "Blueprint Design",
     description: "We analyze your needs and create a detailed plan",
+    url: "app.propertycareapp.com/wireframe",
   },
   {
     key: "design",
     icon: Palette,
     title: "UI & UX Design",
     description: "Beautiful, intuitive interfaces tailored to you",
+    url: "app.propertycareapp.com/dashboard",
   },
   {
     key: "delivery",
     icon: Rocket,
     title: "Delivery & Training",
     description: "Seamless deployment with comprehensive training",
+    url: "app.propertycareapp.com/maintenance",
   },
   {
     key: "support",
     icon: HeadphonesIcon,
     title: "Ongoing Support",
     description: "24/7 assistance to keep everything running smoothly",
+    url: "app.propertycareapp.com/support",
   },
 ];
 
-// Animated Wireframe Mockup for Blueprint Design
+// Shared dashboard structure for consistent story
+const sidebarItems = [
+  { icon: Home, label: "Dashboard" },
+  { icon: Users, label: "Tenants" },
+  { icon: Calendar, label: "Bookings" },
+  { icon: Settings, label: "Settings" },
+];
+
+const propertyCards = [
+  { name: "Sunset Apartments", status: "Active", units: 24, occupancy: 92 },
+  { name: "Harbor View Tower", status: "Maintenance", units: 18, occupancy: 78 },
+  { name: "Garden Residences", status: "Available", units: 32, occupancy: 100 },
+];
+
+// Tab 01 - Blueprint (Wireframe)
 function BlueprintMockup() {
-  const [animationPhase, setAnimationPhase] = useState(0);
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationPhase((prev) => (prev + 1) % 4);
-    }, 1500);
-    return () => clearInterval(interval);
+    setPhase(0);
+    const timers = [
+      setTimeout(() => setPhase(1), 300),
+      setTimeout(() => setPhase(2), 800),
+      setTimeout(() => setPhase(3), 1300),
+      setTimeout(() => setPhase(4), 1800),
+      setTimeout(() => setPhase(5), 2300),
+    ];
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-gray-50 border border-dashed border-gray-300 p-4 overflow-hidden">
-      {/* Header placeholder */}
+    <div className="relative h-full w-full flex overflow-hidden">
+      {/* Sidebar wireframe */}
       <motion.div
-        className="h-3 w-20 rounded bg-gray-300 mb-4"
-        initial={{ width: 0 }}
-        animate={{ width: animationPhase >= 0 ? 80 : 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      />
-      
-      {/* Grid layout */}
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="h-16 rounded border border-dashed border-gray-400 bg-gray-100"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
-              opacity: animationPhase >= 1 ? 1 : 0, 
-              scale: animationPhase >= 1 ? 1 : 0.8 
-            }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-          />
-        ))}
-      </div>
-      
-      {/* Content blocks */}
-      <div className="space-y-3">
-        {[0, 1].map((i) => (
-          <motion.div
-            key={i}
-            className="h-6 rounded border border-dashed border-gray-300 bg-gray-100"
-            initial={{ width: 0 }}
-            animate={{ width: animationPhase >= 2 ? "100%" : 0 }}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
-          />
-        ))}
-      </div>
-      
-      {/* Footer element */}
-      <motion.div
-        className="absolute bottom-4 right-4 h-5 w-16 rounded"
-        style={{ backgroundColor: ACCENT_COLOR }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationPhase >= 3 ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-      
-      {/* Animated drawing cursor */}
-      <motion.div
-        className="absolute h-2 w-2 rounded-full"
-        style={{ backgroundColor: ACCENT_COLOR, boxShadow: `0 0 8px 2px ${ACCENT_COLOR}40` }}
-        animate={{
-          x: [16, 120, 120, 16],
-          y: [16, 16, 100, 100],
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-      />
-    </div>
-  );
-}
-
-// Animated UI Preview for UI & UX Design
-function UIDesignMockup() {
-  const [activeTab, setActiveTab] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % 3);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 overflow-hidden">
-      {/* Mini nav bar */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 bg-gray-50">
-        <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
-        <div className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-        <div className="h-2.5 w-2.5 rounded-full bg-green-400" />
-        <div className="ml-3 h-2.5 flex-1 max-w-32 rounded bg-gray-200" />
-      </div>
-      
-      {/* Tab navigation */}
-      <div className="flex gap-2 px-4 py-2 border-b border-gray-100">
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="h-2.5 rounded transition-all"
-            style={{
-              width: activeTab === i ? 32 : 20,
-              backgroundColor: activeTab === i ? ACCENT_COLOR : "#e5e7eb"
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Content area with cards */}
-      <div className="p-4 space-y-3">
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border transition-all"
-            animate={{ 
-              borderColor: activeTab === i ? ACCENT_COLOR : "#e5e7eb",
-              scale: activeTab === i ? 1.02 : 1,
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <div 
-              className="h-8 w-8 rounded"
-              style={{ backgroundColor: activeTab === i ? `${ACCENT_COLOR}20` : "#f3f4f6" }}
-            />
-            <div className="flex-1 space-y-1.5">
-              <div className="h-2 w-16 rounded bg-gray-300" />
-              <div className="h-2 w-24 rounded bg-gray-200" />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      
-      {/* Action button */}
-      <motion.div
-        className="absolute bottom-4 right-4 h-8 w-20 rounded-lg flex items-center justify-center"
-        style={{ backgroundColor: ACCENT_COLOR }}
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="w-16 h-full border-r-2 border-dashed border-gray-300 bg-gray-100 p-2 flex flex-col gap-3"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: phase >= 1 ? 1 : 0, x: phase >= 1 ? 0 : -20 }}
+        transition={{ duration: 0.4 }}
       >
-        <div className="h-2 w-12 rounded bg-white/80" />
+        {sidebarItems.map((_, i) => (
+          <motion.div
+            key={i}
+            className="h-8 w-full border-2 border-dashed border-gray-400 rounded bg-gray-200"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase >= 1 ? 1 : 0 }}
+            transition={{ delay: i * 0.1 }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Main content area */}
+      <div className="flex-1 p-4">
+        {/* Top nav wireframe */}
+        <motion.div
+          className="h-8 w-full border-2 border-dashed border-gray-300 rounded bg-gray-100 mb-4 flex items-center justify-between px-3"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : -10 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="h-3 w-20 bg-gray-300 rounded" />
+          <div className="flex gap-2">
+            <div className="h-4 w-4 border-2 border-dashed border-gray-400 rounded" />
+            <div className="h-4 w-4 border-2 border-dashed border-gray-400 rounded-full" />
+          </div>
+        </motion.div>
+
+        {/* Page title wireframe */}
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: phase >= 3 ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="h-4 w-32 bg-gray-300 rounded mb-2" />
+          <div className="h-2 w-48 bg-gray-200 rounded" />
+        </motion.div>
+
+        {/* Property cards wireframe - 3 cards in a row */}
+        <div className="grid grid-cols-3 gap-3">
+          {propertyCards.map((_, i) => (
+            <motion.div
+              key={i}
+              className="border-2 border-dashed border-gray-400 rounded-lg p-3 bg-gray-50"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ 
+                opacity: phase >= 4 ? 1 : 0, 
+                scale: phase >= 4 ? 1 : 0.9 
+              }}
+              transition={{ duration: 0.3, delay: i * 0.15 }}
+            >
+              {/* Card header */}
+              <div className="h-12 w-full border-2 border-dashed border-gray-300 rounded bg-gray-200 mb-2" />
+              {/* Card content lines */}
+              <div className="space-y-2">
+                <div className="h-2 w-full bg-gray-300 rounded" />
+                <div className="h-2 w-3/4 bg-gray-200 rounded" />
+                <div className="flex gap-2 mt-3">
+                  <div className="h-4 w-12 border-2 border-dashed border-gray-400 rounded" />
+                  <div className="h-4 w-10 border-2 border-dashed border-gray-400 rounded" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Stats row wireframe */}
+        <motion.div
+          className="mt-4 grid grid-cols-4 gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: phase >= 5 ? 1 : 0, y: phase >= 5 ? 0 : 10 }}
+          transition={{ duration: 0.4 }}
+        >
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="h-10 border-2 border-dashed border-gray-300 rounded bg-gray-100" />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Animated cursor */}
+      <motion.div
+        className="absolute h-4 w-4 pointer-events-none z-50"
+        initial={{ x: 100, y: 50 }}
+        animate={{
+          x: [100, 60, 60, 150, 250, 350, 350],
+          y: [50, 100, 180, 180, 180, 180, 280],
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <svg viewBox="0 0 24 24" fill="none" className="h-full w-full drop-shadow-md">
+          <path
+            d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.48 0 .72-.58.38-.92L6.35 2.85a.5.5 0 0 0-.85.36Z"
+            fill={ACCENT_COLOR}
+            stroke="white"
+            strokeWidth="1"
+          />
+        </svg>
       </motion.div>
     </div>
   );
 }
 
-// Animated Progress Tracker for Delivery & Training
-function DeliveryMockup() {
-  const [completedSteps, setCompletedSteps] = useState(0);
+// Tab 02 - UI & UX Design (Fully designed dashboard)
+function UIDesignMockup() {
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCompletedSteps((prev) => (prev + 1) % 5);
-    }, 1200);
-    return () => clearInterval(interval);
+    setPhase(0);
+    const timers = [
+      setTimeout(() => setPhase(1), 200),
+      setTimeout(() => setPhase(2), 500),
+      setTimeout(() => setPhase(3), 800),
+      setTimeout(() => setPhase(4), 1100),
+      setTimeout(() => setPhase(5), 1400),
+    ];
+    return () => timers.forEach(clearTimeout);
   }, []);
 
-  const checklistItems = [
-    "Setup complete",
-    "Data migration",
-    "Team training",
-    "Go live"
-  ];
+  const statusColors: Record<string, { bg: string; text: string }> = {
+    Active: { bg: "#dcfce7", text: "#166534" },
+    Maintenance: { bg: "#fef3c7", text: "#92400e" },
+    Available: { bg: `${ACCENT_COLOR}15`, text: ACCENT_COLOR },
+  };
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 p-5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-4">
-        <div 
-          className="h-8 w-8 rounded-lg flex items-center justify-center"
-          style={{ backgroundColor: `${ACCENT_COLOR}15` }}
-        >
-          <Rocket className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
-        </div>
-        <div className="h-3 w-24 rounded bg-gray-200" />
-      </div>
-      
-      {/* Progress bar */}
-      <div className="relative h-2.5 w-full rounded-full bg-gray-100 mb-5 overflow-hidden">
-        <motion.div
-          className="absolute inset-y-0 left-0 rounded-full"
-          style={{ backgroundColor: ACCENT_COLOR }}
-          animate={{ width: `${(completedSteps / 4) * 100}%` }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        />
-      </div>
-      
-      {/* Checklist */}
-      <div className="space-y-3">
-        {checklistItems.map((item, i) => (
-          <motion.div
-            key={i}
-            className="flex items-center gap-3"
-            animate={{ opacity: completedSteps > i ? 1 : 0.5 }}
-            transition={{ duration: 0.3 }}
-          >
+    <div className="relative h-full w-full flex overflow-hidden bg-gray-50 rounded-lg">
+      {/* Colored sidebar */}
+      <motion.div
+        className="w-16 h-full border-r border-gray-200 bg-white p-2 flex flex-col gap-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: phase >= 1 ? 1 : 0, x: phase >= 1 ? 0 : -20 }}
+        transition={{ duration: 0.4 }}
+      >
+        {sidebarItems.map((item, i) => {
+          const Icon = item.icon;
+          return (
             <motion.div
-              className="h-5 w-5 rounded-full border-2 flex items-center justify-center"
-              style={{
-                backgroundColor: completedSteps > i ? ACCENT_COLOR : "transparent",
-                borderColor: completedSteps > i ? ACCENT_COLOR : "#d1d5db"
-              }}
-              animate={{ scale: completedSteps === i + 1 ? [1, 1.2, 1] : 1 }}
-              transition={{ duration: 0.3 }}
+              key={i}
+              className={`h-10 w-full rounded-lg flex items-center justify-center transition-all ${
+                i === 0 ? "text-white" : "text-gray-400 hover:bg-gray-100"
+              }`}
+              style={{ backgroundColor: i === 0 ? ACCENT_COLOR : "transparent" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: phase >= 1 ? 1 : 0 }}
+              transition={{ delay: i * 0.08 }}
             >
-              {completedSteps > i && (
-                <Check className="h-3 w-3 text-white" />
-              )}
+              <Icon className="h-4 w-4" />
             </motion.div>
-            <span className={`text-sm ${completedSteps > i ? "text-gray-900" : "text-gray-400"}`}>
-              {item}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-      
-      {/* Completion indicator */}
-      {completedSteps === 4 && (
+          );
+        })}
+      </motion.div>
+
+      {/* Main content */}
+      <div className="flex-1 p-4 overflow-hidden">
+        {/* Top nav */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          className="h-10 w-full bg-white rounded-lg border border-gray-200 mb-4 flex items-center justify-between px-4"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : -10 }}
           transition={{ duration: 0.3 }}
         >
-          <motion.div
-            className="flex items-center gap-2"
-            style={{ color: ACCENT_COLOR }}
-            animate={{ scale: [0.8, 1.1, 1] }}
-            transition={{ duration: 0.5 }}
-          >
-            <Check className="h-6 w-6" />
-            <span className="text-base font-semibold">Complete!</span>
-          </motion.div>
+          <span className="text-sm font-semibold text-gray-800">Property Dashboard</span>
+          <div className="flex items-center gap-3">
+            <Bell className="h-4 w-4 text-gray-400" />
+            <div className="h-6 w-6 rounded-full bg-gray-200" />
+          </div>
         </motion.div>
-      )}
+
+        {/* Page header */}
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: phase >= 3 ? 1 : 0, y: phase >= 3 ? 0 : 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h3 className="text-base font-bold text-gray-900">My Properties</h3>
+          <p className="text-xs text-gray-500">Manage your property portfolio</p>
+        </motion.div>
+
+        {/* Property cards - designed */}
+        <div className="grid grid-cols-3 gap-3">
+          {propertyCards.map((card, i) => (
+            <motion.div
+              key={i}
+              className="bg-white rounded-lg border border-gray-200 overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: phase >= 4 ? 1 : 0, y: phase >= 4 ? 0 : 20 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              {/* Card header with color */}
+              <div 
+                className="h-10 w-full"
+                style={{ backgroundColor: i === 0 ? ACCENT_COLOR : i === 1 ? "#6366f1" : "#10b981" }}
+              />
+              {/* Card content */}
+              <div className="p-2.5">
+                <h4 className="text-xs font-semibold text-gray-900 mb-1 truncate">{card.name}</h4>
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span 
+                    className="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
+                    style={{ 
+                      backgroundColor: statusColors[card.status].bg,
+                      color: statusColors[card.status].text
+                    }}
+                  >
+                    {card.status}
+                  </span>
+                </div>
+                <div className="flex justify-between text-[10px] text-gray-500">
+                  <span>{card.units} units</span>
+                  <span>{card.occupancy}% occ.</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Stats row */}
+        <motion.div
+          className="mt-4 grid grid-cols-4 gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: phase >= 5 ? 1 : 0, y: phase >= 5 ? 0 : 10 }}
+          transition={{ duration: 0.4 }}
+        >
+          {[
+            { label: "Total Units", value: "74" },
+            { label: "Occupancy", value: "89%" },
+            { label: "Revenue", value: "$42K" },
+            { label: "Requests", value: "12" },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white rounded-lg border border-gray-200 p-2 text-center">
+              <div className="text-sm font-bold text-gray-900">{stat.value}</div>
+              <div className="text-[9px] text-gray-500">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
 
-// Animated Chat Widget for Ongoing Support
+// Tab 03 - Delivery (Live & Working with maintenance panel)
+function DeliveryMockup() {
+  const [phase, setPhase] = useState(0);
+  const [progressWidth, setProgressWidth] = useState(0);
+
+  useEffect(() => {
+    setPhase(0);
+    setProgressWidth(0);
+    const timers = [
+      setTimeout(() => setPhase(1), 200),
+      setTimeout(() => setPhase(2), 600),
+      setTimeout(() => setPhase(3), 1000),
+      setTimeout(() => { setPhase(4); setProgressWidth(75); }, 1400),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const timelineSteps = [
+    { label: "Reported", done: true },
+    { label: "Assigned", done: true },
+    { label: "In Progress", done: true },
+    { label: "Complete", done: false, pulsing: true },
+  ];
+
+  return (
+    <div className="relative h-full w-full flex overflow-hidden bg-gray-50 rounded-lg">
+      {/* Sidebar */}
+      <motion.div
+        className="w-16 h-full border-r border-gray-200 bg-white p-2 flex flex-col gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase >= 1 ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        {sidebarItems.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={i}
+              className={`h-10 w-full rounded-lg flex items-center justify-center ${
+                i === 0 ? "text-white" : "text-gray-400"
+              }`}
+              style={{ backgroundColor: i === 0 ? ACCENT_COLOR : "transparent" }}
+            >
+              <Icon className="h-4 w-4" />
+            </div>
+          );
+        })}
+      </motion.div>
+
+      {/* Main content with panel overlay */}
+      <div className="flex-1 relative">
+        {/* Background dashboard (dimmed) */}
+        <div className="absolute inset-0 p-4 opacity-30">
+          <div className="h-10 bg-white rounded-lg border mb-4" />
+          <div className="grid grid-cols-3 gap-3">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="h-24 bg-white rounded-lg border" />
+            ))}
+          </div>
+        </div>
+
+        {/* Maintenance request panel */}
+        <motion.div
+          className="absolute right-0 top-0 bottom-0 w-[75%] bg-white border-l border-gray-200 shadow-xl p-4 overflow-hidden"
+          initial={{ x: "100%" }}
+          animate={{ x: phase >= 2 ? 0 : "100%" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          {/* Panel header with notification badge */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div 
+                className="h-8 w-8 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+              >
+                <Settings className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900">Maintenance Request</h4>
+                <p className="text-[10px] text-gray-500">#MR-2847</p>
+              </div>
+            </div>
+            {/* Notification badge */}
+            <motion.div
+              className="relative"
+              initial={{ scale: 0 }}
+              animate={{ scale: phase >= 3 ? 1 : 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Bell className="h-5 w-5 text-gray-400" />
+              <motion.span
+                className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-[9px] text-white flex items-center justify-center font-bold"
+                style={{ backgroundColor: ACCENT_COLOR }}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                3
+              </motion.span>
+            </motion.div>
+          </div>
+
+          {/* Issue details */}
+          <motion.div
+            className="bg-gray-50 rounded-lg p-3 mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase >= 3 ? 1 : 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <p className="text-xs font-medium text-gray-700">AC Unit Not Cooling</p>
+            <p className="text-[10px] text-gray-500 mt-1">Unit 4B - Sunset Apartments</p>
+          </motion.div>
+
+          {/* Status timeline */}
+          <motion.div
+            className="mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase >= 4 ? 1 : 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <p className="text-[10px] font-semibold text-gray-500 uppercase mb-3">Progress</p>
+            <div className="flex items-center justify-between mb-2">
+              {timelineSteps.map((step, i) => (
+                <div key={i} className="flex flex-col items-center flex-1">
+                  <motion.div
+                    className={`h-5 w-5 rounded-full flex items-center justify-center border-2 ${
+                      step.done 
+                        ? "border-transparent text-white" 
+                        : "border-gray-300 bg-white"
+                    }`}
+                    style={{ backgroundColor: step.done ? ACCENT_COLOR : undefined }}
+                    animate={step.pulsing ? { 
+                      boxShadow: [`0 0 0 0px ${ACCENT_COLOR}40`, `0 0 0 8px ${ACCENT_COLOR}00`]
+                    } : {}}
+                    transition={step.pulsing ? { duration: 1.5, repeat: Infinity } : {}}
+                  >
+                    {step.done && <Check className="h-3 w-3" />}
+                    {step.pulsing && !step.done && (
+                      <motion.div
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: ACCENT_COLOR }}
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                      />
+                    )}
+                  </motion.div>
+                  <span className="text-[8px] text-gray-500 mt-1 text-center">{step.label}</span>
+                </div>
+              ))}
+            </div>
+            {/* Connecting line */}
+            <div className="relative h-1 bg-gray-200 rounded-full mx-6 -mt-6 mb-6">
+              <motion.div
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{ backgroundColor: ACCENT_COLOR }}
+                initial={{ width: 0 }}
+                animate={{ width: `${progressWidth}%` }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Progress bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase >= 4 ? 1 : 0 }}
+          >
+            <div className="flex justify-between text-[10px] mb-1">
+              <span className="text-gray-500">Overall Progress</span>
+              <span className="font-semibold" style={{ color: ACCENT_COLOR }}>75%</span>
+            </div>
+            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full rounded-full"
+                style={{ backgroundColor: ACCENT_COLOR }}
+                initial={{ width: 0 }}
+                animate={{ width: "75%" }}
+                transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+// Tab 04 - Ongoing Support (Chat widget)
 function SupportMockup() {
   const [messages, setMessages] = useState<number[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    const sequence = async () => {
+    let mounted = true;
+    
+    const runSequence = async () => {
+      if (!mounted) return;
       setMessages([]);
       setIsTyping(false);
       
-      await new Promise(r => setTimeout(r, 800));
+      await new Promise(r => setTimeout(r, 500));
+      if (!mounted) return;
       setMessages([0]);
       
       await new Promise(r => setTimeout(r, 600));
+      if (!mounted) return;
       setIsTyping(true);
       
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1000));
+      if (!mounted) return;
       setIsTyping(false);
       setMessages([0, 1]);
       
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 800));
+      if (!mounted) return;
       setMessages([0, 1, 2]);
       
-      await new Promise(r => setTimeout(r, 600));
+      await new Promise(r => setTimeout(r, 500));
+      if (!mounted) return;
       setIsTyping(true);
       
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 1200));
+      if (!mounted) return;
       setIsTyping(false);
       setMessages([0, 1, 2, 3]);
-      
-      await new Promise(r => setTimeout(r, 2000));
     };
 
-    sequence();
-    const interval = setInterval(sequence, 8000);
-    return () => clearInterval(interval);
+    runSequence();
+    const interval = setInterval(runSequence, 7000);
+    
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   const chatMessages = [
-    { type: "user", text: "Need help with setup!" },
-    { type: "support", text: "Hi! Happy to assist you." },
-    { type: "user", text: "Dashboard not loading" },
-    { type: "support", text: "Let me fix that for you now" },
+    { type: "user", text: "Hi, I have a tenant reporting a leak in Unit 3A" },
+    { type: "support", text: "Hi! I can help with that. Let me check your maintenance queue." },
+    { type: "user", text: "Is there a plumber available today?" },
+    { type: "support", text: "Yes! I&apos;ve assigned Mike (Plumber) for 2pm. Tenant notified." },
   ];
 
   return (
-    <div className="relative h-full w-full rounded-lg bg-white border border-gray-200 overflow-hidden">
-      {/* Chat header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100" style={{ backgroundColor: `${ACCENT_COLOR}08` }}>
-        <div className="relative">
-          <div 
-            className="h-8 w-8 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: `${ACCENT_COLOR}15` }}
-          >
-            <MessageCircle className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
+    <div className="relative h-full w-full flex gap-4 p-2 overflow-hidden">
+      {/* Chat widget */}
+      <div className="flex-1 bg-white rounded-xl border border-gray-200 overflow-hidden flex flex-col">
+        {/* Chat header */}
+        <div 
+          className="px-4 py-3 flex items-center gap-3 border-b border-gray-100"
+          style={{ backgroundColor: ACCENT_COLOR }}
+        >
+          <div className="relative">
+            <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
+              <MessageCircle className="h-4 w-4 text-white" />
+            </div>
+            <div className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-green-400 border-2 border-white" />
           </div>
-          <div 
-            className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-white"
-            style={{ backgroundColor: ACCENT_COLOR }}
-          />
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-white">Support Chat</p>
+            <p className="text-[10px] text-white/70">Online - Avg response {"<"}2min</p>
+          </div>
         </div>
-        <div className="flex-1">
-          <div className="h-2.5 w-16 rounded bg-gray-300" />
-          <div className="h-2 w-10 rounded mt-1" style={{ backgroundColor: `${ACCENT_COLOR}40` }} />
-        </div>
-      </div>
-      
-      {/* Messages */}
-      <div className="p-3 space-y-2.5 h-[calc(100%-52px)] overflow-hidden">
-        {chatMessages.map((msg, i) => (
-          messages.includes(i) && (
-            <motion.div
-              key={i}
-              className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
-              initial={{ opacity: 0, y: 8, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              {msg.type === "support" && (
-                <div 
-                  className="h-6 w-6 rounded-full flex items-center justify-center mr-2 flex-shrink-0"
-                  style={{ backgroundColor: `${ACCENT_COLOR}15` }}
-                >
-                  <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
-                </div>
-              )}
-              <div 
-                className={`max-w-[75%] px-3 py-2 rounded-xl text-xs ${
-                  msg.type === "user" 
-                    ? "text-white rounded-tr-sm" 
-                    : "bg-gray-100 text-gray-800 rounded-tl-sm"
-                }`}
-                style={msg.type === "user" ? { backgroundColor: ACCENT_COLOR } : {}}
+        
+        {/* Messages area */}
+        <div className="flex-1 p-3 space-y-2.5 overflow-y-auto bg-gray-50">
+          {chatMessages.map((msg, i) => (
+            messages.includes(i) && (
+              <motion.div
+                key={i}
+                className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.3 }}
               >
-                {msg.text}
+                {msg.type === "support" && (
+                  <div 
+                    className="h-6 w-6 rounded-full flex items-center justify-center mr-2 flex-shrink-0"
+                    style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+                  >
+                    <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
+                  </div>
+                )}
+                <div 
+                  className={`max-w-[80%] px-3 py-2 rounded-2xl text-[11px] leading-relaxed ${
+                    msg.type === "user" 
+                      ? "text-white rounded-tr-sm" 
+                      : "bg-white text-gray-800 rounded-tl-sm border border-gray-200"
+                  }`}
+                  style={msg.type === "user" ? { backgroundColor: ACCENT_COLOR } : {}}
+                >
+                  {msg.text}
+                </div>
+              </motion.div>
+            )
+          ))}
+          
+          {/* Typing indicator */}
+          {isTyping && (
+            <motion.div
+              className="flex justify-start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <div 
+                className="h-6 w-6 rounded-full flex items-center justify-center mr-2"
+                style={{ backgroundColor: `${ACCENT_COLOR}15` }}
+              >
+                <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
+              </div>
+              <div className="bg-white px-4 py-2 rounded-2xl rounded-tl-sm border border-gray-200 flex gap-1">
+                {[0, 0.15, 0.3].map((delay, i) => (
+                  <motion.div
+                    key={i}
+                    className="h-1.5 w-1.5 rounded-full bg-gray-400"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity, delay }}
+                  />
+                ))}
               </div>
             </motion.div>
-          )
-        ))}
-        
-        {/* Typing indicator */}
-        {isTyping && (
-          <motion.div
-            className="flex justify-start"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          )}
+        </div>
+      </div>
+
+      {/* Stat cards */}
+      <div className="w-32 flex flex-col gap-3">
+        <motion.div
+          className="flex-1 bg-white rounded-xl border border-gray-200 p-3 flex flex-col items-center justify-center"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div 
+            className="h-10 w-10 rounded-full flex items-center justify-center mb-2"
+            style={{ backgroundColor: `${ACCENT_COLOR}10` }}
           >
-            <div 
-              className="h-6 w-6 rounded-full flex items-center justify-center mr-2"
-              style={{ backgroundColor: `${ACCENT_COLOR}15` }}
-            >
-              <User className="h-3 w-3" style={{ color: ACCENT_COLOR }} />
-            </div>
-            <div className="bg-gray-100 px-3 py-2 rounded-xl rounded-tl-sm flex gap-1">
-              {[0, 0.15, 0.3].map((delay, i) => (
-                <motion.div
-                  key={i}
-                  className="h-1.5 w-1.5 rounded-full bg-gray-400"
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity, delay }}
-                />
-              ))}
-            </div>
-          </motion.div>
-        )}
+            <BarChart3 className="h-5 w-5" style={{ color: ACCENT_COLOR }} />
+          </div>
+          <span className="text-lg font-bold text-gray-900">99.9%</span>
+          <span className="text-[10px] text-gray-500 text-center">Uptime</span>
+        </motion.div>
+        
+        <motion.div
+          className="flex-1 bg-white rounded-xl border border-gray-200 p-3 flex flex-col items-center justify-center"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <div 
+            className="h-10 w-10 rounded-full flex items-center justify-center mb-2"
+            style={{ backgroundColor: `${ACCENT_COLOR}10` }}
+          >
+            <MessageCircle className="h-5 w-5" style={{ color: ACCENT_COLOR }} />
+          </div>
+          <span className="text-lg font-bold text-gray-900">{"<"}2min</span>
+          <span className="text-[10px] text-gray-500 text-center">Response</span>
+        </motion.div>
       </div>
     </div>
   );
@@ -530,15 +814,26 @@ export function WorkflowSection() {
                   <div className="h-3 w-3 rounded-full bg-green-400" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="h-6 w-64 rounded-md bg-gray-200 flex items-center justify-center">
-                    <span className="text-xs text-gray-400">propease.app/dashboard</span>
+                  <div className="h-6 px-3 rounded-md bg-gray-200 flex items-center justify-center">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={activeTab}
+                        className="text-xs text-gray-500"
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {steps[activeTab].url}
+                      </motion.span>
+                    </AnimatePresence>
                   </div>
                 </div>
                 <div className="w-12" /> {/* Spacer for symmetry */}
               </div>
               
               {/* Content area */}
-              <div className="p-6 h-[400px] bg-gray-50">
+              <div className="h-[400px] bg-gray-100">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeTab}
