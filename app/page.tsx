@@ -16,7 +16,7 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <HomeHero />
-      <PlatformOverview />
+
       <ProductsSection />
       <HorizontalScrollSection />
       <AIFeaturesSection />
