@@ -556,7 +556,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Tower image */}
-            <div className="relative h-[320px] w-[180px] lg:h-[420px] lg:w-[220px]">
+            <div className="relative h-[380px] w-[220px] lg:h-[500px] lg:w-[300px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
