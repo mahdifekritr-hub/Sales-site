@@ -12,7 +12,7 @@ const CARDS = [
     desc: "A CRM that manages listings, tracks inquiries, sends proposals, and hands off smoothly to other teams without third-party tools.",
     pills: ["Higher conversions", "Fewer handoffs", "Less manual work", "Native to platform"],
     cta: "Explore Selling",
-    bgColor: "#e8f5e9", // Mint green
+    bgColor: "#f5f5f0", // Mint green
     dotColor: "#2e7d32",
     btnColor: "#1b5e20",
     mockup: "selling",
@@ -23,7 +23,7 @@ const CARDS = [
     desc: "Track, assign, and resolve maintenance requests in one place with automated workflows and real-time status updates.",
     pills: ["Quick assignment", "Status tracking", "Photo uploads", "Vendor management"],
     cta: "Explore Work Orders",
-    bgColor: "#e3f2fd", // Light blue
+    bgColor: "#f0eef8", // Light blue
     dotColor: "#1565c0",
     btnColor: "#0d47a1",
     mockup: "workorder",
@@ -34,7 +34,7 @@ const CARDS = [
     desc: "Answer tenant and buyer questions instantly — 24/7 — with an AI assistant trained on your properties and policies.",
     pills: ["Instant responses", "Lead qualification", "Handoff to agent", "Multi-language"],
     cta: "Explore AI Chat",
-    bgColor: "#fff3e0", // Peach
+    bgColor: "#f0f5f5", // Peach
     dotColor: "#e65100",
     btnColor: "#bf360c",
     mockup: "aichat",
@@ -45,7 +45,7 @@ const CARDS = [
     desc: "Let prospects book property tours directly from your listing with automatic calendar sync and confirmation flow.",
     pills: ["Online booking", "Calendar sync", "Auto reminders", "Confirmation flow"],
     cta: "Explore Reservations",
-    bgColor: "#f3e5f5", // Lavender
+    bgColor: "#faf5f5", // Lavender
     dotColor: "#7b1fa2",
     btnColor: "#4a148c",
     mockup: "reservation",
@@ -544,7 +544,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
     <div ref={ref} className="relative h-full w-full overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 h-32 w-1/2 bg-green-500/5 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 h-32 w-1/2 bg-[#f5f5f0] blur-3xl" />
       </div>
 
       {/* Main content - side by side layout */}
