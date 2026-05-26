@@ -60,7 +60,6 @@ const INITIAL_PADDING_VW = 8;
 export function HorizontalScrollSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
 
   // Track lock state with refs to avoid stale closures
   const isLockedRef = useRef(false);
@@ -75,26 +74,16 @@ export function HorizontalScrollSection() {
   // Track scroll progress for dots (0-1)
   const progress = useMotionValue(0);
 
-  // Calculate max scroll distance dynamically from actual rendered content
+  // Calculate max scroll distance
   const getMaxScroll = useCallback(() => {
     if (typeof window === "undefined") return 0;
-    
-    // Measure actual track width if available
-    if (trackRef.current) {
-      const trackWidth = trackRef.current.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      // Max scroll = total content width - viewport width
-      // This ensures the last card aligns flush with the right edge
-      const maxScroll = Math.max(0, trackWidth - viewportWidth);
-      return maxScroll;
-    }
-    
-    // Fallback calculation if track not yet rendered
     const vw = window.innerWidth / 100;
-    const cardWidth = Math.min(CARD_WIDTH_VW * vw, 1200); // Account for maxWidth constraint
+    const cardWidth = CARD_WIDTH_VW * vw;
     const totalCardsWidth = CARDS.length * cardWidth + (CARDS.length - 1) * CARD_GAP_PX;
     const initialPadding = INITIAL_PADDING_VW * vw;
-    return totalCardsWidth + initialPadding - window.innerWidth;
+    // Calculate exact scroll needed: total width - viewport + initial padding
+    // This ensures last card aligns flush with viewport edge
+    return totalCardsWidth - window.innerWidth + initialPadding;
   }, []);
 
   useEffect(() => {
@@ -102,11 +91,6 @@ export function HorizontalScrollSection() {
     if (!section) return;
 
     let maxScroll = getMaxScroll();
-    
-    // Recalculate after a short delay to ensure DOM is fully rendered
-    const recalcTimeout = setTimeout(() => {
-      maxScroll = getMaxScroll();
-    }, 100);
 
     const lockBodyScroll = (scrollY: number) => {
       if (!isLockedRef.current) {
@@ -120,22 +104,15 @@ export function HorizontalScrollSection() {
       }
     };
 
-    const unlockBodyScroll = (goForward?: boolean) => {
+    const unlockBodyScroll = () => {
       if (isLockedRef.current) {
+        const scrollY = scrollPositionRef.current;
         document.body.style.overflow = "";
         document.body.style.position = "";
         document.body.style.top = "";
         document.body.style.width = "";
         document.body.style.touchAction = "";
-        
-        if (goForward && section) {
-          // When going forward, scroll to just past the section so next content appears
-          const sectionBottom = section.offsetTop + section.offsetHeight;
-          window.scrollTo(0, sectionBottom);
-        } else {
-          // When going backward, restore original position
-          window.scrollTo(0, scrollPositionRef.current);
-        }
+        window.scrollTo(0, scrollY);
         isLockedRef.current = false;
       }
     };
@@ -180,7 +157,7 @@ export function HorizontalScrollSection() {
             progress.set(Math.abs(newX) / maxScroll);
           } else {
             directionRef.current = "forward";
-            unlockBodyScroll(true); // Go forward - scroll past section
+            unlockBodyScroll();
           }
           return;
         }
@@ -207,7 +184,7 @@ export function HorizontalScrollSection() {
             progress.set(Math.abs(newX) / maxScroll);
           } else {
             directionRef.current = "backward";
-            unlockBodyScroll(false); // Go backward - restore original position
+            unlockBodyScroll();
           }
           return;
         }
@@ -263,7 +240,7 @@ export function HorizontalScrollSection() {
             progress.set(Math.abs(newX) / maxScroll);
           } else {
             directionRef.current = "forward";
-            unlockBodyScroll(true); // Go forward - scroll past section
+            unlockBodyScroll();
           }
           return;
         }
@@ -286,7 +263,7 @@ export function HorizontalScrollSection() {
             progress.set(Math.abs(newX) / maxScroll);
           } else {
             directionRef.current = "backward";
-            unlockBodyScroll(false); // Go backward - restore original position
+            unlockBodyScroll();
           }
           return;
         }
@@ -306,7 +283,6 @@ export function HorizontalScrollSection() {
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      clearTimeout(recalcTimeout);
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("touchstart", handleTouchStart);
@@ -331,7 +307,6 @@ export function HorizontalScrollSection() {
       >
         {/* Cards track */}
         <motion.div
-          ref={trackRef}
           className="flex flex-row items-center gap-6 h-full pb-12"
           style={{ x: smoothX, paddingLeft: `${INITIAL_PADDING_VW}vw` }}
         >
