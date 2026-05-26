@@ -546,8 +546,8 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
 
       {/* Main content - side by side layout */}
       <div className="relative flex h-full">
-        {/* Tower section */}
-        <div className="relative flex-shrink-0 flex-1 flex items-end justify-center">
+        {/* Tower section - LEFT aligned */}
+        <div className="relative flex-shrink-0 w-[45%] flex items-end justify-start pl-4 lg:pl-8">
           {/* Tower image container */}
           <motion.div
             className="relative z-10"
@@ -556,7 +556,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Tower image */}
-            <div className="relative h-[320px] w-[200px] lg:h-[420px] lg:w-[260px]">
+            <div className="relative h-[320px] w-[180px] lg:h-[420px] lg:w-[220px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
@@ -581,18 +581,37 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
                 <div className="h-full w-full bg-gradient-to-r from-transparent via-green-500/70 to-transparent rounded-full" />
               </motion.div>
 
-              {/* Floor tooltip */}
+              {/* Connecting line to panel */}
+              <AnimatePresence>
+                {showPanel && (
+                  <motion.div
+                    className="absolute hidden lg:block"
+                    style={{ 
+                      top: `${getFloorPosition(currentFloorData.number)}%`, 
+                      right: "-60px",
+                      transform: "translateY(-50%)"
+                    }}
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: "60px" }}
+                    exit={{ opacity: 0, width: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <div className="h-[2px] w-full bg-gradient-to-r from-green-500 to-green-400" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Floor tooltip on tower */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentFloorData.number}
-                  className="absolute -right-2 hidden lg:flex items-center gap-1.5"
+                  className="absolute left-full ml-2 lg:hidden flex items-center gap-1.5"
                   style={{ top: `${getFloorPosition(currentFloorData.number)}%`, transform: "translateY(-50%)" }}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  <div className="h-px w-6 bg-gradient-to-r from-green-500/60 to-green-500" />
                   <div className="flex items-center gap-1.5 rounded-lg border border-green-500/30 bg-white px-2 py-1 shadow-lg">
                     <Building2 className="h-3 w-3 text-green-600" />
                     <span className="text-[10px] font-semibold text-gray-800">{t("tower.floor")} {currentFloorData.number}</span>
@@ -603,109 +622,122 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
           </motion.div>
         </div>
 
-        {/* Floor plan panel */}
-        <AnimatePresence>
-          {showPanel && (
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 50, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute right-2 top-4 bottom-4 flex h-auto w-[200px] lg:w-[240px] flex-col rounded-xl border border-gray-200/50 bg-white/95 backdrop-blur-xl overflow-hidden shadow-xl"
-            >
-              {/* Panel header */}
+        {/* Floor plan panel - RIGHT side */}
+        <div className="flex-1 flex items-center justify-center pr-4 lg:pr-6">
+          <AnimatePresence>
+            {showPanel && (
               <motion.div
-                className="flex items-center gap-2 border-b border-gray-100 px-3 py-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 50, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="flex flex-col rounded-2xl border border-gray-200/50 bg-white/95 backdrop-blur-xl overflow-hidden shadow-xl w-full max-w-[280px] lg:max-w-[320px]"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-green-600">
-                  <MapPin className="h-3.5 w-3.5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs font-semibold text-gray-800">{t("tower.floor")} {currentFloorData.number}</div>
-                  <div className="text-[9px] text-gray-500">{currentFloorData.units} {t("tower.units")} {t("tower.available")}</div>
-                </div>
-              </motion.div>
-
-              {/* Floor plan image */}
-              <div className="relative flex-1 p-2">
+                {/* Panel header */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="relative h-full w-full overflow-hidden rounded-lg border border-gray-100 bg-gray-50"
+                  className="flex items-center gap-3 border-b border-gray-100 px-4 py-3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final_unit-a4G7TxEW0vgXh4gdDQabkSgKeElGbs.jpg"
-                    alt="Floor Plan"
-                    className="h-full w-full object-cover"
-                  />
-
-                  {/* Unit highlight overlays */}
-                  {[
-                    { top: "9%", left: "35%", size: "15%" },
-                    { top: "29%", left: "55%", size: "16%" },
-                  ].map((pos, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute pointer-events-none"
-                      style={{
-                        top: pos.top,
-                        left: pos.left,
-                        width: pos.size,
-                        height: pos.size,
-                        transform: "skewX(-50deg) skewY(22deg)",
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={highlightedUnit > i ? {
-                        opacity: [0, 0.8, 0.5],
-                        boxShadow: [
-                          "0 0 0 0 rgba(34, 197, 94, 0)",
-                          "0 0 15px 3px rgba(34, 197, 94, 0.6)",
-                          "0 0 10px 2px rgba(34, 197, 94, 0.4)"
-                        ]
-                      } : { opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <div className="h-full w-full border-2 border-green-500/70 bg-green-500/20" />
-                    </motion.div>
-                  ))}
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-green-600">
+                    <MapPin className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm font-semibold text-gray-800">{t("tower.floor")} {currentFloorData.number}</div>
+                    <div className="text-xs text-gray-500">{currentFloorData.units} {t("tower.units")} {t("tower.available")}</div>
+                  </div>
                 </motion.div>
-              </div>
 
-              {/* Unit list */}
-              <motion.div
-                className="border-t border-gray-100 p-2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <div className="grid grid-cols-2 gap-1">
-                  {["A1", "A2"].map((unit, i) => (
-                    <motion.div
-                      key={unit}
-                      className={`flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-[9px] transition-colors ${highlightedUnit > i
-                        ? "border border-green-500/30 bg-green-50"
-                        : "border border-gray-100 bg-gray-50"
-                        }`}
-                      animate={highlightedUnit > i ? { scale: [1, 1.02, 1] } : {}}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className={`h-1.5 w-1.5 rounded-full ${highlightedUnit > i ? "bg-green-500" : "bg-gray-300"
-                        }`} />
-                      <span className="font-medium text-gray-700">{t("tower.unit")} {unit}</span>
-                      <span className="ml-auto text-gray-400 hidden lg:inline">
-                        {highlightedUnit > i ? t("tower.available") : "—"}
-                      </span>
-                    </motion.div>
-                  ))}
+                {/* Floor plan image - FULL VISIBLE */}
+                <div className="relative p-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="relative w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-50"
+                  >
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final_unit-a4G7TxEW0vgXh4gdDQabkSgKeElGbs.jpg"
+                      alt="Floor Plan"
+                      className="w-full h-auto object-contain"
+                    />
+
+                    {/* Unit highlight overlays */}
+                    {[
+                      { top: "9%", left: "35%", size: "15%" },
+                      { top: "29%", left: "55%", size: "16%" },
+                    ].map((pos, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute pointer-events-none"
+                        style={{
+                          top: pos.top,
+                          left: pos.left,
+                          width: pos.size,
+                          height: pos.size,
+                          transform: "skewX(-50deg) skewY(22deg)",
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={highlightedUnit > i ? {
+                          opacity: [0, 0.8, 0.5],
+                          boxShadow: [
+                            "0 0 0 0 rgba(34, 197, 94, 0)",
+                            "0 0 15px 3px rgba(34, 197, 94, 0.6)",
+                            "0 0 10px 2px rgba(34, 197, 94, 0.4)"
+                          ]
+                        } : { opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <div className="h-full w-full border-2 border-green-500/70 bg-green-500/20" />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  {/* Floor badge */}
+                  <motion.div
+                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 shadow-md"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <Building2 className="h-3.5 w-3.5 text-green-600" />
+                    <span className="text-xs font-semibold text-gray-700">{t("tower.floor")} {currentFloorData.number}</span>
+                  </motion.div>
                 </div>
+
+                {/* Unit list */}
+                <motion.div
+                  className="border-t border-gray-100 p-3 mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <div className="flex gap-2 justify-center">
+                    {["A1", "A2"].map((unit, i) => (
+                      <motion.div
+                        key={unit}
+                        className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs transition-colors ${highlightedUnit > i
+                          ? "border border-green-500/30 bg-green-50"
+                          : "border border-gray-100 bg-gray-50"
+                          }`}
+                        animate={highlightedUnit > i ? { scale: [1, 1.02, 1] } : {}}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className={`h-2 w-2 rounded-full ${highlightedUnit > i ? "bg-green-500" : "bg-gray-300"
+                          }`} />
+                        <span className="font-medium text-gray-700">{t("tower.unit")} {unit}</span>
+                        <span className="text-gray-400">
+                          {highlightedUnit > i ? t("tower.available") : "—"}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
