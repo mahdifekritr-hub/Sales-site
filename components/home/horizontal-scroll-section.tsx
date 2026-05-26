@@ -74,16 +74,17 @@ export function HorizontalScrollSection() {
   // Track scroll progress for dots (0-1)
   const progress = useMotionValue(0);
 
-  // Calculate max scroll distance
+  // Calculate max scroll distance dynamically based on actual card width
   const getMaxScroll = useCallback(() => {
     if (typeof window === "undefined") return 0;
     const vw = window.innerWidth / 100;
-    const cardWidth = CARD_WIDTH_VW * vw;
+    // Account for maxWidth: 1200px constraint on cards
+    const cardWidth = Math.min(CARD_WIDTH_VW * vw, 1200);
     const totalCardsWidth = CARDS.length * cardWidth + (CARDS.length - 1) * CARD_GAP_PX;
     const initialPadding = INITIAL_PADDING_VW * vw;
-    // Calculate exact scroll needed: total width - viewport + initial padding
-    // This ensures last card aligns flush with viewport edge
-    return totalCardsWidth - window.innerWidth + initialPadding;
+    // Max scroll = total content width - viewport width + initial padding
+    // This ensures the last card's right edge aligns with viewport right edge
+    return totalCardsWidth + initialPadding - window.innerWidth;
   }, []);
 
   useEffect(() => {
