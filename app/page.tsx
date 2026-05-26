@@ -20,7 +20,6 @@ export default function Home() {
       <ProductsSection />
       <HorizontalScrollSection />
       <AIFeaturesSection />
-      <WhyChooseUsSection />
       <WorkflowSection />
       <HomeTestimonials />
       <HomeIntegrations />
