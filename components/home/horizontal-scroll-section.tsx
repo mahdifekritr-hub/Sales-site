@@ -456,7 +456,7 @@ function DotItem({ index, count, progress }: { index: number; count: number; pro
 /* ─── Mockup Content Router ──────────────────────────────── */
 function MockupContent({ type, isInView, index }: { type: string; isInView: boolean; index: number }) {
   const t = useTranslations("solutions");
-  
+
   switch (type) {
     case "selling":
       return <TowerVisual t={t} isInView={isInView} />;
@@ -556,7 +556,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Tower image */}
-            <div className="relative h-[380px] w-[220px] lg:h-[500px] lg:w-[300px]">
+            <div className="relative h-[390px] w-[220px] lg:h-[510px] lg:w-[300px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
                 alt="Luxury Tower"
@@ -565,7 +565,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
 
               {/* Floor highlight overlay */}
               <motion.div
-                className="absolute left-25 right-0 h-[14px] w-[0px] pointer-events-none"
+                className="absolute left-28 right-0 h-[14px] w-[0px] pointer-events-none"
                 style={{ top: `${getFloorPosition(currentFloorData.number)}%` }}
                 initial={{ opacity: 0 }}
                 animate={{
@@ -586,9 +586,9 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
                 {showPanel && (
                   <motion.div
                     className="absolute hidden lg:block"
-                    style={{ 
-                      top: `${getFloorPosition(currentFloorData.number)}%`, 
-                      right: "-60px",
+                    style={{
+                      top: `${getFloorPosition(currentFloorData.number)}%`,
+                      right: "45px",
                       transform: "translateY(-50%)"
                     }}
                     initial={{ opacity: 0, width: 0 }}
@@ -876,11 +876,10 @@ function AIChatMockup({ isInView }: { isInView: boolean }) {
                 </div>
               )}
               <div
-                className={`text-sm px-4 py-2.5 rounded-2xl max-w-[75%] leading-relaxed ${
-                  m.role === "ai"
-                    ? "bg-gray-100 text-gray-800 rounded-tl-md"
-                    : "bg-orange-600 text-white rounded-tr-md"
-                }`}
+                className={`text-sm px-4 py-2.5 rounded-2xl max-w-[75%] leading-relaxed ${m.role === "ai"
+                  ? "bg-gray-100 text-gray-800 rounded-tl-md"
+                  : "bg-orange-600 text-white rounded-tr-md"
+                  }`}
               >
                 {m.text}
               </div>
@@ -980,13 +979,12 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
                 delay: 0.3 + (i % 7) * 0.03 + Math.floor(i / 7) * 0.05,
                 duration: 0.3,
               }}
-              className={`py-2 rounded-lg font-medium cursor-pointer transition-all duration-200 ${
-                d === selectedDay
-                  ? "bg-purple-700 text-white scale-110 shadow-lg"
-                  : available.has(d)
+              className={`py-2 rounded-lg font-medium cursor-pointer transition-all duration-200 ${d === selectedDay
+                ? "bg-purple-700 text-white scale-110 shadow-lg"
+                : available.has(d)
                   ? "bg-purple-50 text-purple-700 hover:bg-purple-100"
                   : "text-gray-300"
-              }`}
+                }`}
             >
               {d}
             </motion.span>
@@ -1009,11 +1007,10 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
               initial={{ opacity: 0, y: 10 }}
               animate={isInView && selectedDay ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.1, duration: 0.3 }}
-              className={`text-sm px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${
-                t === selectedTime
-                  ? "bg-purple-700 text-white border-purple-700 shadow-md"
-                  : "text-gray-600 border-gray-200 hover:border-purple-300"
-              }`}
+              className={`text-sm px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${t === selectedTime
+                ? "bg-purple-700 text-white border-purple-700 shadow-md"
+                : "text-gray-600 border-gray-200 hover:border-purple-300"
+                }`}
             >
               {t}
             </motion.span>
