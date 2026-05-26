@@ -81,7 +81,9 @@ export function HorizontalScrollSection() {
     const cardWidth = CARD_WIDTH_VW * vw;
     const totalCardsWidth = CARDS.length * cardWidth + (CARDS.length - 1) * CARD_GAP_PX;
     const initialPadding = INITIAL_PADDING_VW * vw;
-    return totalCardsWidth - window.innerWidth + initialPadding + 32;
+    // Calculate exact scroll needed: total width - viewport + initial padding
+    // This ensures last card aligns flush with viewport edge
+    return totalCardsWidth - window.innerWidth + initialPadding;
   }, []);
 
   useEffect(() => {
@@ -306,7 +308,7 @@ export function HorizontalScrollSection() {
         {/* Cards track */}
         <motion.div
           className="flex flex-row items-center gap-6 h-full pb-12"
-          style={{ x: smoothX, paddingLeft: `${INITIAL_PADDING_VW}vw`, paddingRight: "2rem" }}
+          style={{ x: smoothX, paddingLeft: `${INITIAL_PADDING_VW}vw` }}
         >
           {CARDS.map((card, i) => (
             <SolutionCard key={i} card={card} index={i} />
