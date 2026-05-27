@@ -16,11 +16,10 @@ import {
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
 
 const productItemsData = [
-  { key: "maintenance", href: "https://propertycareapp.com/maintenance" },
-  { key: "assetsParts", href: "https://propertycareapp.com/assets-parts" },
-  { key: "communication", href: "https://propertycareapp.com/communication" },
-  { key: "crm", href: "https://propertycareapp.com/crm" },
-  { key: "salesRentals", href: "#" },
+  { key: "maintenance", href: "/maintenance" },
+  { key: "assetsParts", href: "assets" },
+  { key: "communication", href: "communication" },
+  { key: "salesRentals", href: "sales" },
 ];
 
 const companyItemsData = [
