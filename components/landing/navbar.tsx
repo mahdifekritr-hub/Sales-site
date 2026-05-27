@@ -57,7 +57,7 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
-          <a href="/app" className="flex items-center">
+          <a href="#" className="flex items-center">
             <img
               src="/logo (2).png"
               alt="Company Logo"
