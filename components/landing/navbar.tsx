@@ -60,9 +60,9 @@ export function Navbar() {
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
           <a href="#" className="flex items-center">
             <img
-              src="/Company-Logo.png"
+              src="/logo (2).png"
               alt="Company Logo"
-              className="h-13 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
           </a>
 
