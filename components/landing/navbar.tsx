@@ -23,8 +23,8 @@ const productItemsData = [
 ];
 
 const companyItemsData = [
-  { key: "aboutUs", href: "https://propertycareapp.com/about-us/" },
-  { key: "contactUs", href: "https://propertycareapp.com/contact-us" },
+  { key: "aboutUs", href: "about" },
+  { key: "contactUs", href: "contact" },
 ];
 
 export function Navbar() {
