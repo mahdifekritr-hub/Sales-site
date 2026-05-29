@@ -1,50 +1,32 @@
 import type { MetadataRoute } from 'next';
+import { locales } from '@/i18n/config';
+import { localizedPath } from '@/lib/locale-paths';
 
 const BASE_URL = 'https://propertycareapp.com';
 
+const paths = [
+  { path: '/', changeFrequency: 'weekly' as const, priority: 1.0 },
+  { path: '/real-estate-software', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/facilities-maintenance-software', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/assets', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/communication', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/about', changeFrequency: 'monthly' as const, priority: 0.6 },
+  { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.5 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/sales`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/maintenance`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/assets`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/communication`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-  ];
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const locale of locales) {
+    for (const { path, changeFrequency, priority } of paths) {
+      entries.push({
+        url: `${BASE_URL}${localizedPath(locale, path)}`,
+        lastModified: new Date(),
+        changeFrequency,
+        priority,
+      });
+    }
+  }
+
+  return entries;
 }

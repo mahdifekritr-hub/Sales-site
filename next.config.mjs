@@ -55,6 +55,62 @@ const nextConfig = {
       },
     ];
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/sales',
+        destination: '/en/real-estate-software',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/sales',
+        destination: '/:locale/real-estate-software',
+        permanent: true,
+      },
+      // Legacy URLs without locale prefix → default locale (en)
+      {
+        source: '/real-estate-software',
+        destination: '/en/real-estate-software',
+        permanent: true,
+      },
+      {
+        source: '/maintenance',
+        destination: '/en/facilities-maintenance-software',
+        permanent: true,
+      },
+      {
+        source: '/facilities-maintenance-software',
+        destination: '/en/facilities-maintenance-software',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/maintenance',
+        destination: '/:locale/facilities-maintenance-software',
+        permanent: true,
+      },
+      {
+        source: '/assets',
+        destination: '/en/assets',
+        permanent: true,
+      },
+      {
+        source: '/communication',
+        destination: '/en/communication',
+        permanent: true,
+      },
+      {
+        source: '/about',
+        destination: '/en/about',
+        permanent: true,
+      },
+      {
+        source: '/contact',
+        destination: '/en/contact',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

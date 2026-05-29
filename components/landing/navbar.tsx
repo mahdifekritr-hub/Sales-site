@@ -13,19 +13,19 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
 
 const productItemsData = [
-  { key: "maintenance", href: "/maintenance" },
-  { key: "assetsParts", href: "assets" },
-  { key: "communication", href: "communication" },
-  { key: "salesRentals", href: "sales" },
+  { key: "maintenance", href: "/facilities-maintenance-software" },
+  { key: "assetsParts", href: "/assets" },
+  { key: "communication", href: "/communication" },
+  { key: "salesRentals", href: "/real-estate-software" },
 ];
 
 const companyItemsData = [
-  { key: "aboutUs", href: "about" },
-  { key: "contactUs", href: "contact" },
+  { key: "aboutUs", href: "/about" },
+  { key: "contactUs", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -78,12 +78,12 @@ export function Navbar() {
                       {productItems.map((item) => (
                         <li key={item.name}>
                           <NavigationMenuLink asChild>
-                            <a
+                            <Link
                               href={item.href}
                               className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           </NavigationMenuLink>
                         </li>
                       ))}
@@ -114,12 +114,12 @@ export function Navbar() {
                       {companyItems.map((item) => (
                         <li key={item.name}>
                           <NavigationMenuLink asChild>
-                            <a
+                            <Link
                               href={item.href}
                               className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           </NavigationMenuLink>
                         </li>
                       ))}
@@ -179,14 +179,14 @@ export function Navbar() {
                     className="overflow-hidden"
                   >
                     {productItems.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className="block rounded-lg px-6 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </motion.div>
                 )}
@@ -221,14 +221,14 @@ export function Navbar() {
                     className="overflow-hidden"
                   >
                     {companyItems.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className="block rounded-lg px-6 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </motion.div>
                 )}

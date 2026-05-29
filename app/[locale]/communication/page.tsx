@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Navbar } from "@/components/landing/navbar";
 import { CommunicationHero } from "@/components/communication/hero";
 import { CommunicationVideoShowcase } from "@/components/communication/video-showcase";
@@ -11,31 +10,24 @@ import { CommunicationBlogSection } from "@/components/communication/blog-sectio
 import { CommunicationFAQSection } from "@/components/communication/faq-section";
 import { CommunicationCTA } from "@/components/communication/cta";
 import { Footer } from "@/components/landing/footer";
-import { getLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { getCommunicationBlogPosts } from "@/lib/blog-home-posts";
 import type { Locale } from "@/i18n/config";
+import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
+import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-export const metadata: Metadata = {
-  title: 'Resident Communication Software | PropertyCareApp',
-  description:
-    'Centralize all building communications — announcements, requests, and updates — in one AI-powered platform. Keep residents informed and engaged. Start free.',
-  alternates: { canonical: '/communication' },
-  openGraph: {
+const PAGE_PATH = '/communication';
+
+export async function generateMetadata({ params }: LocalePageProps) {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: PAGE_PATH,
     title: 'Resident Communication Software | PropertyCareApp',
     description:
-      'Centralize all building communications — announcements, requests, and updates — in one AI-powered platform.',
-    url: 'https://propertycareapp.com/communication',
-  },
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://propertycareapp.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Communication', item: 'https://propertycareapp.com/communication' },
-  ],
-};
+      'Centralize all building communications — announcements, requests, and updates — in one AI-powered platform. Keep residents informed and engaged. Start free.',
+  });
+}
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -84,9 +76,30 @@ const faqJsonLd = {
   ],
 };
 
-export default async function CommunicationPage() {
-  const locale = (await getLocale()) as Locale;
-  const blogPosts = await getCommunicationBlogPosts(locale);
+export default async function CommunicationPage({ params }: LocalePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const blogPosts = await getCommunicationBlogPosts(locale as Locale);
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: absoluteLocalizedUrl(locale as Locale, '/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Communication',
+        item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden">

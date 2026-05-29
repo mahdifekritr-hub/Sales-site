@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Navbar } from "@/components/landing/navbar";
 import { AssetsHero } from "@/components/assets/hero";
 import { AssetsVideoShowcase } from "@/components/assets/video-showcase";
@@ -11,31 +10,24 @@ import { AssetsBlogSection } from "@/components/assets/blog-section";
 import { AssetsFAQSection } from "@/components/assets/faq-section";
 import { AssetsCTA } from "@/components/assets/cta";
 import { Footer } from "@/components/landing/footer";
-import { getLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { getAssetsBlogPosts } from "@/lib/blog-home-posts";
 import type { Locale } from "@/i18n/config";
+import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
+import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-export const metadata: Metadata = {
-  title: 'Assets & Parts Management Software | PropertyCareApp',
-  description:
-    'Track, manage, and optimize building assets and parts inventory with AI. Reduce downtime, cut costs, and automate maintenance workflows. Try free.',
-  alternates: { canonical: '/assets' },
-  openGraph: {
+const PAGE_PATH = '/assets';
+
+export async function generateMetadata({ params }: LocalePageProps) {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: PAGE_PATH,
     title: 'Assets & Parts Management Software | PropertyCareApp',
     description:
-      'Track, manage, and optimize building assets and parts inventory with AI. Reduce downtime and maintenance costs.',
-    url: 'https://propertycareapp.com/assets',
-  },
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://propertycareapp.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Assets & Parts', item: 'https://propertycareapp.com/assets' },
-  ],
-};
+      'Track, manage, and optimize building assets and parts inventory with AI. Reduce downtime, cut costs, and automate maintenance workflows. Try free.',
+  });
+}
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -84,9 +76,30 @@ const faqJsonLd = {
   ],
 };
 
-export default async function AssetsPage() {
-  const locale = (await getLocale()) as Locale;
-  const blogPosts = await getAssetsBlogPosts(locale);
+export default async function AssetsPage({ params }: LocalePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const blogPosts = await getAssetsBlogPosts(locale as Locale);
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: absoluteLocalizedUrl(locale as Locale, '/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Assets & Parts',
+        item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden">

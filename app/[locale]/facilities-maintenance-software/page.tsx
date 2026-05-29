@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Navbar } from "@/components/landing/navbar";
 import { MaintenanceHero } from "@/components/maintenance/hero";
 import { MaintenanceVideoShowcase } from "@/components/maintenance/video-showcase";
@@ -11,31 +10,24 @@ import { MaintenanceBlogSection } from "@/components/maintenance/blog-section";
 import { MaintenanceFAQSection } from "@/components/maintenance/faq-section";
 import { MaintenanceCTA } from "@/components/maintenance/cta";
 import { Footer } from "@/components/landing/footer";
-import { getLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { getMaintenanceBlogPosts } from "@/lib/blog-home-posts";
 import type { Locale } from "@/i18n/config";
+import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
+import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-export const metadata: Metadata = {
-  title: 'Property Maintenance Software | PropertyCareApp',
-  description:
-    'Automate work orders, track technicians, and resolve property maintenance requests faster with AI. The smart solution for building management teams. Try free.',
-  alternates: { canonical: '/maintenance' },
-  openGraph: {
+const PAGE_PATH = '/facilities-maintenance-software';
+
+export async function generateMetadata({ params }: LocalePageProps) {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: PAGE_PATH,
     title: 'Property Maintenance Software | PropertyCareApp',
     description:
-      'Automate work orders, track technicians, and resolve property maintenance requests faster with AI.',
-    url: 'https://propertycareapp.com/maintenance',
-  },
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://propertycareapp.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Maintenance', item: 'https://propertycareapp.com/maintenance' },
-  ],
-};
+      'Automate work orders, track technicians, and resolve property maintenance requests faster with AI. The smart solution for building management teams. Try free.',
+  });
+}
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -84,9 +76,30 @@ const faqJsonLd = {
   ],
 };
 
-export default async function MaintenancePage() {
-  const locale = (await getLocale()) as Locale;
-  const blogPosts = await getMaintenanceBlogPosts(locale);
+export default async function MaintenancePage({ params }: LocalePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const blogPosts = await getMaintenanceBlogPosts(locale as Locale);
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: absoluteLocalizedUrl(locale as Locale, '/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Facilities Maintenance Software',
+        item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden">

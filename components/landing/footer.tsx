@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Building2, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const footerLinksData = {

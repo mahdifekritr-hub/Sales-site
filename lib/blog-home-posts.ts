@@ -276,7 +276,7 @@ function readEnvLimit(envKey: string): number {
   return DEFAULT_FETCH_LIMIT
 }
 
-/** /sales page blog strip */
+/** /real-estate-software page blog strip */
 export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
   return fetchBlogPosts(
     locale,
@@ -286,7 +286,7 @@ export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData
   )
 }
 
-/** /maintenance page blog strip */
+/** /facilities-maintenance-software page blog strip */
 export async function getMaintenanceBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
   return fetchBlogPosts(
     locale,

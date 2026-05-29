@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Navbar } from "@/components/landing/navbar";
 import { Hero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
@@ -11,31 +10,24 @@ import { CTA } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
 import { WhyUs } from "@/components/landing/why-us";
 import { VideoShowcase } from "@/components/landing/video-showcase";
-import { getLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { getHomeBlogPosts } from "@/lib/blog-home-posts";
 import type { Locale } from "@/i18n/config";
+import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
+import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-export const metadata: Metadata = {
-  title: 'Real Estate Sales Software | PropertyCareApp',
-  description:
-    'AI-powered property sales platform with virtual tours, unit reservation, smart queues, and automated contracts. Close deals faster — try free.',
-  alternates: { canonical: '/sales' },
-  openGraph: {
+const PAGE_PATH = '/real-estate-software';
+
+export async function generateMetadata({ params }: LocalePageProps) {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: PAGE_PATH,
     title: 'Real Estate Sales Software | PropertyCareApp',
     description:
-      'AI-powered property sales platform with virtual tours, unit reservation, smart queues, and automated contracts. Close deals faster.',
-    url: 'https://propertycareapp.com/sales',
-  },
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://propertycareapp.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Sales Software', item: 'https://propertycareapp.com/sales' },
-  ],
-};
+      'AI-powered property sales platform with virtual tours, unit reservation, smart queues, and automated contracts. Close deals faster — try free.',
+  });
+}
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -108,9 +100,30 @@ const faqJsonLd = {
   ],
 };
 
-export default async function SalesPage() {
-  const locale = (await getLocale()) as Locale;
-  const blogPosts = await getHomeBlogPosts(locale);
+export default async function RealEstateSoftwarePage({ params }: LocalePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const blogPosts = await getHomeBlogPosts(locale as Locale);
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: absoluteLocalizedUrl(locale as Locale, '/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Real Estate Software',
+        item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen overflow-x-hidden">
