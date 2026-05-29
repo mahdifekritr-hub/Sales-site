@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { Building2, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const footerLinksData = {
@@ -85,12 +86,12 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="col-span-2 sm:col-span-3 lg:col-span-2"
           >
-            <a href="#" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
                 <Building2 className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="text-xl font-semibold tracking-tight">PropertyCare</span>
-            </a>
+            </Link>
             <p className="mt-3 sm:mt-4 max-w-xs text-sm sm:text-base text-muted-foreground">
               {t("description")}
             </p>

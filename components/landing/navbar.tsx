@@ -13,6 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import Link from "next/link";
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
 
 const productItemsData = [
@@ -57,13 +58,13 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
-          <a href="#" className="flex items-center">
+          <Link href="/" className="flex items-center" aria-label="PropertyCareApp home">
             <img
               src="/logo (2).png"
               alt="Company Logo"
               className="h-20 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
             <NavigationMenu viewport={false}>
