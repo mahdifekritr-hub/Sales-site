@@ -13,8 +13,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
+import { ProductSignupCTA } from "@/components/signup/product-signup-cta";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
+import type { SignupProduct } from "@/lib/public-signup-config";
 
 const productItemsData = [
   { key: "maintenance", href: "/facilities-maintenance-software" },
@@ -30,9 +33,12 @@ const companyItemsData = [
 
 export function Navbar() {
   const t = useTranslations("navbar");
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
+  const pageProduct = productFromPathname(pathname);
+  const signupProduct = pageProduct ?? "sales";
 
   const productItems = productItemsData.map(item => ({
     name: t(`productItems.${item.key}`),
@@ -132,11 +138,13 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-              <a href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-                {t("getStarted")}
-              </a>
-            </Button>
+            <ProductSignupTrigger
+              product={signupProduct}
+              size="sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {t("getStarted")}
+            </ProductSignupTrigger>
           </div>
 
           <button
@@ -238,16 +246,27 @@ export function Navbar() {
                 <Button variant="ghost" className="justify-start text-muted-foreground">
                   {t("signIn")}
                 </Button>
-                <Button className="bg-primary text-primary-foreground" asChild>
-                  <a href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-                    {t("getStarted")}
-                  </a>
-                </Button>
+                <ProductSignupTrigger
+                  product={signupProduct}
+                  className="bg-primary text-primary-foreground"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("getStarted")}
+                </ProductSignupTrigger>
               </div>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
+      {!pageProduct && <ProductSignupCTA product={signupProduct} variant="modal" />}
     </motion.header>
   );
+}
+
+function productFromPathname(pathname: string): SignupProduct | null {
+  if (pathname.includes("facilities-maintenance-software")) return "maintenance";
+  if (pathname.includes("property-asset-part-management-software")) return "assets";
+  if (pathname.includes("communication-property-software")) return "communication";
+  if (pathname.includes("real-estate-software")) return "sales";
+  return null;
 }

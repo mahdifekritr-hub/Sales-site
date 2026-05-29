@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 const products = [
   {
@@ -427,12 +428,10 @@ export function ProductsSection() {
           className="mt-16 sm:mt-20 text-center"
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button size="lg" className="gap-2">
-                {t("startTrial")}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            <ProductSignupTrigger product="sales" size="lg" className="gap-2">
+              {t("startTrial")}
+              <ArrowRight className="h-4 w-4" />
+            </ProductSignupTrigger>
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button size="lg" variant="outline" className="gap-2">
                 <Play className="h-4 w-4" />

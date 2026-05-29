@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function HomeCTA() {
   const t = useTranslations("homeCTA");
@@ -108,12 +109,10 @@ export function HomeCTA() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button size="lg" className="group gap-2 px-8 text-base">
-                {t("startTrial")}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+            <ProductSignupTrigger product="sales" size="lg" className="group gap-2 px-8 text-base">
+              {t("startTrial")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </ProductSignupTrigger>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button size="lg" variant="outline" className="gap-2 px-8 text-base">

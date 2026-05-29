@@ -1,12 +1,16 @@
 "use client";
 
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { ArrowRight, Building2, Shield, Sparkles, Users, X, Zap } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Sparkles, X, Building2, Users, Shield, Zap } from "lucide-react";
 import type { SignupProduct } from "@/lib/public-signup-config";
+import {
+  PRODUCT_SIGNUP_OPEN_EVENT,
+  type ProductSignupOpenDetail,
+} from "@/lib/product-signup-events";
 
 const USERNAME_RE = /^[A-Za-z0-9](?:[A-Za-z0-9_-]{2,14})[A-Za-z0-9]$/;
 
@@ -14,19 +18,20 @@ const SCHEDULE_DEMO_URL =
   (typeof process !== "undefined" && process.env.NEXT_PUBLIC_SCHEDULE_DEMO_URL?.trim()) ||
   "https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare";
 
-function normalizeMobileForApi(raw: string): string {
-  return raw.trim().replace(/\s+/g, "").replace(/[()]/g, "");
-}
-
 const ADMIN_PORTAL_URL =
   (typeof process !== "undefined" && process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL?.trim()) ||
   "https://admin.propertycareapp.com";
 
 type ProductSignupCTAProps = {
   product: SignupProduct;
+  variant?: "section" | "modal";
 };
 
-export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
+function normalizeMobileForApi(raw: string): string {
+  return raw.trim().replace(/\s+/g, "").replace(/[()]/g, "");
+}
+
+export function ProductSignupCTA({ product, variant = "section" }: ProductSignupCTAProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isExpanded, setIsExpanded] = useState(false);
@@ -40,8 +45,8 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
   const t = useTranslations("ctaProducts");
   const tModal = useTranslations("cta");
   const locale = useLocale();
-  const layoutId = `trial-modal-${product}`;
-  const fieldId = (name: string) => `cta-${product}-${name}`;
+  const layoutId = `trial-modal-${product}-${variant}`;
+  const fieldId = (name: string) => `cta-${product}-${variant}-${name}`;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -51,15 +56,23 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if (isExpanded) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isExpanded ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isExpanded]);
+
+  useEffect(() => {
+    const handleOpen = (event: Event) => {
+      const detail = (event as CustomEvent<ProductSignupOpenDetail>).detail;
+      if (detail?.product === product) {
+        setIsExpanded(true);
+      }
+    };
+
+    window.addEventListener(PRODUCT_SIGNUP_OPEN_EVENT, handleOpen);
+    return () => window.removeEventListener(PRODUCT_SIGNUP_OPEN_EVENT, handleOpen);
+  }, [product]);
 
   const validateClient = (): boolean => {
     const next: typeof fieldErrors = {};
@@ -102,11 +115,11 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
       const json = (await res.json().catch(() => ({}))) as { message?: string };
 
       if (!res.ok) {
-        const msg =
+        setSubmitError(
           typeof json.message === "string" && json.message.length > 0
             ? json.message
-            : tModal("modal.errors.generic");
-        setSubmitError(msg);
+            : tModal("modal.errors.generic"),
+        );
         setIsSubmitting(false);
         return;
       }
@@ -126,72 +139,68 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
   ];
 
   return (
-    <section className="relative py-16 sm:py-24 lg:py-12" ref={ref}>
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[150px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="overflow-hidden rounded-2xl sm:rounded-3xl border border-border/50 bg-card/50 p-6 text-center backdrop-blur-sm sm:p-12 lg:p-16"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : {}}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-accent"
-          >
-            <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-primary-foreground" />
-          </motion.div>
-
-          <h2 className="text-balance text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight">
-            {t(`${product}.sectionTitle`)}{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {t(`${product}.sectionTitleHighlight`)}
-            </span>
-            ?
-          </h2>
-
-          <p className="mx-auto mt-4 sm:mt-6 max-w-xl text-sm sm:text-base lg:text-lg text-muted-foreground px-2 sm:px-0">
-            {t(`${product}.subtitle`)}
-          </p>
-
-          <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0">
-            <div className="relative w-full sm:w-auto">
-              <AnimatePresence>
-                {!isExpanded && (
-                  <motion.div layoutId={layoutId} className="relative">
-                    <Button
-                      size="lg"
-                      onClick={() => setIsExpanded(true)}
-                      className="group gap-2 bg-primary px-6 sm:px-8 text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-                    >
-                      {t(`${product}.startFreeTrial`)}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-border bg-transparent text-foreground hover:bg-secondary w-full sm:w-auto"
-              asChild
-            >
-              <a href={SCHEDULE_DEMO_URL}>{t(`${product}.scheduleDemo`)}</a>
-            </Button>
+    <>
+      {variant === "section" && (
+        <section className="relative py-16 sm:py-24 lg:py-12" ref={ref}>
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+            <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[150px]" />
           </div>
 
-          <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-muted-foreground">
-            {t(`${product}.noCreditCard`)}
-          </p>
-        </motion.div>
-      </div>
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 text-center backdrop-blur-sm sm:rounded-3xl sm:p-12 lg:p-16"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent sm:mb-6 sm:h-16 sm:w-16 sm:rounded-2xl"
+              >
+                <Sparkles className="h-6 w-6 text-primary-foreground sm:h-8 sm:w-8" />
+              </motion.div>
+
+              <h2 className="text-balance text-xl font-bold tracking-tight sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+                {t(`${product}.sectionTitle`)}{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  {t(`${product}.sectionTitleHighlight`)}
+                </span>
+                ?
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-xl px-2 text-sm text-muted-foreground sm:mt-6 sm:px-0 sm:text-base lg:text-lg">
+                {t(`${product}.subtitle`)}
+              </p>
+
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 px-4 sm:mt-8 sm:flex-row sm:gap-4 sm:px-0 lg:mt-10">
+                <Button
+                  size="lg"
+                  onClick={() => setIsExpanded(true)}
+                  className="group w-full gap-2 bg-primary px-6 text-primary-foreground hover:bg-primary/90 sm:w-auto sm:px-8"
+                >
+                  {t(`${product}.startFreeTrial`)}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full border-border bg-transparent text-foreground hover:bg-secondary sm:w-auto"
+                  asChild
+                >
+                  <a href={SCHEDULE_DEMO_URL}>{t(`${product}.scheduleDemo`)}</a>
+                </Button>
+              </div>
+
+              <p className="mt-4 text-xs text-muted-foreground sm:mt-6 sm:text-sm">
+                {t(`${product}.noCreditCard`)}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       <AnimatePresence>
         {isExpanded && (
@@ -207,7 +216,7 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
 
             <motion.div
               layoutId={layoutId}
-              className="fixed inset-4 z-50 m-auto flex max-h-[90vh] max-w-5xl overflow-hidden rounded-2xl sm:rounded-3xl border border-border/50 bg-card/95 backdrop-blur-xl shadow-2xl sm:inset-8 lg:inset-12"
+              className="fixed inset-4 z-50 m-auto flex max-h-[90vh] max-w-5xl overflow-hidden rounded-2xl border border-border/50 bg-card/95 shadow-2xl backdrop-blur-xl sm:inset-8 sm:rounded-3xl lg:inset-12"
               style={{ originX: 0.5, originY: 0.5 }}
             >
               <motion.button
@@ -284,120 +293,75 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
 
                   <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                     <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("username")}>
-                          {tModal("modal.fields.userName")}
-                        </label>
-                        <Input
-                          id={fieldId("username")}
-                          autoComplete="username"
-                          placeholder={tModal("modal.placeholders.userName")}
-                          required
-                          value={username}
-                          onChange={(e) => {
-                            setUsername(e.target.value);
-                            if (fieldErrors.username) setFieldErrors((p) => ({ ...p, username: undefined }));
-                          }}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                          aria-invalid={!!fieldErrors.username}
-                        />
-                        {fieldErrors.username && (
-                          <p className="text-xs text-destructive">{fieldErrors.username}</p>
-                        )}
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("password")}>
-                          {tModal("modal.fields.password")}
-                        </label>
-                        <Input
-                          id={fieldId("password")}
-                          type="password"
-                          autoComplete="new-password"
-                          placeholder={tModal("modal.placeholders.password")}
-                          required
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                        />
-                      </div>
+                      <FormInput
+                        id={fieldId("username")}
+                        label={tModal("modal.fields.userName")}
+                        autoComplete="username"
+                        placeholder={tModal("modal.placeholders.userName")}
+                        value={username}
+                        onChange={(value) => {
+                          setUsername(value);
+                          if (fieldErrors.username) setFieldErrors((p) => ({ ...p, username: undefined }));
+                        }}
+                        error={fieldErrors.username}
+                      />
+                      <FormInput
+                        id={fieldId("password")}
+                        type="password"
+                        label={tModal("modal.fields.password")}
+                        autoComplete="new-password"
+                        placeholder={tModal("modal.placeholders.password")}
+                        value={password}
+                        onChange={setPassword}
+                      />
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("name")}>
-                          {tModal("modal.fields.name")}
-                        </label>
-                        <Input
-                          id={fieldId("name")}
-                          autoComplete="name"
-                          placeholder={tModal("modal.placeholders.name")}
-                          required
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("company")}>
-                          {tModal("modal.fields.company")}
-                        </label>
-                        <Input
-                          id={fieldId("company")}
-                          autoComplete="organization"
-                          placeholder={tModal("modal.placeholders.company")}
-                          required
-                          value={company}
-                          onChange={(e) => {
-                            setCompany(e.target.value);
-                            if (fieldErrors.company) setFieldErrors((p) => ({ ...p, company: undefined }));
-                          }}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                          aria-invalid={!!fieldErrors.company}
-                        />
-                        {fieldErrors.company && (
-                          <p className="text-xs text-destructive">{fieldErrors.company}</p>
-                        )}
-                      </div>
+                      <FormInput
+                        id={fieldId("name")}
+                        label={tModal("modal.fields.name")}
+                        autoComplete="name"
+                        placeholder={tModal("modal.placeholders.name")}
+                        value={name}
+                        onChange={setName}
+                      />
+                      <FormInput
+                        id={fieldId("company")}
+                        label={tModal("modal.fields.company")}
+                        autoComplete="organization"
+                        placeholder={tModal("modal.placeholders.company")}
+                        value={company}
+                        onChange={(value) => {
+                          setCompany(value);
+                          if (fieldErrors.company) setFieldErrors((p) => ({ ...p, company: undefined }));
+                        }}
+                        error={fieldErrors.company}
+                      />
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("mobile")}>
-                          {tModal("modal.fields.mobileNumber")}
-                        </label>
-                        <Input
-                          id={fieldId("mobile")}
-                          type="tel"
-                          autoComplete="tel"
-                          placeholder={tModal("modal.placeholders.mobileNumber")}
-                          required
-                          value={mobileNumber}
-                          onChange={(e) => {
-                            setMobileNumber(e.target.value);
-                            if (fieldErrors.mobile) setFieldErrors((p) => ({ ...p, mobile: undefined }));
-                          }}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                          aria-invalid={!!fieldErrors.mobile}
-                        />
-                        {fieldErrors.mobile && (
-                          <p className="text-xs text-destructive">{fieldErrors.mobile}</p>
-                        )}
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground" htmlFor={fieldId("email")}>
-                          {tModal("modal.fields.email")}
-                        </label>
-                        <Input
-                          id={fieldId("email")}
-                          type="email"
-                          autoComplete="email"
-                          placeholder={tModal("modal.placeholders.email")}
-                          required
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                        />
-                      </div>
+                      <FormInput
+                        id={fieldId("mobile")}
+                        type="tel"
+                        label={tModal("modal.fields.mobileNumber")}
+                        autoComplete="tel"
+                        placeholder={tModal("modal.placeholders.mobileNumber")}
+                        value={mobileNumber}
+                        onChange={(value) => {
+                          setMobileNumber(value);
+                          if (fieldErrors.mobile) setFieldErrors((p) => ({ ...p, mobile: undefined }));
+                        }}
+                        error={fieldErrors.mobile}
+                      />
+                      <FormInput
+                        id={fieldId("email")}
+                        type="email"
+                        label={tModal("modal.fields.email")}
+                        autoComplete="email"
+                        placeholder={tModal("modal.placeholders.email")}
+                        value={email}
+                        onChange={setEmail}
+                      />
                     </div>
 
                     {submitError && (
@@ -449,6 +413,48 @@ export function ProductSignupCTA({ product }: ProductSignupCTAProps) {
           </>
         )}
       </AnimatePresence>
-    </section>
+    </>
+  );
+}
+
+type FormInputProps = {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  autoComplete: string;
+  type?: string;
+  error?: string;
+};
+
+function FormInput({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+  autoComplete,
+  type = "text",
+  error,
+}: FormInputProps) {
+  return (
+    <div className="space-y-2">
+      <label className="text-sm font-medium text-foreground" htmlFor={id}>
+        {label}
+      </label>
+      <Input
+        id={id}
+        type={type}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        required
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+        aria-invalid={!!error}
+      />
+      {error && <p className="text-xs text-destructive">{error}</p>}
+    </div>
   );
 }

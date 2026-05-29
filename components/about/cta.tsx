@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Mail } from "lucide-react";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function AboutCTA() {
   const ref = useRef(null);
@@ -47,15 +48,14 @@ export function AboutCTA() {
           </p>
 
           <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0">
-            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button
-                size="lg"
-                className="group gap-2 bg-primary px-6 sm:px-8 text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-              >
-                Start Free Trial
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+            <ProductSignupTrigger
+              product="sales"
+              size="lg"
+              className="group gap-2 bg-primary px-6 sm:px-8 text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
+            >
+              Start Free Trial
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </ProductSignupTrigger>
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button
                 size="lg"

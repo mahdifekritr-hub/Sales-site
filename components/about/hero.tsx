@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { ArrowRight, Building2, Globe } from "lucide-react";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function AboutHero() {
   return (
@@ -72,15 +71,14 @@ export function AboutHero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8 sm:mt-10 flex flex-col gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0"
           >
-            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button
-                size="lg"
-                className="group gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90"
-              >
-                Explore Services
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+            <ProductSignupTrigger
+              product="sales"
+              size="lg"
+              className="group gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90"
+            >
+              Explore Services
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </ProductSignupTrigger>
           </motion.div>
 
           {/* Stats */}

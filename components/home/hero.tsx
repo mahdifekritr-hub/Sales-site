@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, Play, Building2, Users, Wrench, BarChart3, Sparkles, Calendar, TrendingUp, Bell, CheckCircle2 } from "lucide-react";
 import { useRef } from "react";
 import Image from "next/image";
+import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function HomeHero() {
   const t = useTranslations("homeHero");
@@ -185,18 +186,17 @@ export function HomeHero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8 sm:mt-10 flex flex-col gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0"
           >
-            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
-              <Button
-                size="lg"
-                className="group relative gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-              >
-                <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary to-[oklch(0.45_0.18_200)] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="relative flex items-center gap-2">
-                  {t("startFreeTrial")}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Button>
-            </Link>
+            <ProductSignupTrigger
+              product="sales"
+              size="lg"
+              className="group relative gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
+            >
+              <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary to-[oklch(0.45_0.18_200)] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative flex items-center gap-2">
+                {t("startFreeTrial")}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </ProductSignupTrigger>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button
