@@ -48,7 +48,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="bg-background overflow-x-hidden">
       <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <LanguageProvider>
             {children}
           </LanguageProvider>

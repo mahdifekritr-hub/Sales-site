@@ -20,9 +20,9 @@
   },
   "hero": {
     "badge": "AI-Powered Property Matching",
-    "titleLine1": "The future of",
-    "titleLine2": "property management",
-    "titleLine3": "is here.",
+    "titleLine1": "Your AI team",
+    "titleLine2": "for selling properties",
+    "titleLine3": "always on.",
     "subtitle": "Our mission is to bring innovation and automation to building projects by providing powerful, AI-driven tools that simplify unit presentation, sales coordination, and customer interaction.",
     "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
@@ -160,7 +160,7 @@
     "subtitle": "Say goodbye to management headaches. Take control with AI-powered simplicity and boost your success effortlessly.",
     "startFreeTrial": "Start Free Trial",
     "scheduleDemo": "Schedule a Demo",
-    "noCreditCard": "No credit card required • 14-day free trial • Cancel anytime",
+    "noCreditCard": "No credit card required • 30-day free trial • Cancel anytime",
     "modal": {
       "title": "Start your",
       "titleHighlight": "free trial",
@@ -170,11 +170,6 @@
         "security": "Enterprise-grade security",
         "support": "Dedicated support team",
         "multilingual": "Multilingual"
-      },
-      "testimonial": {
-        "quote": "This platform reduced our workload by 60% in just the first month. Absolutely game-changing.",
-        "author": "Sarah Chen",
-        "role": "CEO, PropertyFlow Inc."
       },
       "formTitle": "Complete your registration",
       "formSubtitle": "Fill out the form below to get started.",
@@ -195,6 +190,14 @@
         "email": "john@company.com"
       },
       "processing": "Processing...",
+      "redirecting": "Redirecting you to the admin portal…",
+      "errors": {
+        "generic": "Something went wrong. Please try again.",
+        "network": "Could not reach the server. Check your connection and try again.",
+        "username": "Username must be 4–16 characters: letters, numbers, underscores, or hyphens. Cannot start or end with _ or -.",
+        "company": "Please enter a company name.",
+        "mobile": "Please enter a valid mobile number including country code (e.g. +1… or +90…)."
+      },
       "thankYou": "Thank you!",
       "contactSoon": "We'll be in touch within 24 hours.",
       "terms": "By signing up, you agree to our",
@@ -259,23 +262,56 @@
     "sectionTitleHighlight": "real estate",
     "subtitle": "Numbers that speak to our commitment to excellence and innovation.",
     "items": {
-      "countries": { "label": "Countries", "description": "Trusted by industry leaders" },
-      "users": { "label": "Users", "description": "Across multiple regions" },
-      "satisfaction": { "label": "Client Satisfaction", "description": "Based on user feedback" },
-      "support": { "label": "Support Available", "description": "Always here to help" }
+      "countries": {
+        "label": "Countries",
+        "description": "Trusted by industry leaders"
+      },
+      "users": {
+        "label": "Users",
+        "description": "Across multiple regions"
+      },
+      "satisfaction": {
+        "label": "Client Satisfaction",
+        "description": "Based on user feedback"
+      },
+      "support": {
+        "label": "Support Available",
+        "description": "Always here to help"
+      }
     }
   },
   "whyUs": {
     "sectionTitle": "Why choose",
     "sectionTitleHighlight": "PropertyCareApp",
     "items": {
-      "international": { "title": "International & Trusted", "statLabel": "Users" },
-      "aiPowered": { "title": "AI-Powered Platform", "statLabel": "Assistance" },
-      "whiteLabel": { "title": "White-Label Solution", "statLabel": "Custom" },
-      "allInOne": { "title": "All-in-One Software", "statLabel": "Modules" },
-      "multiLanguage": { "title": "Multi-Language", "statLabel": "Languages" },
-      "fastSetup": { "title": "Fast Setup", "statLabel": "Go-Live" },
-      "support": { "title": "Dedicated Support", "statLabel": "Uptime" }
+      "international": {
+        "title": "International & Trusted",
+        "statLabel": "Users"
+      },
+      "aiPowered": {
+        "title": "AI-Powered Platform",
+        "statLabel": "Assistance"
+      },
+      "whiteLabel": {
+        "title": "White-Label Solution",
+        "statLabel": "Custom"
+      },
+      "allInOne": {
+        "title": "All-in-One Software",
+        "statLabel": "Modules"
+      },
+      "multiLanguage": {
+        "title": "Multi-Language",
+        "statLabel": "Languages"
+      },
+      "fastSetup": {
+        "title": "Fast Setup",
+        "statLabel": "Go-Live"
+      },
+      "support": {
+        "title": "Dedicated Support",
+        "statLabel": "Uptime"
+      }
     }
   },
   "solutions": {
@@ -297,12 +333,25 @@
       "ai": {
         "tag": "AI",
         "title": "Let AI Handle it",
-        "description": "An intelligent AI sidebar is available in both Ask and Agent modes, acting as your always-on assistant within the platform. Simply describe what you need, and the AI will execute tasks, answer questions, and support your workflow instantly. From generating reports on staff performance to summarizing work orders, CRM, and tickets in any language, the AI turns complex operations into clear, actionable insights. It can also suggest responses, recommend next steps, and help you manage communication effortlessly. Send messages to customers, create reports, or generate automated greetings — all powered by AI. No need to navigate multiple sections; just ask, and it gets done."
+        "description": "Your AI assistant everywhere on the platform, always with you.",
+        "features": {
+          "askAndDone": "Ask, it delivers — Define tasks and the AI jumps in right away",
+          "autoReports": "Reports on autopilot — Instantly analyzes staff performance",
+          "multilingual": "Multilingual summaries — CRM, tickets, and work orders in the language you need",
+          "smartComms": "Smarter outreach — Message customers and generate greetings",
+          "noHunting": "No tab-hopping — Just ask; the AI takes care of the rest"
+        }
       },
       "visit": {
         "tag": "Visit a Unit",
         "title": "Book an In-Person Tour",
-        "description": "Beyond virtual tours, buyers can now schedule a real in-person visit to explore the project firsthand. The system displays all available time slots, allowing interested buyers to easily choose the time that works best for them. Once a tour is booked, instant notifications are automatically sent to the assigned agent, presenter, and any authorized staff such as security or reception through their dedicated dashboard panels. Create a seamless and professional viewing experience — from scheduling to on-site coordination."
+        "description": "Beyond virtual tours, book a face-to-face visit to explore the project on site.",
+        "features": {
+          "pickSlot": "Pick date & time — Buyers see open slots and choose what works",
+          "instantNotify": "Instant alerts — Agent, host, and security get notified automatically",
+          "noManual": "Zero manual coordination — The system handles the handoffs",
+          "proExperience": "A polished experience — Smooth flow from booking to visit"
+        }
       },
       "buyers": {
         "tag": "Buyers Capability",
@@ -387,15 +436,16 @@
   },
   "videoShowcase": {
     "sectionTitle": "Watch how",
-    "sectionTitleHighlight": "PropFlow transforms",
-    "sectionTitleEnd": "property management",
+    "sectionTitleHighlight": "PropertyCareApp",
+    "sectionTitleEnd": "Revolutionizes Your Sales",
     "subtitle": "Discover how our platform streamlines your workflow, automates tedious tasks, and helps you close deals faster.",
     "productDemo": "Product Demo"
   },
   "blog": {
     "sectionTitle": "Latest from our blog",
     "subtitle": "Stay ahead with expert insights, industry trends, and practical guides for modern property management.",
-    "readArticle": "Read Article"
+    "readArticle": "Read Article",
+    "emptyState": "No blog posts could be loaded. Check your connection or try again later."
   },
   "aiMatching": {
     "sectionTitle": "Intelligent Property",

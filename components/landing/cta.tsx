@@ -2,18 +2,41 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Sparkles, X, Check, Building2, Users, Shield, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, X, Building2, Users, Shield, Zap } from "lucide-react";
+
+const USERNAME_RE = /^[A-Za-z0-9](?:[A-Za-z0-9_-]{2,14})[A-Za-z0-9]$/;
+
+function normalizeMobileForApi(raw: string): string {
+  return raw.trim().replace(/\s+/g, "").replace(/[()]/g, "");
+}
+
+const ADMIN_PORTAL_URL =
+  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL?.trim()) ||
+  "https://admin.propertycareapp.com";
 
 export function CTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{
+    username?: string;
+    company?: string;
+    mobile?: string;
+  }>({});
   const t = useTranslations("cta");
+  const locale = useLocale();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (isExpanded) {
@@ -26,16 +49,60 @@ export function CTA() {
     };
   }, [isExpanded]);
 
+  const validateClient = (): boolean => {
+    const next: typeof fieldErrors = {};
+    if (!USERNAME_RE.test(username.trim())) {
+      next.username = t("modal.errors.username");
+    }
+    if (!company.trim()) {
+      next.company = t("modal.errors.company");
+    }
+    const mob = normalizeMobileForApi(mobileNumber);
+    if (!mob.startsWith("+") || mob.length < 8) {
+      next.mobile = t("modal.errors.mobile");
+    }
+    setFieldErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
+    if (!validateClient()) return;
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsExpanded(false);
-      setIsSubmitted(false);
-    }, 2000);
+    try {
+      const res = await fetch("/api/public-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username.trim(),
+          password,
+          name: name.trim(),
+          new_subscription: company.trim(),
+          mobileNumber: normalizeMobileForApi(mobileNumber),
+          email: email.trim(),
+          locale,
+        }),
+      });
+
+      const json = (await res.json().catch(() => ({}))) as { message?: string };
+
+      if (!res.ok) {
+        const msg =
+          typeof json.message === "string" && json.message.length > 0
+            ? json.message
+            : t("modal.errors.generic");
+        setSubmitError(msg);
+        setIsSubmitting(false);
+        return;
+      }
+
+      window.location.assign(ADMIN_PORTAL_URL);
+    } catch {
+      setSubmitError(t("modal.errors.network"));
+      setIsSubmitting(false);
+    }
   };
 
   const benefits = [
@@ -194,19 +261,6 @@ export function CTA() {
                         </motion.div>
                       ))}
                     </div>
-
-                    <div className="mt-6 rounded-xl border border-border/50 bg-card/50 p-4 backdrop-blur-sm sm:mt-8">
-                      <p className="text-sm italic text-muted-foreground">
-                        &ldquo;{t("modal.testimonial.quote")}&rdquo;
-                      </p>
-                      <div className="mt-3 flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent" />
-                        <div>
-                          <p className="text-xs font-medium text-foreground sm:text-sm">{t("modal.testimonial.author")}</p>
-                          <p className="text-xs text-muted-foreground">{t("modal.testimonial.role")}</p>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </motion.div>
 
@@ -218,125 +272,170 @@ export function CTA() {
                   transition={{ delay: 0.15 }}
                   className="flex flex-1 flex-col justify-center p-6 sm:p-8 lg:p-10"
                 >
-                  {isSubmitted ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="flex flex-col items-center justify-center py-8 text-center"
+                  <h4 className="text-lg font-semibold sm:text-xl">{t("modal.formTitle")}</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">{t("modal.formSubtitle")}</p>
+
+                  <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-username">
+                          {t("modal.fields.userName")}
+                        </label>
+                        <Input
+                          id="cta-username"
+                          autoComplete="username"
+                          placeholder={t("modal.placeholders.userName")}
+                          required
+                          value={username}
+                          onChange={(e) => {
+                            setUsername(e.target.value);
+                            if (fieldErrors.username) setFieldErrors((p) => ({ ...p, username: undefined }));
+                          }}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                          aria-invalid={!!fieldErrors.username}
+                        />
+                        {fieldErrors.username && (
+                          <p className="text-xs text-destructive">{fieldErrors.username}</p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-password">
+                          {t("modal.fields.password")}
+                        </label>
+                        <Input
+                          id="cta-password"
+                          type="password"
+                          autoComplete="new-password"
+                          placeholder={t("modal.placeholders.password")}
+                          required
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-name">
+                          {t("modal.fields.name")}
+                        </label>
+                        <Input
+                          id="cta-name"
+                          autoComplete="name"
+                          placeholder={t("modal.placeholders.name")}
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-company">
+                          {t("modal.fields.company")}
+                        </label>
+                        <Input
+                          id="cta-company"
+                          autoComplete="organization"
+                          placeholder={t("modal.placeholders.company")}
+                          required
+                          value={company}
+                          onChange={(e) => {
+                            setCompany(e.target.value);
+                            if (fieldErrors.company) setFieldErrors((p) => ({ ...p, company: undefined }));
+                          }}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                          aria-invalid={!!fieldErrors.company}
+                        />
+                        {fieldErrors.company && (
+                          <p className="text-xs text-destructive">{fieldErrors.company}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-mobile">
+                          {t("modal.fields.mobileNumber")}
+                        </label>
+                        <Input
+                          id="cta-mobile"
+                          type="tel"
+                          autoComplete="tel"
+                          placeholder={t("modal.placeholders.mobileNumber")}
+                          required
+                          value={mobileNumber}
+                          onChange={(e) => {
+                            setMobileNumber(e.target.value);
+                            if (fieldErrors.mobile) setFieldErrors((p) => ({ ...p, mobile: undefined }));
+                          }}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                          aria-invalid={!!fieldErrors.mobile}
+                        />
+                        {fieldErrors.mobile && (
+                          <p className="text-xs text-destructive">{fieldErrors.mobile}</p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground" htmlFor="cta-email">
+                          {t("modal.fields.email")}
+                        </label>
+                        <Input
+                          id="cta-email"
+                          type="email"
+                          autoComplete="email"
+                          placeholder={t("modal.placeholders.email")}
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
+                        />
+                      </div>
+                    </div>
+
+                    {submitError && (
+                      <p className="rounded-md border border-destructive/50 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                        {submitError}
+                      </p>
+                    )}
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200 }}
-                        className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent"
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="h-4 w-4 rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground"
+                          />
+                          {t("modal.redirecting")}
+                        </>
+                      ) : (
+                        <>
+                          {t("startFreeTrial")}
+                          <ArrowRight className="h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+
+                    <p className="text-center text-xs text-muted-foreground">
+                      {t("modal.terms")}{" "}
+                      <a
+                        href="https://propertycareapp.com/terms-conditions-propertycareapp/"
+                        className="underline hover:text-foreground"
                       >
-                        <Check className="h-8 w-8 text-primary-foreground" />
-                      </motion.div>
-                      <h4 className="text-xl font-bold sm:text-2xl">{t("modal.thankYou")}</h4>
-                      <p className="mt-2 text-muted-foreground">{t("modal.contactSoon")}</p>
-                    </motion.div>
-                  ) : (
-                    <>
-                      <h4 className="text-lg font-semibold sm:text-xl">{t("modal.formTitle")}</h4>
-                      <p className="mt-1 text-sm text-muted-foreground">{t("modal.formSubtitle")}</p>
-
-                      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.userName")}</label>
-                            <Input
-                              placeholder={t("modal.placeholders.userName")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.password")}</label>
-                            <Input
-                              type="password"
-                              placeholder={t("modal.placeholders.password")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.name")}</label>
-                            <Input
-                              placeholder={t("modal.placeholders.name")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.company")}</label>
-                            <Input
-                              placeholder={t("modal.placeholders.company")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.mobileNumber")}</label>
-                            <Input
-                              type="tel"
-                              placeholder={t("modal.placeholders.mobileNumber")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">{t("modal.fields.email")}</label>
-                            <Input
-                              type="email"
-                              placeholder={t("modal.placeholders.email")}
-                              required
-                              className="h-11 rounded-lg border-border/50 bg-card/50 backdrop-blur-sm focus:border-primary"
-                            />
-                          </div>
-                        </div>
-
-                        <Button
-                          type="submit"
-                          size="lg"
-                          disabled={isSubmitting}
-                          className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                                className="h-4 w-4 rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground"
-                              />
-                              {t("modal.processing")}
-                            </>
-                          ) : (
-                            <>
-                              {t("startFreeTrial")}
-                              <ArrowRight className="h-4 w-4" />
-                            </>
-                          )}
-                        </Button>
-
-                        <p className="text-center text-xs text-muted-foreground">
-                          {t("modal.terms")}{" "}
-                          <a href="https://propertycareapp.com/terms-conditions-propertycareapp/" className="underline hover:text-foreground">
-                            {t("modal.termsOfService")}
-                          </a>{" "}
-                          {t("modal.and")}{" "}
-                          <a href="https://propertycareapp.com/privacy-policy/" className="underline hover:text-foreground">
-                            {t("modal.privacyPolicy")}
-                          </a>
-                        </p>
-                      </form>
-                    </>
-                  )}
+                        {t("modal.termsOfService")}
+                      </a>{" "}
+                      {t("modal.and")}{" "}
+                      <a href="https://propertycareapp.com/privacy-policy/" className="underline hover:text-foreground">
+                        {t("modal.privacyPolicy")}
+                      </a>
+                    </p>
+                  </form>
                 </motion.div>
               </div>
             </motion.div>

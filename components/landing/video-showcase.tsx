@@ -3,15 +3,22 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
+
+const VIDEO_IDS: Record<Locale, string> = {
+  en: "yA8iXWZHHOQ",
+  tr: "HPI46NJ1EdY",
+};
 
 export function VideoShowcase() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isPlaying, setIsPlaying] = useState(false);
   const t = useTranslations("videoShowcase");
+  const locale = useLocale() as Locale;
 
-  const videoId = "yA8iXWZHHOQ";
+  const videoId = VIDEO_IDS[locale] ?? VIDEO_IDS.en;
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   const handlePlay = () => {

@@ -160,7 +160,7 @@
     "subtitle": "Yönetim baş ağrılarına elveda deyin. Yapay zeka destekli basitlikle kontrolü ele alın ve başarınızı zahmetsizce artırın.",
     "startFreeTrial": "Ücretsiz Deneme Başlat",
     "scheduleDemo": "Demo Planla",
-    "noCreditCard": "Kredi kartı gerekli değil • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin",
+    "noCreditCard": "Kredi kartı gerekli değil • 30 günlük ücretsiz deneme • İstediğiniz zaman iptal edin",
     "modal": {
       "title": "Başlayın",
       "titleHighlight": "ücretsiz denemenize",
@@ -170,11 +170,6 @@
         "security": "Kurumsal düzeyde güvenlik",
         "support": "Özel destek ekibi",
         "multilingual": "Çok dilli"
-      },
-      "testimonial": {
-        "quote": "Bu platform sadece ilk ayda iş yükümüzü %60 azalttı. Kesinlikle oyun değiştirici.",
-        "author": "Sarah Chen",
-        "role": "CEO, PropertyFlow Inc."
       },
       "formTitle": "Kaydınızı tamamlayın",
       "formSubtitle": "Başlamak için aşağıdaki formu doldurun.",
@@ -195,6 +190,14 @@
         "email": "ahmet@sirket.com"
       },
       "processing": "İşleniyor...",
+      "redirecting": "Yönetim paneline yönlendiriliyorsunuz…",
+      "errors": {
+        "generic": "Bir sorun oluştu. Lütfen tekrar deneyin.",
+        "network": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
+        "username": "Kullanıcı adı 4–16 karakter olmalı; harf, rakam, alt çizgi veya tire. _ veya - ile başlayıp bitemez.",
+        "company": "Lütfen şirket adını girin.",
+        "mobile": "Lütfen ülke kodu dahil geçerli bir cep telefonu girin (ör. +90…)."
+      },
       "thankYou": "Teşekkürler!",
       "contactSoon": "24 saat içinde sizinle iletişime geçeceğiz.",
       "terms": "Kaydolarak, kabul etmiş olursunuz",
@@ -259,23 +262,56 @@
     "sectionTitleHighlight": "gayrimenkul",
     "subtitle": "Mükemmelliğe ve inovasyona olan bağlılığımızı gösteren rakamlar.",
     "items": {
-      "countries": { "label": "Ülke", "description": "Sektör liderleri tarafından güvenilir" },
-      "users": { "label": "Kullanıcı", "description": "Birden fazla bölgede" },
-      "satisfaction": { "label": "Müşteri Memnuniyeti", "description": "Kullanıcı geri bildirimlerine dayalı" },
-      "support": { "label": "Destek Mevcut", "description": "Her zaman yardıma hazır" }
+      "countries": {
+        "label": "Ülke",
+        "description": "Sektör liderleri tarafından güvenilir"
+      },
+      "users": {
+        "label": "Kullanıcı",
+        "description": "Birden fazla bölgede"
+      },
+      "satisfaction": {
+        "label": "Müşteri Memnuniyeti",
+        "description": "Kullanıcı geri bildirimlerine dayalı"
+      },
+      "support": {
+        "label": "Destek Mevcut",
+        "description": "Her zaman yardıma hazır"
+      }
     }
   },
   "whyUs": {
     "sectionTitle": "Neden",
     "sectionTitleHighlight": "PropertyCareApp",
     "items": {
-      "international": { "title": "Uluslararası ve Güvenilir", "statLabel": "Kullanıcı" },
-      "aiPowered": { "title": "Yapay Zeka Destekli Platform", "statLabel": "Destek" },
-      "whiteLabel": { "title": "Beyaz Etiket Çözümü", "statLabel": "Özel" },
-      "allInOne": { "title": "Hepsi Bir Arada Yazılım", "statLabel": "Modül" },
-      "multiLanguage": { "title": "Çok Dilli", "statLabel": "Dil" },
-      "fastSetup": { "title": "Hızlı Kurulum", "statLabel": "Başla" },
-      "support": { "title": "Özel Destek", "statLabel": "Çalışma Süresi" }
+      "international": {
+        "title": "Uluslararası ve Güvenilir",
+        "statLabel": "Kullanıcı"
+      },
+      "aiPowered": {
+        "title": "Yapay Zeka Destekli Platform",
+        "statLabel": "Destek"
+      },
+      "whiteLabel": {
+        "title": "Beyaz Etiket Çözümü",
+        "statLabel": "Özel"
+      },
+      "allInOne": {
+        "title": "Hepsi Bir Arada Yazılım",
+        "statLabel": "Modül"
+      },
+      "multiLanguage": {
+        "title": "Çok Dilli",
+        "statLabel": "Dil"
+      },
+      "fastSetup": {
+        "title": "Hızlı Kurulum",
+        "statLabel": "Başla"
+      },
+      "support": {
+        "title": "Özel Destek",
+        "statLabel": "Çalışma Süresi"
+      }
     }
   },
   "solutions": {
@@ -297,12 +333,25 @@
       "ai": {
         "tag": "Yapay Zeka",
         "title": "Yapay Zekaya Bırakın",
-        "description": "Hem Sor hem de Temsilci modlarında kullanılabilen akıllı bir yapay zeka kenar çubuğu, platform içindeki her zaman açık asistanınız olarak hareket eder. İhtiyacınız olanı tanımlayın, yapay zeka görevleri yürütür, soruları yanıtlar ve iş akışınızı anında destekler. Personel performansı raporları oluşturmaktan i������ emirlerini, CRM'i ve biletleri herhangi bir dilde özetlemeye kadar, yapay zeka karmaşık operasyonları net, eyleme geçirilebilir içgörülere dönüştürür. Ayrıca yanıtlar önerebilir, sonraki adımları tavsiye edebilir ve iletişimi zahmetsizce yönetmenize yardımcı olabilir. Müşterilere mesaj gönderin, raporlar oluşturun veya otomatik selamlamalar oluşturun — hepsi yapay zeka tarafından desteklenmektedir. Birden fazla bölümde gezinmeye gerek yok; sadece sorun, yapılır."
+        "description": "Platformun her yerinde, her zaman yanınızda.",
+        "features": {
+          "askAndDone": "Sorun, yapsın — Görevi tanımlayın, gerisini AI halleder",
+          "autoReports": "Raporlar otomatik — Personel performansını anında analiz eder",
+          "multilingual": "Çok dilli özet — CRM, bilet ve emirleri istediğiniz dilde özetler",
+          "smartComms": "Akıllı iletişim — Müşterilere mesaj gönderin, selamlama oluşturun",
+          "noHunting": "Bölüm bölüm gezinmeden — Sadece sorun, yapay zeka halleder"
+        }
       },
       "visit": {
         "tag": "Bir Birimi Ziyaret Et",
         "title": "Yüz Yüze Tur Rezervasyonu",
-        "description": "Sanal turların ötesinde, alıcılar artık projeyi ilk elden keşfetmek için gerçek bir yüz yüze ziyaret planlayabilir. Sistem tüm mevcut zaman dilimlerini görüntüler, ilgilenen alıcıların kendileri için en uygun zamanı kolayca seçmesine olanak tanır. Bir tur rezervasyonu yapıldığında, atanan temsilciye, sunucuya ve güvenlik veya resepsiyon gibi yetkili personele özel pano panelleri aracılığıyla anında bildirimler otomatik olarak gönderilir. Planlamadan yerinde koordinasyona kadar kusursuz ve profesyonel bir izleme deneyimi oluşturun."
+        "description": "Sanal turların ötesinde, projeyi yerinde keşfetmek için yüz yüze randevu.",
+        "features": {
+          "pickSlot": "Tarih & saat seçin — Alıcılar müsait slotları görür, kendileri seçer",
+          "instantNotify": "Anında bildirim —  Tüm ekibe otomatik uyarı",
+          "noManual": "Sıfır manuel koordinasyon — Sistem her şeyi halleder",
+          "proExperience": "Profesyonel deneyim — Planlamadan ziyarete kusursuz akış"
+        }
       },
       "buyers": {
         "tag": "Alıcı Yetenekleri",
@@ -385,17 +434,18 @@
       "hoursAgo": "saat önce"
     }
   },
-"videoShowcase": {
-  "sectionTitle": "İzleyin nasıl",
-  "sectionTitleHighlight": "PropFlow dönüştürüyor",
-  "sectionTitleEnd": "mülk yönetimini",
-  "subtitle": "Platformumuzun iş akışınızı nasıl düzene soktuğunu, sıkıcı görevleri otomatikleştirdiğini ve anlaşmaları daha hızlı kapatmanıza nasıl yardımcı olduğunu keşfedin.",
-  "productDemo": "Ürün Demosu"
+  "videoShowcase": {
+    "sectionTitle": "İzleyin nasıl",
+    "sectionTitleHighlight": "PropFlow dönüştürüyor",
+    "sectionTitleEnd": "mülk yönetimini",
+    "subtitle": "Platformumuzun iş akışınızı nasıl düzene soktuğunu, sıkıcı görevleri otomatikleştirdiğini ve anlaşmaları daha hızlı kapatmanıza nasıl yardımcı olduğunu keşfedin.",
+    "productDemo": "Ürün Demosu"
   },
   "blog": {
     "sectionTitle": "Blogumuzdan Son Yazılar",
     "subtitle": "Uzman görüşleri, sektör trendleri ve modern mülk yönetimi için pratik rehberlerle bir adım önde olun.",
-    "readArticle": "Makaleyi Oku"
+    "readArticle": "Makaleyi Oku",
+    "emptyState": "Blog yazıları yüklenemedi. Bağlantınızı kontrol edin veya daha sonra tekrar deneyin."
   },
   "aiMatching": {
     "sectionTitle": "Akıllı Mülk",
