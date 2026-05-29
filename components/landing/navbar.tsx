@@ -18,14 +18,14 @@ import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-
 
 const productItemsData = [
   { key: "maintenance", href: "/facilities-maintenance-software" },
-  { key: "assetsParts", href: "/assets" },
-  { key: "communication", href: "/communication" },
+  { key: "assetsParts", href: "/property-asset-part-management-software" },
+  { key: "communication", href: "/communication-property-software" },
   { key: "salesRentals", href: "/real-estate-software" },
 ];
 
 const companyItemsData = [
-  { key: "aboutUs", href: "/about" },
-  { key: "contactUs", href: "/contact" },
+  { key: "aboutUs", href: "/about-propertycareapp" },
+  { key: "contactUs", href: "/contact-propertycareapp" },
 ];
 
 export function Navbar() {

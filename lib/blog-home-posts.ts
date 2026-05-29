@@ -296,7 +296,7 @@ export async function getMaintenanceBlogPosts(locale: Locale): Promise<HomeBlogC
   )
 }
 
-/** /assets page blog strip */
+/** /property-asset-part-management-software page blog strip */
 export async function getAssetsBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
   return fetchBlogPosts(
     locale,
@@ -306,7 +306,7 @@ export async function getAssetsBlogPosts(locale: Locale): Promise<HomeBlogCardDa
   )
 }
 
-/** /communication page blog strip */
+/** /communication-property-software page blog strip */
 export async function getCommunicationBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
   return fetchBlogPosts(
     locale,

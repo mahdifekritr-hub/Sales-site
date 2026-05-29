@@ -39,7 +39,7 @@ const organizationJsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    url: `${BASE_URL}/en/contact`,
+    url: `${BASE_URL}/en/contact-propertycareapp`,
     availableLanguage: ['English', 'Turkish'],
   },
   address: {

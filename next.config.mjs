@@ -91,22 +91,62 @@ const nextConfig = {
       },
       {
         source: '/assets',
-        destination: '/en/assets',
+        destination: '/en/property-asset-part-management-software',
+        permanent: true,
+      },
+      {
+        source: '/property-asset-part-management-software',
+        destination: '/en/property-asset-part-management-software',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/assets',
+        destination: '/:locale/property-asset-part-management-software',
         permanent: true,
       },
       {
         source: '/communication',
-        destination: '/en/communication',
+        destination: '/en/communication-property-software',
+        permanent: true,
+      },
+      {
+        source: '/communication-property-software',
+        destination: '/en/communication-property-software',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/communication',
+        destination: '/:locale/communication-property-software',
         permanent: true,
       },
       {
         source: '/about',
-        destination: '/en/about',
+        destination: '/en/about-propertycareapp',
+        permanent: true,
+      },
+      {
+        source: '/about-propertycareapp',
+        destination: '/en/about-propertycareapp',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/about',
+        destination: '/:locale/about-propertycareapp',
         permanent: true,
       },
       {
         source: '/contact',
-        destination: '/en/contact',
+        destination: '/en/contact-propertycareapp',
+        permanent: true,
+      },
+      {
+        source: '/contact-propertycareapp',
+        destination: '/en/contact-propertycareapp',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|tr)/contact',
+        destination: '/:locale/contact-propertycareapp',
         permanent: true,
       },
     ];

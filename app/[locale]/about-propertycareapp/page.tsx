@@ -11,7 +11,7 @@ import type { Locale } from '@/i18n/config';
 import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
 import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-const PAGE_PATH = '/about';
+const PAGE_PATH = '/about-propertycareapp';
 
 export async function generateMetadata({ params }: LocalePageProps) {
   const { locale } = await params;
@@ -41,7 +41,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'About',
+        name: 'About PropertyCareApp',
         item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
       },
     ],

@@ -16,7 +16,7 @@ import type { Locale } from "@/i18n/config";
 import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
 import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
-const PAGE_PATH = '/communication';
+const PAGE_PATH = '/communication-property-software';
 
 export async function generateMetadata({ params }: LocalePageProps) {
   const { locale } = await params;
@@ -95,7 +95,7 @@ export default async function CommunicationPage({ params }: LocalePageProps) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Communication',
+        name: 'Communication Property Software',
         item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
       },
     ],

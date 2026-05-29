@@ -8,10 +8,10 @@ const paths = [
   { path: '/', changeFrequency: 'weekly' as const, priority: 1.0 },
   { path: '/real-estate-software', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/facilities-maintenance-software', changeFrequency: 'weekly' as const, priority: 0.8 },
-  { path: '/assets', changeFrequency: 'weekly' as const, priority: 0.8 },
-  { path: '/communication', changeFrequency: 'weekly' as const, priority: 0.8 },
-  { path: '/about', changeFrequency: 'monthly' as const, priority: 0.6 },
-  { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.5 },
+  { path: '/property-asset-part-management-software', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/communication-property-software', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/about-propertycareapp', changeFrequency: 'monthly' as const, priority: 0.6 },
+  { path: '/contact-propertycareapp', changeFrequency: 'monthly' as const, priority: 0.5 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
