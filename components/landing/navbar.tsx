@@ -45,7 +45,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: t("pricing"), href: "https://pricing.propertycareapp.com/en" },
-    { name: t("blog"), href: "https://propertycareapp.com/blog/" },
+    { name: t("blog"), href: "https://blog.propertycareapp.com/" },
   ];
 
   return (
