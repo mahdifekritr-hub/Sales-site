@@ -1,30 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { parseSignupProduct, resolveSignupRoleAndLanguage } from "@/lib/public-signup-config";
 
 const DEFAULT_API_BASE = "https://api.propertycareapp.com";
-
-function parsePositiveInt(name: string): number | null {
-  const raw = process.env[name]?.trim();
-  if (!raw) return null;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n) || n < 1) return null;
-  return n;
-}
 
 function normalizeApiBase(): string {
   const base = process.env.API_BASE_URL?.trim() || DEFAULT_API_BASE;
   return base.replace(/\/+$/, "");
-}
-
-function pickRoleAndLanguage(locale: string): { role: number; language: number } | null {
-  const isTr = locale.toLowerCase().startsWith("tr");
-  const role = isTr
-    ? parsePositiveInt("PUBLIC_SIGNUP_ROLE_TR")
-    : parsePositiveInt("PUBLIC_SIGNUP_ROLE_EN");
-  const language = isTr
-    ? parsePositiveInt("PUBLIC_SIGNUP_LANGUAGE_ID_TR")
-    : parsePositiveInt("PUBLIC_SIGNUP_LANGUAGE_ID_EN");
-  if (role == null || language == null) return null;
-  return { role, language };
 }
 
 function apiKey(): string | null {
@@ -43,6 +24,7 @@ type Body = {
   email?: string;
   new_subscription?: string;
   locale?: string;
+  product?: string;
 };
 
 const USERNAME_RE = /^[A-Za-z0-9](?:[A-Za-z0-9_-]{2,14})[A-Za-z0-9]$/;
@@ -64,12 +46,13 @@ export async function POST(req: NextRequest) {
   }
 
   const locale = typeof body.locale === "string" ? body.locale : "en";
-  const picks = pickRoleAndLanguage(locale);
+  const product = parseSignupProduct(body.product);
+  const picks = resolveSignupRoleAndLanguage(product, locale);
   if (!picks) {
     return NextResponse.json(
       {
         message:
-          "Missing PUBLIC_SIGNUP_ROLE_EN / PUBLIC_SIGNUP_ROLE_TR or language id env vars",
+          "Missing per-product PUBLIC_SIGNUP_ROLE_* env vars, legacy PUBLIC_SIGNUP_ROLE_EN/TR, or language id env vars",
       },
       { status: 500 },
     );

@@ -154,6 +154,40 @@
       }
     }
   },
+  "ctaProducts": {
+    "sales": {
+      "sectionTitle": "Dönüştürmeye hazır mısınız",
+      "sectionTitleHighlight": "mülk yönetiminizi",
+      "subtitle": "Yönetim baş ağrılarına elveda deyin. Yapay zeka destekli basitlikle kontrolü ele alın ve başarınızı zahmetsizce artırın.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "scheduleDemo": "Demo Planla",
+      "noCreditCard": "Kredi kartı gerekli değil • 30 günlük ücretsiz deneme • İstediğiniz zaman iptal edin"
+    },
+    "maintenance": {
+      "sectionTitle": "Dönüştürmeye hazır mısınız",
+      "sectionTitleHighlight": "bakım operasyonlarınızı",
+      "subtitle": "Bakım baş ağrılarına elveda deyin. İş emirlerini, planlamayı ve varlık yönetimini kolaylaştıran yapay zeka destekli araçlarla kontrolü ele alın.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "scheduleDemo": "Demo Planla",
+      "noCreditCard": "Kredi kartı gerekli değil • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin"
+    },
+    "assets": {
+      "sectionTitle": "Dönüştürmeye hazır mısınız",
+      "sectionTitleHighlight": "varlık yönetiminizi",
+      "subtitle": "Elektronik tablolara ve kayıp ekipmana elveda deyin. Varlıkları takip eden, envanteri yöneten ve ekipman yaşam döngünüzü optimize eden yapay zeka destekli araçlarla kontrolü ele alın.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "scheduleDemo": "Demo Planla",
+      "noCreditCard": "Kredi kartı gerekli değil • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin"
+    },
+    "communication": {
+      "sectionTitle": "Oluşturmaya hazır mısınız",
+      "sectionTitleHighlight": "bağlantılı bir topluluk",
+      "subtitle": "İletişim boşluklarına elveda deyin. Sakinleri bilgilendiren, motive eden ve bağlı tutan yapay zeka destekli araçlarla kontrolü ele alın.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "scheduleDemo": "Demo Planla",
+      "noCreditCard": "Kredi kartı gerekli değil • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin"
+    }
+  },
   "cta": {
     "sectionTitle": "Dönüştürmeye hazır mısınız",
     "sectionTitleHighlight": "mülk yönetiminizi",

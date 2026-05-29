@@ -154,6 +154,40 @@
       }
     }
   },
+  "ctaProducts": {
+    "sales": {
+      "sectionTitle": "Ready to transform your",
+      "sectionTitleHighlight": "property management",
+      "subtitle": "Say goodbye to management headaches. Take control with AI-powered simplicity and boost your success effortlessly.",
+      "startFreeTrial": "Start Free Trial",
+      "scheduleDemo": "Schedule a Demo",
+      "noCreditCard": "No credit card required • 30-day free trial • Cancel anytime"
+    },
+    "maintenance": {
+      "sectionTitle": "Ready to transform your",
+      "sectionTitleHighlight": "maintenance operations",
+      "subtitle": "Say goodbye to maintenance headaches. Take control with AI-powered tools that streamline work orders, scheduling, and asset management.",
+      "startFreeTrial": "Start Free Trial",
+      "scheduleDemo": "Schedule a Demo",
+      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
+    },
+    "assets": {
+      "sectionTitle": "Ready to transform your",
+      "sectionTitleHighlight": "asset management",
+      "subtitle": "Say goodbye to spreadsheets and lost equipment. Take control with AI-powered tools that track assets, manage inventory, and optimize your equipment lifecycle.",
+      "startFreeTrial": "Start Free Trial",
+      "scheduleDemo": "Schedule a Demo",
+      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
+    },
+    "communication": {
+      "sectionTitle": "Ready to build a",
+      "sectionTitleHighlight": "connected community",
+      "subtitle": "Say goodbye to communication gaps. Take control with AI-powered tools that keep residents informed, engaged, and connected.",
+      "startFreeTrial": "Start Free Trial",
+      "scheduleDemo": "Schedule a Demo",
+      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
+    }
+  },
   "cta": {
     "sectionTitle": "Ready to transform your",
     "sectionTitleHighlight": "property management",
