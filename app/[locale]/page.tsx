@@ -1,17 +1,35 @@
 import { setRequestLocale } from 'next-intl/server';
+import dynamic from 'next/dynamic';
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
 import { HomeHero } from "@/components/home/hero";
-import { ProductsSection } from "@/components/home/products-section";
-import { HorizontalScrollSection } from "@/components/home/horizontal-scroll-section";
-import { AIFeaturesSection } from "@/components/home/ai-features";
-import { WorkflowSection } from "@/components/home/workflow-section";
-import { HomeTestimonials } from "@/components/home/testimonials";
-import { HomeCTA } from "@/components/home/cta";
-import { HomeIntegrations } from "@/components/home/integrations";
 import type { Locale } from '@/i18n/config';
 import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
 import { absoluteLocalizedUrl } from '@/lib/locale-paths';
+
+// Below-fold sections: code-split so their JS doesn't block the initial page load.
+// ssr:true keeps server-rendered HTML identical — no flash, no layout shift.
+const ProductsSection = dynamic(() =>
+  import("@/components/home/products-section").then((m) => m.ProductsSection),
+);
+const HorizontalScrollSection = dynamic(() =>
+  import("@/components/home/horizontal-scroll-section").then((m) => m.HorizontalScrollSection),
+);
+const AIFeaturesSection = dynamic(() =>
+  import("@/components/home/ai-features").then((m) => m.AIFeaturesSection),
+);
+const WorkflowSection = dynamic(() =>
+  import("@/components/home/workflow-section").then((m) => m.WorkflowSection),
+);
+const HomeTestimonials = dynamic(() =>
+  import("@/components/home/testimonials").then((m) => m.HomeTestimonials),
+);
+const HomeIntegrations = dynamic(() =>
+  import("@/components/home/integrations").then((m) => m.HomeIntegrations),
+);
+const HomeCTA = dynamic(() =>
+  import("@/components/home/cta").then((m) => m.HomeCTA),
+);
 
 export async function generateMetadata({ params }: LocalePageProps) {
   const { locale } = await params;

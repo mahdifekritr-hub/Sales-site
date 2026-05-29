@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Play, Building2, Users, Wrench, BarChart3, Sparkles, Calendar, TrendingUp, Bell, CheckCircle2 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import Image from "next/image";
 import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
@@ -20,6 +20,23 @@ export function HomeHero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+
+  // Stable particle positions/timings — computed once, never changes between renders
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => {
+        // Seeded-like distribution: spread particles evenly across the canvas
+        const col = i % 5;
+        const row = Math.floor(i / 5);
+        return {
+          left: col * 20 + 2 + ((i * 7) % 16),   // 0-100%, varied
+          top: row * 25 + 3 + ((i * 11) % 18),    // 0-100%, varied
+          duration: 4 + (i % 5),                   // 4–8s range, same as before
+          delay: (i % 5) * 0.8,                    // 0–4s range, same as before
+        };
+      }),
+    [],
+  );
 
   return (
     <section ref={containerRef} className="relative min-h-[100vh] overflow-hidden pt-24 sm:pt-32 pb-12 sm:pb-20">
@@ -117,22 +134,16 @@ export function HomeHero() {
 
       {/* Floating particles/dots */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-primary/40"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.6, 0.2],
-            }}
+            style={{ left: `${p.left}%`, top: `${p.top}%` }}
+            animate={{ y: [0, -30, 0], opacity: [0.2, 0.6, 0.2] }}
             transition={{
-              duration: 4 + Math.random() * 4,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: p.delay,
               ease: "easeInOut",
             }}
           />

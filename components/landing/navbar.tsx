@@ -14,6 +14,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Link, usePathname } from "@/i18n/routing";
+import Image from "next/image";
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
 import { ProductSignupCTA } from "@/components/signup/product-signup-cta";
 import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
@@ -65,10 +66,13 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
           <Link href="/" className="flex items-center" aria-label="PropertyCareApp home">
-            <img
+            <Image
               src="/logo (2).png"
               alt="Company Logo"
+              width={214}
+              height={80}
               className="h-20 w-auto object-contain"
+              priority
             />
           </Link>
 
