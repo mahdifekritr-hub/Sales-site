@@ -11,6 +11,9 @@ import { CommunicationBlogSection } from "@/components/communication/blog-sectio
 import { CommunicationFAQSection } from "@/components/communication/faq-section";
 import { CommunicationCTA } from "@/components/communication/cta";
 import { Footer } from "@/components/landing/footer";
+import { getLocale } from "next-intl/server";
+import { getCommunicationBlogPosts } from "@/lib/blog-home-posts";
+import type { Locale } from "@/i18n/config";
 
 export const metadata: Metadata = {
   title: 'Resident Communication Software | PropertyCareApp',
@@ -81,7 +84,10 @@ const faqJsonLd = {
   ],
 };
 
-export default function CommunicationPage() {
+export default async function CommunicationPage() {
+  const locale = (await getLocale()) as Locale;
+  const blogPosts = await getCommunicationBlogPosts(locale);
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       <script
@@ -100,7 +106,7 @@ export default function CommunicationPage() {
       <CommunicationFeatures />
       <CommunicationWhyUs />
       <CommunicationTestimonials />
-      <CommunicationBlogSection />
+      <CommunicationBlogSection posts={blogPosts} />
       <CommunicationFAQSection />
       <CommunicationCTA />
       <Footer />

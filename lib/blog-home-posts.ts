@@ -194,22 +194,25 @@ function normalizeFlatPostRow(
 }
 
 /**
- * Loads published posts for the configured Help Center category (default 1948).
+ * Core fetcher — loads published posts for any Help Center category.
  * Returns an empty array if the API key is missing or the request fails.
  */
-export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
+async function fetchBlogPosts(
+  locale: Locale,
+  categoryId: number,
+  limit: number,
+  label: string,
+): Promise<HomeBlogCardData[]> {
   const apiKey = getSubscriptionKey()
   if (!apiKey) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[blog-home] SUBSCRIPTION_API_KEY is not set; skipping blog fetch.')
+      console.warn(`[blog-${label}] SUBSCRIPTION_API_KEY is not set; skipping blog fetch.`)
     }
     return []
   }
 
-  const categoryId = getHomeCategoryId()
   const baseUrl = getApiBaseUrl()
   const language = localeToApiLanguage(locale)
-  const limit = getFetchLimit()
 
   const url = new URL(`/public/blog/posts/by-category/${categoryId}`, baseUrl)
   url.searchParams.set('language', language)
@@ -225,14 +228,14 @@ export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData
     })
   } catch (e) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[blog-home] fetch failed', e)
+      console.warn(`[blog-${label}] fetch failed`, e)
     }
     return []
   }
 
   if (!response.ok) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[blog-home] HTTP', response.status, url.toString())
+      console.warn(`[blog-${label}] HTTP`, response.status, url.toString())
     }
     return []
   }
@@ -253,4 +256,62 @@ export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData
     if (card) out.push(card)
   }
   return out
+}
+
+function readEnvCategoryId(envKey: string, fallback: number): number {
+  const raw = process.env[envKey]?.trim()
+  if (raw) {
+    const n = Number.parseInt(raw, 10)
+    if (Number.isFinite(n) && n > 0) return n
+  }
+  return fallback
+}
+
+function readEnvLimit(envKey: string): number {
+  const raw = process.env[envKey]?.trim()
+  if (raw) {
+    const n = Number.parseInt(raw, 10)
+    if (Number.isFinite(n) && n > 0 && n <= 50) return n
+  }
+  return DEFAULT_FETCH_LIMIT
+}
+
+/** /sales page blog strip */
+export async function getHomeBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
+  return fetchBlogPosts(
+    locale,
+    readEnvCategoryId('BLOG_HOME_CATEGORY_ID', DEFAULT_HOME_CATEGORY_ID),
+    readEnvLimit('BLOG_HOME_FETCH_LIMIT'),
+    'home',
+  )
+}
+
+/** /maintenance page blog strip */
+export async function getMaintenanceBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
+  return fetchBlogPosts(
+    locale,
+    readEnvCategoryId('BLOG_MAINTENANCE_CATEGORY_ID', DEFAULT_HOME_CATEGORY_ID),
+    readEnvLimit('BLOG_MAINTENANCE_FETCH_LIMIT'),
+    'maintenance',
+  )
+}
+
+/** /assets page blog strip */
+export async function getAssetsBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
+  return fetchBlogPosts(
+    locale,
+    readEnvCategoryId('BLOG_ASSETS_CATEGORY_ID', DEFAULT_HOME_CATEGORY_ID),
+    readEnvLimit('BLOG_ASSETS_FETCH_LIMIT'),
+    'assets',
+  )
+}
+
+/** /communication page blog strip */
+export async function getCommunicationBlogPosts(locale: Locale): Promise<HomeBlogCardData[]> {
+  return fetchBlogPosts(
+    locale,
+    readEnvCategoryId('BLOG_COMMUNICATION_CATEGORY_ID', DEFAULT_HOME_CATEGORY_ID),
+    readEnvLimit('BLOG_COMMUNICATION_FETCH_LIMIT'),
+    'communication',
+  )
 }

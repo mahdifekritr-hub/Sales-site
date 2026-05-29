@@ -11,6 +11,9 @@ import { AssetsBlogSection } from "@/components/assets/blog-section";
 import { AssetsFAQSection } from "@/components/assets/faq-section";
 import { AssetsCTA } from "@/components/assets/cta";
 import { Footer } from "@/components/landing/footer";
+import { getLocale } from "next-intl/server";
+import { getAssetsBlogPosts } from "@/lib/blog-home-posts";
+import type { Locale } from "@/i18n/config";
 
 export const metadata: Metadata = {
   title: 'Assets & Parts Management Software | PropertyCareApp',
@@ -81,7 +84,10 @@ const faqJsonLd = {
   ],
 };
 
-export default function AssetsPage() {
+export default async function AssetsPage() {
+  const locale = (await getLocale()) as Locale;
+  const blogPosts = await getAssetsBlogPosts(locale);
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       <script
@@ -100,7 +106,7 @@ export default function AssetsPage() {
       <AssetsFeatures />
       <AssetsWhyUs />
       <AssetsTestimonials />
-      <AssetsBlogSection />
+      <AssetsBlogSection posts={blogPosts} />
       <AssetsFAQSection />
       <AssetsCTA />
       <Footer />

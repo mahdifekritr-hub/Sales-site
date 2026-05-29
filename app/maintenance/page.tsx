@@ -11,6 +11,9 @@ import { MaintenanceBlogSection } from "@/components/maintenance/blog-section";
 import { MaintenanceFAQSection } from "@/components/maintenance/faq-section";
 import { MaintenanceCTA } from "@/components/maintenance/cta";
 import { Footer } from "@/components/landing/footer";
+import { getLocale } from "next-intl/server";
+import { getMaintenanceBlogPosts } from "@/lib/blog-home-posts";
+import type { Locale } from "@/i18n/config";
 
 export const metadata: Metadata = {
   title: 'Property Maintenance Software | PropertyCareApp',
@@ -81,7 +84,10 @@ const faqJsonLd = {
   ],
 };
 
-export default function MaintenancePage() {
+export default async function MaintenancePage() {
+  const locale = (await getLocale()) as Locale;
+  const blogPosts = await getMaintenanceBlogPosts(locale);
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       <script
@@ -100,7 +106,7 @@ export default function MaintenancePage() {
       <MaintenanceFeatures />
       <MaintenanceWhyUs />
       <MaintenanceTestimonials />
-      <MaintenanceBlogSection />
+      <MaintenanceBlogSection posts={blogPosts} />
       <MaintenanceFAQSection />
       <MaintenanceCTA />
       <Footer />
