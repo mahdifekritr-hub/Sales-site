@@ -42,79 +42,39 @@ export function HomeHero() {
     <section ref={containerRef} className="relative min-h-[100vh] overflow-hidden pt-24 sm:pt-32 pb-12 sm:pb-20">
       {/* Multi-layered animated gradient background */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Primary gradient orb */}
-        <motion.div
-          className="absolute left-1/2 top-0 h-[600px] w-[800px] sm:h-[900px] sm:w-[1400px] -translate-x-1/2 rounded-full"
+        {/* Primary gradient orb — CSS: scale 1→1.1→1, opacity 0.4→0.5→0.4, 8s easeInOut */}
+        <div
+          className="hero-orb-primary absolute left-1/2 top-0 h-[600px] w-[800px] sm:h-[900px] sm:w-[1400px] -translate-x-1/2 rounded-full"
           style={{
             background: "radial-gradient(ellipse at center, oklch(0.38 0.16 330 / 0.4) 0%, oklch(0.38 0.16 330 / 0.1) 40%, transparent 70%)",
             filter: "blur(60px)",
           }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.4, 0.5, 0.4],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
         />
-        
-        {/* Cyan accent orb - right */}
-        <motion.div
-          className="absolute right-[-10%] top-[20%] h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full"
+
+        {/* Cyan accent orb - right — CSS: x 0→60→0, y 0→-40→0, scale 1→1.15→1, 12s easeInOut */}
+        <div
+          className="hero-orb-cyan absolute right-[-10%] top-[20%] h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.65 0.18 200 / 0.25) 0%, oklch(0.55 0.15 200 / 0.1) 40%, transparent 70%)",
             filter: "blur(80px)",
           }}
-          animate={{
-            x: [0, 60, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
         />
-        
-        {/* Pink/magenta accent orb - left */}
-        <motion.div
-          className="absolute left-[-5%] top-[40%] h-[350px] w-[450px] sm:h-[500px] sm:w-[700px] rounded-full"
+
+        {/* Pink/magenta accent orb - left — CSS: x 0→-40→0, y 0→50→0, scale 1→1.1→1, 10s delay 1s easeInOut */}
+        <div
+          className="hero-orb-pink absolute left-[-5%] top-[40%] h-[350px] w-[450px] sm:h-[500px] sm:w-[700px] rounded-full"
           style={{
             background: "radial-gradient(ellipse, oklch(0.55 0.2 350 / 0.2) 0%, oklch(0.45 0.18 340 / 0.05) 50%, transparent 70%)",
             filter: "blur(70px)",
           }}
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
         />
 
-        {/* Warm gold accent - bottom */}
-        <motion.div
-          className="absolute bottom-[10%] left-[30%] h-[300px] w-[400px] rounded-full"
+        {/* Warm gold accent - bottom — CSS: x 0→30→0, opacity 0.15→0.25→0.15, 8s delay 2s easeInOut */}
+        <div
+          className="hero-orb-gold absolute bottom-[10%] left-[30%] h-[300px] w-[400px] rounded-full"
           style={{
             background: "radial-gradient(ellipse, oklch(0.7 0.15 80 / 0.15) 0%, transparent 60%)",
             filter: "blur(60px)",
-          }}
-          animate={{
-            x: [0, 30, 0],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
           }}
         />
       </div>
@@ -132,19 +92,17 @@ export function HomeHero() {
         }}
       />
 
-      {/* Floating particles/dots */}
+      {/* Floating particles/dots — CSS: y 0→-30px→0, opacity 0.2→0.6→0.2, easeInOut */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {particles.map((p, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute h-1 w-1 rounded-full bg-primary/40"
-            style={{ left: `${p.left}%`, top: `${p.top}%` }}
-            animate={{ y: [0, -30, 0], opacity: [0.2, 0.6, 0.2] }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              delay: p.delay,
-              ease: "easeInOut",
+            className="hero-particle absolute h-1 w-1 rounded-full bg-primary/40"
+            style={{
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              animationDuration: `${p.duration}s`,
+              animationDelay: `${p.delay}s`,
             }}
           />
         ))}
@@ -255,13 +213,10 @@ export function HomeHero() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="h-8 w-8 rounded-lg bg-chart-4/10 flex items-center justify-center"
-                    >
+                    {/* bell pulse: scale 1→1.1→1, 2s linear infinite */}
+                    <div className="hero-bell h-8 w-8 rounded-lg bg-chart-4/10 flex items-center justify-center">
                       <Bell className="h-4 w-4 text-chart-4" />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
 
@@ -328,12 +283,8 @@ export function HomeHero() {
               </div>
             </div>
 
-            {/* Floating Cards - AI Insights */}
-            <motion.div
-              className="absolute -left-4 sm:-left-12 top-[15%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
-              animate={{ y: [0, -12, 0], rotate: [0, -1, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            >
+            {/* Floating Cards - AI Insights — CSS: y 0→-12px→0, rotate 0→-1deg→0, 5s easeInOut */}
+            <div className="hero-card-insights absolute -left-4 sm:-left-12 top-[15%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)] flex items-center justify-center shadow-lg">
                   <Sparkles className="h-5 w-5 text-white" />
@@ -351,14 +302,10 @@ export function HomeHero() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Floating Cards - Appointments */}
-            <motion.div
-              className="absolute -right-4 sm:-right-8 top-[25%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
-              animate={{ y: [0, 10, 0], rotate: [0, 1, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
+            {/* Floating Cards - Appointments — CSS: y 0→10px→0, rotate 0→1deg→0, 6s delay 1s easeInOut */}
+            <div className="hero-card-appointments absolute -right-4 sm:-right-8 top-[25%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-chart-4 to-chart-4/70 flex items-center justify-center shadow-lg">
                   <Calendar className="h-5 w-5 text-white" />
@@ -368,14 +315,10 @@ export function HomeHero() {
                   <div className="text-[10px] text-muted-foreground">8 appointments</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Floating Cards - Growth */}
-            <motion.div
-              className="absolute right-[10%] -bottom-4 sm:-bottom-8 rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            >
+            {/* Floating Cards - Growth — CSS: y 0→-8px→0, 4s delay 2s easeInOut */}
+            <div className="hero-card-growth absolute right-[10%] -bottom-4 sm:-bottom-8 rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-chart-4/80 to-[oklch(0.55_0.15_150)] flex items-center justify-center shadow-lg">
                   <TrendingUp className="h-5 w-5 text-white" />
@@ -385,7 +328,7 @@ export function HomeHero() {
                   <div className="text-[10px] text-muted-foreground">Growth this month</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Glow effects behind dashboard */}
             <div className="absolute inset-0 -z-10">
@@ -422,7 +365,7 @@ export function HomeHero() {
         </div>
       </motion.div>
 
-      {/* CSS for gradient animation */}
+      {/* CSS for gradient + orb animations (replaces repeat:Infinity motion.div orbs) */}
       <style jsx global>{`
         @keyframes gradient {
           0%, 100% { background-position: 0% 50%; }
@@ -430,6 +373,87 @@ export function HomeHero() {
         }
         .animate-gradient {
           animation: gradient 6s ease infinite;
+        }
+
+        /* Primary orb: scale 1→1.1→1, opacity 0.4→0.5→0.4, 8s easeInOut */
+        @keyframes orb-primary {
+          0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; }
+          50%       { transform: translateX(-50%) scale(1.1); opacity: 0.5; }
+        }
+        .hero-orb-primary {
+          animation: orb-primary 8s ease-in-out infinite;
+        }
+
+        /* Cyan orb: x 0→60px→0, y 0→-40px→0, scale 1→1.15→1, 12s easeInOut */
+        @keyframes orb-cyan {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          50%       { transform: translate(60px, -40px) scale(1.15); }
+        }
+        .hero-orb-cyan {
+          animation: orb-cyan 12s ease-in-out infinite;
+        }
+
+        /* Pink orb: x 0→-40px→0, y 0→50px→0, scale 1→1.1→1, 10s delay 1s easeInOut */
+        @keyframes orb-pink {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          50%       { transform: translate(-40px, 50px) scale(1.1); }
+        }
+        .hero-orb-pink {
+          animation: orb-pink 10s ease-in-out 1s infinite;
+        }
+
+        /* Gold orb: x 0→30px→0, opacity 0.15→0.25→0.15, 8s delay 2s easeInOut */
+        @keyframes orb-gold {
+          0%, 100% { transform: translateX(0px); opacity: 0.15; }
+          50%       { transform: translateX(30px); opacity: 0.25; }
+        }
+        .hero-orb-gold {
+          animation: orb-gold 8s ease-in-out 2s infinite;
+        }
+
+        /* Particles: y 0→-30px→0, opacity 0.2→0.6→0.2, easeInOut; duration & delay set inline */
+        @keyframes hero-particle-float {
+          0%, 100% { transform: translateY(0px); opacity: 0.2; }
+          50%       { transform: translateY(-30px); opacity: 0.6; }
+        }
+        .hero-particle {
+          animation: hero-particle-float ease-in-out infinite;
+        }
+
+        /* Bell icon: scale 1→1.1→1, 2s linear infinite */
+        @keyframes hero-bell-pulse {
+          0%, 100% { transform: scale(1); }
+          50%       { transform: scale(1.1); }
+        }
+        .hero-bell {
+          animation: hero-bell-pulse 2s linear infinite;
+        }
+
+        /* AI Insights card: y 0→-12px→0, rotate 0→-1deg→0, 5s easeInOut infinite */
+        @keyframes hero-card-insights-float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50%       { transform: translateY(-12px) rotate(-1deg); }
+        }
+        .hero-card-insights {
+          animation: hero-card-insights-float 5s ease-in-out infinite;
+        }
+
+        /* Appointments card: y 0→10px→0, rotate 0→1deg→0, 6s delay 1s easeInOut infinite */
+        @keyframes hero-card-appointments-float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50%       { transform: translateY(10px) rotate(1deg); }
+        }
+        .hero-card-appointments {
+          animation: hero-card-appointments-float 6s ease-in-out 1s infinite;
+        }
+
+        /* Growth card: y 0→-8px→0, 4s delay 2s easeInOut infinite */
+        @keyframes hero-card-growth-float {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-8px); }
+        }
+        .hero-card-growth {
+          animation: hero-card-growth-float 4s ease-in-out 2s infinite;
         }
       `}</style>
     </section>

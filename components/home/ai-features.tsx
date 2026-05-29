@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import {
   Sparkles,
   Bot,
@@ -68,36 +68,37 @@ export function AIFeaturesSection() {
     return () => clearInterval(interval);
   }, []);
 
+  // Stable seeded particle data — avoids Math.random() hydration mismatch
+  const aiParticles = useMemo(() => {
+    const seed = (n: number) => ((n * 9301 + 49297) % 233280) / 233280;
+    return Array.from({ length: 10 }, (_, i) => ({
+      left: 10 + seed(i * 3 + 1) * 80,
+      top:  10 + seed(i * 3 + 2) * 80,
+      duration: 3 + seed(i * 3 + 3) * 4,
+      delay:    seed(i * 3 + 7) * 3,
+    }));
+  }, []);
+
   return (
     <section ref={ref} className="relative py-24 sm:py-32 overflow-hidden bg-background">
       {/* Subtle background elements */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Soft gradient orbs */}
-        <motion.div
-          className="absolute top-[10%] left-[20%] w-[600px] h-[600px] rounded-full"
+        {/* Soft gradient orbs — CSS: pure decorative */}
+        {/* orb-a: scale 1→1.2→1, x 0→50px→0, y 0→-30px→0, 12s easeInOut */}
+        <div
+          className="aif-orb-a absolute top-[10%] left-[20%] w-[600px] h-[600px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.45 0.2 330 / 0.08) 0%, oklch(0.38 0.16 330 / 0.02) 40%, transparent 70%)",
             filter: "blur(80px)",
           }}
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute bottom-[10%] right-[20%] w-[500px] h-[500px] rounded-full"
+        {/* orb-b: scale 1→1.3→1, x 0→-40px→0, y 0→40px→0, 15s delay 2s easeInOut */}
+        <div
+          className="aif-orb-b absolute bottom-[10%] right-[20%] w-[500px] h-[500px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.55 0.18 200 / 0.06) 0%, oklch(0.5 0.15 200 / 0.01) 50%, transparent 70%)",
             filter: "blur(100px)",
           }}
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
 
         {/* Subtle grid pattern */}
@@ -113,26 +114,17 @@ export function AIFeaturesSection() {
           }}
         />
 
-        {/* Floating particles */}
+        {/* Floating particles — CSS: y 0→-20px→0, opacity 0.1→0.4→0.1, scale 1→1.5→1, easeInOut */}
         <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
-            <motion.div
+          {aiParticles.map((p, i) => (
+            <div
               key={i}
-              className="absolute h-1 w-1 rounded-full bg-primary/30"
+              className="aif-particle absolute h-1 w-1 rounded-full bg-primary/30"
               style={{
-                left: `${10 + Math.random() * 80}%`,
-                top: `${10 + Math.random() * 80}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.1, 0.4, 0.1],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut",
+                left: `${p.left}%`,
+                top: `${p.top}%`,
+                animationDuration: `${p.duration}s`,
+                animationDelay: `${p.delay}s`,
               }}
             />
           ))}
@@ -190,11 +182,8 @@ export function AIFeaturesSection() {
                   <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-[oklch(0.55_0.15_200)] flex items-center justify-center shadow-lg">
                     <Bot className="h-5 w-5 text-white" />
                   </div>
-                  <motion.div
-                    className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-chart-4 border-2 border-card"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
+                  {/* online dot: scale 1→1.2→1, 2s linear infinite */}
+                  <div className="aif-online-dot absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-chart-4 border-2 border-card" />
                 </div>
                 <div>
                   <div className="font-semibold text-sm">AI Assistant</div>
@@ -277,11 +266,8 @@ export function AIFeaturesSection() {
             </div>
 
             {/* Floating accent cards */}
-            <motion.div
-              className="absolute -top-4 -right-4 rounded-xl border border-border/40 bg-card/90 p-3 shadow-xl backdrop-blur-xl"
-              animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            >
+            {/* card-top: y 0→-8px→0, rotate 0→2deg→0, 5s easeInOut */}
+            <div className="aif-card-top absolute -top-4 -right-4 rounded-xl border border-border/40 bg-card/90 p-3 shadow-xl backdrop-blur-xl">
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)] flex items-center justify-center shadow-md">
                   <Languages className="h-4 w-4 text-white" />
@@ -291,13 +277,10 @@ export function AIFeaturesSection() {
                   <div className="text-[10px] text-muted-foreground">Auto-translate</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="absolute -bottom-4 -left-4 rounded-xl border border-border/40 bg-card/90 p-3 shadow-xl backdrop-blur-xl"
-              animate={{ y: [0, 8, 0], rotate: [0, -2, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
+            {/* card-bot: y 0→8px→0, rotate 0→-2deg→0, 6s delay 1s easeInOut */}
+            <div className="aif-card-bot absolute -bottom-4 -left-4 rounded-xl border border-border/40 bg-card/90 p-3 shadow-xl backdrop-blur-xl">
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-chart-4 to-[oklch(0.5_0.14_140)] flex items-center justify-center shadow-md">
                   <Zap className="h-4 w-4 text-white" />
@@ -307,7 +290,7 @@ export function AIFeaturesSection() {
                   <div className="text-[10px] text-muted-foreground">{"<"}100ms response</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Glow effect behind chat */}
             <div className="absolute inset-0 -z-10 opacity-50">
@@ -387,6 +370,50 @@ export function AIFeaturesSection() {
           </motion.div>
         </div>
       </div>
+      {/* CSS keyframes for decorative infinite animations */}
+      <style jsx global>{`
+        /* aif orb-a: scale 1→1.2→1, x 0→50px→0, y 0→-30px→0, 12s easeInOut */
+        @keyframes aif-orb-a {
+          0%, 100% { transform: scale(1) translate(0px, 0px); }
+          50%       { transform: scale(1.2) translate(50px, -30px); }
+        }
+        .aif-orb-a { animation: aif-orb-a 12s ease-in-out infinite; }
+
+        /* aif orb-b: scale 1→1.3→1, x 0→-40px→0, y 0→40px→0, 15s delay 2s easeInOut */
+        @keyframes aif-orb-b {
+          0%, 100% { transform: scale(1) translate(0px, 0px); }
+          50%       { transform: scale(1.3) translate(-40px, 40px); }
+        }
+        .aif-orb-b { animation: aif-orb-b 15s ease-in-out 2s infinite; }
+
+        /* particles: y 0→-20px→0, opacity 0.1→0.4→0.1, scale 1→1.5→1, easeInOut */
+        @keyframes aif-particle-float {
+          0%, 100% { transform: translateY(0px) scale(1); opacity: 0.1; }
+          50%       { transform: translateY(-20px) scale(1.5); opacity: 0.4; }
+        }
+        .aif-particle { animation: aif-particle-float ease-in-out infinite; }
+
+        /* online indicator dot: scale 1→1.2→1, 2s linear */
+        @keyframes aif-online-dot {
+          0%, 100% { transform: scale(1); }
+          50%       { transform: scale(1.2); }
+        }
+        .aif-online-dot { animation: aif-online-dot 2s linear infinite; }
+
+        /* floating card top: y 0→-8px→0, rotate 0→2deg→0, 5s easeInOut */
+        @keyframes aif-card-top {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50%       { transform: translateY(-8px) rotate(2deg); }
+        }
+        .aif-card-top { animation: aif-card-top 5s ease-in-out infinite; }
+
+        /* floating card bot: y 0→8px→0, rotate 0→-2deg→0, 6s delay 1s easeInOut */
+        @keyframes aif-card-bot {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50%       { transform: translateY(8px) rotate(-2deg); }
+        }
+        .aif-card-bot { animation: aif-card-bot 6s ease-in-out 1s infinite; }
+      `}</style>
     </section>
   );
 }
