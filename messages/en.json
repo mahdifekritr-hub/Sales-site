@@ -517,7 +517,40 @@
     "subtitle": "Unify sales, maintenance, CRM, and operations in one powerful platform. AI-driven tools that simplify property management and accelerate growth.",
     "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
-    "trustedBy": "Trusted by leading property companies"
+    "trustedBy": "Trusted by leading property companies",
+    "trustedCompanies": ["Almadar", "Karaneh", "Siraj", "Tisa", "MinaResidence", "ArakTowers"],
+    "dashboard": {
+      "title": "PropertyCare Dashboard",
+      "subtitle": "Real-time Overview",
+      "revenueTrend": "Revenue Trend",
+      "periods": ["1W", "1M", "1Y"],
+      "stats": {
+        "properties": { "label": "Properties", "value": "248", "change": "+12%" },
+        "tenants": { "label": "Tenants", "value": "1,842", "change": "+8%" },
+        "workOrders": { "label": "Work Orders", "value": "56", "change": "-23%" },
+        "revenue": { "label": "Revenue", "value": "$2.4M", "change": "+18%" }
+      }
+    },
+    "floatingCards": {
+      "aiInsights": {
+        "title": "AI Insights",
+        "subtitle": "5 new recommendations",
+"items": [
+      "Let AI manage your sales requests",
+      "Automate maintenance coordination",
+      "Handle requests in your preferred language",
+      "Get smart recommendations for sales negotiation",
+      "Delegate admin tasks to your AI Agent"
+    ]      },
+      "schedule": {
+        "title": "Today's Schedule",
+        "subtitle": "8 appointments"
+      },
+      "growth": {
+        "value": "+34%",
+        "subtitle": "Growth this month"
+      }
+    }
   },
   "platformOverview": {
     "badge": "Platform Ecosystem",
@@ -562,6 +595,12 @@
     "badge": "Our Products",
     "title": "Powerful Modules for Every Need",
     "subtitle": "Choose the tools that fit your workflow. Each module is designed to work independently or as part of your complete property management suite.",
+    "headlineLine1": "Management made simple,",
+    "headlineLine2": "without the traditional hassles",
+    "descriptionLine1": "Automate your sales, rentals, and maintenance.",
+    "descriptionLine2": "Focus on growing revenue and client satisfaction.",
+    "tabHirer": "Products",
+    "tabTalent": "AI Features",
     "exploreModule": "Explore Module",
     "customSolution": "Need a custom solution? We tailor our platform to your specific requirements.",
     "startTrial": "Start Free Trial",
@@ -569,7 +608,7 @@
     "products": {
       "sales": {
         "title": "Sales & Rentals",
-        "description": "Transform how you sell and rent properties with immersive virtual tours, intelligent inventory management, and streamlined deal tracking.",
+        "description": "Stop juggling spreadsheets and WhatsApp messages.",
         "features": {
           "virtualTours": "360° Virtual Tours",
           "inventory": "Real-time Inventory",
@@ -578,8 +617,8 @@
         }
       },
       "crm": {
-        "title": "CRM",
-        "description": "Build stronger relationships with powerful lead management, automated follow-ups, and comprehensive customer insights.",
+        "title": "Maintenance",
+        "description": "Just ask the AI agent to handle it. work orders, bookings, and reservations, all in one place.",
         "features": {
           "leads": "Lead Scoring",
           "pipeline": "Visual Pipeline",
@@ -588,14 +627,18 @@
         }
       },
       "maintenance": {
-        "title": "Maintenance",
-        "description": "Streamline operations with efficient work order management, preventive maintenance scheduling, and vendor coordination.",
+        "title": "Communication",
+        "description": "A private community for your residents, where neighbors connect, events come alive, and AI keeps organized.",
         "features": {
           "workOrders": "Work Order Tracking",
           "assets": "Asset Management",
           "scheduling": "Smart Scheduling",
           "vendors": "Vendor Portal"
         }
+      },
+      "requests": {
+        "title": "Assets & Parts",
+        "description": "Unlimited parts inventory. Scan a QR code to instantly submit a repair request and track its status."
       },
       "accounting": {
         "title": "Accounting",

@@ -517,7 +517,39 @@
     "subtitle": "Satış, bakım, CRM ve operasyonları tek bir güçlü platformda birleştirin. Mülk yönetimini basitleştiren ve büyümeyi hızlandıran yapay zeka destekli araçlar.",
     "startFreeTrial": "Ücretsiz Deneyin",
     "bookDemo": "Demo Talep Edin",
-    "trustedBy": "Önde gelen emlak şirketleri tarafından tercih ediliyor"
+    "trustedBy": "Önde gelen emlak şirketleri tarafından tercih ediliyor",
+    "trustedCompanies": ["Almadar", "Karaneh", "Siraj", "Tisa", "MinaResidence", "ArakTowers"],
+    "dashboard": {
+      "title": "PropertyCare Paneli",
+      "subtitle": "Gerçek Zamanlı Genel Bakış",
+      "revenueTrend": "Gelir Trendi",
+      "periods": ["1H", "1Ay", "1Y"],
+      "stats": {
+        "properties": { "label": "Mülkler", "value": "248", "change": "+12%" },
+        "tenants": { "label": "Kiracılar", "value": "1.842", "change": "+8%" },
+        "workOrders": { "label": "İş Emirleri", "value": "56", "change": "-23%" },
+        "revenue": { "label": "Gelir", "value": "$2,4M", "change": "+18%" }
+      }
+    },
+    "floatingCards": {
+      "aiInsights": {
+        "title": "Yapay Zeka Önerileri",
+        "subtitle": "5 yeni öneri",
+        "items": ["Satış taleplerinizi yapay zekanın yönetmesine izin verin",
+      "Bakım ve onarım koordinasyonunu otomatikleştirin",
+      "Talepleri tercih ettiğiniz dilde yanıtlayın",
+      "Satış görüşmeleri için akıllı öneriler alın",
+      "Yönetici görevlerini Yapay Zeka Asistanınıza devredin"]
+      },
+      "schedule": {
+        "title": "Bugünün Programı",
+        "subtitle": "8 randevu"
+      },
+      "growth": {
+        "value": "+34%",
+        "subtitle": "Bu ayki büyüme"
+      }
+    }
   },
   "platformOverview": {
     "badge": "Platform Ekosistemi",
@@ -562,6 +594,12 @@
     "badge": "Ürünlerimiz",
     "title": "Her İhtiyaç İçin Güçlü Modüller",
     "subtitle": "İş akışınıza uyan araçları seçin. Her modül bağımsız veya eksiksiz mülk yönetim paketinizin bir parçası olarak çalışacak şekilde tasarlanmıştır.",
+    "headlineLine1": "Kolay mülk yönetimi,",
+    "headlineLine2": "geleneksel zorluklar olmadan",
+    "descriptionLine1": "Satış, kiralama ve bakım süreçlerinizi otomatikleştirin.",
+    "descriptionLine2": "Gelirinizi ve müşteri memnuniyetini artırmaya odaklanın.",
+    "tabHirer": "İşveren",
+    "tabTalent": "Yetenek",
     "exploreModule": "Modülü Keşfet",
     "customSolution": "Özel bir çözüme mi ihtiyacınız var? Platformumuzu özel gereksinimlerinize göre uyarlıyoruz.",
     "startTrial": "Ücretsiz Deneyin",
@@ -569,7 +607,7 @@
     "products": {
       "sales": {
         "title": "Satış ve Kiralama",
-        "description": "Sürükleyici sanal turlar, akıllı envanter yönetimi ve kolaylaştırılmış anlaşma takibi ile mülk satış ve kiralama şeklinizi dönüştürün.",
+        "description": "Mülk satışı, kiralama, ilanlar ve müşteri operasyonlarını tek platformdan yönetin.",
         "features": {
           "virtualTours": "360° Sanal Turlar",
           "inventory": "Gerçek Zamanlı Envanter",
@@ -579,7 +617,7 @@
       },
       "crm": {
         "title": "CRM",
-        "description": "Güçlü potansiyel müşteri yönetimi, otomatik takipler ve kapsamlı müşteri içgörüleri ile daha güçlü ilişkiler kurun.",
+        "description": "Yetenek seçin ve ekibinizle etkili bir şekilde iş birliği yapın.",
         "features": {
           "leads": "Potansiyel Müşteri Puanlama",
           "pipeline": "Görsel Pipeline",
@@ -589,13 +627,17 @@
       },
       "maintenance": {
         "title": "Bakım",
-        "description": "Verimli iş emri yönetimi, önleyici bakım planlaması ve satıcı koordinasyonu ile operasyonları kolaylaştırın.",
+        "description": "Tüm mesajlar nihayet tek uygulamada. İletişimi kolaylaştırın.",
         "features": {
           "workOrders": "İş Emri Takibi",
           "assets": "Varlık Yönetimi",
           "scheduling": "Akıllı Zamanlama",
           "vendors": "Satıcı Portalı"
         }
+      },
+      "requests": {
+        "title": "Bakım Talepleri",
+        "description": "Puan ve yorumlara göre yetenek seçin. Şeffaflıkla güven oluşturun."
       },
       "accounting": {
         "title": "Muhasebe",

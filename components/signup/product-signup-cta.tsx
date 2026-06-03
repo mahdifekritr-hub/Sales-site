@@ -210,7 +210,7 @@ export function ProductSignupCTA({ product, variant = "section" }: ProductSignup
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 bg-background/80 backdrop-blur-md"
+              className="fixed inset-0 z-50 cursor-pointer bg-background/80 backdrop-blur-md"
               onClick={() => setIsExpanded(false)}
             />
 

@@ -9,8 +9,27 @@ import { useRef, useMemo } from "react";
 import Image from "next/image";
 import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
+const DASHBOARD_STAT_KEYS = ["properties", "tenants", "workOrders", "revenue"] as const;
+
+const DASHBOARD_STAT_CONFIG: Record<
+  (typeof DASHBOARD_STAT_KEYS)[number],
+  { icon: typeof Building2; color: string; gradient: string }
+> = {
+  properties: { icon: Building2, color: "primary", gradient: "from-primary/20 to-primary/5" },
+  tenants: {
+    icon: Users,
+    color: "chart-2",
+    gradient: "from-[oklch(0.55_0.15_200)]/20 to-[oklch(0.55_0.15_200)]/5",
+  },
+  workOrders: { icon: Wrench, color: "chart-5", gradient: "from-chart-5/20 to-chart-5/5" },
+  revenue: { icon: BarChart3, color: "chart-4", gradient: "from-chart-4/20 to-chart-4/5" },
+};
+
 export function HomeHero() {
   const t = useTranslations("homeHero");
+  const trustedCompanies = t.raw("trustedCompanies") as string[];
+  const chartPeriods = t.raw("dashboard.periods") as string[];
+  const aiInsightItems = t.raw("floatingCards.aiInsights.items") as string[];
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -168,11 +187,7 @@ export function HomeHero() {
             </ProductSignupTrigger>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
-              <Button
-                size="lg"
-                variant="outline"
-                className="gap-2 border-border/50 bg-card/50 text-foreground hover:bg-card hover:border-primary/30 backdrop-blur-sm"
-              >
+              <Button size="lg" variant="outline" className="gap-2">
                 <Play className="h-4 w-4" />
                 {t("bookDemo")}
               </Button>
@@ -208,8 +223,8 @@ export function HomeHero() {
                       <Building2 className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold">PropertyCare Dashboard</div>
-                      <div className="text-xs text-muted-foreground">Real-time Overview</div>
+                      <div className="text-sm font-semibold">{t("dashboard.title")}</div>
+                      <div className="text-xs text-muted-foreground">{t("dashboard.subtitle")}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -222,14 +237,12 @@ export function HomeHero() {
 
                 {/* Stats Grid with varied colors */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
-                  {[
-                    { icon: Building2, label: "Properties", value: "248", change: "+12%", color: "primary", gradient: "from-primary/20 to-primary/5" },
-                    { icon: Users, label: "Tenants", value: "1,842", change: "+8%", color: "chart-2", gradient: "from-[oklch(0.55_0.15_200)]/20 to-[oklch(0.55_0.15_200)]/5" },
-                    { icon: Wrench, label: "Work Orders", value: "56", change: "-23%", color: "chart-5", gradient: "from-chart-5/20 to-chart-5/5" },
-                    { icon: BarChart3, label: "Revenue", value: "$2.4M", change: "+18%", color: "chart-4", gradient: "from-chart-4/20 to-chart-4/5" },
-                  ].map((stat, i) => (
+                  {DASHBOARD_STAT_KEYS.map((statKey, i) => {
+                    const stat = DASHBOARD_STAT_CONFIG[statKey];
+                    const change = t(`dashboard.stats.${statKey}.change`);
+                    return (
                     <motion.div
-                      key={stat.label}
+                      key={statKey}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.7 + i * 0.1 }}
@@ -239,25 +252,26 @@ export function HomeHero() {
                       <div className="relative">
                         <div className="flex items-center gap-2 mb-2">
                           <stat.icon className={`h-4 w-4 text-${stat.color}`} />
-                          <span className="text-xs text-muted-foreground">{stat.label}</span>
+                          <span className="text-xs text-muted-foreground">{t(`dashboard.stats.${statKey}.label`)}</span>
                         </div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-lg sm:text-xl font-bold">{stat.value}</span>
-                          <span className={`text-xs ${stat.change.startsWith("+") ? "text-chart-4" : "text-chart-5"}`}>
-                            {stat.change}
+                          <span className="text-lg sm:text-xl font-bold">{t(`dashboard.stats.${statKey}.value`)}</span>
+                          <span className={`text-xs ${change.startsWith("+") ? "text-chart-4" : "text-chart-5"}`}>
+                            {change}
                           </span>
                         </div>
                       </div>
                     </motion.div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Activity Chart Placeholder */}
                 <div className="rounded-xl border border-border/30 bg-card/40 p-4 backdrop-blur-sm">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium">Revenue Trend</span>
+                    <span className="text-sm font-medium">{t("dashboard.revenueTrend")}</span>
                     <div className="flex gap-2">
-                      {["1W", "1M", "1Y"].map((period, i) => (
+                      {chartPeriods.map((period, i) => (
                         <button
                           key={period}
                           className={`px-2 py-0.5 rounded text-xs ${i === 1 ? "bg-primary/20 text-primary" : "text-muted-foreground"}`}
@@ -290,12 +304,12 @@ export function HomeHero() {
                   <Sparkles className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold">AI Insights</div>
-                  <div className="text-[10px] text-muted-foreground">3 new recommendations</div>
+                  <div className="text-xs font-semibold">{t("floatingCards.aiInsights.title")}</div>
+                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.aiInsights.subtitle")}</div>
                 </div>
               </div>
               <div className="mt-3 space-y-1.5">
-                {["Optimize pricing", "Reduce vacancy"].map((item, i) => (
+                {aiInsightItems.map((item) => (
                   <div key={item} className="flex items-center gap-2 text-[10px] text-muted-foreground">
                     <CheckCircle2 className="h-3 w-3 text-chart-4" />
                     <span>{item}</span>
@@ -311,8 +325,8 @@ export function HomeHero() {
                   <Calendar className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold">Today&apos;s Schedule</div>
-                  <div className="text-[10px] text-muted-foreground">8 appointments</div>
+                  <div className="text-xs font-semibold">{t("floatingCards.schedule.title")}</div>
+                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.schedule.subtitle")}</div>
                 </div>
               </div>
             </div>
@@ -324,8 +338,8 @@ export function HomeHero() {
                   <TrendingUp className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-chart-4">+34%</div>
-                  <div className="text-[10px] text-muted-foreground">Growth this month</div>
+                  <div className="text-lg font-bold text-chart-4">{t("floatingCards.growth.value")}</div>
+                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.growth.subtitle")}</div>
                 </div>
               </div>
             </div>
@@ -348,7 +362,7 @@ export function HomeHero() {
               {t("trustedBy")}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-              {["Emaar", "Damac", "Nakheel", "Meraas", "Aldar", "Sobha"].map((company, i) => (
+              {trustedCompanies.map((company, i) => (
                 <motion.span
                   key={company}
                   initial={{ opacity: 0 }}

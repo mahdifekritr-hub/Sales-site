@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   Building2,
   Users,
@@ -15,44 +15,56 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
-const products = [
+const PRODUCT_KEYS = ["sales", "crm", "maintenance", "requests"] as const;
+
+const PRODUCT_META: Record<
+  (typeof PRODUCT_KEYS)[number],
   {
-    key: "sales",
+    icon: typeof Building2;
+    bgColor: string;
+    mockupSrc: string;
+    position: "left-top" | "right-top" | "left-bottom" | "right-bottom";
+  }
+> = {
+  sales: {
     icon: Building2,
-    title: "Sales & Rentals",
-    description: "Manage property sales, rentals, listings and customer operations from one platform.",
     bgColor: "bg-[#f5f5f0]",
-    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
+    mockupSrc:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
     position: "left-top",
   },
-  {
-    key: "crm",
+  crm: {
     icon: Users,
-    title: "CRM",
-    description: "Choose talent and collaborate with your team effectively.",
     bgColor: "bg-[#f0eef8]",
-    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
+    mockupSrc:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
     position: "right-top",
   },
-  {
-    key: "maintenance",
+  maintenance: {
     icon: Wrench,
-    title: "Maintenance",
-    description: "All DMs are finally in one app. Streamline communication.",
     bgColor: "bg-[#f0f5f5]",
-    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
+    mockupSrc:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152707-V7Pfstru7FK5WO2XxFh9RdsmSs71ej.png",
     position: "left-bottom",
   },
-  {
-    key: "requests",
+  requests: {
     icon: ClipboardList,
-    title: "Maintenance Requests",
-    description: "Choose talent on rating and reviews. Build trust with transparency.",
     bgColor: "bg-[#faf5f5]",
-    mockupSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
+    mockupSrc:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-05-18%20152654-0U1P4BklrtrHUy7VxLW08JP5gowguk.png",
     position: "right-bottom",
   },
-];
+};
+
+type ProductItem = {
+  key: (typeof PRODUCT_KEYS)[number];
+  icon: typeof Building2;
+  title: string;
+  description: string;
+  bgColor: string;
+  mockupSrc: string;
+  position: (typeof PRODUCT_META)[(typeof PRODUCT_KEYS)[number]]["position"];
+};
 
 // Product card mockup components
 function CreateProjectMockup() {
@@ -234,7 +246,7 @@ function TrustMockup() {
 }
 
 interface ProductCardProps {
-  product: typeof products[0];
+  product: ProductItem;
   index: number;
   isInView: boolean;
 }
@@ -326,6 +338,17 @@ export function ProductsSection() {
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   const [activeTab, setActiveTab] = useState<"hirer" | "talent">("hirer");
 
+  const products = useMemo<ProductItem[]>(
+    () =>
+      PRODUCT_KEYS.map((key) => ({
+        key,
+        ...PRODUCT_META[key],
+        title: t(`products.${key}.title`),
+        description: t(`products.${key}.description`),
+      })),
+    [t],
+  );
+
   return (
     <section
       ref={containerRef}
@@ -340,9 +363,9 @@ export function ProductsSection() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic tracking-tight text-foreground mb-4"
           >
-            We&apos;ve done the hard part,
+            {t("headlineLine1")}
             <br />
-            now it&apos;s your turn to create
+            {t("headlineLine2")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -350,9 +373,9 @@ export function ProductsSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-xl mx-auto text-muted-foreground text-sm sm:text-base mb-8"
           >
-            Whether you&apos;re looking for work or finding talent,
+            {t("descriptionLine1")}
             <br />
-            everything is designed to flow effortlessly.
+            {t("descriptionLine2")}
           </motion.p>
 
           {/* Toggle tabs */}
@@ -370,7 +393,7 @@ export function ProductsSection() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Hirer
+              {t("tabHirer")}
             </button>
             <button
               onClick={() => setActiveTab("talent")}
@@ -380,7 +403,7 @@ export function ProductsSection() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Talent
+              {t("tabTalent")}
             </button>
           </motion.div>
         </div>
