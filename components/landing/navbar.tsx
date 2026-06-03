@@ -19,13 +19,7 @@ import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-
 import { ProductSignupCTA } from "@/components/signup/product-signup-cta";
 import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 import type { SignupProduct } from "@/lib/public-signup-config";
-
-const productItemsData = [
-  { key: "maintenance", href: "/facilities-maintenance-software" },
-  { key: "assetsParts", href: "/property-asset-part-management-software" },
-  { key: "communication", href: "/communication-property-software" },
-  { key: "salesRentals", href: "/real-estate-software" },
-];
+import { PRODUCT_NAV_ITEMS } from "@/lib/product-nav-links";
 
 const companyItemsData = [
   { key: "aboutUs", href: "/about-propertycareapp" },
@@ -41,7 +35,7 @@ export function Navbar() {
   const pageProduct = productFromPathname(pathname);
   const signupProduct = pageProduct ?? "sales";
 
-  const productItems = productItemsData.map(item => ({
+  const productItems = PRODUCT_NAV_ITEMS.map((item) => ({
     name: t(`productItems.${item.key}`),
     href: item.href,
   }));

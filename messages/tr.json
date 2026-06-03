@@ -551,6 +551,89 @@
       }
     }
   },
+  "homeFeaturesScroll": {
+    "badge": "Özellikler",
+    "headline": "Birlikte çalışan süper güçlü bir sistem.",
+    "cardCount": "04",
+    "cards": {
+      "selling": {
+        "num": "01",
+        "title": "Kesintisiz Satış Deneyimi",
+        "description": "İlanları yöneten, talepleri takip eden, teklif gönderen ve üçüncü taraf araçlar olmadan diğer ekiplere sorunsuz devir yapan bir CRM.",
+        "pills": ["Daha yüksek dönüşüm", "Daha az devir", "Daha az manuel iş", "Platforma özgü"],
+        "cta": "Satışı Keşfet"
+      },
+      "workorder": {
+        "num": "02",
+        "title": "Akıcı İş Emirleri",
+        "description": "Bakım taleplerini tek yerden takip edin, atayın ve çözün; otomatik iş akışları ve gerçek zamanlı durum güncellemeleriyle.",
+        "pills": ["Hızlı atama", "Durum takibi", "Fotoğraf yükleme", "Tedarikçi yönetimi"],
+        "cta": "İş Emirlerini Keşfet"
+      },
+      "aichat": {
+        "num": "03",
+        "title": "Dönüşüm Sağlayan Yapay Zeka Sohbeti",
+        "description": "Kiracı ve alıcı sorularını anında yanıtlayın — 7/24 — mülkleriniz ve politikalarınız üzerine eğitilmiş bir yapay zeka asistanıyla.",
+        "pills": ["Anında yanıt", "Potansiyel müşteri nitelendirme", "Temsilciye devir", "Çok dilli"],
+        "cta": "Yapay Zeka Sohbetini Keşfet"
+      },
+      "reservation": {
+        "num": "04",
+        "title": "Kolay Rezervasyonlar",
+        "description": "Adayların ilanınızdan doğrudan tur rezervasyonu yapmasını sağlayın; otomatik takvim senkronizasyonu ve onay akışıyla.",
+        "pills": ["Online rezervasyon", "Takvim senkronu", "Otomatik hatırlatma", "Onay akışı"],
+        "cta": "Rezervasyonları Keşfet"
+      }
+    },
+    "mockups": {
+      "tower": {
+        "altTower": "Lüks Kule",
+        "altFloorPlan": "Kat Planı"
+      },
+      "workOrder": {
+        "title": "İş Emirleri",
+        "newOrder": "+ Yeni Emir",
+        "columns": {
+          "unit": "Birim",
+          "issue": "Sorun",
+          "assignee": "Atanan",
+          "dueDate": "Son Tarih",
+          "status": "Durum"
+        },
+        "statuses": {
+          "inProgress": "Devam Ediyor",
+          "completed": "Tamamlandı",
+          "pending": "Beklemede"
+        },
+        "rows": [
+          { "unit": "Daire 4B", "issue": "Sızıntılı musluk", "assignee": "John M.", "due": "22 May", "statusKey": "inProgress" },
+          { "unit": "Daire 2A", "issue": "Klima soğutmuyor", "assignee": "Sara K.", "due": "20 May", "statusKey": "completed" },
+          { "unit": "Daire 7C", "issue": "Kilit arızası", "assignee": "—", "due": "25 May", "statusKey": "pending" },
+          { "unit": "Daire 1D", "issue": "Su ısıtıcısı", "assignee": "John M.", "due": "28 May", "statusKey": "pending" },
+          { "unit": "Daire 5F", "issue": "Pencere contası", "assignee": "Mike T.", "due": "19 May", "statusKey": "completed" }
+        ]
+      },
+      "aiChat": {
+        "title": "Yapay Zeka Asistanı",
+        "online": "Çevrimiçi",
+        "messages": [
+          { "role": "ai", "text": "Merhaba! Mükemmel evinizi bulmanıza yardımcı olmak için buradayım. Ne arıyorsunuz?" },
+          { "role": "user", "text": "3A dairesi hâlâ müsait mi?" },
+          { "role": "ai", "text": "Evet! 3A, 1 Haziran'da müsait 2 yatak odalı/1 banyolu, aylık 2.400 $. Görüntüleme planlamak ister misiniz?" },
+          { "role": "user", "text": "Evet lütfen!" },
+          { "role": "ai", "text": "Harika! Ekibimize bağlıyoruz. Kısa süre içinde onay alacaksınız." }
+        ]
+      },
+      "reservation": {
+        "title": "Tur Rezervasyonu — Mayıs 2026",
+        "weekdays": ["P", "S", "Ç", "P", "C", "C", "P"],
+        "availableTimes": "Müsait saatler — Mayıs {day}",
+        "times": ["10:00", "11:30", "14:00", "15:30"],
+        "confirmBooking": "Rezervasyonu Onayla",
+        "demoSelectedTime": "11:30"
+      }
+    }
+  },
   "platformOverview": {
     "badge": "Platform Ekosistemi",
     "title": "Tek Platform,",
@@ -795,12 +878,13 @@
   },
   "workflow": {
     "badge": "Nasıl Çalışır",
-    "title": "Fikirden Uygulamaya",
-    "subtitle": "Kişiselleştirilmiş destek ve uzman rehberliği ile dijital dönüşüm yolculuğunuzun her adımında size rehberlik ediyoruz.",
+    "title": "Plandan Lansmana",
+    "subtitle": "İki bina birbirinin aynısı değildir — yazılımınız da öyle. Gereksinimleri belgeliyor, ayrıntıları özelleştiriyor ve operasyonunuza uyan bir platform sunuyoruz.",
     "steps": {
       "blueprint": {
         "title": "Plan Tasarımı",
-        "description": "Binanızın ihtiyaçlarına göre özelleştirilmiş mükemmel çözümü tasarlamak için sizinle işbirliği yapıyoruz.",
+        "description": "İhtiyaçlarınızı analiz eder ve ayrıntılı bir plan oluştururuz",
+        "url": "app.propertycareapp.com/wireframe",
         "features": {
           "1": "Gereksinim Analizi",
           "2": "Özel Wireframe'ler",
@@ -809,7 +893,8 @@
       },
       "design": {
         "title": "UI ve UX Tasarımı",
-        "description": "Tasarımcılarımız marka kimliğinize uygun çarpıcı bir arayüz oluşturur.",
+        "description": "Size özel güzel ve sezgisel arayüzler",
+        "url": "app.propertycareapp.com/dashboard",
         "features": {
           "1": "Marka Entegrasyonu",
           "2": "Mobil Öncelikli Tasarım",
@@ -818,7 +903,8 @@
       },
       "delivery": {
         "title": "Teslimat ve Eğitim",
-        "description": "Tüm ekibiniz için kapsamlı eğitimle sorunsuz devir.",
+        "description": "Kapsamlı eğitimle sorunsuz devreye alma",
+        "url": "app.propertycareapp.com/maintenance",
         "features": {
           "1": "Canlı Eğitim Oturumları",
           "2": "Dokümantasyon",
@@ -827,12 +913,73 @@
       },
       "support": {
         "title": "Sürekli Destek",
-        "description": "Başarınızı sağlamak için yapay zeka destekli 7/24 destek.",
+        "description": "Her şeyin sorunsuz çalışması için 7/24 yardım",
+        "url": "app.propertycareapp.com/support",
         "features": {
           "1": "Yapay Zeka Asistanı",
           "2": "Bilet Sistemi",
           "3": "Telefon ve Sohbet"
         }
+      }
+    },
+    "mockups": {
+      "shared": {
+        "sidebar": {
+          "dashboard": "Panel",
+          "tenants": "Kiracılar",
+          "bookings": "Rezervasyonlar",
+          "settings": "Ayarlar"
+        },
+        "statuses": {
+          "active": "Aktif",
+          "maintenance": "Bakımda",
+          "available": "Müsait"
+        },
+        "properties": [
+          { "name": "Sunset Apartments", "statusKey": "active", "units": 24, "occupancy": 92 },
+          { "name": "Harbor View Tower", "statusKey": "maintenance", "units": 18, "occupancy": 78 },
+          { "name": "Garden Residences", "statusKey": "available", "units": 32, "occupancy": 100 }
+        ],
+        "units": "birim",
+        "occupancyShort": "% doluluk"
+      },
+      "design": {
+        "dashboardTitle": "Mülk Paneli",
+        "pageTitle": "Mülklerim",
+        "pageSubtitle": "Mülk portföyünüzü yönetin",
+        "stats": {
+          "totalUnits": { "label": "Toplam Birim", "value": "74" },
+          "occupancy": { "label": "Doluluk", "value": "%89" },
+          "revenue": { "label": "Gelir", "value": "42 B $" },
+          "requests": { "label": "Talepler", "value": "12" }
+        }
+      },
+      "delivery": {
+        "requestTitle": "Bakım Talebi",
+        "requestId": "#MR-2847",
+        "issueTitle": "Klima Ünitesi Soğutmuyor",
+        "issueLocation": "Daire 4B - Sunset Apartments",
+        "progressLabel": "İlerleme",
+        "overallProgress": "Genel İlerleme",
+        "progressPercent": "%75",
+        "timeline": {
+          "reported": "Bildirildi",
+          "assigned": "Atandı",
+          "inProgress": "Devam Ediyor",
+          "complete": "Tamamlandı"
+        }
+      },
+      "support": {
+        "chatTitle": "Destek Sohbeti",
+        "chatStatus": "Çevrimiçi - Ort. yanıt <2 dk",
+        "messages": [
+          { "type": "user", "text": "Merhaba, 3A dairesinde kiracı sızıntı bildiriyor" },
+          { "type": "support", "text": "Merhaba! Yardımcı olabilirim. Bakım kuyruğunuzu kontrol edeyim." },
+          { "type": "user", "text": "Bugün müsait bir tesisatçı var mı?" },
+          { "type": "support", "text": "Evet! Mike (Tesisatçı) saat 14:00 için atandı. Kiracı bilgilendirildi." }
+        ],
+        "uptime": { "value": "%99,9", "label": "Çalışma Süresi" },
+        "response": { "value": "<2 dk", "label": "Yanıt" }
       }
     },
     "stats": {

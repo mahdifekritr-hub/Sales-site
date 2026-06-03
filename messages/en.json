@@ -241,10 +241,10 @@
     }
   },
   "footer": {
-    "description": "Simplify residential building management with Property Care App – a smart SaaS solution designed for seamless maintenance, resident communication, and service request tracking. Stay organized, enhance efficiency, and ensure hassle-free property care with our innovative platform.",
+    "description": "PropertyCareApp is an all-in-one platform for residential and commercial towers — managing sales, leasing, maintenance, residents, and AI-powered operations from a single, fully customized workspace.",
     "categories": {
       "products": "Products",
-      "company": "Company",
+      "company": "Who We Serve",
       "resources": "Resources",
       "platforms": "Platforms"
     },
@@ -552,6 +552,91 @@
       }
     }
   },
+  "homeFeaturesScroll": {
+    "badge": "Features",
+    "headline": "Seamless Selling Experience",
+    "cardCount": "04",
+    "cards": {
+      "selling": {
+        "num": "01",
+        "title": "Explore Your Tower, Floor by Floor",
+        "description": "A CRM that manages listings, tracks inquiries, sends proposals, and hands off smoothly to other teams without third-party tools.",
+        "pills": ["Referral links", "Book Visits", "Manage payments", "Ask inquirires"],
+        "cta": "Explore Selling"
+      },
+      "workorder": {
+        "num": "02",
+        "title": "Work Orders That Flow",
+        "description": "Every maintenance request — assigned, tracked, and resolved in one place. No lost tickets, no missed deadlines, no calls to chase updates.",
+        "pills": ["Unlimited inventory", "Status tracking", "AI Agent", "Vendor management"],
+        "cta": "Explore Work Orders"
+      },
+      "aichat": {
+        "num": "03",
+        "title": "AI Agent",
+        "description": "Your AI assistant everywhere on the platform, always with you — your tenants and owners.",
+        "pills": ["Instant responses", "Ask mode", "Agent mode", "Always online in chat groups — helping residents"],
+        "cta": "Explore AI Chat"
+      },
+      "reservation": {
+        "num": "04",
+        "title": "Book a Viewing in Seconds",
+        "description": "Buyers pick their preferred time, agents get notified instantly — no back-and-forth, no missed opportunities. Every viewing scheduled, tracked, and managed from one place.",
+
+
+        "pills": ["Online booking", "Google calendar sync", "Auto reminders", "Confirmation flow"],
+        "cta": "Explore Reservations"
+      }
+    },
+    "mockups": {
+      "tower": {
+        "altTower": "Luxury Tower",
+        "altFloorPlan": "Floor Plan"
+      },
+      "workOrder": {
+        "title": "Work Orders",
+        "newOrder": "+ New Order",
+        "columns": {
+          "unit": "Unit",
+          "issue": "Issue",
+          "assignee": "Assigned To",
+          "dueDate": "Due Date",
+          "status": "Status"
+        },
+        "statuses": {
+          "inProgress": "In Progress",
+          "completed": "Completed",
+          "pending": "Pending"
+        },
+        "rows": [
+          { "unit": "Unit 4B", "issue": "Leaky faucet", "assignee": "John M.", "due": "May 22", "statusKey": "inProgress" },
+          { "unit": "Unit 2A", "issue": "AC not cooling", "assignee": "Sara K.", "due": "May 20", "statusKey": "completed" },
+          { "unit": "Unit 7C", "issue": "Broken lock", "assignee": "—", "due": "May 25", "statusKey": "pending" },
+          { "unit": "Unit 1D", "issue": "Water heater", "assignee": "John M.", "due": "May 28", "statusKey": "pending" },
+          { "unit": "Unit 5F", "issue": "Window seal", "assignee": "Mike T.", "due": "May 19", "statusKey": "completed" }
+        ]
+      },
+      "aiChat": {
+        "title": "AI Assistant",
+        "online": "Online",
+        "messages": [
+          { "role": "ai", "text": "Hi! I'm here to help you find your perfect home. What are you looking for?" },
+          { "role": "user", "text": "Is Unit 3A still available?" },
+          { "role": "ai", "text": "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?" },
+          { "role": "user", "text": "Yes please!" },
+          { "role": "ai", "text": "Great! Connecting you with our team. You'll get a confirmation shortly." }
+        ]
+      },
+      "reservation": {
+        "title": "Book a Tour — May 2026",
+        "weekdays": ["M", "T", "W", "T", "F", "S", "S"],
+        "availableTimes": "Available times — May {day}",
+        "times": ["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"],
+        "confirmBooking": "Confirm Booking",
+        "demoSelectedTime": "11:30 AM"
+      }
+    }
+  },
   "platformOverview": {
     "badge": "Platform Ecosystem",
     "title": "One Platform,",
@@ -599,8 +684,8 @@
     "headlineLine2": "without the traditional hassles",
     "descriptionLine1": "Automate your sales, rentals, and maintenance.",
     "descriptionLine2": "Focus on growing revenue and client satisfaction.",
-    "tabHirer": "Products",
-    "tabTalent": "AI Features",
+    "tabHirer": "Sales ",
+    "tabTalent": "Maintenance ",
     "exploreModule": "Explore Module",
     "customSolution": "Need a custom solution? We tailor our platform to your specific requirements.",
     "startTrial": "Start Free Trial",
@@ -796,12 +881,13 @@
   },
   "workflow": {
     "badge": "How It Works",
-    "title": "From Idea to Implementation",
-    "subtitle": "We guide you through every step of your digital transformation journey with personalized support and expert guidance.",
+    "title": "From Blueprint to Launch",
+    "subtitle": "No two buildings are the same — and neither is your software. We document requirements, customize details, and deliver a platform that fits your operation.",
     "steps": {
       "blueprint": {
         "title": "Blueprint Design",
-        "description": "We collaborate with you to design the perfect solution tailored to your building's needs.",
+        "description": "We analyze your needs and create a detailed plan",
+        "url": "app.propertycareapp.com/wireframe",
         "features": {
           "1": "Requirements Analysis",
           "2": "Custom Wireframes",
@@ -810,7 +896,8 @@
       },
       "design": {
         "title": "UI & UX Design",
-        "description": "Our designers create a stunning interface that matches your brand identity.",
+        "description": "Your platform, your brand. Every screen is designed around",
+        "url": "app.propertycareapp.com/dashboard",
         "features": {
           "1": "Brand Integration",
           "2": "Mobile-First Design",
@@ -819,7 +906,8 @@
       },
       "delivery": {
         "title": "Delivery & Training",
-        "description": "Smooth handover with comprehensive training for your entire team.",
+        "description": "We deploy, configure, and train your team — so day one feels like you've been using it for years.",
+        "url": "app.propertycareapp.com/maintenance",
         "features": {
           "1": "Live Training Sessions",
           "2": "Documentation",
@@ -828,12 +916,73 @@
       },
       "support": {
         "title": "Ongoing Support",
-        "description": "24/7 support with AI assistance to ensure your success.",
+        "description": "Your business evolves. We evolve with it",
+        "url": "app.propertycareapp.com/support",
         "features": {
           "1": "AI Assistant",
           "2": "Ticket System",
           "3": "Phone & Chat"
         }
+      }
+    },
+    "mockups": {
+      "shared": {
+        "sidebar": {
+          "dashboard": "Dashboard",
+          "tenants": "Tenants",
+          "bookings": "Bookings",
+          "settings": "Settings"
+        },
+        "statuses": {
+          "active": "Active",
+          "maintenance": "Maintenance",
+          "available": "Available"
+        },
+        "properties": [
+          { "name": "Sunset Apartments", "statusKey": "active", "units": 24, "occupancy": 92 },
+          { "name": "Harbor View Tower", "statusKey": "maintenance", "units": 18, "occupancy": 78 },
+          { "name": "Garden Residences", "statusKey": "available", "units": 32, "occupancy": 100 }
+        ],
+        "units": "units",
+        "occupancyShort": "% occ."
+      },
+      "design": {
+        "dashboardTitle": "Dashboard",
+        "pageTitle": "My Properties",
+        "pageSubtitle": "Real-time overview of your building's performance",
+        "stats": {
+          "totalUnits": { "label": "Total Units", "value": "74" },
+          "occupancy": { "label": "Sold Out", "value": "89%" },
+          "revenue": { "label": "Revenue", "value": "$2.4M" },
+          "requests": { "label": "Requests", "value": "12" }
+        }
+      },
+      "delivery": {
+        "requestTitle": "Publishing Software",
+        "requestId": "#MR-2847",
+        "issueTitle": "Publishing applications",
+        "issueLocation": "On Google Play and App Store",
+        "progressLabel": "Progress",
+        "overallProgress": "Overall Progress",
+        "progressPercent": "75%",
+        "timeline": {
+          "reported": "Deployed",
+          "assigned": "Configured",
+          "inProgress": "Trained",
+          "complete": "Done"
+        }
+      },
+      "support": {
+        "chatTitle": "Support Chat",
+        "chatStatus": "Online - Avg response <2min",
+        "messages": [
+          { "type": "user", "text": "Hi, We need a new custom module for our building" },
+          { "type": "support", "text": "Hi! I can help with that. Let me check our development queue." },
+          { "type": "user", "text": "When can we expect it?" },
+          { "type": "support", "text": "We're aiming for the end of the month. We'll keep you updated on the progress." }
+        ],
+        "uptime": { "value": "99.9%", "label": "Uptime" },
+        "response": { "value": "<2min", "label": "Response" }
       }
     },
     "stats": {
@@ -863,18 +1012,18 @@
   },
   "homeCTA": {
     "badge": "Get Started Today",
-    "title": "Ready to Transform",
-    "titleHighlight": "Your Property Management?",
-    "subtitle": "Join thousands of property managers who have already streamlined their operations with PropertyCare. Start your free trial today.",
+    "title": "Your Building Deserves Better",
+    "titleHighlight": "Than Spreadsheets.",
+    "subtitle": "From the first lead to the last service request — everything runs smoother with a platform built for your building.",
     "startTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
     "noCredit": "No credit card required",
-    "freeSetup": "Free setup assistance",
-    "cancelAnytime": "Cancel anytime"
+    "freeSetup": "Fully customized",
+    "cancelAnytime": "Dedicated support from day one"
   },
   "homeIntegrations": {
     "badge": "Integrations",
-    "title": "Works With Your Favorite Tools",
-    "subtitle": "Seamlessly connect with the services you already use and love."
+    "title": "Integrations with your favorite tools",
+    "subtitle": "No switching, no friction. Your tools plug right in and work from day one."
   }
 }

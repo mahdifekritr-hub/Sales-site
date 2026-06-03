@@ -4,53 +4,57 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useInView, AnimatePresence } from "framer-motion";
 import { Building2, MapPin, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { PRODUCT_NAV_ITEMS } from "@/lib/product-nav-links";
 
-const CARDS = [
+const productHref = (key: (typeof PRODUCT_NAV_ITEMS)[number]["key"]) =>
+  PRODUCT_NAV_ITEMS.find((item) => item.key === key)!.href;
+
+const CARD_KEYS = ["selling", "workorder", "aichat", "reservation"] as const;
+
+type FeatureCardKey = (typeof CARD_KEYS)[number];
+
+const CARD_CONFIG: Record<
+  FeatureCardKey,
   {
-    num: "01",
-    title: "Seamless Selling Experience",
-    desc: "A CRM that manages listings, tracks inquiries, sends proposals, and hands off smoothly to other teams without third-party tools.",
-    pills: ["Higher conversions", "Fewer handoffs", "Less manual work", "Native to platform"],
-    cta: "Explore Selling",
-    bgColor: "#f5f5f0", // Mint green
+    mockup: FeatureCardKey;
+    href: string;
+    bgColor: string;
+    dotColor: string;
+    btnColor: string;
+  }
+> = {
+  selling: {
+    mockup: "selling",
+    href: productHref("salesRentals"),
+    bgColor: "#f5f5f0",
     dotColor: "#2e7d32",
     btnColor: "#1b5e20",
-    mockup: "selling",
   },
-  {
-    num: "02",
-    title: "Work Orders That Flow",
-    desc: "Track, assign, and resolve maintenance requests in one place with automated workflows and real-time status updates.",
-    pills: ["Quick assignment", "Status tracking", "Photo uploads", "Vendor management"],
-    cta: "Explore Work Orders",
-    bgColor: "#f0eef8", // Light blue
+  workorder: {
+    mockup: "workorder",
+    href: productHref("maintenance"),
+    bgColor: "#f0eef8",
     dotColor: "#1565c0",
     btnColor: "#0d47a1",
-    mockup: "workorder",
   },
-  {
-    num: "03",
-    title: "AI Chat That Converts",
-    desc: "Answer tenant and buyer questions instantly — 24/7 — with an AI assistant trained on your properties and policies.",
-    pills: ["Instant responses", "Lead qualification", "Handoff to agent", "Multi-language"],
-    cta: "Explore AI Chat",
-    bgColor: "#f0f5f5", // Peach
+  aichat: {
+    mockup: "aichat",
+    href: productHref("communication"),
+    bgColor: "#f0f5f5",
     dotColor: "#e65100",
     btnColor: "#bf360c",
-    mockup: "aichat",
   },
-  {
-    num: "04",
-    title: "Reservations Made Simple",
-    desc: "Let prospects book property tours directly from your listing with automatic calendar sync and confirmation flow.",
-    pills: ["Online booking", "Calendar sync", "Auto reminders", "Confirmation flow"],
-    cta: "Explore Reservations",
-    bgColor: "#faf5f5", // Lavender
+  reservation: {
+    mockup: "reservation",
+    href: productHref("salesRentals"),
+    bgColor: "#faf5f5",
     dotColor: "#7b1fa2",
     btnColor: "#4a148c",
-    mockup: "reservation",
   },
-];
+};
+
+type FeatureCardConfig = (typeof CARD_CONFIG)[FeatureCardKey];
 
 // Card dimensions
 const CARD_WIDTH_VW = 85;
@@ -80,7 +84,7 @@ export function HorizontalScrollSection() {
     const vw = window.innerWidth / 100;
     // Account for maxWidth: 1200px constraint on cards
     const cardWidth = Math.min(CARD_WIDTH_VW * vw, 1200);
-    const totalCardsWidth = CARDS.length * cardWidth + (CARDS.length - 1) * CARD_GAP_PX;
+    const totalCardsWidth = CARD_KEYS.length * cardWidth + (CARD_KEYS.length - 1) * CARD_GAP_PX;
     const initialPadding = INITIAL_PADDING_VW * vw;
     // Max scroll = total content width - viewport width + initial padding
     // This ensures the last card's right edge aligns with viewport right edge
@@ -311,22 +315,32 @@ export function HorizontalScrollSection() {
           className="flex flex-row items-center gap-6 h-full pb-12"
           style={{ x: smoothX, paddingLeft: `${INITIAL_PADDING_VW}vw` }}
         >
-          {CARDS.map((card, i) => (
-            <SolutionCard key={i} card={card} index={i} />
+          {CARD_KEYS.map((key, i) => (
+            <SolutionCard key={key} cardKey={key} config={CARD_CONFIG[key]} index={i} />
           ))}
         </motion.div>
 
         {/* Progress dots */}
-        <ProgressDots progress={progress} count={4} />
+        <ProgressDots progress={progress} count={CARD_KEYS.length} />
       </div>
     </section>
   );
 }
 
 /* ─── Solution Card ─────────────────────────────────────── */
-function SolutionCard({ card, index }: { card: typeof CARDS[0]; index: number }) {
+function SolutionCard({
+  cardKey,
+  config,
+  index,
+}: {
+  cardKey: FeatureCardKey;
+  config: FeatureCardConfig;
+  index: number;
+}) {
+  const t = useTranslations("homeFeaturesScroll");
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+  const pills = t.raw(`cards.${cardKey}.pills`) as string[];
 
   return (
     <div
@@ -338,7 +352,7 @@ function SolutionCard({ card, index }: { card: typeof CARDS[0]; index: number })
         height: "85vh",
         minHeight: "600px",
         maxHeight: "750px",
-        backgroundColor: card.bgColor,
+        backgroundColor: config.bgColor,
       }}
     >
       <div className="flex flex-col lg:flex-row h-full p-8 lg:p-12 xl:p-16 gap-8 lg:gap-12">
@@ -348,11 +362,11 @@ function SolutionCard({ card, index }: { card: typeof CARDS[0]; index: number })
             {/* Section header - only on first card */}
             {index === 0 && (
               <div className="mb-4">
-                <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: card.dotColor }}>
-                  Features
+                <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: config.dotColor }}>
+                  {t("badge")}
                 </p>
                 <h2 className="text-xl lg:text-2xl font-medium text-gray-900 leading-tight">
-                  A super-powered system, working together.
+                  {t("headline")}
                 </h2>
               </div>
             )}
@@ -360,31 +374,31 @@ function SolutionCard({ card, index }: { card: typeof CARDS[0]; index: number })
             {/* Card number */}
             <span
               className="text-[10px] font-medium rounded-full px-3 py-1 w-fit"
-              style={{ backgroundColor: "rgba(255,255,255,0.6)", color: card.dotColor }}
+              style={{ backgroundColor: "rgba(255,255,255,0.6)", color: config.dotColor }}
             >
-              {card.num} / 04
+              {t(`cards.${cardKey}.num`)} / {t("cardCount")}
             </span>
 
             {/* Title */}
             <h3 className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
-              {card.title}
+              {t(`cards.${cardKey}.title`)}
             </h3>
 
             {/* Description */}
             <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-md">
-              {card.desc}
+              {t(`cards.${cardKey}.description`)}
             </p>
 
             {/* Pills - vertically stacked */}
             <div className="flex flex-col gap-2 mt-2">
-              {card.pills.map((pill) => (
+              {pills.map((pill) => (
                 <span
                   key={pill}
                   className="inline-flex items-center gap-2 text-sm text-gray-700 bg-white/80 border border-gray-200/60 rounded-full px-4 py-2 w-fit shadow-sm"
                 >
                   <span
                     className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: card.dotColor }}
+                    style={{ backgroundColor: config.dotColor }}
                   />
                   {pill}
                 </span>
@@ -392,20 +406,21 @@ function SolutionCard({ card, index }: { card: typeof CARDS[0]; index: number })
             </div>
           </div>
 
-          {/* CTA Button - at bottom */}
-          <button
+          {/* CTA — links to product pages (same routes as navbar) */}
+          <Link
+            href={config.href}
             className="mt-8 flex items-center gap-2 text-white text-sm font-medium px-6 py-3 rounded-full w-fit transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            style={{ backgroundColor: card.btnColor }}
+            style={{ backgroundColor: config.btnColor }}
           >
-            {card.cta}
+            {t(`cards.${cardKey}.cta`)}
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         {/* RIGHT: Mockup - 60% */}
         <div className="flex-1 flex items-center justify-center lg:justify-end">
           <div className="w-full max-w-[650px] h-full max-h-[550px] bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] overflow-hidden">
-            <MockupContent type={card.mockup} isInView={isInView} index={index} />
+            <MockupContent type={config.mockup} isInView={isInView} index={index} />
           </div>
         </div>
       </div>
@@ -458,11 +473,11 @@ function DotItem({ index, count, progress }: { index: number; count: number; pro
 
 /* ─── Mockup Content Router ──────────────────────────────── */
 function MockupContent({ type, isInView, index }: { type: string; isInView: boolean; index: number }) {
-  const t = useTranslations("solutions");
+  const tSolutions = useTranslations("solutions");
 
   switch (type) {
     case "selling":
-      return <TowerVisual t={t} isInView={isInView} />;
+      return <TowerVisual t={tSolutions} isInView={isInView} />;
     case "workorder":
       return <WorkOrderMockup isInView={isInView} />;
     case "aichat":
@@ -476,6 +491,7 @@ function MockupContent({ type, isInView, index }: { type: string; isInView: bool
 
 /* ─── Mockup 1: Premium Tower Visual for Seamless Selling Experience ─ */
 function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: boolean }) {
+  const tScroll = useTranslations("homeFeaturesScroll.mockups.tower");
   const ref = useRef<HTMLDivElement>(null);
   const [currentFloor, setCurrentFloor] = useState(0);
   const [showPanel, setShowPanel] = useState(false);
@@ -562,7 +578,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
             <div className="relative h-[390px] w-[220px] lg:h-[510px] lg:w-[300px]">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/borj3-GOVntnDxvMKrenVM4ZQgDXjbqZl2lU.png"
-                alt="Luxury Tower"
+                alt={tScroll("altTower")}
                 className="h-full w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
               />
 
@@ -662,7 +678,7 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
                   >
                     <img
                       src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final_unit-a4G7TxEW0vgXh4gdDQabkSgKeElGbs.jpg"
-                      alt="Floor Plan"
+                      alt={tScroll("altFloorPlan")}
                       className="w-full h-auto object-contain"
                     />
 
@@ -748,13 +764,20 @@ function TowerVisual({ t, isInView }: { t: (key: string) => string; isInView: bo
 
 /* ─── Mockup 2: Work Orders (Slide-in animation) ─────────── */
 function WorkOrderMockup({ isInView }: { isInView: boolean }) {
-  const rows = [
-    { unit: "Unit 4B", issue: "Leaky faucet", assignee: "John M.", due: "May 22", status: "In Progress", statusColor: "bg-amber-100 text-amber-700" },
-    { unit: "Unit 2A", issue: "AC not cooling", assignee: "Sara K.", due: "May 20", status: "Completed", statusColor: "bg-green-100 text-green-700" },
-    { unit: "Unit 7C", issue: "Broken lock", assignee: "—", due: "May 25", status: "Pending", statusColor: "bg-gray-100 text-gray-600" },
-    { unit: "Unit 1D", issue: "Water heater", assignee: "John M.", due: "May 28", status: "Pending", statusColor: "bg-gray-100 text-gray-600" },
-    { unit: "Unit 5F", issue: "Window seal", assignee: "Mike T.", due: "May 19", status: "Completed", statusColor: "bg-green-100 text-green-700" },
-  ];
+  const t = useTranslations("homeFeaturesScroll.mockups.workOrder");
+  const rows = t.raw("rows") as Array<{
+    unit: string;
+    issue: string;
+    assignee: string;
+    due: string;
+    statusKey: string;
+  }>;
+
+  const statusStyles: Record<string, string> = {
+    inProgress: "bg-amber-100 text-amber-700",
+    completed: "bg-green-100 text-green-700",
+    pending: "bg-gray-100 text-gray-600",
+  };
 
   return (
     <div className="h-full p-6 lg:p-8 flex flex-col">
@@ -764,9 +787,9 @@ function WorkOrderMockup({ isInView }: { isInView: boolean }) {
         transition={{ duration: 0.4 }}
         className="flex justify-between items-center pb-4 border-b border-gray-100"
       >
-        <span className="text-base font-semibold text-gray-800">Work Orders</span>
-        <button className="text-xs bg-blue-700 text-white rounded-full px-4 py-1.5 font-medium">
-          + New Order
+        <span className="text-base font-semibold text-gray-800">{t("title")}</span>
+        <button type="button" className="text-xs bg-blue-700 text-white rounded-full px-4 py-1.5 font-medium">
+          {t("newOrder")}
         </button>
       </motion.div>
 
@@ -776,17 +799,17 @@ function WorkOrderMockup({ isInView }: { isInView: boolean }) {
         transition={{ delay: 0.2, duration: 0.4 }}
         className="grid grid-cols-5 text-xs text-gray-400 font-medium py-3 border-b border-gray-50"
       >
-        <span>Unit</span>
-        <span>Issue</span>
-        <span>Assigned To</span>
-        <span>Due Date</span>
-        <span>Status</span>
+        <span>{t("columns.unit")}</span>
+        <span>{t("columns.issue")}</span>
+        <span>{t("columns.assignee")}</span>
+        <span>{t("columns.dueDate")}</span>
+        <span>{t("columns.status")}</span>
       </motion.div>
 
       <div className="flex-1 overflow-hidden">
         {rows.map((r, i) => (
           <motion.div
-            key={i}
+            key={`${r.unit}-${i}`}
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{
@@ -800,8 +823,10 @@ function WorkOrderMockup({ isInView }: { isInView: boolean }) {
             <span className="text-gray-600">{r.issue}</span>
             <span className="text-gray-600">{r.assignee}</span>
             <span className="text-gray-600">{r.due}</span>
-            <span className={`text-xs px-3 py-1 rounded-full font-medium w-fit ${r.statusColor}`}>
-              {r.status}
+            <span
+              className={`text-xs px-3 py-1 rounded-full font-medium w-fit ${statusStyles[r.statusKey] ?? statusStyles.pending}`}
+            >
+              {t(`statuses.${r.statusKey}`)}
             </span>
           </motion.div>
         ))}
@@ -812,16 +837,10 @@ function WorkOrderMockup({ isInView }: { isInView: boolean }) {
 
 /* ─── Mockup 3: AI Chat (Typing animation) ───────────────── */
 function AIChatMockup({ isInView }: { isInView: boolean }) {
+  const t = useTranslations("homeFeaturesScroll.mockups.aiChat");
+  const messages = t.raw("messages") as Array<{ role: "ai" | "user"; text: string }>;
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
-
-  const messages = [
-    { role: "ai", text: "Hi! I'm here to help you find your perfect home. What are you looking for?" },
-    { role: "user", text: "Is Unit 3A still available?" },
-    { role: "ai", text: "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?" },
-    { role: "user", text: "Yes please!" },
-    { role: "ai", text: "Great! Connecting you with our team. You'll get a confirmation shortly." },
-  ];
 
   useEffect(() => {
     if (!isInView) {
@@ -856,10 +875,10 @@ function AIChatMockup({ isInView }: { isInView: boolean }) {
   return (
     <div className="h-full p-6 lg:p-8 flex flex-col">
       <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-        <span className="text-base font-semibold text-gray-800">AI Assistant</span>
+        <span className="text-base font-semibold text-gray-800">{t("title")}</span>
         <span className="text-xs text-orange-600 flex items-center gap-1.5 font-medium">
           <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-          Online
+          {t("online")}
         </span>
       </div>
 
@@ -917,6 +936,10 @@ function AIChatMockup({ isInView }: { isInView: boolean }) {
 
 /* ─── Mockup 4: Reservations (Staggered reveal) ──────────── */
 function ReservationMockup({ isInView }: { isInView: boolean }) {
+  const t = useTranslations("homeFeaturesScroll.mockups.reservation");
+  const weekdays = t.raw("weekdays") as string[];
+  const times = t.raw("times") as string[];
+  const demoSelectedTime = t("demoSelectedTime");
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
@@ -927,7 +950,6 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
     19, 20, 21, 22, 23, 24, 25,
   ];
   const available = new Set([7, 9, 12, 14, 15, 16, 20, 22]);
-  const times = ["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"];
 
   useEffect(() => {
     if (!isInView) {
@@ -937,13 +959,13 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
     }
 
     const timer1 = setTimeout(() => setSelectedDay(15), 1000);
-    const timer2 = setTimeout(() => setSelectedTime("11:30 AM"), 1800);
+    const timer2 = setTimeout(() => setSelectedTime(demoSelectedTime), 1800);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [isInView]);
+  }, [isInView, demoSelectedTime]);
 
   return (
     <div className="h-full p-6 lg:p-8 flex flex-col">
@@ -953,7 +975,7 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
         transition={{ duration: 0.4 }}
         className="flex justify-between items-center pb-4 border-b border-gray-100"
       >
-        <span className="text-base font-semibold text-gray-800">Book a Tour — May 2026</span>
+        <span className="text-base font-semibold text-gray-800">{t("title")}</span>
       </motion.div>
 
       {/* Calendar header */}
@@ -963,8 +985,8 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
         transition={{ delay: 0.2, duration: 0.4 }}
         className="grid grid-cols-7 text-xs text-center text-gray-400 font-medium py-3"
       >
-        {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
-          <span key={i}>{d}</span>
+        {weekdays.map((day, i) => (
+          <span key={i}>{day}</span>
         ))}
       </motion.div>
 
@@ -1002,20 +1024,22 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
         transition={{ duration: 0.4 }}
         className="mt-4"
       >
-        <p className="text-xs text-gray-500 mb-2">Available times — May {selectedDay}</p>
+        <p className="text-xs text-gray-500 mb-2">
+          {selectedDay != null ? t("availableTimes", { day: selectedDay }) : ""}
+        </p>
         <div className="flex gap-2 flex-wrap">
-          {times.map((t, i) => (
+          {times.map((timeSlot, i) => (
             <motion.span
-              key={t}
+              key={timeSlot}
               initial={{ opacity: 0, y: 10 }}
               animate={isInView && selectedDay ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.1, duration: 0.3 }}
-              className={`text-sm px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${t === selectedTime
+              className={`text-sm px-4 py-2 rounded-full border cursor-pointer transition-all duration-200 ${timeSlot === selectedTime
                 ? "bg-purple-700 text-white border-purple-700 shadow-md"
                 : "text-gray-600 border-gray-200 hover:border-purple-300"
                 }`}
             >
-              {t}
+              {timeSlot}
             </motion.span>
           ))}
         </div>
@@ -1023,12 +1047,13 @@ function ReservationMockup({ isInView }: { isInView: boolean }) {
 
       {/* Confirm button */}
       <motion.button
+        type="button"
         initial={{ opacity: 0, y: 10 }}
         animate={isInView && selectedTime ? { opacity: 1, y: 0 } : { opacity: 0 }}
         transition={{ delay: 0.3, duration: 0.4 }}
         className="mt-auto flex items-center gap-2 bg-purple-700 text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit hover:bg-purple-800 transition-colors"
       >
-        Confirm Booking
+        {t("confirmBooking")}
         <ArrowRight className="w-4 h-4" />
       </motion.button>
     </div>

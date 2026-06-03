@@ -5,19 +5,9 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { Building2, Instagram, Linkedin, Youtube } from "lucide-react";
+import { PRODUCT_NAV_ITEMS } from "@/lib/product-nav-links";
 
 const footerLinksData = {
-  Products: {
-    key: "products",
-    links: [
-      { key: "rentalSales", href: "#" },
-      { key: "workOrders", href: "https://propertycareapp.com/maintenance/" },
-      { key: "assetsParts", href: "https://propertycareapp.com/assets-parts/" },
-      { key: "communication", href: "https://propertycareapp.com/communication/" },
-      { key: "crmCustomerCare", href: "https://propertycareapp.com/crm/" },
-      { key: "realStateFiling", href: "#" },
-    ],
-  },
   Company: {
     key: "company",
     links: [
@@ -62,18 +52,53 @@ const socialLinks = [
   { icon: Youtube, href: "https://www.youtube.com/@PropertyCareApp", label: "YouTube" },
 ];
 
+function FooterLinkItem({ name, href }: { name: string; href: string }) {
+  const className =
+    "text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground";
+
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className}>
+        {name}
+      </Link>
+    );
+  }
+
+  if (!href) {
+    return <span className={className}>{name}</span>;
+  }
+
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {name}
+    </a>
+  );
+}
+
 export function Footer() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const t = useTranslations("footer");
+  const tNavbar = useTranslations("navbar");
 
-  const footerLinks = Object.entries(footerLinksData).map(([category, data]) => ({
-    category: t(`categories.${data.key}`),
-    links: data.links.map(link => ({
-      name: t(`${data.key}.${link.key}`),
-      href: link.href,
+  const productLinks = {
+    category: t("categories.products"),
+    links: PRODUCT_NAV_ITEMS.map((item) => ({
+      name: tNavbar(`productItems.${item.key}`),
+      href: item.href,
     })),
-  }));
+  };
+
+  const footerLinks = [
+    productLinks,
+    ...Object.entries(footerLinksData).map(([, data]) => ({
+      category: t(`categories.${data.key}`),
+      links: data.links.map((link) => ({
+        name: t(`${data.key}.${link.key}`),
+        href: link.href,
+      })),
+    })),
+  ];
 
   return (
     <footer className="relative border-t border-border/50 bg-secondary/20" ref={ref}>
@@ -123,12 +148,7 @@ export function Footer() {
               <ul className="space-y-2 sm:space-y-3">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-xs sm:text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {link.name}
-                    </a>
+                    <FooterLinkItem name={link.name} href={link.href} />
                   </li>
                 ))}
               </ul>

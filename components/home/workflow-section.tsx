@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import {
   FileText,
   Palette,
@@ -21,53 +21,49 @@ import {
 
 const ACCENT_COLOR = "#701951";
 
-const steps = [
-  {
-    key: "blueprint",
-    icon: FileText,
-    title: "Blueprint Design",
-    description: "We analyze your needs and create a detailed plan",
-    url: "app.propertycareapp.com/wireframe",
-  },
-  {
-    key: "design",
-    icon: Palette,
-    title: "UI & UX Design",
-    description: "Beautiful, intuitive interfaces tailored to you",
-    url: "app.propertycareapp.com/dashboard",
-  },
-  {
-    key: "delivery",
-    icon: Rocket,
-    title: "Delivery & Training",
-    description: "Seamless deployment with comprehensive training",
-    url: "app.propertycareapp.com/maintenance",
-  },
-  {
-    key: "support",
-    icon: HeadphonesIcon,
-    title: "Ongoing Support",
-    description: "24/7 assistance to keep everything running smoothly",
-    url: "app.propertycareapp.com/support",
-  },
-];
+const STEP_KEYS = ["blueprint", "design", "delivery", "support"] as const;
 
-// Shared dashboard structure for consistent story
-const sidebarItems = [
-  { icon: Home, label: "Dashboard" },
-  { icon: Users, label: "Tenants" },
-  { icon: Calendar, label: "Bookings" },
-  { icon: Settings, label: "Settings" },
-];
+const STEP_ICONS: Record<(typeof STEP_KEYS)[number], typeof FileText> = {
+  blueprint: FileText,
+  design: Palette,
+  delivery: Rocket,
+  support: HeadphonesIcon,
+};
 
-const propertyCards = [
-  { name: "Sunset Apartments", status: "Active", units: 24, occupancy: 92 },
-  { name: "Harbor View Tower", status: "Maintenance", units: 18, occupancy: 78 },
-  { name: "Garden Residences", status: "Available", units: 32, occupancy: 100 },
-];
+const SIDEBAR_KEYS = ["dashboard", "tenants", "bookings", "settings"] as const;
+const SIDEBAR_ICONS = [Home, Users, Calendar, Settings] as const;
+
+type WorkflowProperty = {
+  name: string;
+  statusKey: string;
+  units: number;
+  occupancy: number;
+};
+
+type WorkflowStep = {
+  key: (typeof STEP_KEYS)[number];
+  icon: typeof FileText;
+  title: string;
+  description: string;
+  url: string;
+};
+
+type ChatMessage = { type: "user" | "support"; text: string };
+
+function useWorkflowShared() {
+  const t = useTranslations("workflow.mockups.shared");
+  const properties = t.raw("properties") as WorkflowProperty[];
+  const sidebarItems = SIDEBAR_KEYS.map((key, i) => ({
+    icon: SIDEBAR_ICONS[i],
+    label: t(`sidebar.${key}`),
+  }));
+
+  return { t, properties, sidebarItems };
+}
 
 // Tab 01 - Blueprint (Wireframe)
 function BlueprintMockup() {
+  const { sidebarItems, properties } = useWorkflowShared();
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
@@ -131,7 +127,7 @@ function BlueprintMockup() {
 
         {/* Property cards wireframe - 3 cards in a row */}
         <div className="grid grid-cols-3 gap-3">
-          {propertyCards.map((_, i) => (
+          {properties.map((_, i) => (
             <motion.div
               key={i}
               className="border-2 border-dashed border-gray-400 rounded-lg p-3 bg-gray-50"
@@ -195,6 +191,8 @@ function BlueprintMockup() {
 
 // Tab 02 - UI & UX Design (Fully designed dashboard)
 function UIDesignMockup() {
+  const t = useTranslations("workflow.mockups.design");
+  const { t: tShared, properties, sidebarItems } = useWorkflowShared();
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
@@ -210,10 +208,12 @@ function UIDesignMockup() {
   }, []);
 
   const statusColors: Record<string, { bg: string; text: string }> = {
-    Active: { bg: "#dcfce7", text: "#166534" },
-    Maintenance: { bg: "#fef3c7", text: "#92400e" },
-    Available: { bg: `${ACCENT_COLOR}15`, text: ACCENT_COLOR },
+    active: { bg: "#dcfce7", text: "#166534" },
+    maintenance: { bg: "#fef3c7", text: "#92400e" },
+    available: { bg: `${ACCENT_COLOR}15`, text: ACCENT_COLOR },
   };
+
+  const statKeys = ["totalUnits", "occupancy", "revenue", "requests"] as const;
 
   return (
     <div className="relative h-full w-full flex overflow-hidden bg-gray-50 rounded-lg">
@@ -252,7 +252,7 @@ function UIDesignMockup() {
           animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : -10 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-sm font-semibold text-gray-800">Property Dashboard</span>
+          <span className="text-sm font-semibold text-gray-800">{t("dashboardTitle")}</span>
           <div className="flex items-center gap-3">
             <Bell className="h-4 w-4 text-gray-400" />
             <div className="h-6 w-6 rounded-full bg-gray-200" />
@@ -266,15 +266,15 @@ function UIDesignMockup() {
           animate={{ opacity: phase >= 3 ? 1 : 0, y: phase >= 3 ? 0 : 10 }}
           transition={{ duration: 0.3 }}
         >
-          <h3 className="text-base font-bold text-gray-900">My Properties</h3>
-          <p className="text-xs text-gray-500">Manage your property portfolio</p>
+          <h3 className="text-base font-bold text-gray-900">{t("pageTitle")}</h3>
+          <p className="text-xs text-gray-500">{t("pageSubtitle")}</p>
         </motion.div>
 
         {/* Property cards - designed */}
         <div className="grid grid-cols-3 gap-3">
-          {propertyCards.map((card, i) => (
+          {properties.map((card, i) => (
             <motion.div
-              key={i}
+              key={card.name}
               className="bg-white rounded-lg border border-gray-200 overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: phase >= 4 ? 1 : 0, y: phase >= 4 ? 0 : 20 }}
@@ -292,16 +292,16 @@ function UIDesignMockup() {
                   <span 
                     className="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
                     style={{ 
-                      backgroundColor: statusColors[card.status].bg,
-                      color: statusColors[card.status].text
+                      backgroundColor: statusColors[card.statusKey].bg,
+                      color: statusColors[card.statusKey].text
                     }}
                   >
-                    {card.status}
+                    {tShared(`statuses.${card.statusKey}`)}
                   </span>
                 </div>
                 <div className="flex justify-between text-[10px] text-gray-500">
-                  <span>{card.units} units</span>
-                  <span>{card.occupancy}% occ.</span>
+                  <span>{card.units} {tShared("units")}</span>
+                  <span>{card.occupancy}{tShared("occupancyShort")}</span>
                 </div>
               </div>
             </motion.div>
@@ -315,15 +315,10 @@ function UIDesignMockup() {
           animate={{ opacity: phase >= 5 ? 1 : 0, y: phase >= 5 ? 0 : 10 }}
           transition={{ duration: 0.4 }}
         >
-          {[
-            { label: "Total Units", value: "74" },
-            { label: "Occupancy", value: "89%" },
-            { label: "Revenue", value: "$42K" },
-            { label: "Requests", value: "12" },
-          ].map((stat, i) => (
-            <div key={i} className="bg-white rounded-lg border border-gray-200 p-2 text-center">
-              <div className="text-sm font-bold text-gray-900">{stat.value}</div>
-              <div className="text-[9px] text-gray-500">{stat.label}</div>
+          {statKeys.map((key) => (
+            <div key={key} className="bg-white rounded-lg border border-gray-200 p-2 text-center">
+              <div className="text-sm font-bold text-gray-900">{t(`stats.${key}.value`)}</div>
+              <div className="text-[9px] text-gray-500">{t(`stats.${key}.label`)}</div>
             </div>
           ))}
         </motion.div>
@@ -334,6 +329,8 @@ function UIDesignMockup() {
 
 // Tab 03 - Delivery (Live & Working with maintenance panel)
 function DeliveryMockup() {
+  const t = useTranslations("workflow.mockups.delivery");
+  const { sidebarItems } = useWorkflowShared();
   const [phase, setPhase] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
 
@@ -350,10 +347,10 @@ function DeliveryMockup() {
   }, []);
 
   const timelineSteps = [
-    { label: "Reported", done: true },
-    { label: "Assigned", done: true },
-    { label: "In Progress", done: true },
-    { label: "Complete", done: false, pulsing: true },
+    { label: t("timeline.reported"), done: true },
+    { label: t("timeline.assigned"), done: true },
+    { label: t("timeline.inProgress"), done: true },
+    { label: t("timeline.complete"), done: false, pulsing: true },
   ];
 
   return (
@@ -410,8 +407,8 @@ function DeliveryMockup() {
                 <Settings className="h-4 w-4" style={{ color: ACCENT_COLOR }} />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-gray-900">Maintenance Request</h4>
-                <p className="text-[10px] text-gray-500">#MR-2847</p>
+                <h4 className="text-sm font-semibold text-gray-900">{t("requestTitle")}</h4>
+                <p className="text-[10px] text-gray-500">{t("requestId")}</p>
               </div>
             </div>
             {/* Notification badge */}
@@ -440,8 +437,8 @@ function DeliveryMockup() {
             animate={{ opacity: phase >= 3 ? 1 : 0 }}
             transition={{ delay: 0.2 }}
           >
-            <p className="text-xs font-medium text-gray-700">AC Unit Not Cooling</p>
-            <p className="text-[10px] text-gray-500 mt-1">Unit 4B - Sunset Apartments</p>
+            <p className="text-xs font-medium text-gray-700">{t("issueTitle")}</p>
+            <p className="text-[10px] text-gray-500 mt-1">{t("issueLocation")}</p>
           </motion.div>
 
           {/* Status timeline */}
@@ -451,7 +448,7 @@ function DeliveryMockup() {
             animate={{ opacity: phase >= 4 ? 1 : 0 }}
             transition={{ delay: 0.3 }}
           >
-            <p className="text-[10px] font-semibold text-gray-500 uppercase mb-3">Progress</p>
+            <p className="text-[10px] font-semibold text-gray-500 uppercase mb-3">{t("progressLabel")}</p>
             <div className="flex items-center justify-between mb-2">
               {timelineSteps.map((step, i) => (
                 <div key={i} className="flex flex-col items-center flex-1">
@@ -499,8 +496,8 @@ function DeliveryMockup() {
             animate={{ opacity: phase >= 4 ? 1 : 0 }}
           >
             <div className="flex justify-between text-[10px] mb-1">
-              <span className="text-gray-500">Overall Progress</span>
-              <span className="font-semibold" style={{ color: ACCENT_COLOR }}>75%</span>
+              <span className="text-gray-500">{t("overallProgress")}</span>
+              <span className="font-semibold" style={{ color: ACCENT_COLOR }}>{t("progressPercent")}</span>
             </div>
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
@@ -520,6 +517,8 @@ function DeliveryMockup() {
 
 // Tab 04 - Ongoing Support (Chat widget)
 function SupportMockup() {
+  const t = useTranslations("workflow.mockups.support");
+  const chatMessages = t.raw("messages") as ChatMessage[];
   const [messages, setMessages] = useState<number[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -567,13 +566,6 @@ function SupportMockup() {
     };
   }, []);
 
-  const chatMessages = [
-    { type: "user", text: "Hi, I have a tenant reporting a leak in Unit 3A" },
-    { type: "support", text: "Hi! I can help with that. Let me check your maintenance queue." },
-    { type: "user", text: "Is there a plumber available today?" },
-    { type: "support", text: "Yes! I&apos;ve assigned Mike (Plumber) for 2pm. Tenant notified." },
-  ];
-
   return (
     <div className="relative h-full w-full flex gap-4 p-2 overflow-hidden">
       {/* Chat widget */}
@@ -590,8 +582,8 @@ function SupportMockup() {
             <div className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-green-400 border-2 border-white" />
           </div>
           <div className="flex-1">
-            <p className="text-sm font-semibold text-white">Support Chat</p>
-            <p className="text-[10px] text-white/70">Online - Avg response {"<"}2min</p>
+            <p className="text-sm font-semibold text-white">{t("chatTitle")}</p>
+            <p className="text-[10px] text-white/70">{t("chatStatus")}</p>
           </div>
         </div>
         
@@ -670,8 +662,8 @@ function SupportMockup() {
           >
             <BarChart3 className="h-5 w-5" style={{ color: ACCENT_COLOR }} />
           </div>
-          <span className="text-lg font-bold text-gray-900">99.9%</span>
-          <span className="text-[10px] text-gray-500 text-center">Uptime</span>
+          <span className="text-lg font-bold text-gray-900">{t("uptime.value")}</span>
+          <span className="text-[10px] text-gray-500 text-center">{t("uptime.label")}</span>
         </motion.div>
         
         <motion.div
@@ -686,8 +678,8 @@ function SupportMockup() {
           >
             <MessageCircle className="h-5 w-5" style={{ color: ACCENT_COLOR }} />
           </div>
-          <span className="text-lg font-bold text-gray-900">{"<"}2min</span>
-          <span className="text-[10px] text-gray-500 text-center">Response</span>
+          <span className="text-lg font-bold text-gray-900">{t("response.value")}</span>
+          <span className="text-[10px] text-gray-500 text-center">{t("response.label")}</span>
         </motion.div>
       </div>
     </div>
@@ -707,6 +699,18 @@ export function WorkflowSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState(0);
 
+  const steps = useMemo<WorkflowStep[]>(
+    () =>
+      STEP_KEYS.map((key) => ({
+        key,
+        icon: STEP_ICONS[key],
+        title: t(`steps.${key}.title`),
+        description: t(`steps.${key}.description`),
+        url: t(`steps.${key}.url`),
+      })),
+    [t],
+  );
+
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden" style={{ backgroundColor: '#F5F5F0' }}>
       <div ref={ref} className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -719,7 +723,7 @@ export function WorkflowSection() {
             transition={{ duration: 0.5 }}
             className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4"
           >
-            How It Works
+            {t("badge")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -728,7 +732,7 @@ export function WorkflowSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-4"
           >
-            From Idea to Implementation
+            {t("title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -737,7 +741,7 @@ export function WorkflowSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-2xl mx-auto text-gray-500 text-base sm:text-lg"
           >
-            Our streamlined process takes your vision from concept to reality with precision and care.
+            {t("subtitle")}
           </motion.p>
         </div>
 
