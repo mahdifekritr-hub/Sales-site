@@ -68,41 +68,43 @@ type ProductItem = {
 
 // Product card mockup components
 function CreateProjectMockup() {
+  const t = useTranslations("productsSection.mockups.sales");
+
   return (
     <div className="relative w-full h-full flex items-center justify-end pr-4">
       {/* Left info panel */}
       <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg p-4 w-40 space-y-3 z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-primary" />
-          <span className="text-xs text-muted-foreground">Austin</span>
+          <span className="text-xs text-muted-foreground">{t("panel.city")}</span>
         </div>
-        <div className="text-[10px] text-muted-foreground">TX, USA</div>
+        <div className="text-[10px] text-muted-foreground">{t("panel.region")}</div>
         <div className="flex items-center gap-2 pt-2 border-t">
           <div className="w-4 h-4 rounded bg-muted" />
-          <span className="text-xs">Sunday, 28 Mar</span>
+          <span className="text-xs">{t("panel.date")}</span>
         </div>
-        <div className="text-[10px] text-primary font-medium">Expires in 3 days</div>
-        <div className="text-[9px] text-muted-foreground">Close applications 3 days before the start of the project</div>
+        <div className="text-[10px] text-primary font-medium">{t("panel.expires")}</div>
+        <div className="text-[9px] text-muted-foreground">{t("panel.closeApplications")}</div>
       </div>
-      
+
       {/* Phone mockup */}
       <div className="relative w-36 h-64 bg-white rounded-[2rem] shadow-xl border-4 border-gray-200 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-xl" />
         <div className="p-3 pt-6 h-full">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[8px] text-muted-foreground">9:41</span>
-            <span className="text-[8px] font-medium">Create Project</span>
+            <span className="text-[8px] text-muted-foreground">{t("phone.time")}</span>
+            <span className="text-[8px] font-medium">{t("phone.title")}</span>
             <span className="text-[8px]">×</span>
           </div>
-          <div className="text-[8px] text-muted-foreground mb-2">References (4)</div>
+          <div className="text-[8px] text-muted-foreground mb-2">{t("phone.references")}</div>
           <div className="grid grid-cols-2 gap-1">
             <div className="aspect-square rounded-lg bg-gradient-to-br from-amber-100 to-amber-200" />
             <div className="aspect-square rounded-lg bg-gradient-to-br from-rose-100 to-rose-200" />
             <div className="aspect-square rounded-lg bg-gradient-to-br from-sky-100 to-sky-200" />
             <div className="aspect-square rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-200" />
           </div>
-          <button className="mt-3 text-[8px] flex items-center gap-1 text-muted-foreground">
-            + Add more
+          <button type="button" className="mt-3 text-[8px] flex items-center gap-1 text-muted-foreground">
+            {t("phone.addMore")}
           </button>
         </div>
       </div>
@@ -111,6 +113,8 @@ function CreateProjectMockup() {
 }
 
 function HireTalentMockup() {
+  const t = useTranslations("productsSection.mockups.crm");
+
   return (
     <div className="relative w-full h-full flex items-center justify-center p-4">
       {/* Main image card */}
@@ -119,21 +123,21 @@ function HireTalentMockup() {
         <div className="absolute top-3 left-3 flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-white/80" />
           <div>
-            <div className="text-[10px] font-semibold">James Smith</div>
+            <div className="text-[10px] font-semibold">{t("name")}</div>
             <div className="text-[8px] text-muted-foreground flex items-center gap-1">
-              <span className="text-amber-500">5.0★</span> • Photographer
+              <span className="text-amber-500">{t("rating")}</span> • {t("role")}
             </div>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur p-3 rounded-t-2xl">
-          <p className="text-[9px] text-muted-foreground">Hi, I can give you 15 edited images for $220</p>
+          <p className="text-[9px] text-muted-foreground">{t("message")}</p>
           <div className="flex items-center gap-1 mt-1">
             <span className="text-[10px]">💰</span>
-            <span className="text-[11px] font-semibold">$220</span>
+            <span className="text-[11px] font-semibold">{t("price")}</span>
           </div>
         </div>
       </div>
-      
+
       {/* Floating secondary images */}
       <div className="absolute top-4 right-4 w-20 h-24 rounded-xl bg-gradient-to-br from-violet-100 to-violet-200 shadow-lg -rotate-6" />
       <div className="absolute bottom-8 left-4 w-16 h-20 rounded-xl bg-gradient-to-br from-sky-100 to-sky-200 shadow-lg rotate-3" />
@@ -142,6 +146,35 @@ function HireTalentMockup() {
 }
 
 function CommunicationMockup() {
+  const t = useTranslations("productsSection.mockups.maintenance");
+
+  const messageRow = (highlighted: boolean) => (
+    <div
+      className={`flex items-start gap-2 p-2 rounded-lg ${highlighted ? "bg-muted/30" : ""}`}
+    >
+      <div
+        className={`w-8 h-8 rounded-full flex-shrink-0 ${
+          highlighted
+            ? "bg-gradient-to-br from-blue-400 to-blue-600"
+            : "bg-gradient-to-br from-emerald-400 to-emerald-600"
+        }`}
+      />
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-medium">{t("message.name")}</span>
+          <span className="text-[8px] text-muted-foreground">{t("message.time")}</span>
+        </div>
+        <p className="text-[8px] text-muted-foreground truncate">{t("message.subject")}</p>
+        <p className="text-[8px] text-muted-foreground">{t("message.preview")}</p>
+      </div>
+      {highlighted ? (
+        <div className="w-4 h-4 rounded-full bg-primary text-[8px] text-white flex items-center justify-center">
+          1
+        </div>
+      ) : null}
+    </div>
+  );
+
   return (
     <div className="relative w-full h-full flex items-center justify-center p-4">
       {/* Phone mockup - inbox */}
@@ -149,49 +182,26 @@ function CommunicationMockup() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-xl" />
         <div className="p-4 pt-8 h-full">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[9px] text-muted-foreground">9:41</span>
+            <span className="text-[9px] text-muted-foreground">{t("time")}</span>
             <div className="flex items-center gap-1">
               <div className="w-3 h-2 bg-muted rounded-sm" />
               <div className="w-3 h-2 bg-muted rounded-sm" />
             </div>
           </div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold">Inbox</h3>
+            <h3 className="text-sm font-semibold">{t("inbox")}</h3>
             <div className="w-4 h-4 rounded bg-muted" />
           </div>
-          
+
           <div className="flex gap-2 mb-4">
-            <span className="text-[9px] px-2 py-1 bg-foreground text-background rounded-full">Active</span>
-            <span className="text-[9px] px-2 py-1 text-muted-foreground">Completed</span>
-            <span className="text-[9px] px-2 py-1 text-muted-foreground">Archive</span>
+            <span className="text-[9px] px-2 py-1 bg-foreground text-background rounded-full">{t("tabs.active")}</span>
+            <span className="text-[9px] px-2 py-1 text-muted-foreground">{t("tabs.completed")}</span>
+            <span className="text-[9px] px-2 py-1 text-muted-foreground">{t("tabs.archive")}</span>
           </div>
-          
-          {/* Message items */}
+
           <div className="space-y-3">
-            <div className="flex items-start gap-2 p-2 bg-muted/30 rounded-lg">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-medium">James Smith</span>
-                  <span className="text-[8px] text-muted-foreground">09:00 AM</span>
-                </div>
-                <p className="text-[8px] text-muted-foreground truncate">Portrait Photo Shoot • Sun, 16 Apr...</p>
-                <p className="text-[8px] text-muted-foreground">I can arrive at 8 am</p>
-              </div>
-              <div className="w-4 h-4 rounded-full bg-primary text-[8px] text-white flex items-center justify-center">1</div>
-            </div>
-            
-            <div className="flex items-start gap-2 p-2 rounded-lg opacity-60">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-medium">James Smith</span>
-                  <span className="text-[8px] text-muted-foreground">09:00 AM</span>
-                </div>
-                <p className="text-[8px] text-muted-foreground truncate">Portrait Photo Shoot • Sun, 16 Apr...</p>
-                <p className="text-[8px] text-muted-foreground">I can arrive at 8 am</p>
-              </div>
-            </div>
+            {messageRow(true)}
+            <div className="opacity-60">{messageRow(false)}</div>
           </div>
         </div>
       </div>
@@ -200,46 +210,44 @@ function CommunicationMockup() {
 }
 
 function TrustMockup() {
+  const t = useTranslations("productsSection.mockups.requests");
+
   return (
     <div className="relative w-full h-full flex items-center justify-center p-4 overflow-hidden">
       {/* Main project card */}
       <div className="relative bg-white rounded-2xl shadow-xl p-4 w-44 -rotate-2">
-        <div className="text-sm font-semibold mb-1">Portrait photo shoot</div>
-        <div className="text-primary text-xs italic mb-2">28 Mar</div>
+        <div className="text-sm font-semibold mb-1">{t("project.title")}</div>
+        <div className="text-primary text-xs italic mb-2">{t("project.date")}</div>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-[9px] px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
-            ❤️ 123
+            {t("project.likes")}
           </span>
           <span className="text-[9px] px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
-            🔗 13
+            {t("project.links")}
           </span>
         </div>
-        <p className="text-[8px] text-muted-foreground leading-relaxed">
-          Captured the essence of elegance. Stunning dresses was styled for...
-        </p>
-        <div className="text-[8px] font-medium mt-2">$2,500 • Austin, Texas • 28 Mar</div>
-        <div className="text-[8px] text-muted-foreground">293k views</div>
+        <p className="text-[8px] text-muted-foreground leading-relaxed">{t("project.excerpt")}</p>
+        <div className="text-[8px] font-medium mt-2">{t("project.meta")}</div>
+        <div className="text-[8px] text-muted-foreground">{t("project.views")}</div>
       </div>
-      
+
       {/* Review card */}
       <div className="absolute top-6 right-2 bg-white rounded-xl shadow-lg p-3 w-40 rotate-3">
         <div className="flex text-amber-400 text-xs mb-1">★★★★☆</div>
-        <p className="text-[8px] text-muted-foreground mb-2">
-          Loved working together — the photos turned out even better than expected!
-        </p>
+        <p className="text-[8px] text-muted-foreground mb-2">{t("review.text")}</p>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full bg-gradient-to-br from-rose-300 to-rose-400" />
           <div>
-            <div className="text-[9px] font-medium">Linda White</div>
-            <div className="text-[7px] text-muted-foreground">5.0★ • Photographer</div>
+            <div className="text-[9px] font-medium">{t("review.name")}</div>
+            <div className="text-[7px] text-muted-foreground">{t("review.role")}</div>
           </div>
         </div>
       </div>
-      
+
       {/* Heart counter */}
       <div className="absolute bottom-4 right-4 bg-rose-50 rounded-full px-3 py-1.5 flex items-center gap-1 shadow-md">
         <span className="text-rose-500">❤️</span>
-        <span className="text-xs font-semibold text-rose-600">123</span>
+        <span className="text-xs font-semibold text-rose-600">{t("likesCount")}</span>
       </div>
     </div>
   );

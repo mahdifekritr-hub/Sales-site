@@ -605,6 +605,62 @@
     "customSolution": "Need a custom solution? We tailor our platform to your specific requirements.",
     "startTrial": "Start Free Trial",
     "contactSales": "Contact Sales",
+    "mockups": {
+      "sales": {
+        "panel": {
+          "city": "Austin",
+          "region": "TX, USA",
+          "date": "Sunday, 28 Mar",
+          "expires": "Expires in 3 days",
+          "closeApplications": "Close applications 3 days before the start of the project"
+        },
+        "phone": {
+          "time": "9:41",
+          "title": "Create Project",
+          "references": "References (4)",
+          "addMore": "+ Add more"
+        }
+      },
+      "crm": {
+        "name": "James Smith",
+        "rating": "5.0★",
+        "role": "Photographer",
+        "message": "Hi, I can give you 15 edited images for $220",
+        "price": "$220"
+      },
+      "maintenance": {
+        "time": "9:41",
+        "inbox": "Inbox",
+        "tabs": {
+          "active": "Active",
+          "completed": "Completed",
+          "archive": "Archive"
+        },
+        "message": {
+          "name": "James Smith",
+          "time": "09:00 AM",
+          "subject": "Portrait Photo Shoot • Sun, 16 Apr...",
+          "preview": "I can arrive at 8 am"
+        }
+      },
+      "requests": {
+        "project": {
+          "title": "Portrait photo shoot",
+          "date": "28 Mar",
+          "likes": "❤️ 123",
+          "links": "🔗 13",
+          "excerpt": "Captured the essence of elegance. Stunning dresses was styled for...",
+          "meta": "$2,500 • Austin, Texas • 28 Mar",
+          "views": "293k views"
+        },
+        "review": {
+          "text": "Loved working together — the photos turned out even better than expected!",
+          "name": "Linda White",
+          "role": "5.0★ • Photographer"
+        },
+        "likesCount": "123"
+      }
+    },
     "products": {
       "sales": {
         "title": "Sales & Rentals",
@@ -674,31 +730,31 @@
   },
   "aiFeatures": {
     "badge": "AI-Powered",
-    "title": "Supercharge Your Workflow",
-    "titleHighlight": "with Artificial Intelligence",
-    "subtitle": "Our AI assistant understands your needs, automates repetitive tasks, and provides intelligent recommendations to help you work smarter.",
+    "title": "Work smarter with an AI that",
+    "titleHighlight": "knows your building",
+    "subtitle": "From summarizing negotiations to auto-building your workflow, your AI agent handles the complexity so your team can focus on what matters.",
     "alwaysReady": "Always ready to help",
     "askAnything": "Ask anything...",
     "features": {
       "assistant": {
-        "title": "AI Assistant",
-        "description": "Get instant answers and perform complex tasks through natural conversation"
+        "title": "AI Agent sidebar",
+        "description": "A persistent assistant in your sidebar — give any command and it executes instantly across the platform."
       },
       "translation": {
-        "title": "Auto Translation",
-        "description": "Communicate with clients in 12+ languages with real-time translation"
+        "title": "Workflow builder",
+        "description": "Ask the agent to build your workflow — it creates the org chart, permissions, and work order process for you."
       },
       "insights": {
-        "title": "Smart Insights",
-        "description": "Receive personalized recommendations based on your data patterns"
+        "title": "Deal probability",
+        "description": "AI estimates the closing likelihood of each negotiation based on conversation history and client behavior."
       },
       "automation": {
-        "title": "Task Automation",
-        "description": "Automate repetitive workflows and focus on what matters most"
+        "title": "Smart summaries",
+        "description": "Negotiations, work orders, and tickets — summarized in your language with next-step recommendations."
       },
       "summaries": {
-        "title": "Smart Summaries",
-        "description": "Get concise summaries of long documents and conversations"
+        "title": "Auto notifications & blog posts",
+        "description": "Publish announcements and blog content in multiple languages — with AI-generated images, automatically."
       },
       "predictions": {
         "title": "Predictive Analytics",

@@ -604,6 +604,62 @@
     "customSolution": "Özel bir çözüme mi ihtiyacınız var? Platformumuzu özel gereksinimlerinize göre uyarlıyoruz.",
     "startTrial": "Ücretsiz Deneyin",
     "contactSales": "Satışla İletişime Geçin",
+    "mockups": {
+      "sales": {
+        "panel": {
+          "city": "Austin",
+          "region": "TX, ABD",
+          "date": "Pazar, 28 Mar",
+          "expires": "3 gün içinde sona eriyor",
+          "closeApplications": "Proje başlamadan 3 gün önce başvuruları kapatın"
+        },
+        "phone": {
+          "time": "9:41",
+          "title": "Proje Oluştur",
+          "references": "Referanslar (4)",
+          "addMore": "+ Daha fazla ekle"
+        }
+      },
+      "crm": {
+        "name": "James Smith",
+        "rating": "5.0★",
+        "role": "Fotoğrafçı",
+        "message": "Merhaba, 220 $ karşılığında 15 düzenlenmiş görsel sunabilirim",
+        "price": "220 $"
+      },
+      "maintenance": {
+        "time": "9:41",
+        "inbox": "Gelen Kutusu",
+        "tabs": {
+          "active": "Aktif",
+          "completed": "Tamamlanan",
+          "archive": "Arşiv"
+        },
+        "message": {
+          "name": "James Smith",
+          "time": "09:00",
+          "subject": "Portre Çekimi • Paz, 16 Nis...",
+          "preview": "Saat 8'de gelebilirim"
+        }
+      },
+      "requests": {
+        "project": {
+          "title": "Portre fotoğraf çekimi",
+          "date": "28 Mar",
+          "likes": "❤️ 123",
+          "links": "🔗 13",
+          "excerpt": "Zarafetin özünü yakaladık. Çarpıcı elbiseler için stil oluşturuldu...",
+          "meta": "2.500 $ • Austin, Teksas • 28 Mar",
+          "views": "293 bin görüntülenme"
+        },
+        "review": {
+          "text": "Birlikte çalışmak harikaydı — fotoğraflar beklediğimden bile iyi çıktı!",
+          "name": "Linda White",
+          "role": "5.0★ • Fotoğrafçı"
+        },
+        "likesCount": "123"
+      }
+    },
     "products": {
       "sales": {
         "title": "Satış ve Kiralama",
