@@ -55,21 +55,23 @@ export function WhyChooseUsSection() {
         <div className="absolute inset-0 bg-white" />
         
         {/* Animated accent orbs */}
-        {/* orb-a: scale 1→1.2→1, x 0→20px→0, 10s easeInOut */}
-        <div
-          className="wcu-orb-a absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full"
+        <motion.div
+          className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.38 0.16 330 / 0.1) 0%, transparent 60%)",
             filter: "blur(80px)",
           }}
+          animate={{ scale: [1, 1.2, 1], x: [0, 20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* orb-b: scale 1→1.15→1, y 0→-30px→0, 12s delay 2s easeInOut */}
-        <div
-          className="wcu-orb-b absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full"
+        <motion.div
+          className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.08) 0%, transparent 60%)",
             filter: "blur(100px)",
           }}
+          animate={{ scale: [1, 1.15, 1], y: [0, -30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
 
         {/* Subtle grid pattern */}
@@ -131,8 +133,12 @@ export function WhyChooseUsSection() {
               <div className="relative p-6 sm:p-8 h-full flex flex-col">
                 {/* Icon with animated ring */}
                 <div className="relative mb-6">
-                  {/* icon ring: scale 1→1.15→1, opacity 0.5→0→0.5, 3s linear infinite */}
-                  <div className="wcu-icon-ring absolute inset-0 rounded-2xl border-2 border-primary/30" style={{ width: 64, height: 64 }} />
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl border-2 border-primary/30"
+                    animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    style={{ width: 64, height: 64 }}
+                  />
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20">
                     <Shield className="h-8 w-8 text-primary" />
                   </div>
@@ -303,29 +309,6 @@ export function WhyChooseUsSection() {
           </motion.div>
         </div>
       </div>
-      {/* CSS keyframes for decorative infinite animations */}
-      <style jsx global>{`
-        /* wcu orb-a: scale 1→1.2→1, x 0→20px→0, 10s easeInOut */
-        @keyframes wcu-orb-a {
-          0%, 100% { transform: scale(1) translateX(0px); }
-          50%       { transform: scale(1.2) translateX(20px); }
-        }
-        .wcu-orb-a { animation: wcu-orb-a 10s ease-in-out infinite; }
-
-        /* wcu orb-b: scale 1→1.15→1, y 0→-30px→0, 12s delay 2s easeInOut */
-        @keyframes wcu-orb-b {
-          0%, 100% { transform: scale(1) translateY(0px); }
-          50%       { transform: scale(1.15) translateY(-30px); }
-        }
-        .wcu-orb-b { animation: wcu-orb-b 12s ease-in-out 2s infinite; }
-
-        /* icon ring: scale 1→1.15→1, opacity 0.5→0→0.5, 3s linear */
-        @keyframes wcu-icon-ring {
-          0%, 100% { transform: scale(1); opacity: 0.5; }
-          50%       { transform: scale(1.15); opacity: 0; }
-        }
-        .wcu-icon-ring { animation: wcu-icon-ring 3s linear infinite; }
-      `}</style>
     </section>
   );
 }

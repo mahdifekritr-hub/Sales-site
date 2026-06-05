@@ -8,89 +8,75 @@ const integrations = [
   {
     name: "QuickBooks",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-2-8PSkcqrlTnNijwQpOoLFeYDQ7G300O.png",
+    rotation: -4,
   },
   {
     name: "Google Analytics",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-2-9RZs7XDSrhvlLlfXETeCoiXIm8zXHv.png",
+    rotation: 3,
   },
   {
     name: "Google",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-1-Yqr0RYdUAhsPQNsusuhu8veBjXWPTZ.png",
+    rotation: -2,
   },
   {
     name: "ZEGO",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-1-5NBzuJvOCtdE0LpJBNTBhxaD8Ikkks.png",
+    rotation: 5,
   },
   {
     name: "Stripe",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-gYbSAAi2SLfLqfOnYEahccNjsWb0d6.png",
+    rotation: -3,
   },
   {
     name: "FCM",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-2-e1736105602199-Vz3RjfJ4XeZ6vIVmsemJ2J5fs0L9Xq.png",
+    rotation: 4,
   },
   {
     name: "Amazon Hub",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled-design-11-lQdkTG42lMFb16NshA5xQAsfMTCxt3.png",
+    rotation: -5,
   },
   {
     name: "ExpertTexting",
     logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-1-FxONxPL802t3rXVZUOwSMJosr5myBK.png",
+    rotation: 2,
   },
 ];
 
-interface IntegrationCardProps {
+interface IntegrationItemProps {
   name: string;
   logo: string;
+  rotation: number;
 }
 
-function IntegrationCard({ name, logo }: IntegrationCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
+function IntegrationItem({ name, logo, rotation }: IntegrationItemProps) {
   return (
-    <motion.div
-      className="group relative flex-shrink-0 flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      whileHover={{
-        scale: 1.05,
-        rotateY: 5,
-        rotateX: -5,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    <div
+      className="group flex-shrink-0 flex items-center gap-2 sm:gap-3 px-4 sm:px-6 lg:px-8"
     >
-      {/* Glow effect on hover */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl bg-primary/20 blur-xl"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 0.6 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Logo container */}
-      <div className="relative h-12 sm:h-14 lg:h-16 w-28 sm:w-36 lg:w-44 flex items-center justify-center">
+      {/* Small rounded logo thumbnail with rotation */}
+      <div
+        className="relative h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden bg-white/10 shadow-sm transition-transform duration-300 group-hover:scale-105"
+        style={{ transform: `rotate(${rotation}deg)` }}
+      >
         <Image
           src={logo}
           alt={name}
           fill
-          className="object-contain opacity-70 transition-all duration-300 group-hover:opacity-100 brightness-0 invert"
-          sizes="(max-width: 640px) 112px, (max-width: 1024px) 144px, 176px"
+          className="object-contain p-1.5 sm:p-2"
+          sizes="48px"
         />
       </div>
 
-      {/* Name reveal on hover */}
-      <motion.span
-        className="mt-3 text-xs sm:text-sm font-medium text-foreground/80"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{
-          opacity: isHovered ? 1 : 0,
-          y: isHovered ? 0 : 10,
-        }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      >
+      {/* Integration name text */}
+      <span className="text-sm sm:text-base font-medium text-foreground/80 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
         {name}
-      </motion.span>
-    </motion.div>
+      </span>
+    </div>
   );
 }
 
@@ -135,53 +121,26 @@ function ScrollingLogos() {
   return (
     <div className="relative">
       {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 sm:w-32 lg:w-48 bg-gradient-to-r from-[#0a0a0a] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-background to-transparent" />
 
       {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 sm:w-32 lg:w-48 bg-gradient-to-l from-[#0a0a0a] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-background to-transparent" />
 
       <div
         ref={scrollRef}
-        className="flex items-center overflow-x-hidden py-6 sm:py-8"
+        className="flex items-center overflow-x-hidden py-4 sm:py-5"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         {duplicatedItems.map((integration, index) => (
-          <IntegrationCard
+          <IntegrationItem
             key={`${integration.name}-${index}`}
             name={integration.name}
             logo={integration.logo}
+            rotation={integration.rotation}
           />
         ))}
       </div>
-    </div>
-  );
-}
-
-// Animated particles for cinematic background
-function ParticleField() {
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {[...Array(50)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute h-0.5 w-0.5 rounded-full bg-primary/30"
-          initial={{
-            x: Math.random() * 100 + "%",
-            y: Math.random() * 100 + "%",
-            scale: Math.random() * 0.5 + 0.5,
-          }}
-          animate={{
-            y: [null, Math.random() * 100 + "%"],
-            opacity: [0.2, 0.6, 0.2],
-          }}
-          transition={{
-            duration: Math.random() * 20 + 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
     </div>
   );
 }
@@ -193,30 +152,8 @@ export function Integrations() {
   return (
     <section
       ref={ref}
-      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-[#0a0a0a]"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-background"
     >
-      {/* Cinematic dark background with subtle texture */}
-      <div className="absolute inset-0">
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0a0a0a] to-background" />
-        
-        {/* Subtle grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        {/* Ambient glow effects */}
-        <div className="absolute left-1/4 top-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[150px]" />
-        <div className="absolute right-1/4 top-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-accent/5 blur-[120px]" />
-
-        {/* Animated particles */}
-        <ParticleField />
-      </div>
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <motion.div
@@ -225,21 +162,12 @@ export function Integrations() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-14 lg:mb-16"
         >
-          {/* Label with decorative lines */}
-          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6">
-            <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-primary/60" />
-            <span className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-primary">
-              Integration
-            </span>
-            <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-primary/60" />
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
-            Integrations
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif italic tracking-tight text-foreground">
+            Seamless integrations
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-muted-foreground">
-            Seamlessly connect with the tools you already use and love
+            Connect with the tools you already use and love
           </p>
         </motion.div>
       </div>

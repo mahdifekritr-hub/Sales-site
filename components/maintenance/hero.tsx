@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
-import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function MaintenanceHero() {
   return (
@@ -70,14 +69,15 @@ export function MaintenanceHero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8 sm:mt-10 flex flex-col gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0"
           >
-            <ProductSignupTrigger
-              product="maintenance"
-              size="lg"
-              className="group gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90"
-            >
-              Start Free Trial
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </ProductSignupTrigger>
+            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+              <Button
+                size="lg"
+                className="group gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90"
+              >
+                Start Free Trial
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button

@@ -13,29 +13,27 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Link, usePathname } from "@/i18n/routing";
-import Image from "next/image";
 import { LanguageSwitcher, LanguageSwitcherInline } from "@/components/language-switcher";
-import { ProductSignupCTA } from "@/components/signup/product-signup-cta";
-import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
-import type { SignupProduct } from "@/lib/public-signup-config";
-import { PRODUCT_NAV_ITEMS } from "@/lib/product-nav-links";
+
+const productItemsData = [
+  { key: "maintenance", href: "/maintenance" },
+  { key: "assetsParts", href: "assets" },
+  { key: "communication", href: "communication" },
+  { key: "salesRentals", href: "sales" },
+];
 
 const companyItemsData = [
-  { key: "aboutUs", href: "/about-propertycareapp" },
-  { key: "contactUs", href: "/contact-propertycareapp" },
+  { key: "aboutUs", href: "about" },
+  { key: "contactUs", href: "contact" },
 ];
 
 export function Navbar() {
   const t = useTranslations("navbar");
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
-  const pageProduct = productFromPathname(pathname);
-  const signupProduct = pageProduct ?? "sales";
 
-  const productItems = PRODUCT_NAV_ITEMS.map((item) => ({
+  const productItems = productItemsData.map(item => ({
     name: t(`productItems.${item.key}`),
     href: item.href,
   }));
@@ -47,7 +45,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: t("pricing"), href: "https://pricing.propertycareapp.com/en" },
-    { name: t("blog"), href: "https://blog.propertycareapp.com/" },
+    { name: t("blog"), href: "https://propertycareapp.com/blog/" },
   ];
 
   return (
@@ -59,16 +57,13 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
-          <Link href="/" className="flex items-center" aria-label="PropertyCareApp home">
-            <Image
+          <a href="#" className="flex items-center">
+            <img
               src="/logo (2).png"
               alt="Company Logo"
-              width={214}
-              height={80}
               className="h-20 w-auto object-contain"
-              priority
             />
-          </Link>
+          </a>
 
           <nav className="hidden items-center gap-1 md:flex">
             <NavigationMenu viewport={false}>
@@ -82,12 +77,12 @@ export function Navbar() {
                       {productItems.map((item) => (
                         <li key={item.name}>
                           <NavigationMenuLink asChild>
-                            <Link
+                            <a
                               href={item.href}
                               className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                             >
                               {item.name}
-                            </Link>
+                            </a>
                           </NavigationMenuLink>
                         </li>
                       ))}
@@ -118,12 +113,12 @@ export function Navbar() {
                       {companyItems.map((item) => (
                         <li key={item.name}>
                           <NavigationMenuLink asChild>
-                            <Link
+                            <a
                               href={item.href}
                               className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                             >
                               {item.name}
-                            </Link>
+                            </a>
                           </NavigationMenuLink>
                         </li>
                       ))}
@@ -136,13 +131,11 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
-            <ProductSignupTrigger
-              product={signupProduct}
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              {t("getStarted")}
-            </ProductSignupTrigger>
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <a href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+                {t("getStarted")}
+              </a>
+            </Button>
           </div>
 
           <button
@@ -185,14 +178,14 @@ export function Navbar() {
                     className="overflow-hidden"
                   >
                     {productItems.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.href}
                         className="block rounded-lg px-6 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </motion.div>
                 )}
@@ -227,14 +220,14 @@ export function Navbar() {
                     className="overflow-hidden"
                   >
                     {companyItems.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.href}
                         className="block rounded-lg px-6 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </motion.div>
                 )}
@@ -244,27 +237,16 @@ export function Navbar() {
                 <Button variant="ghost" className="justify-start text-muted-foreground">
                   {t("signIn")}
                 </Button>
-                <ProductSignupTrigger
-                  product={signupProduct}
-                  className="bg-primary text-primary-foreground"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t("getStarted")}
-                </ProductSignupTrigger>
+                <Button className="bg-primary text-primary-foreground" asChild>
+                  <a href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+                    {t("getStarted")}
+                  </a>
+                </Button>
               </div>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-      {!pageProduct && <ProductSignupCTA product={signupProduct} variant="modal" />}
     </motion.header>
   );
-}
-
-function productFromPathname(pathname: string): SignupProduct | null {
-  if (pathname.includes("facilities-maintenance-software")) return "maintenance";
-  if (pathname.includes("property-asset-part-management-software")) return "assets";
-  if (pathname.includes("communication-property-software")) return "communication";
-  if (pathname.includes("real-estate-software")) return "sales";
-  return null;
 }

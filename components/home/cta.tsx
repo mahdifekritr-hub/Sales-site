@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
 
 export function HomeCTA() {
   const t = useTranslations("homeCTA");
@@ -20,20 +19,30 @@ export function HomeCTA() {
         {/* White base background */}
         <div className="absolute inset-0 bg-white" />
 
-        {/* Animated orbs — CSS: pure decorative, no interaction */}
-        <div
-          className="cta-orb-a absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full"
+        {/* Animated orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.5 0.18 330 / 0.1) 0%, transparent 70%)",
             filter: "blur(80px)",
           }}
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div
-          className="cta-orb-b absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.08) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -40, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
         />
 
         {/* Grid pattern */}
@@ -99,10 +108,12 @@ export function HomeCTA() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <ProductSignupTrigger product="sales" size="lg" className="group gap-2 px-8 text-base">
-              {t("startTrial")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </ProductSignupTrigger>
+            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+              <Button size="lg" className="group gap-2 px-8 text-base">
+                {t("startTrial")}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
               <Button size="lg" variant="outline" className="gap-2 px-8 text-base">
@@ -136,22 +147,6 @@ export function HomeCTA() {
           </motion.div>
         </motion.div>
       </div>
-      {/* CSS keyframes for background orbs (replaces repeat:Infinity motion.div) */}
-      <style jsx global>{`
-        /* cta orb-a: scale 1→1.2→1, x 0→50px→0, 15s easeInOut infinite */
-        @keyframes cta-orb-a {
-          0%, 100% { transform: scale(1) translateX(0px); }
-          50%       { transform: scale(1.2) translateX(50px); }
-        }
-        .cta-orb-a { animation: cta-orb-a 15s ease-in-out infinite; }
-
-        /* cta orb-b: scale 1→1.3→1, x 0→-40px→0, 12s delay 3s easeInOut infinite */
-        @keyframes cta-orb-b {
-          0%, 100% { transform: scale(1) translateX(0px); }
-          50%       { transform: scale(1.3) translateX(-40px); }
-        }
-        .cta-orb-b { animation: cta-orb-b 12s ease-in-out 3s infinite; }
-      `}</style>
     </section>
   );
 }

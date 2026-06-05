@@ -1,8 +1,7 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing";
-import { locales, type Locale } from "@/i18n/config";
+import { useLanguage } from "./language-provider";
+import { locales } from "@/i18n/config";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,13 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
 export function LanguageSwitcher() {
-  const locale = useLocale() as Locale;
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const switchLocale = (newLocale: Locale) => {
-    router.replace(pathname, { locale: newLocale });
-  };
+  const { locale, setLocale } = useLanguage();
 
   return (
     <DropdownMenu>
@@ -37,7 +30,7 @@ export function LanguageSwitcher() {
         {locales.map((loc) => (
           <DropdownMenuItem
             key={loc}
-            onClick={() => switchLocale(loc)}
+            onClick={() => setLocale(loc)}
             className={`cursor-pointer ${locale === loc ? "bg-secondary" : ""}`}
           >
             <span>{loc === "en" ? "English" : "Türkçe"}</span>
@@ -48,27 +41,20 @@ export function LanguageSwitcher() {
   );
 }
 
+// Inline version for mobile menu
 export function LanguageSwitcherInline() {
-  const locale = useLocale() as Locale;
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const switchLocale = (newLocale: Locale) => {
-    router.replace(pathname, { locale: newLocale });
-  };
+  const { locale, setLocale } = useLanguage();
 
   return (
     <div className="flex gap-2">
       {locales.map((loc) => (
         <button
           key={loc}
-          type="button"
-          onClick={() => switchLocale(loc)}
-          className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
-            locale === loc
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
-          }`}
+          onClick={() => setLocale(loc)}
+          className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${locale === loc
+            ? "bg-primary text-primary-foreground"
+            : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
+            }`}
         >
           <span>{loc === "en" ? "English" : "Türkçe"}</span>
         </button>

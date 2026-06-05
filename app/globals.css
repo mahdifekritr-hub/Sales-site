@@ -76,8 +76,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, monospace;
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -123,61 +123,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-
-  /* Pointer cursor on all interactive / clickable elements */
-  a:not([aria-disabled='true']),
-  button:not(:disabled),
-  [onclick],
-  [role='button']:not([aria-disabled='true']),
-  [role='link']:not([aria-disabled='true']),
-  [role='tab']:not([aria-disabled='true']),
-  [role='menuitem']:not([aria-disabled='true']):not([data-disabled]),
-  [role='option']:not([aria-disabled='true']):not([data-disabled]),
-  [role='switch']:not([aria-disabled='true']),
-  select:not(:disabled),
-  label,
-  summary,
-  input[type='submit']:not(:disabled),
-  input[type='button']:not(:disabled),
-  input[type='reset']:not(:disabled),
-  input[type='checkbox']:not(:disabled),
-  input[type='radio']:not(:disabled),
-  [tabindex]:not([tabindex='-1']) {
-    cursor: pointer;
-  }
-
-  button:disabled,
-  select:disabled,
-  input[type='submit']:disabled,
-  input[type='button']:disabled,
-  input[type='reset']:disabled,
-  input[type='checkbox']:disabled,
-  input[type='radio']:disabled {
-    cursor: not-allowed;
-  }
-}
-
-/* Utilities layer: reinforce pointer on interactive elements over component defaults */
-@layer utilities {
-  a:not([aria-disabled='true']),
-  button:not(:disabled),
-  [onclick],
-  [role='button']:not([aria-disabled='true']),
-  [role='link']:not([aria-disabled='true']),
-  [role='tab']:not([aria-disabled='true']),
-  [role='menuitem']:not([aria-disabled='true']):not([data-disabled]),
-  [role='option']:not([aria-disabled='true']):not([data-disabled]),
-  [role='switch']:not([aria-disabled='true']),
-  select:not(:disabled),
-  label,
-  summary,
-  input[type='submit']:not(:disabled),
-  input[type='button']:not(:disabled),
-  input[type='reset']:not(:disabled),
-  input[type='checkbox']:not(:disabled),
-  input[type='radio']:not(:disabled),
-  [tabindex]:not([tabindex='-1']) {
-    cursor: pointer;
   }
 }

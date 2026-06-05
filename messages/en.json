@@ -20,9 +20,9 @@
   },
   "hero": {
     "badge": "AI-Powered Property Matching",
-    "titleLine1": "Your AI team",
-    "titleLine2": "for selling properties",
-    "titleLine3": "always on.",
+    "titleLine1": "The future of",
+    "titleLine2": "property management",
+    "titleLine3": "is here.",
     "subtitle": "Our mission is to bring innovation and automation to building projects by providing powerful, AI-driven tools that simplify unit presentation, sales coordination, and customer interaction.",
     "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
@@ -154,47 +154,13 @@
       }
     }
   },
-  "ctaProducts": {
-    "sales": {
-      "sectionTitle": "Ready to transform your",
-      "sectionTitleHighlight": "property management",
-      "subtitle": "Say goodbye to management headaches. Take control with AI-powered simplicity and boost your success effortlessly.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule a Demo",
-      "noCreditCard": "No credit card required • 30-day free trial • Cancel anytime"
-    },
-    "maintenance": {
-      "sectionTitle": "Ready to transform your",
-      "sectionTitleHighlight": "maintenance operations",
-      "subtitle": "Say goodbye to maintenance headaches. Take control with AI-powered tools that streamline work orders, scheduling, and asset management.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule a Demo",
-      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
-    },
-    "assets": {
-      "sectionTitle": "Ready to transform your",
-      "sectionTitleHighlight": "asset management",
-      "subtitle": "Say goodbye to spreadsheets and lost equipment. Take control with AI-powered tools that track assets, manage inventory, and optimize your equipment lifecycle.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule a Demo",
-      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
-    },
-    "communication": {
-      "sectionTitle": "Ready to build a",
-      "sectionTitleHighlight": "connected community",
-      "subtitle": "Say goodbye to communication gaps. Take control with AI-powered tools that keep residents informed, engaged, and connected.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule a Demo",
-      "noCreditCard": "No credit card required - 14-day free trial - Cancel anytime"
-    }
-  },
   "cta": {
     "sectionTitle": "Ready to transform your",
     "sectionTitleHighlight": "property management",
     "subtitle": "Say goodbye to management headaches. Take control with AI-powered simplicity and boost your success effortlessly.",
     "startFreeTrial": "Start Free Trial",
     "scheduleDemo": "Schedule a Demo",
-    "noCreditCard": "No credit card required • 30-day free trial • Cancel anytime",
+    "noCreditCard": "No credit card required • 14-day free trial • Cancel anytime",
     "modal": {
       "title": "Start your",
       "titleHighlight": "free trial",
@@ -204,6 +170,11 @@
         "security": "Enterprise-grade security",
         "support": "Dedicated support team",
         "multilingual": "Multilingual"
+      },
+      "testimonial": {
+        "quote": "This platform reduced our workload by 60% in just the first month. Absolutely game-changing.",
+        "author": "Sarah Chen",
+        "role": "CEO, PropertyFlow Inc."
       },
       "formTitle": "Complete your registration",
       "formSubtitle": "Fill out the form below to get started.",
@@ -224,14 +195,6 @@
         "email": "john@company.com"
       },
       "processing": "Processing...",
-      "redirecting": "Redirecting you to the admin portal…",
-      "errors": {
-        "generic": "Something went wrong. Please try again.",
-        "network": "Could not reach the server. Check your connection and try again.",
-        "username": "Username must be 4–16 characters: letters, numbers, underscores, or hyphens. Cannot start or end with _ or -.",
-        "company": "Please enter a company name.",
-        "mobile": "Please enter a valid mobile number including country code (e.g. +1… or +90…)."
-      },
       "thankYou": "Thank you!",
       "contactSoon": "We'll be in touch within 24 hours.",
       "terms": "By signing up, you agree to our",
@@ -241,10 +204,10 @@
     }
   },
   "footer": {
-    "description": "PropertyCareApp is an all-in-one platform for residential and commercial towers — managing sales, leasing, maintenance, residents, and AI-powered operations from a single, fully customized workspace.",
+    "description": "Simplify residential building management with Property Care App – a smart SaaS solution designed for seamless maintenance, resident communication, and service request tracking. Stay organized, enhance efficiency, and ensure hassle-free property care with our innovative platform.",
     "categories": {
       "products": "Products",
-      "company": "Who We Serve",
+      "company": "Company",
       "resources": "Resources",
       "platforms": "Platforms"
     },
@@ -296,56 +259,23 @@
     "sectionTitleHighlight": "real estate",
     "subtitle": "Numbers that speak to our commitment to excellence and innovation.",
     "items": {
-      "countries": {
-        "label": "Countries",
-        "description": "Trusted by industry leaders"
-      },
-      "users": {
-        "label": "Users",
-        "description": "Across multiple regions"
-      },
-      "satisfaction": {
-        "label": "Client Satisfaction",
-        "description": "Based on user feedback"
-      },
-      "support": {
-        "label": "Support Available",
-        "description": "Always here to help"
-      }
+      "countries": { "label": "Countries", "description": "Trusted by industry leaders" },
+      "users": { "label": "Users", "description": "Across multiple regions" },
+      "satisfaction": { "label": "Client Satisfaction", "description": "Based on user feedback" },
+      "support": { "label": "Support Available", "description": "Always here to help" }
     }
   },
   "whyUs": {
     "sectionTitle": "Why choose",
     "sectionTitleHighlight": "PropertyCareApp",
     "items": {
-      "international": {
-        "title": "International & Trusted",
-        "statLabel": "Users"
-      },
-      "aiPowered": {
-        "title": "AI-Powered Platform",
-        "statLabel": "Assistance"
-      },
-      "whiteLabel": {
-        "title": "White-Label Solution",
-        "statLabel": "Custom"
-      },
-      "allInOne": {
-        "title": "All-in-One Software",
-        "statLabel": "Modules"
-      },
-      "multiLanguage": {
-        "title": "Multi-Language",
-        "statLabel": "Languages"
-      },
-      "fastSetup": {
-        "title": "Fast Setup",
-        "statLabel": "Go-Live"
-      },
-      "support": {
-        "title": "Dedicated Support",
-        "statLabel": "Uptime"
-      }
+      "international": { "title": "International & Trusted", "statLabel": "Users" },
+      "aiPowered": { "title": "AI-Powered Platform", "statLabel": "Assistance" },
+      "whiteLabel": { "title": "White-Label Solution", "statLabel": "Custom" },
+      "allInOne": { "title": "All-in-One Software", "statLabel": "Modules" },
+      "multiLanguage": { "title": "Multi-Language", "statLabel": "Languages" },
+      "fastSetup": { "title": "Fast Setup", "statLabel": "Go-Live" },
+      "support": { "title": "Dedicated Support", "statLabel": "Uptime" }
     }
   },
   "solutions": {
@@ -367,25 +297,12 @@
       "ai": {
         "tag": "AI",
         "title": "Let AI Handle it",
-        "description": "Your AI assistant everywhere on the platform, always with you.",
-        "features": {
-          "askAndDone": "Ask, it delivers — Define tasks and the AI jumps in right away",
-          "autoReports": "Reports on autopilot — Instantly analyzes staff performance",
-          "multilingual": "Multilingual summaries — CRM, tickets, and work orders in the language you need",
-          "smartComms": "Smarter outreach — Message customers and generate greetings",
-          "noHunting": "No tab-hopping — Just ask; the AI takes care of the rest"
-        }
+        "description": "An intelligent AI sidebar is available in both Ask and Agent modes, acting as your always-on assistant within the platform. Simply describe what you need, and the AI will execute tasks, answer questions, and support your workflow instantly. From generating reports on staff performance to summarizing work orders, CRM, and tickets in any language, the AI turns complex operations into clear, actionable insights. It can also suggest responses, recommend next steps, and help you manage communication effortlessly. Send messages to customers, create reports, or generate automated greetings — all powered by AI. No need to navigate multiple sections; just ask, and it gets done."
       },
       "visit": {
         "tag": "Visit a Unit",
         "title": "Book an In-Person Tour",
-        "description": "Beyond virtual tours, book a face-to-face visit to explore the project on site.",
-        "features": {
-          "pickSlot": "Pick date & time — Buyers see open slots and choose what works",
-          "instantNotify": "Instant alerts — Agent, host, and security get notified automatically",
-          "noManual": "Zero manual coordination — The system handles the handoffs",
-          "proExperience": "A polished experience — Smooth flow from booking to visit"
-        }
+        "description": "Beyond virtual tours, buyers can now schedule a real in-person visit to explore the project firsthand. The system displays all available time slots, allowing interested buyers to easily choose the time that works best for them. Once a tour is booked, instant notifications are automatically sent to the assigned agent, presenter, and any authorized staff such as security or reception through their dedicated dashboard panels. Create a seamless and professional viewing experience — from scheduling to on-site coordination."
       },
       "buyers": {
         "tag": "Buyers Capability",
@@ -470,16 +387,15 @@
   },
   "videoShowcase": {
     "sectionTitle": "Watch how",
-    "sectionTitleHighlight": "PropertyCareApp",
-    "sectionTitleEnd": "Revolutionizes Your Sales",
+    "sectionTitleHighlight": "PropFlow transforms",
+    "sectionTitleEnd": "property management",
     "subtitle": "Discover how our platform streamlines your workflow, automates tedious tasks, and helps you close deals faster.",
     "productDemo": "Product Demo"
   },
   "blog": {
     "sectionTitle": "Latest from our blog",
     "subtitle": "Stay ahead with expert insights, industry trends, and practical guides for modern property management.",
-    "readArticle": "Read Article",
-    "emptyState": "No blog posts could be loaded. Check your connection or try again later."
+    "readArticle": "Read Article"
   },
   "aiMatching": {
     "sectionTitle": "Intelligent Property",
@@ -517,125 +433,7 @@
     "subtitle": "Unify sales, maintenance, CRM, and operations in one powerful platform. AI-driven tools that simplify property management and accelerate growth.",
     "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
-    "trustedBy": "Trusted by leading property companies",
-    "trustedCompanies": ["Almadar", "Karaneh", "Siraj", "Tisa", "MinaResidence", "ArakTowers"],
-    "dashboard": {
-      "title": "PropertyCare Dashboard",
-      "subtitle": "Real-time Overview",
-      "revenueTrend": "Revenue Trend",
-      "periods": ["1W", "1M", "1Y"],
-      "stats": {
-        "properties": { "label": "Properties", "value": "248", "change": "+12%" },
-        "tenants": { "label": "Tenants", "value": "1,842", "change": "+8%" },
-        "workOrders": { "label": "Work Orders", "value": "56", "change": "-23%" },
-        "revenue": { "label": "Revenue", "value": "$2.4M", "change": "+18%" }
-      }
-    },
-    "floatingCards": {
-      "aiInsights": {
-        "title": "AI Insights",
-        "subtitle": "5 new recommendations",
-"items": [
-      "Let AI manage your sales requests",
-      "Automate maintenance coordination",
-      "Handle requests in your preferred language",
-      "Get smart recommendations for sales negotiation",
-      "Delegate admin tasks to your AI Agent"
-    ]      },
-      "schedule": {
-        "title": "Today's Schedule",
-        "subtitle": "8 appointments"
-      },
-      "growth": {
-        "value": "+34%",
-        "subtitle": "Growth this month"
-      }
-    }
-  },
-  "homeFeaturesScroll": {
-    "badge": "Features",
-    "headline": "Seamless Selling Experience",
-    "cardCount": "04",
-    "cards": {
-      "selling": {
-        "num": "01",
-        "title": "Explore Your Tower, Floor by Floor",
-        "description": "A CRM that manages listings, tracks inquiries, sends proposals, and hands off smoothly to other teams without third-party tools.",
-        "pills": ["Referral links", "Book Visits", "Manage payments", "Ask inquirires"],
-        "cta": "Explore Selling"
-      },
-      "workorder": {
-        "num": "02",
-        "title": "Work Orders That Flow",
-        "description": "Every maintenance request — assigned, tracked, and resolved in one place. No lost tickets, no missed deadlines, no calls to chase updates.",
-        "pills": ["Unlimited inventory", "Status tracking", "AI Agent", "Vendor management"],
-        "cta": "Explore Work Orders"
-      },
-      "aichat": {
-        "num": "03",
-        "title": "AI Agent",
-        "description": "Your AI assistant everywhere on the platform, always with you — your tenants and owners.",
-        "pills": ["Instant responses", "Ask mode", "Agent mode", "Always online in chat groups — helping residents"],
-        "cta": "Explore AI Chat"
-      },
-      "reservation": {
-        "num": "04",
-        "title": "Book a Viewing in Seconds",
-        "description": "Buyers pick their preferred time, agents get notified instantly — no back-and-forth, no missed opportunities. Every viewing scheduled, tracked, and managed from one place.",
-
-
-        "pills": ["Online booking", "Google calendar sync", "Auto reminders", "Confirmation flow"],
-        "cta": "Explore Reservations"
-      }
-    },
-    "mockups": {
-      "tower": {
-        "altTower": "Luxury Tower",
-        "altFloorPlan": "Floor Plan"
-      },
-      "workOrder": {
-        "title": "Work Orders",
-        "newOrder": "+ New Order",
-        "columns": {
-          "unit": "Unit",
-          "issue": "Issue",
-          "assignee": "Assigned To",
-          "dueDate": "Due Date",
-          "status": "Status"
-        },
-        "statuses": {
-          "inProgress": "In Progress",
-          "completed": "Completed",
-          "pending": "Pending"
-        },
-        "rows": [
-          { "unit": "Unit 4B", "issue": "Leaky faucet", "assignee": "John M.", "due": "May 22", "statusKey": "inProgress" },
-          { "unit": "Unit 2A", "issue": "AC not cooling", "assignee": "Sara K.", "due": "May 20", "statusKey": "completed" },
-          { "unit": "Unit 7C", "issue": "Broken lock", "assignee": "—", "due": "May 25", "statusKey": "pending" },
-          { "unit": "Unit 1D", "issue": "Water heater", "assignee": "John M.", "due": "May 28", "statusKey": "pending" },
-          { "unit": "Unit 5F", "issue": "Window seal", "assignee": "Mike T.", "due": "May 19", "statusKey": "completed" }
-        ]
-      },
-      "aiChat": {
-        "title": "AI Assistant",
-        "online": "Online",
-        "messages": [
-          { "role": "ai", "text": "Hi! I'm here to help you find your perfect home. What are you looking for?" },
-          { "role": "user", "text": "Is Unit 3A still available?" },
-          { "role": "ai", "text": "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?" },
-          { "role": "user", "text": "Yes please!" },
-          { "role": "ai", "text": "Great! Connecting you with our team. You'll get a confirmation shortly." }
-        ]
-      },
-      "reservation": {
-        "title": "Book a Tour — May 2026",
-        "weekdays": ["M", "T", "W", "T", "F", "S", "S"],
-        "availableTimes": "Available times — May {day}",
-        "times": ["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"],
-        "confirmBooking": "Confirm Booking",
-        "demoSelectedTime": "11:30 AM"
-      }
-    }
+    "trustedBy": "Trusted by leading property companies"
   },
   "platformOverview": {
     "badge": "Platform Ecosystem",
@@ -680,76 +478,14 @@
     "badge": "Our Products",
     "title": "Powerful Modules for Every Need",
     "subtitle": "Choose the tools that fit your workflow. Each module is designed to work independently or as part of your complete property management suite.",
-    "headlineLine1": "Management made simple,",
-    "headlineLine2": "without the traditional hassles",
-    "descriptionLine1": "Automate your sales, rentals, and maintenance.",
-    "descriptionLine2": "Focus on growing revenue and client satisfaction.",
-    "tabHirer": "Sales ",
-    "tabTalent": "Maintenance ",
     "exploreModule": "Explore Module",
     "customSolution": "Need a custom solution? We tailor our platform to your specific requirements.",
     "startTrial": "Start Free Trial",
     "contactSales": "Contact Sales",
-    "mockups": {
-      "sales": {
-        "panel": {
-          "city": "Austin",
-          "region": "TX, USA",
-          "date": "Sunday, 28 Mar",
-          "expires": "Expires in 3 days",
-          "closeApplications": "Close applications 3 days before the start of the project"
-        },
-        "phone": {
-          "time": "9:41",
-          "title": "Create Project",
-          "references": "References (4)",
-          "addMore": "+ Add more"
-        }
-      },
-      "crm": {
-        "name": "James Smith",
-        "rating": "5.0★",
-        "role": "Photographer",
-        "message": "Hi, I can give you 15 edited images for $220",
-        "price": "$220"
-      },
-      "maintenance": {
-        "time": "9:41",
-        "inbox": "Inbox",
-        "tabs": {
-          "active": "Active",
-          "completed": "Completed",
-          "archive": "Archive"
-        },
-        "message": {
-          "name": "James Smith",
-          "time": "09:00 AM",
-          "subject": "Portrait Photo Shoot • Sun, 16 Apr...",
-          "preview": "I can arrive at 8 am"
-        }
-      },
-      "requests": {
-        "project": {
-          "title": "Portrait photo shoot",
-          "date": "28 Mar",
-          "likes": "❤️ 123",
-          "links": "🔗 13",
-          "excerpt": "Captured the essence of elegance. Stunning dresses was styled for...",
-          "meta": "$2,500 • Austin, Texas • 28 Mar",
-          "views": "293k views"
-        },
-        "review": {
-          "text": "Loved working together — the photos turned out even better than expected!",
-          "name": "Linda White",
-          "role": "5.0★ • Photographer"
-        },
-        "likesCount": "123"
-      }
-    },
     "products": {
       "sales": {
         "title": "Sales & Rentals",
-        "description": "Stop juggling spreadsheets and WhatsApp messages.",
+        "description": "Transform how you sell and rent properties with immersive virtual tours, intelligent inventory management, and streamlined deal tracking.",
         "features": {
           "virtualTours": "360° Virtual Tours",
           "inventory": "Real-time Inventory",
@@ -758,8 +494,8 @@
         }
       },
       "crm": {
-        "title": "Maintenance",
-        "description": "Just ask the AI agent to handle it. work orders, bookings, and reservations, all in one place.",
+        "title": "CRM",
+        "description": "Build stronger relationships with powerful lead management, automated follow-ups, and comprehensive customer insights.",
         "features": {
           "leads": "Lead Scoring",
           "pipeline": "Visual Pipeline",
@@ -768,18 +504,14 @@
         }
       },
       "maintenance": {
-        "title": "Communication",
-        "description": "A private community for your residents, where neighbors connect, events come alive, and AI keeps organized.",
+        "title": "Maintenance",
+        "description": "Streamline operations with efficient work order management, preventive maintenance scheduling, and vendor coordination.",
         "features": {
           "workOrders": "Work Order Tracking",
           "assets": "Asset Management",
           "scheduling": "Smart Scheduling",
           "vendors": "Vendor Portal"
         }
-      },
-      "requests": {
-        "title": "Assets & Parts",
-        "description": "Unlimited parts inventory. Scan a QR code to instantly submit a repair request and track its status."
       },
       "accounting": {
         "title": "Accounting",
@@ -815,31 +547,31 @@
   },
   "aiFeatures": {
     "badge": "AI-Powered",
-    "title": "Work smarter with an AI that",
-    "titleHighlight": "knows your building",
-    "subtitle": "From summarizing negotiations to auto-building your workflow, your AI agent handles the complexity so your team can focus on what matters.",
+    "title": "Supercharge Your Workflow",
+    "titleHighlight": "with Artificial Intelligence",
+    "subtitle": "Our AI assistant understands your needs, automates repetitive tasks, and provides intelligent recommendations to help you work smarter.",
     "alwaysReady": "Always ready to help",
     "askAnything": "Ask anything...",
     "features": {
       "assistant": {
-        "title": "AI Agent sidebar",
-        "description": "A persistent assistant in your sidebar — give any command and it executes instantly across the platform."
+        "title": "AI Assistant",
+        "description": "Get instant answers and perform complex tasks through natural conversation"
       },
       "translation": {
-        "title": "Workflow builder",
-        "description": "Ask the agent to build your workflow — it creates the org chart, permissions, and work order process for you."
+        "title": "Auto Translation",
+        "description": "Communicate with clients in 12+ languages with real-time translation"
       },
       "insights": {
-        "title": "Deal probability",
-        "description": "AI estimates the closing likelihood of each negotiation based on conversation history and client behavior."
+        "title": "Smart Insights",
+        "description": "Receive personalized recommendations based on your data patterns"
       },
       "automation": {
-        "title": "Smart summaries",
-        "description": "Negotiations, work orders, and tickets — summarized in your language with next-step recommendations."
+        "title": "Task Automation",
+        "description": "Automate repetitive workflows and focus on what matters most"
       },
       "summaries": {
-        "title": "Auto notifications & blog posts",
-        "description": "Publish announcements and blog content in multiple languages — with AI-generated images, automatically."
+        "title": "Smart Summaries",
+        "description": "Get concise summaries of long documents and conversations"
       },
       "predictions": {
         "title": "Predictive Analytics",
@@ -881,13 +613,12 @@
   },
   "workflow": {
     "badge": "How It Works",
-    "title": "From Blueprint to Launch",
-    "subtitle": "No two buildings are the same — and neither is your software. We document requirements, customize details, and deliver a platform that fits your operation.",
+    "title": "From Idea to Implementation",
+    "subtitle": "We guide you through every step of your digital transformation journey with personalized support and expert guidance.",
     "steps": {
       "blueprint": {
         "title": "Blueprint Design",
-        "description": "We analyze your needs and create a detailed plan",
-        "url": "app.propertycareapp.com/wireframe",
+        "description": "We collaborate with you to design the perfect solution tailored to your building's needs.",
         "features": {
           "1": "Requirements Analysis",
           "2": "Custom Wireframes",
@@ -896,8 +627,7 @@
       },
       "design": {
         "title": "UI & UX Design",
-        "description": "Your platform, your brand. Every screen is designed around",
-        "url": "app.propertycareapp.com/dashboard",
+        "description": "Our designers create a stunning interface that matches your brand identity.",
         "features": {
           "1": "Brand Integration",
           "2": "Mobile-First Design",
@@ -906,8 +636,7 @@
       },
       "delivery": {
         "title": "Delivery & Training",
-        "description": "We deploy, configure, and train your team — so day one feels like you've been using it for years.",
-        "url": "app.propertycareapp.com/maintenance",
+        "description": "Smooth handover with comprehensive training for your entire team.",
         "features": {
           "1": "Live Training Sessions",
           "2": "Documentation",
@@ -916,73 +645,12 @@
       },
       "support": {
         "title": "Ongoing Support",
-        "description": "Your business evolves. We evolve with it",
-        "url": "app.propertycareapp.com/support",
+        "description": "24/7 support with AI assistance to ensure your success.",
         "features": {
           "1": "AI Assistant",
           "2": "Ticket System",
           "3": "Phone & Chat"
         }
-      }
-    },
-    "mockups": {
-      "shared": {
-        "sidebar": {
-          "dashboard": "Dashboard",
-          "tenants": "Tenants",
-          "bookings": "Bookings",
-          "settings": "Settings"
-        },
-        "statuses": {
-          "active": "Active",
-          "maintenance": "Maintenance",
-          "available": "Available"
-        },
-        "properties": [
-          { "name": "Sunset Apartments", "statusKey": "active", "units": 24, "occupancy": 92 },
-          { "name": "Harbor View Tower", "statusKey": "maintenance", "units": 18, "occupancy": 78 },
-          { "name": "Garden Residences", "statusKey": "available", "units": 32, "occupancy": 100 }
-        ],
-        "units": "units",
-        "occupancyShort": "% occ."
-      },
-      "design": {
-        "dashboardTitle": "Dashboard",
-        "pageTitle": "My Properties",
-        "pageSubtitle": "Real-time overview of your building's performance",
-        "stats": {
-          "totalUnits": { "label": "Total Units", "value": "74" },
-          "occupancy": { "label": "Sold Out", "value": "89%" },
-          "revenue": { "label": "Revenue", "value": "$2.4M" },
-          "requests": { "label": "Requests", "value": "12" }
-        }
-      },
-      "delivery": {
-        "requestTitle": "Publishing Software",
-        "requestId": "#MR-2847",
-        "issueTitle": "Publishing applications",
-        "issueLocation": "On Google Play and App Store",
-        "progressLabel": "Progress",
-        "overallProgress": "Overall Progress",
-        "progressPercent": "75%",
-        "timeline": {
-          "reported": "Deployed",
-          "assigned": "Configured",
-          "inProgress": "Trained",
-          "complete": "Done"
-        }
-      },
-      "support": {
-        "chatTitle": "Support Chat",
-        "chatStatus": "Online - Avg response <2min",
-        "messages": [
-          { "type": "user", "text": "Hi, We need a new custom module for our building" },
-          { "type": "support", "text": "Hi! I can help with that. Let me check our development queue." },
-          { "type": "user", "text": "When can we expect it?" },
-          { "type": "support", "text": "We're aiming for the end of the month. We'll keep you updated on the progress." }
-        ],
-        "uptime": { "value": "99.9%", "label": "Uptime" },
-        "response": { "value": "<2min", "label": "Response" }
       }
     },
     "stats": {
@@ -1012,18 +680,18 @@
   },
   "homeCTA": {
     "badge": "Get Started Today",
-    "title": "Your Building Deserves Better",
-    "titleHighlight": "Than Spreadsheets.",
-    "subtitle": "From the first lead to the last service request — everything runs smoother with a platform built for your building.",
+    "title": "Ready to Transform",
+    "titleHighlight": "Your Property Management?",
+    "subtitle": "Join thousands of property managers who have already streamlined their operations with PropertyCare. Start your free trial today.",
     "startTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
     "noCredit": "No credit card required",
-    "freeSetup": "Fully customized",
-    "cancelAnytime": "Dedicated support from day one"
+    "freeSetup": "Free setup assistance",
+    "cancelAnytime": "Cancel anytime"
   },
   "homeIntegrations": {
     "badge": "Integrations",
-    "title": "Integrations with your favorite tools",
-    "subtitle": "No switching, no friction. Your tools plug right in and work from day one."
+    "title": "Works With Your Favorite Tools",
+    "subtitle": "Seamlessly connect with the services you already use and love."
   }
 }

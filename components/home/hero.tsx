@@ -5,31 +5,11 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Play, Building2, Users, Wrench, BarChart3, Sparkles, Calendar, TrendingUp, Bell, CheckCircle2 } from "lucide-react";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { ProductSignupTrigger } from "@/components/signup/product-signup-trigger";
-
-const DASHBOARD_STAT_KEYS = ["properties", "tenants", "workOrders", "revenue"] as const;
-
-const DASHBOARD_STAT_CONFIG: Record<
-  (typeof DASHBOARD_STAT_KEYS)[number],
-  { icon: typeof Building2; color: string; gradient: string }
-> = {
-  properties: { icon: Building2, color: "primary", gradient: "from-primary/20 to-primary/5" },
-  tenants: {
-    icon: Users,
-    color: "chart-2",
-    gradient: "from-[oklch(0.55_0.15_200)]/20 to-[oklch(0.55_0.15_200)]/5",
-  },
-  workOrders: { icon: Wrench, color: "chart-5", gradient: "from-chart-5/20 to-chart-5/5" },
-  revenue: { icon: BarChart3, color: "chart-4", gradient: "from-chart-4/20 to-chart-4/5" },
-};
 
 export function HomeHero() {
   const t = useTranslations("homeHero");
-  const trustedCompanies = t.raw("trustedCompanies") as string[];
-  const chartPeriods = t.raw("dashboard.periods") as string[];
-  const aiInsightItems = t.raw("floatingCards.aiInsights.items") as string[];
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -40,60 +20,83 @@ export function HomeHero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
-  // Stable particle positions/timings — computed once, never changes between renders
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 20 }, (_, i) => {
-        // Seeded-like distribution: spread particles evenly across the canvas
-        const col = i % 5;
-        const row = Math.floor(i / 5);
-        return {
-          left: col * 20 + 2 + ((i * 7) % 16),   // 0-100%, varied
-          top: row * 25 + 3 + ((i * 11) % 18),    // 0-100%, varied
-          duration: 4 + (i % 5),                   // 4–8s range, same as before
-          delay: (i % 5) * 0.8,                    // 0–4s range, same as before
-        };
-      }),
-    [],
-  );
-
   return (
     <section ref={containerRef} className="relative min-h-[100vh] overflow-hidden pt-24 sm:pt-32 pb-12 sm:pb-20">
       {/* Multi-layered animated gradient background */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Primary gradient orb — CSS: scale 1→1.1→1, opacity 0.4→0.5→0.4, 8s easeInOut */}
-        <div
-          className="hero-orb-primary absolute left-1/2 top-0 h-[600px] w-[800px] sm:h-[900px] sm:w-[1400px] -translate-x-1/2 rounded-full"
+        {/* Primary gradient orb */}
+        <motion.div
+          className="absolute left-1/2 top-0 h-[600px] w-[800px] sm:h-[900px] sm:w-[1400px] -translate-x-1/2 rounded-full"
           style={{
             background: "radial-gradient(ellipse at center, oklch(0.38 0.16 330 / 0.4) 0%, oklch(0.38 0.16 330 / 0.1) 40%, transparent 70%)",
             filter: "blur(60px)",
           }}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.5, 0.4],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
-
-        {/* Cyan accent orb - right — CSS: x 0→60→0, y 0→-40→0, scale 1→1.15→1, 12s easeInOut */}
-        <div
-          className="hero-orb-cyan absolute right-[-10%] top-[20%] h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full"
+        
+        {/* Cyan accent orb - right */}
+        <motion.div
+          className="absolute right-[-10%] top-[20%] h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.65 0.18 200 / 0.25) 0%, oklch(0.55 0.15 200 / 0.1) 40%, transparent 70%)",
             filter: "blur(80px)",
           }}
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
-
-        {/* Pink/magenta accent orb - left — CSS: x 0→-40→0, y 0→50→0, scale 1→1.1→1, 10s delay 1s easeInOut */}
-        <div
-          className="hero-orb-pink absolute left-[-5%] top-[40%] h-[350px] w-[450px] sm:h-[500px] sm:w-[700px] rounded-full"
+        
+        {/* Pink/magenta accent orb - left */}
+        <motion.div
+          className="absolute left-[-5%] top-[40%] h-[350px] w-[450px] sm:h-[500px] sm:w-[700px] rounded-full"
           style={{
             background: "radial-gradient(ellipse, oklch(0.55 0.2 350 / 0.2) 0%, oklch(0.45 0.18 340 / 0.05) 50%, transparent 70%)",
             filter: "blur(70px)",
           }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
         />
 
-        {/* Warm gold accent - bottom — CSS: x 0→30→0, opacity 0.15→0.25→0.15, 8s delay 2s easeInOut */}
-        <div
-          className="hero-orb-gold absolute bottom-[10%] left-[30%] h-[300px] w-[400px] rounded-full"
+        {/* Warm gold accent - bottom */}
+        <motion.div
+          className="absolute bottom-[10%] left-[30%] h-[300px] w-[400px] rounded-full"
           style={{
             background: "radial-gradient(ellipse, oklch(0.7 0.15 80 / 0.15) 0%, transparent 60%)",
             filter: "blur(60px)",
+          }}
+          animate={{
+            x: [0, 30, 0],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
           }}
         />
       </div>
@@ -111,17 +114,25 @@ export function HomeHero() {
         }}
       />
 
-      {/* Floating particles/dots — CSS: y 0→-30px→0, opacity 0.2→0.6→0.2, easeInOut */}
+      {/* Floating particles/dots */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {particles.map((p, i) => (
-          <div
+        {[...Array(20)].map((_, i) => (
+          <motion.div
             key={i}
-            className="hero-particle absolute h-1 w-1 rounded-full bg-primary/40"
+            className="absolute h-1 w-1 rounded-full bg-primary/40"
             style={{
-              left: `${p.left}%`,
-              top: `${p.top}%`,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 4,
+              ease: "easeInOut",
             }}
           />
         ))}
@@ -174,20 +185,25 @@ export function HomeHero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8 sm:mt-10 flex flex-col gap-3 sm:gap-4 sm:flex-row px-4 sm:px-0"
           >
-            <ProductSignupTrigger
-              product="sales"
-              size="lg"
-              className="group relative gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-            >
-              <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary to-[oklch(0.45_0.18_200)] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative flex items-center gap-2">
-                {t("startFreeTrial")}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </ProductSignupTrigger>
+            <Link href="https://admin.propertycareapp.com/create-subscription/53/false/EN">
+              <Button
+                size="lg"
+                className="group relative gap-2 bg-primary px-8 text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
+              >
+                <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary to-[oklch(0.45_0.18_200)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative flex items-center gap-2">
+                  {t("startFreeTrial")}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Button>
+            </Link>
 
             <Link href="https://fire.chilipiper.com/me/property-careapp/meeting-with-propertycare">
-              <Button size="lg" variant="outline" className="gap-2">
+              <Button
+                size="lg"
+                variant="outline"
+                className="gap-2 border-border/50 bg-card/50 text-foreground hover:bg-card hover:border-primary/30 backdrop-blur-sm"
+              >
                 <Play className="h-4 w-4" />
                 {t("bookDemo")}
               </Button>
@@ -223,26 +239,31 @@ export function HomeHero() {
                       <Building2 className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold">{t("dashboard.title")}</div>
-                      <div className="text-xs text-muted-foreground">{t("dashboard.subtitle")}</div>
+                      <div className="text-sm font-semibold">PropertyCare Dashboard</div>
+                      <div className="text-xs text-muted-foreground">Real-time Overview</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {/* bell pulse: scale 1→1.1→1, 2s linear infinite */}
-                    <div className="hero-bell h-8 w-8 rounded-lg bg-chart-4/10 flex items-center justify-center">
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="h-8 w-8 rounded-lg bg-chart-4/10 flex items-center justify-center"
+                    >
                       <Bell className="h-4 w-4 text-chart-4" />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 
                 {/* Stats Grid with varied colors */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
-                  {DASHBOARD_STAT_KEYS.map((statKey, i) => {
-                    const stat = DASHBOARD_STAT_CONFIG[statKey];
-                    const change = t(`dashboard.stats.${statKey}.change`);
-                    return (
+                  {[
+                    { icon: Building2, label: "Properties", value: "248", change: "+12%", color: "primary", gradient: "from-primary/20 to-primary/5" },
+                    { icon: Users, label: "Tenants", value: "1,842", change: "+8%", color: "chart-2", gradient: "from-[oklch(0.55_0.15_200)]/20 to-[oklch(0.55_0.15_200)]/5" },
+                    { icon: Wrench, label: "Work Orders", value: "56", change: "-23%", color: "chart-5", gradient: "from-chart-5/20 to-chart-5/5" },
+                    { icon: BarChart3, label: "Revenue", value: "$2.4M", change: "+18%", color: "chart-4", gradient: "from-chart-4/20 to-chart-4/5" },
+                  ].map((stat, i) => (
                     <motion.div
-                      key={statKey}
+                      key={stat.label}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.7 + i * 0.1 }}
@@ -252,26 +273,25 @@ export function HomeHero() {
                       <div className="relative">
                         <div className="flex items-center gap-2 mb-2">
                           <stat.icon className={`h-4 w-4 text-${stat.color}`} />
-                          <span className="text-xs text-muted-foreground">{t(`dashboard.stats.${statKey}.label`)}</span>
+                          <span className="text-xs text-muted-foreground">{stat.label}</span>
                         </div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-lg sm:text-xl font-bold">{t(`dashboard.stats.${statKey}.value`)}</span>
-                          <span className={`text-xs ${change.startsWith("+") ? "text-chart-4" : "text-chart-5"}`}>
-                            {change}
+                          <span className="text-lg sm:text-xl font-bold">{stat.value}</span>
+                          <span className={`text-xs ${stat.change.startsWith("+") ? "text-chart-4" : "text-chart-5"}`}>
+                            {stat.change}
                           </span>
                         </div>
                       </div>
                     </motion.div>
-                    );
-                  })}
+                  ))}
                 </div>
 
                 {/* Activity Chart Placeholder */}
                 <div className="rounded-xl border border-border/30 bg-card/40 p-4 backdrop-blur-sm">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium">{t("dashboard.revenueTrend")}</span>
+                    <span className="text-sm font-medium">Revenue Trend</span>
                     <div className="flex gap-2">
-                      {chartPeriods.map((period, i) => (
+                      {["1W", "1M", "1Y"].map((period, i) => (
                         <button
                           key={period}
                           className={`px-2 py-0.5 rounded text-xs ${i === 1 ? "bg-primary/20 text-primary" : "text-muted-foreground"}`}
@@ -297,52 +317,64 @@ export function HomeHero() {
               </div>
             </div>
 
-            {/* Floating Cards - AI Insights — CSS: y 0→-12px→0, rotate 0→-1deg→0, 5s easeInOut */}
-            <div className="hero-card-insights absolute -left-4 sm:-left-12 top-[15%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
+            {/* Floating Cards - AI Insights */}
+            <motion.div
+              className="absolute -left-4 sm:-left-12 top-[15%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
+              animate={{ y: [0, -12, 0], rotate: [0, -1, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)] flex items-center justify-center shadow-lg">
                   <Sparkles className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold">{t("floatingCards.aiInsights.title")}</div>
-                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.aiInsights.subtitle")}</div>
+                  <div className="text-xs font-semibold">AI Insights</div>
+                  <div className="text-[10px] text-muted-foreground">3 new recommendations</div>
                 </div>
               </div>
               <div className="mt-3 space-y-1.5">
-                {aiInsightItems.map((item) => (
+                {["Optimize pricing", "Reduce vacancy"].map((item, i) => (
                   <div key={item} className="flex items-center gap-2 text-[10px] text-muted-foreground">
                     <CheckCircle2 className="h-3 w-3 text-chart-4" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Floating Cards - Appointments — CSS: y 0→10px→0, rotate 0→1deg→0, 6s delay 1s easeInOut */}
-            <div className="hero-card-appointments absolute -right-4 sm:-right-8 top-[25%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
+            {/* Floating Cards - Appointments */}
+            <motion.div
+              className="absolute -right-4 sm:-right-8 top-[25%] rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
+              animate={{ y: [0, 10, 0], rotate: [0, 1, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-chart-4 to-chart-4/70 flex items-center justify-center shadow-lg">
                   <Calendar className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold">{t("floatingCards.schedule.title")}</div>
-                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.schedule.subtitle")}</div>
+                  <div className="text-xs font-semibold">Today&apos;s Schedule</div>
+                  <div className="text-[10px] text-muted-foreground">8 appointments</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Floating Cards - Growth — CSS: y 0→-8px→0, 4s delay 2s easeInOut */}
-            <div className="hero-card-growth absolute right-[10%] -bottom-4 sm:-bottom-8 rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10">
+            {/* Floating Cards - Growth */}
+            <motion.div
+              className="absolute right-[10%] -bottom-4 sm:-bottom-8 rounded-xl border border-border/30 bg-card/90 p-3 sm:p-4 shadow-xl backdrop-blur-xl z-10"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            >
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-chart-4/80 to-[oklch(0.55_0.15_150)] flex items-center justify-center shadow-lg">
                   <TrendingUp className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-chart-4">{t("floatingCards.growth.value")}</div>
-                  <div className="text-[10px] text-muted-foreground">{t("floatingCards.growth.subtitle")}</div>
+                  <div className="text-lg font-bold text-chart-4">+34%</div>
+                  <div className="text-[10px] text-muted-foreground">Growth this month</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Glow effects behind dashboard */}
             <div className="absolute inset-0 -z-10">
@@ -362,7 +394,7 @@ export function HomeHero() {
               {t("trustedBy")}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-              {trustedCompanies.map((company, i) => (
+              {["Emaar", "Damac", "Nakheel", "Meraas", "Aldar", "Sobha"].map((company, i) => (
                 <motion.span
                   key={company}
                   initial={{ opacity: 0 }}
@@ -379,7 +411,7 @@ export function HomeHero() {
         </div>
       </motion.div>
 
-      {/* CSS for gradient + orb animations (replaces repeat:Infinity motion.div orbs) */}
+      {/* CSS for gradient animation */}
       <style jsx global>{`
         @keyframes gradient {
           0%, 100% { background-position: 0% 50%; }
@@ -387,87 +419,6 @@ export function HomeHero() {
         }
         .animate-gradient {
           animation: gradient 6s ease infinite;
-        }
-
-        /* Primary orb: scale 1→1.1→1, opacity 0.4→0.5→0.4, 8s easeInOut */
-        @keyframes orb-primary {
-          0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; }
-          50%       { transform: translateX(-50%) scale(1.1); opacity: 0.5; }
-        }
-        .hero-orb-primary {
-          animation: orb-primary 8s ease-in-out infinite;
-        }
-
-        /* Cyan orb: x 0→60px→0, y 0→-40px→0, scale 1→1.15→1, 12s easeInOut */
-        @keyframes orb-cyan {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          50%       { transform: translate(60px, -40px) scale(1.15); }
-        }
-        .hero-orb-cyan {
-          animation: orb-cyan 12s ease-in-out infinite;
-        }
-
-        /* Pink orb: x 0→-40px→0, y 0→50px→0, scale 1→1.1→1, 10s delay 1s easeInOut */
-        @keyframes orb-pink {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          50%       { transform: translate(-40px, 50px) scale(1.1); }
-        }
-        .hero-orb-pink {
-          animation: orb-pink 10s ease-in-out 1s infinite;
-        }
-
-        /* Gold orb: x 0→30px→0, opacity 0.15→0.25→0.15, 8s delay 2s easeInOut */
-        @keyframes orb-gold {
-          0%, 100% { transform: translateX(0px); opacity: 0.15; }
-          50%       { transform: translateX(30px); opacity: 0.25; }
-        }
-        .hero-orb-gold {
-          animation: orb-gold 8s ease-in-out 2s infinite;
-        }
-
-        /* Particles: y 0→-30px→0, opacity 0.2→0.6→0.2, easeInOut; duration & delay set inline */
-        @keyframes hero-particle-float {
-          0%, 100% { transform: translateY(0px); opacity: 0.2; }
-          50%       { transform: translateY(-30px); opacity: 0.6; }
-        }
-        .hero-particle {
-          animation: hero-particle-float ease-in-out infinite;
-        }
-
-        /* Bell icon: scale 1→1.1→1, 2s linear infinite */
-        @keyframes hero-bell-pulse {
-          0%, 100% { transform: scale(1); }
-          50%       { transform: scale(1.1); }
-        }
-        .hero-bell {
-          animation: hero-bell-pulse 2s linear infinite;
-        }
-
-        /* AI Insights card: y 0→-12px→0, rotate 0→-1deg→0, 5s easeInOut infinite */
-        @keyframes hero-card-insights-float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50%       { transform: translateY(-12px) rotate(-1deg); }
-        }
-        .hero-card-insights {
-          animation: hero-card-insights-float 5s ease-in-out infinite;
-        }
-
-        /* Appointments card: y 0→10px→0, rotate 0→1deg→0, 6s delay 1s easeInOut infinite */
-        @keyframes hero-card-appointments-float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50%       { transform: translateY(10px) rotate(1deg); }
-        }
-        .hero-card-appointments {
-          animation: hero-card-appointments-float 6s ease-in-out 1s infinite;
-        }
-
-        /* Growth card: y 0→-8px→0, 4s delay 2s easeInOut infinite */
-        @keyframes hero-card-growth-float {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-8px); }
-        }
-        .hero-card-growth {
-          animation: hero-card-growth-float 4s ease-in-out 2s infinite;
         }
       `}</style>
     </section>

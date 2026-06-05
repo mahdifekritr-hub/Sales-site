@@ -615,31 +615,14 @@ function SolutionCard({
   const title = t(`items.${solutionKey}.title`);
   const description = t(`items.${solutionKey}.description`);
 
-  const features =
-    solutionKey === "sales"
-      ? [
-          t("items.sales.features.floorNav"),
-          t("items.sales.features.virtualTours"),
-          t("items.sales.features.reservation"),
-          t("items.sales.features.payments"),
-          t("items.sales.features.multiPlatform"),
-        ]
-      : solutionKey === "ai"
-        ? [
-            t("items.ai.features.askAndDone"),
-            t("items.ai.features.autoReports"),
-            t("items.ai.features.multilingual"),
-            t("items.ai.features.smartComms"),
-            t("items.ai.features.noHunting"),
-          ]
-        : solutionKey === "visit"
-          ? [
-              t("items.visit.features.pickSlot"),
-              t("items.visit.features.instantNotify"),
-              t("items.visit.features.noManual"),
-              t("items.visit.features.proExperience"),
-            ]
-          : [];
+  // Only sales module has features
+  const features = solutionKey === "sales" ? [
+    t("items.sales.features.floorNav"),
+    t("items.sales.features.virtualTours"),
+    t("items.sales.features.reservation"),
+    t("items.sales.features.payments"),
+    t("items.sales.features.multiPlatform"),
+  ] : [];
 
   return (
     <motion.div

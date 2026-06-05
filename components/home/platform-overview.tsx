@@ -39,21 +39,29 @@ export function PlatformOverview() {
         <div className="absolute inset-0 bg-white" />
         
         {/* Accent orbs */}
-        {/* orb-a: scale 1→1.2→1, opacity 0.5→0.8→0.5, 8s easeInOut */}
-        <div
-          className="po-orb-a absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full"
+        <motion.div
+          className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.38 0.16 330 / 0.08) 0%, transparent 60%)",
             filter: "blur(60px)",
           }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* orb-b: scale 1→1.15→1, opacity 0.4→0.7→0.4, 10s delay 2s easeInOut */}
-        <div
-          className="po-orb-b absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full"
+        <motion.div
+          className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full"
           style={{
             background: "radial-gradient(circle, oklch(0.55 0.15 200 / 0.06) 0%, transparent 60%)",
             filter: "blur(80px)",
           }}
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
 
         {/* Subtle grid */}
@@ -110,13 +118,22 @@ export function PlatformOverview() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 mb-12 sm:mb-16"
           >
-            {/* Pulsing rings — CSS: easeOut, 3s; scale and opacity values matched exactly */}
-            {/* ring-1: scale 1→1.4→1, opacity 0.6→0→0.6, 3s easeOut */}
-            <div className="po-ring-1 absolute inset-0 rounded-full border-2 border-primary/30" />
-            {/* ring-2: scale 1→1.6→1, opacity 0.4→0→0.4, 3s delay 0.3s easeOut */}
-            <div className="po-ring-2 absolute inset-0 rounded-full border border-primary/20" />
-            {/* ring-3: scale 1→1.8→1, opacity 0.3→0→0.3, 3s delay 0.6s easeOut */}
-            <div className="po-ring-3 absolute inset-0 rounded-full border border-[oklch(0.55_0.15_200)]/20" />
+            {/* Pulsing rings */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-primary/30"
+              animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
+            />
+            <motion.div
+              className="absolute inset-0 rounded-full border border-primary/20"
+              animate={{ scale: [1, 1.6, 1], opacity: [0.4, 0, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+            />
+            <motion.div
+              className="absolute inset-0 rounded-full border border-[oklch(0.55_0.15_200)]/20"
+              animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 0.6 }}
+            />
 
             {/* Central glow */}
             <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl" />
@@ -225,43 +242,6 @@ export function PlatformOverview() {
           ))}
         </motion.div>
       </div>
-      {/* CSS keyframes for decorative infinite animations */}
-      <style jsx global>{`
-        /* po orb-a: scale 1→1.2→1, opacity 0.5→0.8→0.5, 8s easeInOut */
-        @keyframes po-orb-a {
-          0%, 100% { transform: scale(1); opacity: 0.5; }
-          50%       { transform: scale(1.2); opacity: 0.8; }
-        }
-        .po-orb-a { animation: po-orb-a 8s ease-in-out infinite; }
-
-        /* po orb-b: scale 1→1.15→1, opacity 0.4→0.7→0.4, 10s delay 2s easeInOut */
-        @keyframes po-orb-b {
-          0%, 100% { transform: scale(1); opacity: 0.4; }
-          50%       { transform: scale(1.15); opacity: 0.7; }
-        }
-        .po-orb-b { animation: po-orb-b 10s ease-in-out 2s infinite; }
-
-        /* pulsing rings — easeOut approximated with cubic-bezier(0, 0, 0.58, 1) */
-        @keyframes po-ring {
-          0%        { transform: scale(1); opacity: var(--ring-start); }
-          50%, 100% { transform: scale(var(--ring-end-scale)); opacity: 0; }
-        }
-        /* ring-1: scale 1→1.4, opacity 0.6→0, 3s easeOut */
-        .po-ring-1 {
-          --ring-start: 0.6; --ring-end-scale: 1.4;
-          animation: po-ring 3s cubic-bezier(0, 0, 0.58, 1) infinite;
-        }
-        /* ring-2: scale 1→1.6, opacity 0.4→0, 3s delay 0.3s easeOut */
-        .po-ring-2 {
-          --ring-start: 0.4; --ring-end-scale: 1.6;
-          animation: po-ring 3s cubic-bezier(0, 0, 0.58, 1) 0.3s infinite;
-        }
-        /* ring-3: scale 1→1.8, opacity 0.3→0, 3s delay 0.6s easeOut */
-        .po-ring-3 {
-          --ring-start: 0.3; --ring-end-scale: 1.8;
-          animation: po-ring 3s cubic-bezier(0, 0, 0.58, 1) 0.6s infinite;
-        }
-      `}</style>
     </section>
   );
 }
