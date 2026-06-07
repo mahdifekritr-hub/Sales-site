@@ -241,10 +241,10 @@
     }
   },
   "footer": {
-    "description": "Property Care App ile konut binası yönetimini basitleştirin – sorunsuz bakım, sakin iletişimi ve hizmet talebi takibi için tasarlanmış akıllı bir SaaS çözümü. Yenilikçi platformumuzla organize kalın, verimliliği artırın ve sorunsuz mülk bakımı sağlayın.",
+    "description": "PropertyCareApp, konut ve ticari kuleler için hepsi bir arada bir platformdur — satış, kiralama, bakım, sakinler ve yapay zeka destekli operasyonları tek, tamamen özelleştirilmiş bir çalışma alanından yönetir.",
     "categories": {
       "products": "Ürünler",
-      "company": "Şirket",
+      "company": "Kime Hizmet Veriyoruz",
       "resources": "Kaynaklar",
       "platforms": "Platformlar"
     },
@@ -582,53 +582,53 @@
   },
   "homeFeaturesScroll": {
     "badge": "Özellikler",
-    "headline": "Birlikte çalışan süper güçlü bir sistem.",
+    "headline": "Kesintisiz Satış Deneyimi",
     "cardCount": "04",
     "cards": {
       "selling": {
         "num": "01",
-        "title": "Kesintisiz Satış Deneyimi",
+        "title": "Kuleyi Kat Kat Keşfedin",
         "description": "İlanları yöneten, talepleri takip eden, teklif gönderen ve üçüncü taraf araçlar olmadan diğer ekiplere sorunsuz devir yapan bir CRM.",
         "pills": [
-          "Daha yüksek dönüşüm",
-          "Daha az devir",
-          "Daha az manuel iş",
-          "Platforma özgü"
+          "Referans bağlantıları",
+          "Ziyaret rezervasyonu",
+          "Ödeme yönetimi",
+          "Sorgu oluşturun"
         ],
         "cta": "Satışı Keşfet"
       },
       "workorder": {
         "num": "02",
         "title": "Akıcı İş Emirleri",
-        "description": "Bakım taleplerini tek yerden takip edin, atayın ve çözün; otomatik iş akışları ve gerçek zamanlı durum güncellemeleriyle.",
+        "description": "Her bakım talebi — tek bir yerde atanıyor, takip ediliyor ve çözülüyor. Kayıp bilet yok, kaçırılan son tarih yok, güncelleme için telefon açmanıza gerek yok.",
         "pills": [
-          "Hızlı atama",
+          "Sınırsız envanter",
           "Durum takibi",
-          "Fotoğraf yükleme",
+          "Yapay Zeka Asistanı",
           "Tedarikçi yönetimi"
         ],
         "cta": "İş Emirlerini Keşfet"
       },
       "aichat": {
         "num": "03",
-        "title": "Dönüşüm Sağlayan Yapay Zeka Sohbeti",
-        "description": "Kiracı ve alıcı sorularını anında yanıtlayın — 7/24 — mülkleriniz ve politikalarınız üzerine eğitilmiş bir yapay zeka asistanıyla.",
+        "title": "Yapay Zeka Asistanı",
+        "description": "Platformun her yerinde yanınızda olan yapay zeka asistanınız — kiracılarınız ve mal sahipleriniz için.",
         "pills": [
-          "Anında yanıt",
-          "Potansiyel müşteri nitelendirme",
-          "Temsilciye devir",
-          "Çok dilli"
+          "Anında yanıtlar",
+          "Sorgu modu",
+          "Asistan modu",
+          "Sohbet gruplarında her zaman çevrimiçi — sakinlere yardım eder"
         ],
         "cta": "Yapay Zeka Sohbetini Keşfet"
       },
       "reservation": {
         "num": "04",
-        "title": "Kolay Rezervasyonlar",
-        "description": "Adayların ilanınızdan doğrudan tur rezervasyonu yapmasını sağlayın; otomatik takvim senkronizasyonu ve onay akışıyla.",
+        "title": "Saniyeler İçinde Görüntüleme Rezervasyonu",
+        "description": "Alıcılar tercih ettikleri saati seçer, temsilciler anında bilgilendirilir — gidip gelme yok, kaçırılan fırsat yok. Her görüntüleme tek bir yerden planlanır, takip edilir ve yönetilir.",
         "pills": [
           "Online rezervasyon",
-          "Takvim senkronu",
-          "Otomatik hatırlatma",
+          "Google Takvim senkronu",
+          "Otomatik hatırlatmalar",
           "Onay akışı"
         ],
         "cta": "Rezervasyonları Keşfet"
@@ -788,8 +788,8 @@
     "headlineLine2": "geleneksel zorluklar olmadan",
     "descriptionLine1": "Satış, kiralama ve bakım süreçlerinizi otomatikleştirin.",
     "descriptionLine2": "Gelirinizi ve müşteri memnuniyetini artırmaya odaklanın.",
-    "tabHirer": "İşveren",
-    "tabTalent": "Yetenek",
+    "tabHirer": "Satış ",
+    "tabTalent": "Bakım ",
     "exploreModule": "Modülü Keşfet",
     "customSolution": "Özel bir çözüme mi ihtiyacınız var? Platformumuzu özel gereksinimlerinize göre uyarlıyoruz.",
     "startTrial": "Ücretsiz Deneyin",
@@ -853,7 +853,7 @@
     "products": {
       "sales": {
         "title": "Satış ve Kiralama",
-        "description": "Mülk satışı, kiralama, ilanlar ve müşteri operasyonlarını tek platformdan yönetin.",
+        "description": "Elektronik tablolar ve WhatsApp mesajları arasında gidip gelmeyi bırakın.",
         "features": {
           "virtualTours": "360° Sanal Turlar",
           "inventory": "Gerçek Zamanlı Envanter",
@@ -862,8 +862,8 @@
         }
       },
       "crm": {
-        "title": "CRM",
-        "description": "Yetenek seçin ve ekibinizle etkili bir şekilde iş birliği yapın.",
+        "title": "Bakım",
+        "description": "Yapay zeka asistanına halledin demeniz yeterli. İş emirleri, rezervasyonlar ve tüm talepler tek bir yerde.",
         "features": {
           "leads": "Potansiyel Müşteri Puanlama",
           "pipeline": "Görsel Pipeline",
@@ -872,8 +872,8 @@
         }
       },
       "maintenance": {
-        "title": "Bakım",
-        "description": "Tüm mesajlar nihayet tek uygulamada. İletişimi kolaylaştırın.",
+        "title": "İletişim",
+        "description": "Sakinleriniz için özel bir topluluk: komşular bağlanır, etkinlikler hayat bulur ve yapay zeka her şeyi düzenli tutar.",
         "features": {
           "workOrders": "İş Emri Takibi",
           "assets": "Varlık Yönetimi",
@@ -882,8 +882,8 @@
         }
       },
       "requests": {
-        "title": "Bakım Talepleri",
-        "description": "Puan ve yorumlara göre yetenek seçin. Şeffaflıkla güven oluşturun."
+        "title": "Varlıklar ve Parçalar",
+        "description": "Sınırsız parça envanteri. QR kodu tarayarak anında onarım talebi gönderin ve durumunu takip edin."
       },
       "accounting": {
         "title": "Muhasebe",
@@ -919,35 +919,35 @@
   },
   "aiFeatures": {
     "badge": "Yapay Zeka Destekli",
-    "title": "İş Akışınızı Güçlendirin",
-    "titleHighlight": "Yapay Zeka ile",
-    "subtitle": "Yapay zeka asistanımız ihtiyaçlarınızı anlar, tekrarlayan görevleri otomatikleştirir ve daha akıllı çalışmanıza yardımcı olacak zeki öneriler sunar.",
+    "title": "Binanızı tanıyan bir yapay zeka ile",
+    "titleHighlight": "daha akıllı çalışın",
+    "subtitle": "Müzakere özetlemesinden iş akışınızın otomatik oluşturulmasına kadar yapay zeka asistanınız karmaşıklığı üstlenir; ekibiniz önemli olana odaklanır.",
     "alwaysReady": "Her zaman yardıma hazır",
     "askAnything": "Bir şey sorun...",
     "features": {
       "assistant": {
-        "title": "Yapay Zeka Asistanı",
-        "description": "Doğal konuşma yoluyla anında yanıtlar alın ve karmaşık görevleri gerçekleştirin"
+        "title": "Yapay Zeka Asistanı kenar çubuğu",
+        "description": "Kenar çubuğunuzda sürekli yanınızda olan bir asistan — her komutu verin, platform genelinde anında uygulansın."
       },
       "translation": {
-        "title": "Otomatik Çeviri",
-        "description": "Gerçek zamanlı çeviri ile 12'den fazla dilde müşterilerle iletişim kurun"
+        "title": "İş akışı oluşturucu",
+        "description": "Asistana iş akışınızı oluşturmasını söyleyin — organizasyon şeması, izinler ve iş emri sürecini sizin için oluşturur."
       },
       "insights": {
-        "title": "Akıllı İçgörüler",
-        "description": "Veri kalıplarınıza göre kişiselleştirilmiş öneriler alın"
+        "title": "Anlaşma olasılığı",
+        "description": "Yapay zeka, konuşma geçmişi ve müşteri davranışına göre her müzakerenin kapanma olasılığını tahmin eder."
       },
       "automation": {
-        "title": "Görev Otomasyonu",
-        "description": "Tekrarlayan iş akışlarını otomatikleştirin ve önemli olana odaklanın"
+        "title": "Akıllı özetler",
+        "description": "Müzakereler, iş emirleri ve destek talepleri — dilinizde özetlenir ve sonraki adım önerileri sunulur."
       },
       "summaries": {
-        "title": "Akıllı Özetler",
-        "description": "Uzun belgeler ve konuşmaların özlü özetlerini alın"
+        "title": "Otomatik bildirimler ve blog yazıları",
+        "description": "Duyuruları ve blog içeriklerini birden fazla dilde yayınlayın — yapay zeka tarafından oluşturulan görsellerle, otomatik olarak."
       },
       "predictions": {
         "title": "Tahmine Dayalı Analitik",
-        "description": "Yapay zeka tahminleri ile trendleri öngörün ve veriye dayalı kararlar alın"
+        "description": "Yapay zeka tahminleriyle trendleri öngörün ve veriye dayalı kararlar alın"
       }
     }
   },
@@ -1000,7 +1000,7 @@
       },
       "design": {
         "title": "UI ve UX Tasarımı",
-        "description": "Size özel güzel ve sezgisel arayüzler",
+        "description": "Platformunuz, markanız. Her ekran buna göre tasarlanır",
         "url": "app.propertycareapp.com/dashboard",
         "features": {
           "1": "Marka Entegrasyonu",
@@ -1010,7 +1010,7 @@
       },
       "delivery": {
         "title": "Teslimat ve Eğitim",
-        "description": "Kapsamlı eğitimle sorunsuz devreye alma",
+        "description": "Kurulum, yapılandırma ve ekibinizi eğitiyoruz — ilk gün yıllardır kullanıyormuşsunuz gibi hissedersiniz.",
         "url": "app.propertycareapp.com/maintenance",
         "features": {
           "1": "Canlı Eğitim Oturumları",
@@ -1020,7 +1020,7 @@
       },
       "support": {
         "title": "Sürekli Destek",
-        "description": "Her şeyin sorunsuz çalışması için 7/24 yardım",
+        "description": "İşletmeniz gelişiyor. Biz de sizinle birlikte gelişiyoruz",
         "url": "app.propertycareapp.com/support",
         "features": {
           "1": "Yapay Zeka Asistanı",
@@ -1066,21 +1066,21 @@
         "occupancyShort": "% doluluk"
       },
       "design": {
-        "dashboardTitle": "Mülk Paneli",
+        "dashboardTitle": "Panel",
         "pageTitle": "Mülklerim",
-        "pageSubtitle": "Mülk portföyünüzü yönetin",
+        "pageSubtitle": "Binanızın performansına gerçek zamanlı genel bakış",
         "stats": {
           "totalUnits": {
             "label": "Toplam Birim",
             "value": "74"
           },
           "occupancy": {
-            "label": "Doluluk",
+            "label": "Tamamen Satıldı",
             "value": "%89"
           },
           "revenue": {
             "label": "Gelir",
-            "value": "42 B $"
+            "value": "$2,4M"
           },
           "requests": {
             "label": "Talepler",
@@ -1089,17 +1089,17 @@
         }
       },
       "delivery": {
-        "requestTitle": "Bakım Talebi",
+        "requestTitle": "Yazılım Yayınlama",
         "requestId": "#MR-2847",
-        "issueTitle": "Klima Ünitesi Soğutmuyor",
-        "issueLocation": "Daire 4B - Sunset Apartments",
+        "issueTitle": "Uygulamaların yayınlanması",
+        "issueLocation": "Google Play ve App Store'da",
         "progressLabel": "İlerleme",
         "overallProgress": "Genel İlerleme",
         "progressPercent": "%75",
         "timeline": {
-          "reported": "Bildirildi",
-          "assigned": "Atandı",
-          "inProgress": "Devam Ediyor",
+          "reported": "Dağıtıldı",
+          "assigned": "Yapılandırıldı",
+          "inProgress": "Eğitildi",
           "complete": "Tamamlandı"
         }
       },
@@ -1109,19 +1109,19 @@
         "messages": [
           {
             "type": "user",
-            "text": "Merhaba, 3A dairesinde kiracı sızıntı bildiriyor"
+            "text": "Merhaba, binamız için yeni bir özel modüle ihtiyacımız var"
           },
           {
             "type": "support",
-            "text": "Merhaba! Yardımcı olabilirim. Bakım kuyruğunuzu kontrol edeyim."
+            "text": "Merhaba! Bu konuda yardımcı olabilirim. Geliştirme kuyruğumuzu kontrol edeyim."
           },
           {
             "type": "user",
-            "text": "Bugün müsait bir tesisatçı var mı?"
+            "text": "Ne zaman teslim edebilirsiniz?"
           },
           {
             "type": "support",
-            "text": "Evet! Mike (Tesisatçı) saat 14:00 için atandı. Kiracı bilgilendirildi."
+            "text": "Ay sonunu hedefliyoruz. İlerleme hakkında sizi bilgilendirmeye devam edeceğiz."
           }
         ],
         "uptime": {
@@ -1161,19 +1161,19 @@
   },
   "homeCTA": {
     "badge": "Bugün Başlayın",
-    "title": "Dönüştürmeye Hazır mısınız",
-    "titleHighlight": "Mülk Yönetiminizi?",
-    "subtitle": "Operasyonlarını PropertyCare ile kolaylaştıran binlerce mülk yöneticisine katılın. Ücretsiz denemenizi bugün başlatın.",
+    "title": "Binanız Daha Fazlasını Hak Ediyor",
+    "titleHighlight": "Elektronik Tablolardan İyisini.",
+    "subtitle": "İlk potansiyel müşteriden son servis talebine kadar — binanız için oluşturulmuş bir platformla her şey daha sorunsuz işler.",
     "startTrial": "Ücretsiz Deneyin",
     "bookDemo": "Demo Talep Edin",
     "noCredit": "Kredi kartı gerekmez",
-    "freeSetup": "Ücretsiz kurulum desteği",
-    "cancelAnytime": "İstediğiniz zaman iptal edin"
+    "freeSetup": "Tamamen özelleştirilmiş",
+    "cancelAnytime": "İlk günden özel destek"
   },
   "homeIntegrations": {
     "badge": "Entegrasyonlar",
-    "title": "Favori Araçlarınızla Çalışır",
-    "subtitle": "Zaten kullandığınız ve sevdiğiniz hizmetlerle sorunsuzca bağlanın."
+    "title": "Favori araçlarınızla entegrasyonlar",
+    "subtitle": "Geçiş yok, sürtünme yok. Araçlarınız doğrudan bağlanır ve ilk günden çalışır."
   },
   "maintenancePage": {
     "meta": {
