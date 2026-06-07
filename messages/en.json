@@ -518,30 +518,58 @@
     "startFreeTrial": "Start Free Trial",
     "bookDemo": "Book a Demo",
     "trustedBy": "Trusted by leading property companies",
-    "trustedCompanies": ["Almadar", "Karaneh", "Siraj", "Tisa", "MinaResidence", "ArakTowers"],
+    "trustedCompanies": [
+      "Almadar",
+      "Karaneh",
+      "Siraj",
+      "Tisa",
+      "MinaResidence",
+      "ArakTowers"
+    ],
     "dashboard": {
       "title": "PropertyCare Dashboard",
       "subtitle": "Real-time Overview",
       "revenueTrend": "Revenue Trend",
-      "periods": ["1W", "1M", "1Y"],
+      "periods": [
+        "1W",
+        "1M",
+        "1Y"
+      ],
       "stats": {
-        "properties": { "label": "Properties", "value": "248", "change": "+12%" },
-        "tenants": { "label": "Tenants", "value": "1,842", "change": "+8%" },
-        "workOrders": { "label": "Work Orders", "value": "56", "change": "-23%" },
-        "revenue": { "label": "Revenue", "value": "$2.4M", "change": "+18%" }
+        "properties": {
+          "label": "Properties",
+          "value": "248",
+          "change": "+12%"
+        },
+        "tenants": {
+          "label": "Tenants",
+          "value": "1,842",
+          "change": "+8%"
+        },
+        "workOrders": {
+          "label": "Work Orders",
+          "value": "56",
+          "change": "-23%"
+        },
+        "revenue": {
+          "label": "Revenue",
+          "value": "$2.4M",
+          "change": "+18%"
+        }
       }
     },
     "floatingCards": {
       "aiInsights": {
         "title": "AI Insights",
         "subtitle": "5 new recommendations",
-"items": [
-      "Let AI manage your sales requests",
-      "Automate maintenance coordination",
-      "Handle requests in your preferred language",
-      "Get smart recommendations for sales negotiation",
-      "Delegate admin tasks to your AI Agent"
-    ]      },
+        "items": [
+          "Let AI manage your sales requests",
+          "Automate maintenance coordination",
+          "Handle requests in your preferred language",
+          "Get smart recommendations for sales negotiation",
+          "Delegate admin tasks to your AI Agent"
+        ]
+      },
       "schedule": {
         "title": "Today's Schedule",
         "subtitle": "8 appointments"
@@ -561,30 +589,48 @@
         "num": "01",
         "title": "Explore Your Tower, Floor by Floor",
         "description": "A CRM that manages listings, tracks inquiries, sends proposals, and hands off smoothly to other teams without third-party tools.",
-        "pills": ["Referral links", "Book Visits", "Manage payments", "Ask inquirires"],
+        "pills": [
+          "Referral links",
+          "Book Visits",
+          "Manage payments",
+          "Ask inquirires"
+        ],
         "cta": "Explore Selling"
       },
       "workorder": {
         "num": "02",
         "title": "Work Orders That Flow",
         "description": "Every maintenance request — assigned, tracked, and resolved in one place. No lost tickets, no missed deadlines, no calls to chase updates.",
-        "pills": ["Unlimited inventory", "Status tracking", "AI Agent", "Vendor management"],
+        "pills": [
+          "Unlimited inventory",
+          "Status tracking",
+          "AI Agent",
+          "Vendor management"
+        ],
         "cta": "Explore Work Orders"
       },
       "aichat": {
         "num": "03",
         "title": "AI Agent",
         "description": "Your AI assistant everywhere on the platform, always with you — your tenants and owners.",
-        "pills": ["Instant responses", "Ask mode", "Agent mode", "Always online in chat groups — helping residents"],
+        "pills": [
+          "Instant responses",
+          "Ask mode",
+          "Agent mode",
+          "Always online in chat groups — helping residents"
+        ],
         "cta": "Explore AI Chat"
       },
       "reservation": {
         "num": "04",
         "title": "Book a Viewing in Seconds",
         "description": "Buyers pick their preferred time, agents get notified instantly — no back-and-forth, no missed opportunities. Every viewing scheduled, tracked, and managed from one place.",
-
-
-        "pills": ["Online booking", "Google calendar sync", "Auto reminders", "Confirmation flow"],
+        "pills": [
+          "Online booking",
+          "Google calendar sync",
+          "Auto reminders",
+          "Confirmation flow"
+        ],
         "cta": "Explore Reservations"
       }
     },
@@ -609,29 +655,87 @@
           "pending": "Pending"
         },
         "rows": [
-          { "unit": "Unit 4B", "issue": "Leaky faucet", "assignee": "John M.", "due": "May 22", "statusKey": "inProgress" },
-          { "unit": "Unit 2A", "issue": "AC not cooling", "assignee": "Sara K.", "due": "May 20", "statusKey": "completed" },
-          { "unit": "Unit 7C", "issue": "Broken lock", "assignee": "—", "due": "May 25", "statusKey": "pending" },
-          { "unit": "Unit 1D", "issue": "Water heater", "assignee": "John M.", "due": "May 28", "statusKey": "pending" },
-          { "unit": "Unit 5F", "issue": "Window seal", "assignee": "Mike T.", "due": "May 19", "statusKey": "completed" }
+          {
+            "unit": "Unit 4B",
+            "issue": "Leaky faucet",
+            "assignee": "John M.",
+            "due": "May 22",
+            "statusKey": "inProgress"
+          },
+          {
+            "unit": "Unit 2A",
+            "issue": "AC not cooling",
+            "assignee": "Sara K.",
+            "due": "May 20",
+            "statusKey": "completed"
+          },
+          {
+            "unit": "Unit 7C",
+            "issue": "Broken lock",
+            "assignee": "—",
+            "due": "May 25",
+            "statusKey": "pending"
+          },
+          {
+            "unit": "Unit 1D",
+            "issue": "Water heater",
+            "assignee": "John M.",
+            "due": "May 28",
+            "statusKey": "pending"
+          },
+          {
+            "unit": "Unit 5F",
+            "issue": "Window seal",
+            "assignee": "Mike T.",
+            "due": "May 19",
+            "statusKey": "completed"
+          }
         ]
       },
       "aiChat": {
         "title": "AI Assistant",
         "online": "Online",
         "messages": [
-          { "role": "ai", "text": "Hi! I'm here to help you find your perfect home. What are you looking for?" },
-          { "role": "user", "text": "Is Unit 3A still available?" },
-          { "role": "ai", "text": "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?" },
-          { "role": "user", "text": "Yes please!" },
-          { "role": "ai", "text": "Great! Connecting you with our team. You'll get a confirmation shortly." }
+          {
+            "role": "ai",
+            "text": "Hi! I'm here to help you find your perfect home. What are you looking for?"
+          },
+          {
+            "role": "user",
+            "text": "Is Unit 3A still available?"
+          },
+          {
+            "role": "ai",
+            "text": "Yes! Unit 3A is a 2BR/1BA available June 1st at $2,400/mo. Want to schedule a viewing?"
+          },
+          {
+            "role": "user",
+            "text": "Yes please!"
+          },
+          {
+            "role": "ai",
+            "text": "Great! Connecting you with our team. You'll get a confirmation shortly."
+          }
         ]
       },
       "reservation": {
         "title": "Book a Tour — May 2026",
-        "weekdays": ["M", "T", "W", "T", "F", "S", "S"],
+        "weekdays": [
+          "M",
+          "T",
+          "W",
+          "T",
+          "F",
+          "S",
+          "S"
+        ],
         "availableTimes": "Available times — May {day}",
-        "times": ["10:00 AM", "11:30 AM", "2:00 PM", "3:30 PM"],
+        "times": [
+          "10:00 AM",
+          "11:30 AM",
+          "2:00 PM",
+          "3:30 PM"
+        ],
         "confirmBooking": "Confirm Booking",
         "demoSelectedTime": "11:30 AM"
       }
@@ -939,9 +1043,24 @@
           "available": "Available"
         },
         "properties": [
-          { "name": "Sunset Apartments", "statusKey": "active", "units": 24, "occupancy": 92 },
-          { "name": "Harbor View Tower", "statusKey": "maintenance", "units": 18, "occupancy": 78 },
-          { "name": "Garden Residences", "statusKey": "available", "units": 32, "occupancy": 100 }
+          {
+            "name": "Sunset Apartments",
+            "statusKey": "active",
+            "units": 24,
+            "occupancy": 92
+          },
+          {
+            "name": "Harbor View Tower",
+            "statusKey": "maintenance",
+            "units": 18,
+            "occupancy": 78
+          },
+          {
+            "name": "Garden Residences",
+            "statusKey": "available",
+            "units": 32,
+            "occupancy": 100
+          }
         ],
         "units": "units",
         "occupancyShort": "% occ."
@@ -951,10 +1070,22 @@
         "pageTitle": "My Properties",
         "pageSubtitle": "Real-time overview of your building's performance",
         "stats": {
-          "totalUnits": { "label": "Total Units", "value": "74" },
-          "occupancy": { "label": "Sold Out", "value": "89%" },
-          "revenue": { "label": "Revenue", "value": "$2.4M" },
-          "requests": { "label": "Requests", "value": "12" }
+          "totalUnits": {
+            "label": "Total Units",
+            "value": "74"
+          },
+          "occupancy": {
+            "label": "Sold Out",
+            "value": "89%"
+          },
+          "revenue": {
+            "label": "Revenue",
+            "value": "$2.4M"
+          },
+          "requests": {
+            "label": "Requests",
+            "value": "12"
+          }
         }
       },
       "delivery": {
@@ -976,13 +1107,31 @@
         "chatTitle": "Support Chat",
         "chatStatus": "Online - Avg response <2min",
         "messages": [
-          { "type": "user", "text": "Hi, We need a new custom module for our building" },
-          { "type": "support", "text": "Hi! I can help with that. Let me check our development queue." },
-          { "type": "user", "text": "When can we expect it?" },
-          { "type": "support", "text": "We're aiming for the end of the month. We'll keep you updated on the progress." }
+          {
+            "type": "user",
+            "text": "Hi, We need a new custom module for our building"
+          },
+          {
+            "type": "support",
+            "text": "Hi! I can help with that. Let me check our development queue."
+          },
+          {
+            "type": "user",
+            "text": "When can we expect it?"
+          },
+          {
+            "type": "support",
+            "text": "We're aiming for the end of the month. We'll keep you updated on the progress."
+          }
         ],
-        "uptime": { "value": "99.9%", "label": "Uptime" },
-        "response": { "value": "<2min", "label": "Response" }
+        "uptime": {
+          "value": "99.9%",
+          "label": "Uptime"
+        },
+        "response": {
+          "value": "<2min",
+          "label": "Response"
+        }
       }
     },
     "stats": {
@@ -1025,5 +1174,1210 @@
     "badge": "Integrations",
     "title": "Integrations with your favorite tools",
     "subtitle": "No switching, no friction. Your tools plug right in and work from day one."
+  },
+  "maintenancePage": {
+    "meta": {
+      "title": "Property Maintenance Software | PropertyCareApp",
+      "description": "Automate work orders, track technicians, and resolve property maintenance requests faster with AI. The smart solution for building management teams. Try free.",
+      "breadcrumbHome": "Home",
+      "breadcrumbPage": "Facilities Maintenance Software"
+    },
+    "hero": {
+      "titleLine1": "Next Generation",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "for Maintenance",
+      "subtitle": "The maintenance module helps you streamline preventive and corrective maintenance tasks, ensuring equipment and facilities remain in optimal working condition with automatic scheduling and performance tracking.",
+      "startFreeTrial": "Start Free Trial",
+      "bookDemo": "Book a Demo",
+      "keyFeatures": "Key Features",
+      "badges": {
+        "workOrders": "Work Orders",
+        "scheduling": "Scheduling",
+        "checklists": "Checklists",
+        "tracking": "Tracking",
+        "automation": "Automation",
+        "vendors": "Vendors",
+        "reports": "Reports",
+        "mobile": "Mobile"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "See how",
+      "sectionTitleHighlight": "maintenance automation",
+      "sectionTitleEnd": "streamlines operations",
+      "subtitle": "Discover how our platform automates work orders, schedules preventive maintenance, and helps your team work more efficiently.",
+      "videoThumbnailAlt": "Video thumbnail",
+      "playVideo": "Play video",
+      "productDemo": "Maintenance Demo",
+      "iframeTitle": "Maintenance Module Demo"
+    },
+    "solutions": {
+      "sectionTitle": "Smart Modules for Modern",
+      "sectionTitleHighlight": "Maintenance Management",
+      "subtitle": "Comprehensive tools to streamline every aspect of your maintenance operations, from work orders to vendor management.",
+      "items": {
+        "workOrders": {
+          "tag": "Work Orders",
+          "title": "Ensure Timely Tasks",
+          "description": "Work orders allow you to assign, monitor, and complete tasks efficiently, ensuring that the right work gets done on time. Create, assign, and prioritize work orders with real-time progress tracking and automated approval workflows.",
+          "features": {
+            "f1": "Create, assign, and prioritize work orders",
+            "f2": "Track progress in real-time with detailed reports",
+            "f3": "Automate work order approval workflows",
+            "f4": "Mobile-friendly task management",
+            "f5": "Instant notifications to assigned technicians"
+          }
+        },
+        "workRequests": {
+          "tag": "Work Requests",
+          "title": "Online Request Approvals",
+          "description": "Streamline the request submission process with online approvals. Tenants and staff can submit maintenance requests that are automatically routed to the right team members for quick action and resolution.",
+          "features": {
+            "f1": "Online request submission portal",
+            "f2": "Automatic routing to appropriate teams",
+            "f3": "Request prioritization and categorization",
+            "f4": "Status tracking for requesters",
+            "f5": "Approval workflow automation"
+          }
+        },
+        "workflowAutomation": {
+          "tag": "Workflow Automation",
+          "title": "Streamline Your Workflows",
+          "description": "Automate repetitive workflows to save time, minimize errors, and keep processes running smoothly across your organization. Create custom workflows for task automation with seamless integration across modules.",
+          "features": {
+            "f1": "Create custom workflows for task automation",
+            "f2": "Automate approvals, notifications, and escalations",
+            "f3": "Seamlessly integrate with other modules",
+            "f4": "Reduce manual data entry",
+            "f5": "Trigger-based automation rules"
+          }
+        },
+        "timeCostTracking": {
+          "tag": "Time & Cost Tracking",
+          "title": "Budget Optimization",
+          "description": "Track time spent and expenses incurred on tasks or projects to improve financial control and efficiency. Log time and expenses, generate detailed reports, and monitor performance against budgets.",
+          "features": {
+            "f1": "Log time and expenses for projects",
+            "f2": "Generate detailed cost and time reports",
+            "f3": "Set budgets and monitor performance",
+            "f4": "Labor cost analysis",
+            "f5": "Invoice generation from tracked time"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Show overdue work orders",
+        "headerTitle": "Work Orders",
+        "headerSubtitle": "3 requiring attention",
+        "stats": {
+          "overdue": "Overdue",
+          "inProgress": "In Progress",
+          "completed": "Completed"
+        },
+        "workOrders": {
+          "wo1": {
+            "title": "HVAC Filter Replacement",
+            "status": "overdue"
+          },
+          "wo2": {
+            "title": "Elevator Inspection",
+            "status": "pending"
+          },
+          "wo3": {
+            "title": "Plumbing Repair - Unit 305",
+            "status": "in-progress"
+          }
+        },
+        "aiTitle": "Maintenance AI",
+        "aiReady": "Ready to assist",
+        "overdueTitle": "5 Overdue Work Orders",
+        "overdueSubtitle": "Require immediate attention",
+        "responseText": "Found {count} overdue work orders. Highest priority: {priority} (3 days overdue).",
+        "overdueCount": "5",
+        "priorityTask": "HVAC Filter Replacement",
+        "recommendedAction": "Recommended Action",
+        "recommendedText": "Assign to available technician John - has HVAC certification and is on-site.",
+        "actions": {
+          "viewAll": "View All",
+          "autoAssign": "Auto-Assign",
+          "sendReminders": "Send Reminders"
+        }
+      },
+      "checklist": {
+        "title": "Fire Safety Inspection",
+        "subtitle": "Monthly Checklist",
+        "items": {
+          "c1": "Inspect fire extinguishers",
+          "c2": "Check emergency lighting",
+          "c3": "Test smoke detectors",
+          "c4": "Verify exit signage",
+          "c5": "Document findings"
+        },
+        "complete": "{completed}/{total} Complete"
+      },
+      "vendor": {
+        "title": "Vendor Directory",
+        "subtitle": "3 Active Vendors",
+        "jobsCompleted": "{count} jobs completed",
+        "vendors": {
+          "v1": {
+            "name": "HVAC Pro Services",
+            "status": "Available"
+          },
+          "v2": {
+            "name": "Quick Plumbing Co",
+            "status": "On Job"
+          },
+          "v3": {
+            "name": "Elite Electric",
+            "status": "Available"
+          }
+        }
+      },
+      "schedule": {
+        "title": "Today's Schedule",
+        "subtitle": "3 Scheduled Tasks",
+        "date": "May 22",
+        "items": {
+          "s1": {
+            "task": "HVAC Quarterly Service",
+            "location": "Building A",
+            "type": "Preventive"
+          },
+          "s2": {
+            "task": "Elevator Inspection",
+            "location": "Tower B",
+            "type": "Compliance"
+          },
+          "s3": {
+            "task": "Fire Alarm Testing",
+            "location": "All Buildings",
+            "type": "Safety"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "AI-Powered",
+      "sectionTitleHighlight": "Task Assignment Engine",
+      "subtitle": "Our AI analyzes technician skills, availability, and workload to automatically assign maintenance tasks to the right person at the right time.",
+      "assistantTitle": "Maintenance AI",
+      "assistantSubtitle": "Smart Task Management",
+      "conversation": {
+        "step1": "Hi! I'm your maintenance AI assistant. What do you need help with today?",
+        "step2": "Show me overdue preventive maintenance tasks",
+        "step3": "I found 5 overdue PM tasks. The most critical is the HVAC filter replacement in Tower A - it's 3 days overdue.",
+        "step4": "Who's available to handle it?",
+        "step5": "John (HVAC certified) is available and on-site. Sarah is also certified but currently on another job.",
+        "step6": "Assign it to John",
+        "step7": "Done! I've assigned the HVAC task to John and sent him a notification. He'll receive all task details and the maintenance checklist on his mobile app."
+      },
+      "continueConversation": "Continue conversation",
+      "restartDemo": "Restart demo",
+      "priorityTasks": "Priority Tasks",
+      "aiPrioritized": "AI Prioritized",
+      "tasks": {
+        "task1": {
+          "name": "HVAC Filter Replacement - Tower A",
+          "dueDate": "Today",
+          "priority": "High"
+        },
+        "task2": {
+          "name": "Elevator Annual Inspection",
+          "dueDate": "Tomorrow",
+          "priority": "Medium"
+        },
+        "task3": {
+          "name": "Fire Safety System Check",
+          "dueDate": "In 3 days",
+          "priority": "High"
+        }
+      },
+      "assigned": "Assigned",
+      "deferred": "Deferred",
+      "match": "match",
+      "assignTitle": "Assign",
+      "deferTitle": "Defer",
+      "aiLearning": "AI Learning Patterns",
+      "optimizing": "Optimizing task assignments",
+      "assignedCount": "{count} assigned",
+      "deferredCount": "{count} deferred"
+    },
+    "features": {
+      "sectionTitle": "Everything you need to",
+      "sectionTitleHighlight": "streamline maintenance operations",
+      "items": {
+        "workOrders": {
+          "title": "Work Orders",
+          "description": "Create, assign, and track work orders with real-time status updates and mobile notifications."
+        },
+        "preventiveMaintenance": {
+          "title": "Preventive Maintenance",
+          "description": "Automatic scheduling of maintenance tasks to prevent equipment failures and extend asset life."
+        },
+        "checklists": {
+          "title": "Checklists",
+          "description": "Customizable inspection checklists to ensure consistent and thorough maintenance procedures."
+        },
+        "vendorManagement": {
+          "title": "Vendor Management",
+          "description": "Track vendor performance, manage contracts, and streamline procurement processes."
+        },
+        "costTracking": {
+          "title": "Cost Tracking",
+          "description": "Monitor maintenance expenses, labor costs, and budget allocation in real-time."
+        },
+        "assetTracking": {
+          "title": "Asset Tracking",
+          "description": "Complete asset lifecycle management with maintenance history and documentation."
+        },
+        "notifications": {
+          "title": "Smart Notifications",
+          "description": "Automated alerts for overdue tasks, upcoming maintenance, and critical issues."
+        },
+        "reporting": {
+          "title": "Advanced Reporting",
+          "description": "Comprehensive analytics dashboards with customizable reports and KPI tracking."
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Store and access maintenance manuals, procedures, and compliance documents."
+        },
+        "automation": {
+          "title": "Workflow Automation",
+          "description": "Automate routine tasks, approvals, and escalations to save time and reduce errors."
+        },
+        "scheduling": {
+          "title": "Smart Scheduling",
+          "description": "AI-powered scheduling that optimizes technician routes and workload distribution."
+        },
+        "compliance": {
+          "title": "Compliance Tracking",
+          "description": "Ensure regulatory compliance with audit trails and certification tracking."
+        },
+        "mobileApp": {
+          "title": "Mobile App",
+          "description": "Full-featured mobile app for technicians to manage tasks on the go."
+        },
+        "integration": {
+          "title": "Integrations",
+          "description": "Connect with your existing tools through powerful API and third-party integrations."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Trusted by",
+      "sectionTitleHighlight": "maintenance teams",
+      "subtitle": "See what facility managers and maintenance professionals say about PropertyCare.",
+      "roleAt": "{role} at {company}",
+      "items": {
+        "t1": {
+          "author": "David Chen",
+          "company": "Metro Properties",
+          "role": "Facility Director",
+          "quote": "Since implementing PropertyCare's maintenance module, we've reduced equipment downtime by 40%. The preventive maintenance scheduling alone has saved us thousands in emergency repair costs."
+        },
+        "t2": {
+          "author": "Maria Santos",
+          "company": "Skyline Management",
+          "role": "Operations Manager",
+          "quote": "The work order system is incredibly intuitive. Our technicians love the mobile app - they can receive assignments, update status, and log time all from their phones."
+        },
+        "t3": {
+          "author": "James Wilson",
+          "company": "Premier Facilities",
+          "role": "Maintenance Supervisor",
+          "quote": "The vendor management features have streamlined our contractor relationships. We can track performance, manage contracts, and process invoices all in one place."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "Maintenance insights & resources",
+      "subtitle": "Stay ahead with expert insights, industry trends, and practical guides for modern maintenance management.",
+      "readArticle": "Read Article",
+      "emptyState": "No blog posts could be loaded. Check your connection or try again later."
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked",
+      "sectionTitleHighlight": "Questions",
+      "subtitle": "Everything you need to know about our maintenance management platform. Have a question not listed? Contact our support team.",
+      "stillHaveQuestions": "Still have questions?",
+      "getInTouch": "Get in touch with our team",
+      "items": {
+        "q1": {
+          "question": "What types of maintenance can I manage with this platform?",
+          "answer": "Our platform supports all types of maintenance including preventive, corrective, emergency, and predictive maintenance. You can create work orders for any maintenance task, schedule recurring preventive maintenance, and track all maintenance activities in one centralized system."
+        },
+        "q2": {
+          "question": "How does the preventive maintenance scheduling work?",
+          "answer": "You can set up preventive maintenance schedules based on time intervals (daily, weekly, monthly, yearly) or meter readings (hours of operation, mileage, etc.). The system automatically generates work orders when maintenance is due and sends notifications to assigned technicians."
+        },
+        "q3": {
+          "question": "Can technicians access work orders from their mobile devices?",
+          "answer": "Yes! Our mobile app allows technicians to view assigned work orders, update task status, log time and materials, attach photos, and complete checklists directly from their smartphones or tablets. The app works offline and syncs when connectivity is restored."
+        },
+        "q4": {
+          "question": "How do I track maintenance costs and labor hours?",
+          "answer": "The platform includes comprehensive cost tracking features. You can log labor hours, material costs, and contractor expenses for each work order. Built-in reports show cost breakdowns by asset, location, work type, and time period to help you analyze spending patterns."
+        },
+        "q5": {
+          "question": "Can I manage external vendors and contractors?",
+          "answer": "Absolutely. Our vendor management module lets you maintain a directory of contractors, track their certifications and insurance, manage contracts, rate their performance, and even allow them limited access to view and update assigned work orders."
+        },
+        "q6": {
+          "question": "How does the asset tracking feature work?",
+          "answer": "You can create detailed asset records with specifications, warranty information, maintenance history, and documentation. Track asset lifecycle from acquisition to disposal, monitor performance metrics, and make data-driven decisions about repairs vs. replacement."
+        },
+        "q7": {
+          "question": "Is there a way to create custom maintenance checklists?",
+          "answer": "Yes, you can create customizable inspection checklists with various field types including checkboxes, text inputs, number fields, photo uploads, and signature capture. Checklists ensure consistent procedures and create documentation for compliance purposes."
+        },
+        "q8": {
+          "question": "Can I integrate with other software systems?",
+          "answer": "Our platform offers API access and integrates with popular tools including accounting software, ERP systems, IoT sensors for predictive maintenance, and building management systems. We also support data import/export in various formats."
+        },
+        "q9": {
+          "question": "What kind of reports and analytics are available?",
+          "answer": "You get access to comprehensive dashboards showing KPIs like work order completion rates, MTTR (Mean Time To Repair), maintenance costs, technician productivity, and more. Generate custom reports, schedule automatic report delivery, and export data for further analysis."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "How does the work order management system work?",
+          "answer": "Residents or staff submit a maintenance request through the app. The system automatically categorizes it, assigns it to the appropriate technician based on skills and availability, and sends real-time status updates to all parties."
+        },
+        "q2": {
+          "question": "Can residents track the status of their maintenance requests?",
+          "answer": "Yes. Residents receive push notifications at every stage — from submission to assignment, in-progress updates, and completion. They can also view their request history and provide feedback through the app."
+        },
+        "q3": {
+          "question": "Does the platform support vendor and contractor management?",
+          "answer": "Yes. You can add external vendors to the platform, assign work orders to them, track their progress, and manage invoices — all without leaving PropertyCareApp."
+        },
+        "q4": {
+          "question": "Can I set up recurring preventive maintenance tasks?",
+          "answer": "Absolutely. Define preventive maintenance schedules for any asset or common area. The system automatically creates work orders on schedule and notifies the responsible team member."
+        },
+        "q5": {
+          "question": "What reporting is available for maintenance operations?",
+          "answer": "PropertyCareApp provides detailed reports on response times, resolution rates, technician performance, recurring issues, and cost breakdowns — helping you continuously improve operations."
+        }
+      }
+    }
+  },
+  "assetsPage": {
+    "meta": {
+      "title": "Assets & Parts Management Software | PropertyCareApp",
+      "description": "Track, manage, and optimize building assets and parts inventory with AI. Reduce downtime, cut costs, and automate maintenance workflows. Try free.",
+      "breadcrumbHome": "Home",
+      "breadcrumbPage": "Property Asset & Part Management Software"
+    },
+    "hero": {
+      "titleLine1": "Next Generation",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "for Assets & Parts",
+      "subtitle": "The Assets & Parts module helps you track, manage, and optimize your equipment lifecycle with QR code scanning, inventory management, and automated purchase orders for seamless operations.",
+      "startFreeTrial": "Start Free Trial",
+      "bookDemo": "Book a Demo",
+      "keyFeatures": "Key Features",
+      "badges": {
+        "assetTracking": "Asset Tracking",
+        "qrCodes": "QR Codes",
+        "inventory": "Inventory",
+        "parts": "Parts",
+        "locations": "Locations",
+        "warranties": "Warranties",
+        "reports": "Reports",
+        "mobile": "Mobile"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "See how",
+      "sectionTitleHighlight": "asset management",
+      "sectionTitleEnd": "optimizes your operations",
+      "subtitle": "Discover how our platform tracks assets, manages inventory, and automates parts replenishment to keep your operations running smoothly.",
+      "videoThumbnailAlt": "Video thumbnail",
+      "playVideo": "Play video",
+      "productDemo": "Assets & Parts Demo",
+      "iframeTitle": "Assets & Parts Module Demo"
+    },
+    "solutions": {
+      "sectionTitle": "Complete",
+      "sectionTitleHighlight": "Asset & Inventory",
+      "sectionTitleEnd": "Management Suite",
+      "subtitle": "Track assets, manage inventory, and streamline procurement with our comprehensive suite of tools designed for property management.",
+      "items": {
+        "assetTracking": {
+          "tag": "Asset Tracking",
+          "title": "Effortless Asset Tracking",
+          "description": "With the Locations, Assets, and Parts module, you can easily define locations and seamlessly track assets in their designated positions. By simply scanning a QR Code, access comprehensive details such as warranty information, approximate value, and the responsible personnel for each asset.",
+          "features": {
+            "f1": "Define and organize asset locations",
+            "f2": "QR code scanning for instant access",
+            "f3": "Track warranty and value information",
+            "f4": "Assign responsible personnel",
+            "f5": "Complete asset lifecycle management"
+          }
+        },
+        "partsInventory": {
+          "tag": "Parts & Inventory",
+          "title": "Streamlined Parts Management",
+          "description": "The Parts module seamlessly integrates with the Work Order and Work Request systems, enabling technicians to track inventory usage and availability effortlessly. The system automatically triggers price inquiries when stock reaches the predefined minimum level.",
+          "features": {
+            "f1": "Real-time inventory tracking",
+            "f2": "Automatic low-stock alerts",
+            "f3": "Integration with work orders",
+            "f4": "Prevent overstocking with max thresholds",
+            "f5": "Smart automation for replenishment"
+          }
+        },
+        "purchaseOrders": {
+          "tag": "Purchase Orders",
+          "title": "Invoicing and Payment Integration",
+          "description": "The Parts module simplifies billing by offering automated invoice generation for services and parts used. Technicians can input all provided services and utilized parts, and the system will automatically generate and send the invoice to the service requester.",
+          "features": {
+            "f1": "Automated invoice generation",
+            "f2": "Track services and parts used",
+            "f3": "Direct payment through platform",
+            "f4": "Approval workflow options",
+            "f5": "Streamlined billing process"
+          }
+        },
+        "locationManagement": {
+          "tag": "Location Management",
+          "title": "Organize Your Spaces",
+          "description": "Define hierarchical location structures for your properties, buildings, floors, and rooms. Track which assets are in each location and maintain a clear organizational structure for all your equipment and inventory.",
+          "features": {
+            "f1": "Hierarchical location structure",
+            "f2": "Building and floor mapping",
+            "f3": "Asset-to-location assignment",
+            "f4": "Location-based reporting",
+            "f5": "Easy asset relocation tracking"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Find HVAC unit in Tower A",
+        "headerTitle": "Asset Registry",
+        "headerSubtitle": "156 total assets",
+        "stats": {
+          "active": "Active",
+          "maintenance": "Maintenance",
+          "retired": "Retired"
+        },
+        "assets": {
+          "a1": {
+            "name": "HVAC Unit - Carrier 50XC",
+            "location": "Tower A - Floor 3",
+            "status": "active"
+          },
+          "a2": {
+            "name": "Elevator Motor #2",
+            "location": "Tower B - Basement",
+            "status": "maintenance"
+          },
+          "a3": {
+            "name": "Fire Alarm Panel",
+            "location": "Tower A - Lobby",
+            "status": "active"
+          }
+        },
+        "statusLabels": {
+          "active": "active",
+          "maintenance": "maintenance"
+        },
+        "aiTitle": "Asset AI",
+        "aiReady": "Ready to assist",
+        "assetFoundTitle": "Asset Found",
+        "assetFoundName": "HVAC Unit - Carrier 50XC",
+        "responseText": "Located in {location}. Warranty expires {warranty}. Last maintenance: {lastMaintenance}.",
+        "responseLocation": "Tower A - Floor 3",
+        "responseWarranty": "Dec 2025",
+        "responseLastMaintenance": "14 days ago",
+        "quickAccess": "Quick Access",
+        "quickAccessText": "Scan QR code AST-2024-001 for full details, maintenance history, and documentation.",
+        "actions": {
+          "viewDetails": "View Details",
+          "maintenanceHistory": "Maintenance History",
+          "generateQr": "Generate QR"
+        }
+      },
+      "inventory": {
+        "title": "Parts Inventory",
+        "subtitle": "Real-time tracking",
+        "lowStock": "LOW STOCK",
+        "overstocked": "OVERSTOCKED",
+        "min": "Min: {count}",
+        "max": "Max: {count}",
+        "items": {
+          "i1": {
+            "name": "Air Filters (20x25x1)",
+            "unit": "pcs"
+          },
+          "i2": {
+            "name": "Compressor Oil",
+            "unit": "gal"
+          },
+          "i3": {
+            "name": "Replacement Belts",
+            "unit": "pcs"
+          }
+        }
+      },
+      "qrcode": {
+        "title": "QR Code Scanning",
+        "subtitle": "Instant asset access",
+        "scanning": "Scanning asset tag...",
+        "identified": "Asset Identified!",
+        "resultName": "HVAC Unit - Tower A"
+      },
+      "location": {
+        "title": "Location Overview",
+        "subtitle": "Asset distribution",
+        "floors": "{count} floors",
+        "assetsLabel": "assets",
+        "totalAssets": "Total Assets",
+        "items": {
+          "l1": {
+            "name": "Tower A"
+          },
+          "l2": {
+            "name": "Tower B"
+          },
+          "l3": {
+            "name": "Parking"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "AI-Powered",
+      "sectionTitleHighlight": "Asset Intelligence Engine",
+      "subtitle": "Our AI analyzes asset data, warranty status, and maintenance history to provide proactive recommendations and automate asset management decisions.",
+      "assistantTitle": "Asset AI",
+      "assistantSubtitle": "Smart Asset Management",
+      "conversation": {
+        "step1": "Hi! I'm your asset management AI assistant. How can I help you today?",
+        "step2": "Show me assets with expiring warranties",
+        "step3": "I found 12 assets with warranties expiring in the next 90 days. The most critical is the HVAC Unit in Tower A - warranty expires in 15 days.",
+        "step4": "What's the replacement cost?",
+        "step5": "The Carrier 50XC HVAC unit has an estimated replacement cost of $45,000. Current market value is $28,000 based on age and condition.",
+        "step6": "Schedule an inspection before warranty expires",
+        "step7": "Done! I've created a work order for HVAC inspection scheduled for next week. The certified technician John has been notified and will receive the asset documentation and maintenance history."
+      },
+      "continueConversation": "Continue conversation",
+      "restartDemo": "Restart demo",
+      "priorityTasks": "Asset Inspections Due",
+      "aiPrioritized": "AI Prioritized",
+      "tasks": {
+        "task1": {
+          "name": "HVAC Unit Annual Inspection - Tower A",
+          "dueDate": "Today",
+          "priority": "High"
+        },
+        "task2": {
+          "name": "Generator Fuel Level Check",
+          "dueDate": "Tomorrow",
+          "priority": "Medium"
+        },
+        "task3": {
+          "name": "Elevator Safety Certification",
+          "dueDate": "In 3 days",
+          "priority": "High"
+        }
+      },
+      "scheduled": "Scheduled",
+      "deferred": "Deferred",
+      "match": "match",
+      "scheduleTitle": "Schedule",
+      "deferTitle": "Defer",
+      "aiLearning": "AI Learning Patterns",
+      "optimizing": "Optimizing asset schedules",
+      "scheduledCount": "{count} scheduled",
+      "deferredCount": "{count} deferred"
+    },
+    "features": {
+      "sectionTitle": "Everything you need to",
+      "sectionTitleHighlight": "manage assets & inventory",
+      "items": {
+        "assetTracking": {
+          "title": "Asset Tracking",
+          "description": "Track all equipment with QR codes, barcodes, and unique identifiers for instant access to asset details."
+        },
+        "partsInventory": {
+          "title": "Parts & Inventory",
+          "description": "Manage spare parts inventory with automatic reorder alerts and stock level monitoring."
+        },
+        "qrScanning": {
+          "title": "QR Code Scanning",
+          "description": "Scan QR codes to instantly access asset information, maintenance history, and documentation."
+        },
+        "locationManagement": {
+          "title": "Location Management",
+          "description": "Organize assets by building, floor, and room with hierarchical location structures."
+        },
+        "costTracking": {
+          "title": "Value & Cost Tracking",
+          "description": "Track asset values, depreciation, and total cost of ownership throughout the lifecycle."
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Store warranties, manuals, certifications, and maintenance records for each asset."
+        },
+        "notifications": {
+          "title": "Smart Alerts",
+          "description": "Receive notifications for expiring warranties, low inventory, and scheduled inspections."
+        },
+        "reporting": {
+          "title": "Asset Analytics",
+          "description": "Generate reports on asset utilization, costs, and performance metrics."
+        },
+        "warranty": {
+          "title": "Warranty Management",
+          "description": "Track warranty expiration dates and service agreements for all assets."
+        },
+        "purchaseOrders": {
+          "title": "Purchase Orders",
+          "description": "Create and manage purchase orders for parts and new equipment directly in the system."
+        },
+        "lifecycle": {
+          "title": "Lifecycle Management",
+          "description": "Track assets from acquisition to disposal with complete audit trails."
+        },
+        "mobileApp": {
+          "title": "Mobile App",
+          "description": "Access asset information and scan QR codes from your smartphone anywhere."
+        },
+        "integration": {
+          "title": "Work Order Integration",
+          "description": "Link assets to work orders for complete maintenance tracking and history."
+        },
+        "maintenance": {
+          "title": "Maintenance Scheduling",
+          "description": "Schedule preventive maintenance based on asset age, usage, or time intervals."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Trusted by",
+      "sectionTitleHighlight": "asset managers",
+      "subtitle": "See what property managers and inventory professionals say about PropertyCare.",
+      "roleAt": "{role} at {company}",
+      "items": {
+        "t1": {
+          "author": "Robert Martinez",
+          "company": "Gateway Properties",
+          "role": "Asset Manager",
+          "quote": "The asset tracking module has revolutionized how we manage our equipment. QR code scanning gives us instant access to maintenance history and warranty info - it's saved us thousands in replacement costs."
+        },
+        "t2": {
+          "author": "Jennifer Lee",
+          "company": "Urban Living Management",
+          "role": "Inventory Controller",
+          "quote": "The parts inventory system is brilliant. Automatic low-stock alerts and purchase order integration have eliminated our emergency ordering costs and stockout situations."
+        },
+        "t3": {
+          "author": "Michael Thompson",
+          "company": "Premier Property Group",
+          "role": "Operations Director",
+          "quote": "We manage over 500 assets across 12 properties. This platform gives us complete visibility into every piece of equipment, its value, and its lifecycle. Essential for our operations."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "Asset management insights & resources",
+      "subtitle": "Stay ahead with expert insights on asset tracking, inventory management, and equipment lifecycle optimization.",
+      "readArticle": "Read Article",
+      "emptyState": "No blog posts could be loaded. Check your connection or try again later."
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked",
+      "sectionTitleHighlight": "Questions",
+      "subtitle": "Everything you need to know about our asset and inventory management platform. Have a question not listed? Contact our support team.",
+      "stillHaveQuestions": "Still have questions?",
+      "getInTouch": "Get in touch with our team",
+      "items": {
+        "q1": {
+          "question": "What types of assets can I track with this platform?",
+          "answer": "Our platform supports tracking any type of asset including HVAC systems, elevators, generators, fire safety equipment, appliances, furniture, vehicles, and more. Each asset can have custom fields, documentation, and maintenance schedules tailored to its specific requirements."
+        },
+        "q2": {
+          "question": "How does QR code scanning work for asset identification?",
+          "answer": "Simply generate a unique QR code for each asset through our platform and attach it to the equipment. Technicians can scan the code using our mobile app to instantly access asset details, maintenance history, warranty information, and documentation. No internet connection is required for basic information."
+        },
+        "q3": {
+          "question": "Can I track parts inventory and manage stock levels?",
+          "answer": "Yes! Our parts inventory module tracks stock levels in real-time, automatically alerts you when inventory falls below minimum thresholds, and can even generate purchase orders for replenishment. You can also track which parts are used on which work orders for complete cost visibility."
+        },
+        "q4": {
+          "question": "How do I manage assets across multiple locations?",
+          "answer": "The platform supports hierarchical location structures - you can organize by property, building, floor, room, or any custom hierarchy. Filter and report on assets by location, track asset movements between locations, and assign location-specific maintenance schedules."
+        },
+        "q5": {
+          "question": "Can I track warranty expiration dates and service agreements?",
+          "answer": "Absolutely. Each asset can have warranty information including coverage dates, terms, and vendor contacts. The system automatically notifies you before warranties expire so you can schedule inspections or make claims. Service agreements and contracts can also be attached and tracked."
+        },
+        "q6": {
+          "question": "How does the purchase order system work?",
+          "answer": "When parts inventory runs low or you need new equipment, create purchase orders directly in the system. Track PO status from creation to delivery, manage vendor relationships, and automatically update inventory when items are received. Integration with invoicing streamlines the payment process."
+        },
+        "q7": {
+          "question": "Can I track the total cost of ownership for assets?",
+          "answer": "Yes, the platform tracks acquisition costs, maintenance expenses, parts replacements, and labor hours for each asset. Generate reports showing total cost of ownership over time to make data-driven decisions about repairs versus replacement."
+        },
+        "q8": {
+          "question": "Is there a mobile app for field technicians?",
+          "answer": "Our mobile app allows technicians to scan QR codes, view asset details, update maintenance records, attach photos, and complete checklists directly from their smartphones. The app works offline and syncs when connectivity is restored."
+        },
+        "q9": {
+          "question": "How does asset tracking integrate with maintenance work orders?",
+          "answer": "Assets are directly linked to work orders, so you have complete visibility into maintenance history. When creating a work order, simply select the asset and all relevant information is automatically populated. Completed work orders update the asset's maintenance history automatically."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "What types of assets can I manage with PropertyCareApp?",
+          "answer": "PropertyCareApp supports all building assets including HVAC systems, elevators, electrical equipment, plumbing fixtures, furniture, and any custom asset category you define. You can track location, condition, warranty, and service history for every item."
+        },
+        "q2": {
+          "question": "Can I track spare parts and inventory levels?",
+          "answer": "Yes. The Assets & Parts module includes full parts inventory management with stock level alerts, automatic reorder triggers, supplier management, and cost tracking so you always have the right parts on hand."
+        },
+        "q3": {
+          "question": "Does the platform support preventive maintenance scheduling for assets?",
+          "answer": "Absolutely. You can set up recurring maintenance schedules based on time intervals, usage meters, or condition thresholds. The system automatically generates work orders and assigns them to the appropriate technicians."
+        },
+        "q4": {
+          "question": "Can I generate reports on asset performance and costs?",
+          "answer": "Yes. PropertyCareApp provides detailed asset lifecycle reports including total cost of ownership, maintenance history, downtime records, and depreciation tracking — giving you the data to make informed replacement decisions."
+        },
+        "q5": {
+          "question": "Is it possible to integrate the assets module with the maintenance module?",
+          "answer": "The Assets & Parts module is fully integrated with the Maintenance module. When a work order is created for an asset, the system automatically links it to the asset record, updates service history, and deducts used parts from inventory."
+        }
+      }
+    }
+  },
+  "communicationPage": {
+    "meta": {
+      "title": "Resident Communication Software | PropertyCareApp",
+      "description": "Centralize all building communications — announcements, requests, and updates — in one AI-powered platform. Keep residents informed and engaged. Start free.",
+      "breadcrumbHome": "Home",
+      "breadcrumbPage": "Communication Property Software"
+    },
+    "hero": {
+      "titleLine1": "Next Generation",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "for Communication",
+      "subtitle": "Build a connected community with our resident link platform. Enable seamless interaction through chats, posts, announcements, and virtual events that keep everyone informed and engaged.",
+      "startFreeTrial": "Start Free Trial",
+      "bookDemo": "Book a Demo",
+      "keyFeatures": "Key Features",
+      "badges": {
+        "messaging": "Messaging",
+        "announcements": "Announcements",
+        "residentPortal": "Resident Portal",
+        "virtualEvents": "Virtual Events",
+        "aiAssistant": "AI Assistant",
+        "jobBoard": "Job Board",
+        "notifications": "Notifications",
+        "community": "Community"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "See how",
+      "sectionTitleHighlight": "resident communication",
+      "sectionTitleEnd": "builds connected communities",
+      "subtitle": "Discover how our platform enables seamless interaction through messaging, announcements, and virtual events that bring your community together.",
+      "videoThumbnailAlt": "Video thumbnail",
+      "playVideo": "Play video",
+      "productDemo": "Communication Demo",
+      "videoDuration": "3:42",
+      "iframeTitle": "Communication Module Demo"
+    },
+    "solutions": {
+      "sectionTitle": "Complete",
+      "sectionTitleHighlight": "communication toolkit",
+      "sectionTitleEnd": "for connected communities",
+      "subtitle": "Everything you need to keep residents informed, engaged, and connected with powerful messaging, announcements, and virtual event tools.",
+      "items": {
+        "residentLink": {
+          "tag": "Resident Link Platform",
+          "title": "Connected Community Network",
+          "description": "A dedicated social network for building residents offering a dynamic space for sharing and interaction. Residents can post updates, share announcements, and activate chat features to connect with their neighbors.",
+          "features": {
+            "f1": "Dynamic social feed for community updates",
+            "f2": "Direct messaging between residents",
+            "f3": "Group chats for building sections or interests",
+            "f4": "Share photos, documents, and announcements",
+            "f5": "Real-time notifications for new activity"
+          }
+        },
+        "announcements": {
+          "tag": "Announcements",
+          "title": "Instant Mass Communication",
+          "description": "Keep residents informed with instant announcements via email, SMS, or push notifications. Target all residents, specific groups, or individual units with complete control over message delivery and scheduling.",
+          "features": {
+            "f1": "Multi-channel delivery (email, SMS, push)",
+            "f2": "Target specific groups or individuals",
+            "f3": "Schedule messages in advance",
+            "f4": "Read receipts and delivery tracking",
+            "f5": "Template library for common announcements"
+          }
+        },
+        "jobBoard": {
+          "tag": "Job & Interest Board",
+          "title": "Community Bulletin Board",
+          "description": "A dedicated board where residents can share job opportunities, professional services, hobbies, and skills. Connect with neighbors, discover local talents, and stay updated on building bulletins and important news.",
+          "features": {
+            "f1": "Post job opportunities and services",
+            "f2": "Share interests and hobbies",
+            "f3": "Find local talents and professionals",
+            "f4": "Building bulletins and news",
+            "f5": "Categorized listings for easy browsing"
+          }
+        },
+        "virtualEvents": {
+          "tag": "Virtual Events",
+          "title": "Online Community Gatherings",
+          "description": "Create and join virtual events seamlessly. Whether it's a community meeting, workshop, or casual gathering, participants can engage in real-time conversations and discussions without meeting in person.",
+          "features": {
+            "f1": "Create virtual meetings and events",
+            "f2": "Real-time video conferencing",
+            "f3": "Event calendar and RSVP tracking",
+            "f4": "Recording and playback options",
+            "f5": "Integrated chat during events"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Send announcement to all",
+        "browserUrl": "app.propertycare.io/communication",
+        "headerTitle": "Messages & Announcements",
+        "headerSubtitle": "4 unread messages",
+        "stats": {
+          "activeChats": "Active Chats",
+          "announcements": "Announcements",
+          "events": "Events"
+        },
+        "conversations": {
+          "c1": {
+            "name": "Building Updates",
+            "message": "New elevator schedule posted",
+            "time": "2m",
+            "unread": "3"
+          },
+          "c2": {
+            "name": "Maintenance Alerts",
+            "message": "Water shut-off tomorrow",
+            "time": "1h",
+            "unread": "1"
+          },
+          "c3": {
+            "name": "Community Events",
+            "message": "BBQ this Saturday!",
+            "time": "3h",
+            "unread": "0"
+          }
+        },
+        "aiTitle": "Communication AI",
+        "aiReady": "Ready to assist",
+        "announcementReady": "Announcement Ready",
+        "targetResidents": "Target: All 156 residents",
+        "responseText": "I'll prepare an announcement for all 156 residents. Choose delivery: Email, SMS, or Push.",
+        "aiSuggestion": "AI Suggestion",
+        "aiSuggestionText": "Based on past engagement, push notifications have 94% open rate for your building.",
+        "actions": {
+          "email": "Email",
+          "sms": "SMS",
+          "push": "Push",
+          "allChannels": "All Channels"
+        }
+      },
+      "announcement": {
+        "title": "Building Announcement",
+        "subtitle": "Multi-channel delivery",
+        "channelsSent": "{sent}/{total} Channels Sent",
+        "channels": {
+          "ch1": {
+            "name": "Email",
+            "recipients": "{count} recipients"
+          },
+          "ch2": {
+            "name": "SMS",
+            "recipients": "{count} recipients"
+          },
+          "ch3": {
+            "name": "Push Notification",
+            "recipients": "{count} recipients"
+          },
+          "ch4": {
+            "name": "In-App Message",
+            "recipients": "{count} recipients"
+          }
+        }
+      },
+      "communityFeed": {
+        "title": "Community Feed",
+        "subtitle": "Resident Network",
+        "posts": {
+          "p1": {
+            "author": "Sarah M.",
+            "content": "Anyone interested in a book club?",
+            "time": "2h"
+          },
+          "p2": {
+            "author": "Building Mgmt",
+            "content": "Pool hours extended for summer!",
+            "time": "5h"
+          },
+          "p3": {
+            "author": "John D.",
+            "content": "Lost cat - orange tabby, Unit 5B",
+            "time": "1d"
+          }
+        }
+      },
+      "virtualEventsVisual": {
+        "title": "Virtual Events",
+        "subtitle": "Community Gatherings",
+        "joined": "{count} joined",
+        "statusLive": "Live",
+        "statusUpcoming": "Upcoming",
+        "events": {
+          "e1": {
+            "title": "Monthly Town Hall",
+            "date": "Today, 7PM",
+            "status": "Live"
+          },
+          "e2": {
+            "title": "Yoga in the Park",
+            "date": "Saturday, 9AM",
+            "status": "Upcoming"
+          },
+          "e3": {
+            "title": "Book Club Meeting",
+            "date": "Next Wed, 6PM",
+            "status": "Upcoming"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "AI-Powered",
+      "sectionTitleHighlight": "Community Assistant",
+      "subtitle": "Our intelligent AI assistant helps answer resident questions, provides information about rules and events, and actively participates in community discussions.",
+      "assistantTitle": "Communication AI",
+      "assistantSubtitle": "Smart Resident Engagement",
+      "conversation": {
+        "step1": "Hi! I'm your communication AI assistant. How can I help you reach your residents today?",
+        "step2": "I need to notify residents about a water shut-off tomorrow",
+        "step3": "I'll prepare an urgent announcement. For water shut-offs, I recommend using all channels (email, SMS, and push) to ensure maximum reach.",
+        "step4": "What time should I send it?",
+        "step5": "Based on engagement data, your residents are most active between 6-8 PM. I'd recommend sending at 6 PM today, with a follow-up reminder at 7 AM tomorrow.",
+        "step6": "Perfect, schedule it",
+        "step7": "Done! I've scheduled the announcement for 6 PM today via all channels (156 residents). A reminder will go out at 7 AM tomorrow. I'll track delivery and engagement for you."
+      },
+      "continueConversation": "Continue conversation",
+      "restartDemo": "Restart demo",
+      "pendingCommunications": "Pending Communications",
+      "aiOptimized": "AI Optimized",
+      "tasks": {
+        "task1": {
+          "name": "Building-wide water shut-off notice",
+          "priority": "Urgent",
+          "channel": "All Channels",
+          "match": "98%"
+        },
+        "task2": {
+          "name": "Monthly newsletter distribution",
+          "priority": "Normal",
+          "channel": "Email",
+          "match": "94%"
+        },
+        "task3": {
+          "name": "Community event reminder",
+          "priority": "Normal",
+          "channel": "Push",
+          "match": "91%"
+        }
+      },
+      "sent": "Sent",
+      "scheduled": "Scheduled",
+      "reach": "reach",
+      "sendNowTitle": "Send Now",
+      "scheduleTitle": "Schedule",
+      "aiTracking": "AI Engagement Tracking",
+      "optimizing": "Optimizing delivery times",
+      "sentCount": "{count} sent",
+      "scheduledCount": "{count} scheduled"
+    },
+    "features": {
+      "sectionTitle": "Everything you need to",
+      "sectionTitleHighlight": "build a connected community",
+      "items": {
+        "messaging": {
+          "title": "Direct Messaging",
+          "description": "Enable residents to communicate directly with each other and building management through secure messaging."
+        },
+        "announcements": {
+          "title": "Announcements",
+          "description": "Send instant announcements via email, SMS, or push notifications to all residents or specific groups."
+        },
+        "residentPortal": {
+          "title": "Resident Portal",
+          "description": "A dedicated social network for building residents to share updates, posts, and connect with neighbors."
+        },
+        "virtualEvents": {
+          "title": "Virtual Events",
+          "description": "Host online community meetings, workshops, and gatherings with integrated video conferencing."
+        },
+        "jobBoard": {
+          "title": "Job & Service Board",
+          "description": "Allow residents to share job opportunities, professional services, and skills with the community."
+        },
+        "eventCalendar": {
+          "title": "Event Calendar",
+          "description": "Centralized calendar for community events, meetings, and important building dates."
+        },
+        "emailCampaigns": {
+          "title": "Email Campaigns",
+          "description": "Create and send beautiful email newsletters and updates to keep residents informed."
+        },
+        "mobileApp": {
+          "title": "Mobile App",
+          "description": "Full-featured mobile app for residents to stay connected on the go."
+        },
+        "communityFeed": {
+          "title": "Community Feed",
+          "description": "Dynamic social feed where residents can post updates, share news, and interact."
+        },
+        "documents": {
+          "title": "Document Sharing",
+          "description": "Share building rules, policies, forms, and important documents with all residents."
+        },
+        "privacy": {
+          "title": "Privacy Controls",
+          "description": "Robust privacy settings allowing residents to control their visibility and communication preferences."
+        },
+        "aiAssistant": {
+          "title": "AI Assistant",
+          "description": "Intelligent AI that answers resident questions and provides information about rules and events."
+        },
+        "surveys": {
+          "title": "Polls & Surveys",
+          "description": "Create polls and surveys to gather resident feedback and make community decisions."
+        },
+        "chatGroups": {
+          "title": "Chat Groups",
+          "description": "Create interest-based or location-based chat groups for residents to connect."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Trusted by",
+      "sectionTitleHighlight": "community leaders",
+      "subtitle": "See what property managers and HOA leaders say about our communication platform.",
+      "roleAt": "{role} at {company}",
+      "items": {
+        "t1": {
+          "author": "Jennifer Martinez",
+          "company": "Sunset Towers",
+          "role": "Community Manager",
+          "quote": "The communication platform has transformed how we connect with residents. Our announcement open rates went from 30% to 94% with multi-channel delivery. Residents love the community feed!"
+        },
+        "t2": {
+          "author": "Robert Kim",
+          "company": "Harbor View Condos",
+          "role": "HOA President",
+          "quote": "Virtual town halls have been a game-changer. We went from 15% attendance at in-person meetings to 60% participation online. The AI assistant handles routine questions so we can focus on what matters."
+        },
+        "t3": {
+          "author": "Amanda Chen",
+          "company": "Riverside Apartments",
+          "role": "Property Manager",
+          "quote": "The resident portal has created a real sense of community. Neighbors are connecting, sharing services, and helping each other. Our resident satisfaction scores have never been higher."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "Communication insights & resources",
+      "subtitle": "Stay ahead with expert insights on resident engagement, community building, and modern communication strategies.",
+      "readArticle": "Read Article",
+      "emptyState": "No blog posts could be loaded. Check your connection or try again later."
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked",
+      "sectionTitleHighlight": "Questions",
+      "subtitle": "Everything you need to know about our communication platform. Have a question not listed? Contact our support team.",
+      "stillHaveQuestions": "Still have questions?",
+      "getInTouch": "Get in touch with our team",
+      "items": {
+        "q1": {
+          "question": "What communication channels are supported?",
+          "answer": "Our platform supports multiple communication channels including email, SMS, push notifications, in-app messaging, and a dedicated resident social feed. You can send announcements through any combination of these channels to ensure maximum reach."
+        },
+        "q2": {
+          "question": "How does the resident portal/social network work?",
+          "answer": "The resident portal is a dedicated social network for your building community. Residents can post updates, share announcements, create interest-based groups, and chat with neighbors. It's designed to foster community connections while giving management full visibility and moderation controls."
+        },
+        "q3": {
+          "question": "Can I target specific groups with announcements?",
+          "answer": "Yes! You can send announcements to all residents, specific floors or buildings, individual units, or custom groups you create (like pet owners, parking permit holders, etc.). This targeting ensures residents only receive relevant communications."
+        },
+        "q4": {
+          "question": "How does the AI community assistant work?",
+          "answer": "Our AI assistant is always present in resident groups and can answer common questions about building rules, amenities, events, and announcements. It learns from your building's specific information and can handle routine inquiries 24/7, freeing up management for more complex issues."
+        },
+        "q5": {
+          "question": "Can I schedule announcements in advance?",
+          "answer": "Absolutely! You can compose announcements and schedule them for future delivery at specific dates and times. This is perfect for planned maintenance notices, event reminders, or any communication you want to prepare ahead of time."
+        },
+        "q6": {
+          "question": "What are virtual events and how do they work?",
+          "answer": "Virtual events allow you to host online community meetings, town halls, workshops, or social gatherings. Residents can join from any device, participate in real-time discussions, and engage through chat. You can also record sessions for those who can't attend live."
+        },
+        "q7": {
+          "question": "How do I track if residents received and read my messages?",
+          "answer": "Our platform provides detailed analytics including delivery rates, open rates, and engagement metrics for each communication channel. You can see which residents have read announcements and follow up with those who haven't for critical communications."
+        },
+        "q8": {
+          "question": "What is the job and interest board?",
+          "answer": "The job and interest board is a community bulletin where residents can share job opportunities, professional services, hobbies, and skills. It helps neighbors connect, discover local talents, and support each other while building a stronger community."
+        },
+        "q9": {
+          "question": "Is there a mobile app for residents?",
+          "answer": "Yes! Residents can download our mobile app to receive push notifications, participate in the community feed, chat with neighbors, RSVP to events, and access all communication features on the go. The app works on both iOS and Android devices."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "What communication channels does PropertyCareApp support?",
+          "answer": "PropertyCareApp supports push notifications (iOS & Android), in-app messaging, email broadcasts, SMS alerts, and community announcement boards — all managed from a single dashboard."
+        },
+        "q2": {
+          "question": "Can residents submit requests or tickets through the communication platform?",
+          "answer": "Yes. Residents can submit service requests, maintenance tickets, and inquiries directly through the app. Managers receive instant notifications and can respond, assign, or escalate within the same platform."
+        },
+        "q3": {
+          "question": "Does the platform support multilingual communication?",
+          "answer": "Yes. PropertyCareApp includes AI-powered automatic translation, enabling you to communicate with residents in their preferred language without any manual effort."
+        },
+        "q4": {
+          "question": "Can I schedule announcements and notifications in advance?",
+          "answer": "Absolutely. The platform lets you compose and schedule announcements to be sent at a specific date and time, ensuring residents always receive timely and relevant updates."
+        },
+        "q5": {
+          "question": "Is resident data kept private and secure?",
+          "answer": "Yes. All communications and resident data are protected with industry-standard encryption. Each building operates in a dedicated environment, and data is never shared between properties."
+        }
+      }
+    }
   }
 }

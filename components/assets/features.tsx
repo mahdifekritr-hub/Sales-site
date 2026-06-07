@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Package,
   Boxes,
@@ -19,22 +20,22 @@ import {
   Wrench,
 } from "lucide-react";
 
-const featureItems = [
-  { key: "assetTracking", icon: Package, title: "Asset Tracking", description: "Track all equipment with QR codes, barcodes, and unique identifiers for instant access to asset details." },
-  { key: "partsInventory", icon: Boxes, title: "Parts & Inventory", description: "Manage spare parts inventory with automatic reorder alerts and stock level monitoring." },
-  { key: "qrScanning", icon: QrCode, title: "QR Code Scanning", description: "Scan QR codes to instantly access asset information, maintenance history, and documentation." },
-  { key: "locationManagement", icon: MapPin, title: "Location Management", description: "Organize assets by building, floor, and room with hierarchical location structures." },
-  { key: "costTracking", icon: DollarSign, title: "Value & Cost Tracking", description: "Track asset values, depreciation, and total cost of ownership throughout the lifecycle." },
-  { key: "documentation", icon: FileText, title: "Documentation", description: "Store warranties, manuals, certifications, and maintenance records for each asset." },
-  { key: "notifications", icon: Bell, title: "Smart Alerts", description: "Receive notifications for expiring warranties, low inventory, and scheduled inspections." },
-  { key: "reporting", icon: BarChart3, title: "Asset Analytics", description: "Generate reports on asset utilization, costs, and performance metrics." },
-  { key: "warranty", icon: Shield, title: "Warranty Management", description: "Track warranty expiration dates and service agreements for all assets." },
-  { key: "purchaseOrders", icon: Settings, title: "Purchase Orders", description: "Create and manage purchase orders for parts and new equipment directly in the system." },
-  { key: "lifecycle", icon: Clock, title: "Lifecycle Management", description: "Track assets from acquisition to disposal with complete audit trails." },
-  { key: "mobileApp", icon: Smartphone, title: "Mobile App", description: "Access asset information and scan QR codes from your smartphone anywhere." },
-  { key: "integration", icon: Zap, title: "Work Order Integration", description: "Link assets to work orders for complete maintenance tracking and history." },
-  { key: "maintenance", icon: Wrench, title: "Maintenance Scheduling", description: "Schedule preventive maintenance based on asset age, usage, or time intervals." },
-];
+const featureKeys = [
+  { key: "assetTracking", icon: Package },
+  { key: "partsInventory", icon: Boxes },
+  { key: "qrScanning", icon: QrCode },
+  { key: "locationManagement", icon: MapPin },
+  { key: "costTracking", icon: DollarSign },
+  { key: "documentation", icon: FileText },
+  { key: "notifications", icon: Bell },
+  { key: "reporting", icon: BarChart3 },
+  { key: "warranty", icon: Shield },
+  { key: "purchaseOrders", icon: Settings },
+  { key: "lifecycle", icon: Clock },
+  { key: "mobileApp", icon: Smartphone },
+  { key: "integration", icon: Zap },
+  { key: "maintenance", icon: Wrench },
+] as const;
 
 interface FeatureCardProps {
   icon: React.ElementType;
@@ -121,29 +122,18 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
     };
   }, [direction, speed]);
 
-  const handlePause = () => {
-    isPausedRef.current = true;
-  };
-
-  const handleResume = () => {
-    isPausedRef.current = false;
-  };
-
   return (
     <div
       className="relative"
-      onMouseEnter={handlePause}
-      onMouseLeave={handleResume}
-      onTouchStart={handlePause}
-      onTouchEnd={handleResume}
+      onMouseEnter={() => { isPausedRef.current = true; }}
+      onMouseLeave={() => { isPausedRef.current = false; }}
+      onTouchStart={() => { isPausedRef.current = true; }}
+      onTouchEnd={() => { isPausedRef.current = false; }}
     >
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-hidden py-2"
-      >
+      <div ref={scrollRef} className="flex gap-4 overflow-x-hidden py-2">
         {duplicatedItems.map((feature, index) => (
           <FeatureCard
             key={`${feature.title}-${index}`}
@@ -160,6 +150,17 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
 export function AssetsFeatures() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const t = useTranslations("assetsPage.features");
+
+  const featureItems = useMemo(
+    () =>
+      featureKeys.map(({ key, icon }) => ({
+        icon,
+        title: t(`items.${key}.title`),
+        description: t(`items.${key}.description`),
+      })),
+    [t]
+  );
 
   const row1Features = featureItems.slice(0, 7);
   const row2Features = featureItems.slice(7, 14);
@@ -179,10 +180,10 @@ export function AssetsFeatures() {
           className="text-center"
         >
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Everything you need to
+            {t("sectionTitle")}
             <br />
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              manage assets & inventory
+              {t("sectionTitleHighlight")}
             </span>
           </h2>
         </motion.div>

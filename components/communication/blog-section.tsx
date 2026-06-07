@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState, useMemo } from "react"
+import { useTranslations } from "next-intl"
 import { BlogCard } from "@/components/landing/blog-card"
 import type { HomeBlogCardData } from "@/lib/blog-home-posts"
 
@@ -13,6 +14,7 @@ export function CommunicationBlogSection({ posts }: CommunicationBlogSectionProp
   const [isHovered, setIsHovered] = useState(false)
   const positionRef = useRef(0)
   const animationRef = useRef<number | undefined>(undefined)
+  const t = useTranslations("communicationPage.blog")
 
   const duplicatedPosts = useMemo(() => {
     if (posts.length === 0) return []
@@ -57,16 +59,16 @@ export function CommunicationBlogSection({ posts }: CommunicationBlogSectionProp
     <section id="blog" className="py-16 sm:py-24 lg:py-15 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-10 sm:mb-16 lg:mb-20">
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-balance text-foreground">
-          Communication insights &amp; resources
+          {t("sectionTitle")}
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-          Stay ahead with expert insights on resident engagement, community building, and modern communication strategies.
+          {t("subtitle")}
         </p>
       </div>
 
       {duplicatedPosts.length === 0 ? (
         <p className="text-center text-sm text-muted-foreground px-4 max-w-xl mx-auto">
-          No blog posts could be loaded. Check your connection or try again later.
+          {t("emptyState")}
         </p>
       ) : (
         <div
@@ -83,7 +85,7 @@ export function CommunicationBlogSection({ posts }: CommunicationBlogSectionProp
                   image={post.image}
                   category={post.category}
                   href={post.href}
-                  readArticleText="Read Article"
+                  readArticleText={t("readArticle")}
                 />
               </div>
             ))}

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   MessageSquare,
   Bell,
@@ -19,22 +20,22 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-const featureItems = [
-  { key: "messaging", icon: MessageSquare, title: "Direct Messaging", description: "Enable residents to communicate directly with each other and building management through secure messaging." },
-  { key: "announcements", icon: Bell, title: "Announcements", description: "Send instant announcements via email, SMS, or push notifications to all residents or specific groups." },
-  { key: "residentPortal", icon: Users, title: "Resident Portal", description: "A dedicated social network for building residents to share updates, posts, and connect with neighbors." },
-  { key: "virtualEvents", icon: Video, title: "Virtual Events", description: "Host online community meetings, workshops, and gatherings with integrated video conferencing." },
-  { key: "jobBoard", icon: Briefcase, title: "Job & Service Board", description: "Allow residents to share job opportunities, professional services, and skills with the community." },
-  { key: "eventCalendar", icon: Calendar, title: "Event Calendar", description: "Centralized calendar for community events, meetings, and important building dates." },
-  { key: "emailCampaigns", icon: Mail, title: "Email Campaigns", description: "Create and send beautiful email newsletters and updates to keep residents informed." },
-  { key: "mobileApp", icon: Smartphone, title: "Mobile App", description: "Full-featured mobile app for residents to stay connected on the go." },
-  { key: "communityFeed", icon: Globe, title: "Community Feed", description: "Dynamic social feed where residents can post updates, share news, and interact." },
-  { key: "documents", icon: FileText, title: "Document Sharing", description: "Share building rules, policies, forms, and important documents with all residents." },
-  { key: "privacy", icon: Shield, title: "Privacy Controls", description: "Robust privacy settings allowing residents to control their visibility and communication preferences." },
-  { key: "aiAssistant", icon: Zap, title: "AI Assistant", description: "Intelligent AI that answers resident questions and provides information about rules and events." },
-  { key: "surveys", icon: Heart, title: "Polls & Surveys", description: "Create polls and surveys to gather resident feedback and make community decisions." },
-  { key: "chatGroups", icon: MessageCircle, title: "Chat Groups", description: "Create interest-based or location-based chat groups for residents to connect." },
-];
+const featureKeys = [
+  { key: "messaging", icon: MessageSquare },
+  { key: "announcements", icon: Bell },
+  { key: "residentPortal", icon: Users },
+  { key: "virtualEvents", icon: Video },
+  { key: "jobBoard", icon: Briefcase },
+  { key: "eventCalendar", icon: Calendar },
+  { key: "emailCampaigns", icon: Mail },
+  { key: "mobileApp", icon: Smartphone },
+  { key: "communityFeed", icon: Globe },
+  { key: "documents", icon: FileText },
+  { key: "privacy", icon: Shield },
+  { key: "aiAssistant", icon: Zap },
+  { key: "surveys", icon: Heart },
+  { key: "chatGroups", icon: MessageCircle },
+] as const;
 
 interface FeatureCardProps {
   icon: React.ElementType;
@@ -121,29 +122,18 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
     };
   }, [direction, speed]);
 
-  const handlePause = () => {
-    isPausedRef.current = true;
-  };
-
-  const handleResume = () => {
-    isPausedRef.current = false;
-  };
-
   return (
     <div
       className="relative"
-      onMouseEnter={handlePause}
-      onMouseLeave={handleResume}
-      onTouchStart={handlePause}
-      onTouchEnd={handleResume}
+      onMouseEnter={() => { isPausedRef.current = true; }}
+      onMouseLeave={() => { isPausedRef.current = false; }}
+      onTouchStart={() => { isPausedRef.current = true; }}
+      onTouchEnd={() => { isPausedRef.current = false; }}
     >
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-hidden py-2"
-      >
+      <div ref={scrollRef} className="flex gap-4 overflow-x-hidden py-2">
         {duplicatedItems.map((feature, index) => (
           <FeatureCard
             key={`${feature.title}-${index}`}
@@ -160,6 +150,17 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
 export function CommunicationFeatures() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const t = useTranslations("communicationPage.features");
+
+  const featureItems = useMemo(
+    () =>
+      featureKeys.map(({ key, icon }) => ({
+        icon,
+        title: t(`items.${key}.title`),
+        description: t(`items.${key}.description`),
+      })),
+    [t]
+  );
 
   const row1Features = featureItems.slice(0, 7);
   const row2Features = featureItems.slice(7, 14);
@@ -179,10 +180,10 @@ export function CommunicationFeatures() {
           className="text-center"
         >
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Everything you need to
+            {t("sectionTitle")}
             <br />
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              build a connected community
+              {t("sectionTitleHighlight")}
             </span>
           </h2>
         </motion.div>

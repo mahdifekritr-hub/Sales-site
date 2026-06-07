@@ -1,61 +1,42 @@
 "use client";
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { CheckCircle2, Bot, Sparkles, ChevronRight, Package, QrCode, MapPin, BarChart3, AlertTriangle, DollarSign, Settings, Boxes } from "lucide-react";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
+import { CheckCircle2, Bot, Sparkles, ChevronRight, Package, QrCode, MapPin, BarChart3, DollarSign, Settings, Boxes } from "lucide-react";
 
-const solutionData = [
-  {
-    tag: "Asset Tracking",
-    title: "Effortless Asset Tracking",
-    description: "With the Locations, Assets, and Parts module, you can easily define locations and seamlessly track assets in their designated positions. By simply scanning a QR Code, access comprehensive details such as warranty information, approximate value, and the responsible personnel for each asset.",
-    features: [
-      "Define and organize asset locations",
-      "QR code scanning for instant access",
-      "Track warranty and value information",
-      "Assign responsible personnel",
-      "Complete asset lifecycle management"
-    ]
-  },
-  {
-    tag: "Parts & Inventory",
-    title: "Streamlined Parts Management",
-    description: "The Parts module seamlessly integrates with the Work Order and Work Request systems, enabling technicians to track inventory usage and availability effortlessly. The system automatically triggers price inquiries when stock reaches the predefined minimum level.",
-    features: [
-      "Real-time inventory tracking",
-      "Automatic low-stock alerts",
-      "Integration with work orders",
-      "Prevent overstocking with max thresholds",
-      "Smart automation for replenishment"
-    ]
-  },
-  {
-    tag: "Purchase Orders",
-    title: "Invoicing and Payment Integration",
-    description: "The Parts module simplifies billing by offering automated invoice generation for services and parts used. Technicians can input all provided services and utilized parts, and the system will automatically generate and send the invoice to the service requester.",
-    features: [
-      "Automated invoice generation",
-      "Track services and parts used",
-      "Direct payment through platform",
-      "Approval workflow options",
-      "Streamlined billing process"
-    ]
-  },
-  {
-    tag: "Location Management",
-    title: "Organize Your Spaces",
-    description: "Define hierarchical location structures for your properties, buildings, floors, and rooms. Track which assets are in each location and maintain a clear organizational structure for all your equipment and inventory.",
-    features: [
-      "Hierarchical location structure",
-      "Building and floor mapping",
-      "Asset-to-location assignment",
-      "Location-based reporting",
-      "Easy asset relocation tracking"
-    ]
-  }
+const solutionKeys = ["assetTracking", "partsInventory", "purchaseOrders", "locationManagement"] as const;
+const featureKeys = ["f1", "f2", "f3", "f4", "f5"] as const;
+const assetKeys = ["a1", "a2", "a3"] as const;
+const statKeys = ["active", "maintenance", "retired"] as const;
+const actionKeys = ["viewDetails", "maintenanceHistory", "generateQr"] as const;
+const inventoryKeys = ["i1", "i2", "i3"] as const;
+const locationKeys = ["l1", "l2", "l3"] as const;
+
+const assetIds: Record<(typeof assetKeys)[number], string> = {
+  a1: "AST-2024-001",
+  a2: "AST-2024-002",
+  a3: "AST-2024-003",
+};
+
+const assetStatusKeys: Record<(typeof assetKeys)[number], "active" | "maintenance"> = {
+  a1: "active",
+  a2: "maintenance",
+  a3: "active",
+};
+
+const inventoryMeta = [
+  { min: 10, max: 50 },
+  { min: 5, max: 20 },
+  { min: 15, max: 100 },
 ];
 
-// Asset Dashboard Visual
+const locationMeta = [
+  { assets: 45, floors: 12 },
+  { assets: 38, floors: 10 },
+  { assets: 12, floors: 3 },
+];
+
 function AssetDashboardVisual() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showTyping, setShowTyping] = useState(false);
@@ -63,8 +44,9 @@ function AssetDashboardVisual() {
   const [typedPrompt, setTypedPrompt] = useState("");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const t = useTranslations("assetsPage.solutions.dashboard");
 
-  const fullPrompt = "Find HVAC unit in Tower A";
+  const fullPrompt = t("fullPrompt");
 
   useEffect(() => {
     if (isInView) {
@@ -93,7 +75,7 @@ function AssetDashboardVisual() {
         clearTimeout(typingStart);
       };
     }
-  }, [isInView]);
+  }, [isInView, fullPrompt]);
 
   const sidebarItems = [
     { icon: Package, active: true },
@@ -104,16 +86,17 @@ function AssetDashboardVisual() {
     { icon: Settings },
   ];
 
-  const assets = [
-    { id: "AST-2024-001", name: "HVAC Unit - Carrier 50XC", location: "Tower A - Floor 3", status: "active" },
-    { id: "AST-2024-002", name: "Elevator Motor #2", location: "Tower B - Basement", status: "maintenance" },
-    { id: "AST-2024-003", name: "Fire Alarm Panel", location: "Tower A - Lobby", status: "active" },
-  ];
+  const assets = assetKeys.map((key) => ({
+    id: assetIds[key],
+    name: t(`assets.${key}.name`),
+    location: t(`assets.${key}.location`),
+    statusKey: assetStatusKeys[key],
+    status: t(`statusLabels.${assetStatusKeys[key]}`),
+  }));
 
   return (
     <div ref={ref} className="relative">
       <div className="overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl">
-        {/* Browser bar */}
         <div className="flex items-center gap-2 border-b border-border/50 bg-secondary/50 px-3 py-2">
           <div className="flex gap-1">
             <div className="h-2 w-2 rounded-full bg-destructive/60" />
@@ -125,9 +108,7 @@ function AssetDashboardVisual() {
           </div>
         </div>
 
-        {/* Dashboard content */}
         <div className="relative flex h-[280px] sm:h-[320px]">
-          {/* Mini sidebar */}
           <div className={`hidden sm:flex w-10 flex-col gap-1 border-r border-border/50 bg-secondary/30 py-2 transition-all duration-300 ${showSidebar ? "opacity-40 blur-[1px]" : ""}`}>
             {sidebarItems.map((item, i) => (
               <div
@@ -139,29 +120,23 @@ function AssetDashboardVisual() {
             ))}
           </div>
 
-          {/* Main area */}
           <div className={`flex-1 overflow-hidden transition-all duration-300 ${showSidebar ? "opacity-30 blur-[2px]" : ""}`}>
-            {/* Header */}
             <div className="border-b border-border/50 px-3 py-2">
-              <div className="text-xs font-semibold">Asset Registry</div>
-              <div className="text-[10px] text-muted-foreground">156 total assets</div>
+              <div className="text-xs font-semibold">{t("headerTitle")}</div>
+              <div className="text-[10px] text-muted-foreground">{t("headerSubtitle")}</div>
             </div>
 
-            {/* Mini stats */}
             <div className="grid grid-cols-3 gap-2 p-2">
-              {[
-                { label: "Active", val: "142", color: "text-chart-4" },
-                { label: "Maintenance", val: "8", color: "text-primary" },
-                { label: "Retired", val: "6", color: "text-muted-foreground" },
-              ].map((s) => (
-                <div key={s.label} className="rounded-lg bg-secondary/50 p-2 text-center">
-                  <div className={`text-sm font-bold ${s.color}`}>{s.val}</div>
-                  <div className="text-[9px] text-muted-foreground">{s.label}</div>
+              {statKeys.map((key, i) => (
+                <div key={key} className="rounded-lg bg-secondary/50 p-2 text-center">
+                  <div className={`text-sm font-bold ${i === 0 ? "text-chart-4" : i === 1 ? "text-primary" : "text-muted-foreground"}`}>
+                    {i === 0 ? "142" : i === 1 ? "8" : "6"}
+                  </div>
+                  <div className="text-[9px] text-muted-foreground">{t(`stats.${key}`)}</div>
                 </div>
               ))}
             </div>
 
-            {/* Mini table */}
             <div className="px-2">
               <div className="rounded-lg border border-border/50 bg-secondary/20">
                 {assets.map((asset, i) => (
@@ -174,8 +149,8 @@ function AssetDashboardVisual() {
                       <div className="text-[8px] text-muted-foreground">{asset.location}</div>
                     </div>
                     <span className={`rounded-full px-1.5 py-0.5 text-[8px] ${
-                      asset.status === "active" ? "bg-chart-4/10 text-chart-4" :
-                      asset.status === "maintenance" ? "bg-primary/10 text-primary" : 
+                      asset.statusKey === "active" ? "bg-chart-4/10 text-chart-4" :
+                      asset.statusKey === "maintenance" ? "bg-primary/10 text-primary" :
                       "bg-muted text-muted-foreground"
                     }`}>
                       {asset.status}
@@ -186,7 +161,6 @@ function AssetDashboardVisual() {
             </div>
           </div>
 
-          {/* AI Sidebar overlay */}
           <AnimatePresence>
             {showSidebar && (
               <motion.div
@@ -197,7 +171,6 @@ function AssetDashboardVisual() {
                 className="absolute inset-0 sm:left-auto sm:right-0 sm:top-0 flex h-full w-full sm:w-[260px] flex-col border-l border-primary/20 bg-card/95 backdrop-blur-xl"
                 style={{ boxShadow: "-10px 0 40px -10px rgba(var(--primary), 0.15)" }}
               >
-                {/* Sidebar header */}
                 <motion.div
                   className="flex items-center gap-2 border-b border-border/50 px-3 py-2"
                   initial={{ opacity: 0 }}
@@ -215,16 +188,14 @@ function AssetDashboardVisual() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="text-xs font-semibold">Asset AI</div>
-                    <div className="text-[9px] text-muted-foreground">Ready to assist</div>
+                    <div className="text-xs font-semibold">{t("aiTitle")}</div>
+                    <div className="text-[9px] text-muted-foreground">{t("aiReady")}</div>
                   </div>
                   <Sparkles className="h-3.5 w-3.5 text-primary" />
                 </motion.div>
 
-                {/* Chat area */}
                 <div className="flex-1 overflow-hidden p-2">
                   <div className="space-y-2">
-                    {/* User message */}
                     <motion.div
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -236,7 +207,6 @@ function AssetDashboardVisual() {
                       </div>
                     </motion.div>
 
-                    {/* Typing indicator */}
                     <AnimatePresence>
                       {showTyping && (
                         <motion.div
@@ -261,7 +231,6 @@ function AssetDashboardVisual() {
                       )}
                     </AnimatePresence>
 
-                    {/* AI Response */}
                     <AnimatePresence>
                       {showResponse && (
                         <motion.div
@@ -281,14 +250,18 @@ function AssetDashboardVisual() {
                                   <Package className="h-3 w-3" />
                                 </div>
                                 <div>
-                                  <div className="text-[10px] font-medium">Asset Found</div>
-                                  <div className="text-[8px] text-muted-foreground">HVAC Unit - Carrier 50XC</div>
+                                  <div className="text-[10px] font-medium">{t("assetFoundTitle")}</div>
+                                  <div className="text-[8px] text-muted-foreground">{t("assetFoundName")}</div>
                                 </div>
                               </div>
                             </div>
 
                             <div className="p-2 text-[9px] leading-relaxed text-foreground/80">
-                              Located in <span className="font-medium text-primary">Tower A - Floor 3</span>. Warranty expires <span className="font-medium">Dec 2025</span>. Last maintenance: 14 days ago.
+                              {t("responseText", {
+                                location: t("responseLocation"),
+                                warranty: t("responseWarranty"),
+                                lastMaintenance: t("responseLastMaintenance"),
+                              })}
                             </div>
 
                             <motion.div
@@ -299,10 +272,10 @@ function AssetDashboardVisual() {
                             >
                               <div className="mb-1 flex items-center gap-1">
                                 <QrCode className="h-2.5 w-2.5 text-primary" />
-                                <span className="text-[8px] font-medium text-primary">Quick Access</span>
+                                <span className="text-[8px] font-medium text-primary">{t("quickAccess")}</span>
                               </div>
                               <p className="text-[8px] leading-relaxed text-foreground/70">
-                                Scan QR code AST-2024-001 for full details, maintenance history, and documentation.
+                                {t("quickAccessText")}
                               </p>
                             </motion.div>
                           </motion.div>
@@ -313,13 +286,13 @@ function AssetDashboardVisual() {
                             transition={{ delay: 0.3 }}
                             className="flex flex-wrap gap-1"
                           >
-                            {["View Details", "Maintenance History", "Generate QR"].map((action) => (
+                            {actionKeys.map((action) => (
                               <motion.button
                                 key={action}
                                 whileHover={{ scale: 1.02 }}
                                 className="flex items-center gap-1 rounded-lg border border-border/50 bg-secondary/50 px-2 py-1 text-[8px] font-medium transition-colors hover:bg-secondary hover:border-primary/30"
                               >
-                                {action}
+                                {t(`actions.${action}`)}
                                 <ChevronRight className="h-2 w-2" />
                               </motion.button>
                             ))}
@@ -338,27 +311,29 @@ function AssetDashboardVisual() {
   );
 }
 
-// Inventory Visual
 function InventoryVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [quantities, setQuantities] = useState([45, 12, 78]);
+  const t = useTranslations("assetsPage.solutions.inventory");
 
-  const inventoryItems = [
-    { name: "Air Filters (20x25x1)", min: 10, max: 50, unit: "pcs" },
-    { name: "Compressor Oil", min: 5, max: 20, unit: "gal" },
-    { name: "Replacement Belts", min: 15, max: 100, unit: "pcs" },
-  ];
+  const inventoryItems = inventoryKeys.map((key, index) => ({
+    name: t(`items.${key}.name`),
+    unit: t(`items.${key}.unit`),
+    min: inventoryMeta[index].min,
+    max: inventoryMeta[index].max,
+  }));
 
   useEffect(() => {
     if (isInView) {
       const interval = setInterval(() => {
-        setQuantities(prev => prev.map((q, i) => {
-          const min = inventoryItems[i].min;
-          const max = inventoryItems[i].max;
-          const change = Math.random() > 0.5 ? -Math.floor(Math.random() * 5) : Math.floor(Math.random() * 3);
-          return Math.max(0, Math.min(max + 10, q + change));
-        }));
+        setQuantities((prev) =>
+          prev.map((q, i) => {
+            const { min, max } = inventoryMeta[i];
+            const change = Math.random() > 0.5 ? -Math.floor(Math.random() * 5) : Math.floor(Math.random() * 3);
+            return Math.max(0, Math.min(max + 10, q + change));
+          })
+        );
       }, 2000);
 
       return () => clearInterval(interval);
@@ -373,8 +348,8 @@ function InventoryVisual() {
             <Boxes className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Parts Inventory</div>
-            <div className="text-xs text-muted-foreground">Real-time tracking</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -392,8 +367,8 @@ function InventoryVisual() {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: index * 0.1 }}
                 className={`p-3 rounded-lg transition-colors ${
-                  isLow ? "bg-destructive/10 border border-destructive/30" : 
-                  isHigh ? "bg-chart-5/10 border border-chart-5/30" : 
+                  isLow ? "bg-destructive/10 border border-destructive/30" :
+                  isHigh ? "bg-chart-5/10 border border-chart-5/30" :
                   "bg-secondary/30"
                 }`}
               >
@@ -407,12 +382,12 @@ function InventoryVisual() {
                     </span>
                     {isLow && (
                       <span className="text-[8px] bg-destructive/20 text-destructive px-1.5 py-0.5 rounded">
-                        LOW STOCK
+                        {t("lowStock")}
                       </span>
                     )}
                     {isHigh && (
                       <span className="text-[8px] bg-chart-5/20 text-chart-5 px-1.5 py-0.5 rounded">
-                        OVERSTOCKED
+                        {t("overstocked")}
                       </span>
                     )}
                   </div>
@@ -428,8 +403,8 @@ function InventoryVisual() {
                   />
                 </div>
                 <div className="flex justify-between mt-1 text-[9px] text-muted-foreground">
-                  <span>Min: {item.min}</span>
-                  <span>Max: {item.max}</span>
+                  <span>{t("min", { count: item.min })}</span>
+                  <span>{t("max", { count: item.max })}</span>
                 </div>
               </motion.div>
             );
@@ -440,11 +415,11 @@ function InventoryVisual() {
   );
 }
 
-// QR Code Visual
 function QRCodeVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [scanned, setScanned] = useState(false);
+  const t = useTranslations("assetsPage.solutions.qrcode");
 
   useEffect(() => {
     if (isInView) {
@@ -465,8 +440,8 @@ function QRCodeVisual() {
             <QrCode className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">QR Code Scanning</div>
-            <div className="text-xs text-muted-foreground">Instant asset access</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -476,7 +451,6 @@ function QRCodeVisual() {
             animate={scanned ? { scale: [1, 1.05, 1] } : {}}
             transition={{ duration: 0.3 }}
           >
-            {/* Simplified QR pattern */}
             <div className="w-full h-full grid grid-cols-7 grid-rows-7 gap-0.5">
               {Array.from({ length: 49 }).map((_, i) => (
                 <div
@@ -487,8 +461,7 @@ function QRCodeVisual() {
                 />
               ))}
             </div>
-            
-            {/* Scan line animation */}
+
             {!scanned && (
               <motion.div
                 className="absolute left-0 right-0 h-0.5 bg-primary"
@@ -497,7 +470,6 @@ function QRCodeVisual() {
               />
             )}
 
-            {/* Success overlay */}
             <AnimatePresence>
               {scanned && (
                 <motion.div
@@ -521,7 +493,7 @@ function QRCodeVisual() {
                 exit={{ opacity: 0 }}
                 className="text-xs text-muted-foreground"
               >
-                Scanning asset tag...
+                {t("scanning")}
               </motion.p>
             ) : (
               <motion.div
@@ -531,8 +503,8 @@ function QRCodeVisual() {
                 exit={{ opacity: 0 }}
                 className="text-center"
               >
-                <p className="text-xs font-medium text-chart-4">Asset Identified!</p>
-                <p className="text-[10px] text-muted-foreground">HVAC Unit - Tower A</p>
+                <p className="text-xs font-medium text-chart-4">{t("identified")}</p>
+                <p className="text-[10px] text-muted-foreground">{t("resultName")}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -542,16 +514,16 @@ function QRCodeVisual() {
   );
 }
 
-// Location Map Visual
 function LocationMapVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const t = useTranslations("assetsPage.solutions.location");
 
-  const locations = [
-    { name: "Tower A", assets: 45, floors: 12 },
-    { name: "Tower B", assets: 38, floors: 10 },
-    { name: "Parking", assets: 12, floors: 3 },
-  ];
+  const locations = locationKeys.map((key, index) => ({
+    name: t(`items.${key}.name`),
+    assets: locationMeta[index].assets,
+    floors: locationMeta[index].floors,
+  }));
 
   return (
     <div ref={ref} className="relative">
@@ -561,8 +533,8 @@ function LocationMapVisual() {
             <MapPin className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Location Overview</div>
-            <div className="text-xs text-muted-foreground">Asset distribution</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -581,19 +553,21 @@ function LocationMapVisual() {
                 </div>
                 <div>
                   <div className="text-xs font-medium">{location.name}</div>
-                  <div className="text-[10px] text-muted-foreground">{location.floors} floors</div>
+                  <div className="text-[10px] text-muted-foreground">
+                    {t("floors", { count: location.floors })}
+                  </div>
                 </div>
               </div>
               <div className="text-right">
                 <div className="text-sm font-bold text-primary">{location.assets}</div>
-                <div className="text-[9px] text-muted-foreground">assets</div>
+                <div className="text-[9px] text-muted-foreground">{t("assetsLabel")}</div>
               </div>
             </motion.div>
           ))}
         </div>
 
         <div className="mt-3 pt-3 border-t border-border/50 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">Total Assets</span>
+          <span className="text-xs text-muted-foreground">{t("totalAssets")}</span>
           <span className="text-sm font-bold text-primary">95</span>
         </div>
       </div>
@@ -605,13 +579,18 @@ export function AssetsSolutions() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeIndex, setActiveIndex] = useState(0);
+  const t = useTranslations("assetsPage.solutions");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % solutionData.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
+  const solutionData = useMemo(
+    () =>
+      solutionKeys.map((key) => ({
+        tag: t(`items.${key}.tag`),
+        title: t(`items.${key}.title`),
+        description: t(`items.${key}.description`),
+        features: featureKeys.map((f) => t(`items.${key}.features.${f}`)),
+      })),
+    [t]
+  );
 
   const visualComponents = [
     <AssetDashboardVisual key="dashboard" />,
@@ -620,16 +599,21 @@ export function AssetsSolutions() {
     <LocationMapVisual key="location" />,
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % solutionData.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [solutionData.length]);
+
   return (
     <section id="solutions" className="relative py-16 sm:py-24 lg:py-15" ref={ref}>
-      {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -637,19 +621,18 @@ export function AssetsSolutions() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Complete{" "}
+            {t("sectionTitle")}{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Asset & Inventory
+              {t("sectionTitleHighlight")}
             </span>
             <br />
-            Management Suite
+            {t("sectionTitleEnd")}
           </h2>
           <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground px-4 sm:px-0">
-            Track assets, manage inventory, and streamline procurement with our comprehensive suite of tools designed for property management.
+            {t("subtitle")}
           </p>
         </motion.div>
 
-        {/* Tab navigation */}
         <div className="flex justify-center mb-8 sm:mb-12">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
             {solutionData.map((solution, index) => (
@@ -670,9 +653,7 @@ export function AssetsSolutions() {
           </div>
         </div>
 
-        {/* Content grid */}
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-          {/* Left: Visual */}
           <motion.div
             key={`visual-${activeIndex}`}
             initial={{ opacity: 0, x: -20 }}
@@ -683,7 +664,6 @@ export function AssetsSolutions() {
             {visualComponents[activeIndex]}
           </motion.div>
 
-          {/* Right: Content */}
           <motion.div
             key={`content-${activeIndex}`}
             initial={{ opacity: 0, x: 20 }}

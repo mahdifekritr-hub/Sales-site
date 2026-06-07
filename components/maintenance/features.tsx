@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   ClipboardList,
   Wrench,
@@ -19,22 +20,22 @@ import {
   Zap,
 } from "lucide-react";
 
-const featureItems = [
-  { key: "workOrders", icon: Wrench, title: "Work Orders", description: "Create, assign, and track work orders with real-time status updates and mobile notifications." },
-  { key: "preventiveMaintenance", icon: Calendar, title: "Preventive Maintenance", description: "Automatic scheduling of maintenance tasks to prevent equipment failures and extend asset life." },
-  { key: "checklists", icon: CheckSquare, title: "Checklists", description: "Customizable inspection checklists to ensure consistent and thorough maintenance procedures." },
-  { key: "vendorManagement", icon: Users, title: "Vendor Management", description: "Track vendor performance, manage contracts, and streamline procurement processes." },
-  { key: "costTracking", icon: DollarSign, title: "Cost Tracking", description: "Monitor maintenance expenses, labor costs, and budget allocation in real-time." },
-  { key: "assetTracking", icon: ClipboardList, title: "Asset Tracking", description: "Complete asset lifecycle management with maintenance history and documentation." },
-  { key: "notifications", icon: Bell, title: "Smart Notifications", description: "Automated alerts for overdue tasks, upcoming maintenance, and critical issues." },
-  { key: "reporting", icon: BarChart3, title: "Advanced Reporting", description: "Comprehensive analytics dashboards with customizable reports and KPI tracking." },
-  { key: "documentation", icon: FileText, title: "Documentation", description: "Store and access maintenance manuals, procedures, and compliance documents." },
-  { key: "automation", icon: Settings, title: "Workflow Automation", description: "Automate routine tasks, approvals, and escalations to save time and reduce errors." },
-  { key: "scheduling", icon: Clock, title: "Smart Scheduling", description: "AI-powered scheduling that optimizes technician routes and workload distribution." },
-  { key: "compliance", icon: Shield, title: "Compliance Tracking", description: "Ensure regulatory compliance with audit trails and certification tracking." },
-  { key: "mobileApp", icon: Smartphone, title: "Mobile App", description: "Full-featured mobile app for technicians to manage tasks on the go." },
-  { key: "integration", icon: Zap, title: "Integrations", description: "Connect with your existing tools through powerful API and third-party integrations." },
-];
+const featureKeys = [
+  { key: "workOrders", icon: Wrench },
+  { key: "preventiveMaintenance", icon: Calendar },
+  { key: "checklists", icon: CheckSquare },
+  { key: "vendorManagement", icon: Users },
+  { key: "costTracking", icon: DollarSign },
+  { key: "assetTracking", icon: ClipboardList },
+  { key: "notifications", icon: Bell },
+  { key: "reporting", icon: BarChart3 },
+  { key: "documentation", icon: FileText },
+  { key: "automation", icon: Settings },
+  { key: "scheduling", icon: Clock },
+  { key: "compliance", icon: Shield },
+  { key: "mobileApp", icon: Smartphone },
+  { key: "integration", icon: Zap },
+] as const;
 
 interface FeatureCardProps {
   icon: React.ElementType;
@@ -121,29 +122,18 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
     };
   }, [direction, speed]);
 
-  const handlePause = () => {
-    isPausedRef.current = true;
-  };
-
-  const handleResume = () => {
-    isPausedRef.current = false;
-  };
-
   return (
     <div
       className="relative"
-      onMouseEnter={handlePause}
-      onMouseLeave={handleResume}
-      onTouchStart={handlePause}
-      onTouchEnd={handleResume}
+      onMouseEnter={() => { isPausedRef.current = true; }}
+      onMouseLeave={() => { isPausedRef.current = false; }}
+      onTouchStart={() => { isPausedRef.current = true; }}
+      onTouchEnd={() => { isPausedRef.current = false; }}
     >
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-hidden py-2"
-      >
+      <div ref={scrollRef} className="flex gap-4 overflow-x-hidden py-2">
         {duplicatedItems.map((feature, index) => (
           <FeatureCard
             key={`${feature.title}-${index}`}
@@ -160,6 +150,17 @@ function ScrollingRow({ items, direction, speed = 0.5 }: ScrollingRowProps) {
 export function MaintenanceFeatures() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const t = useTranslations("maintenancePage.features");
+
+  const featureItems = useMemo(
+    () =>
+      featureKeys.map(({ key, icon }) => ({
+        icon,
+        title: t(`items.${key}.title`),
+        description: t(`items.${key}.description`),
+      })),
+    [t]
+  );
 
   const row1Features = featureItems.slice(0, 7);
   const row2Features = featureItems.slice(7, 14);
@@ -179,10 +180,10 @@ export function MaintenanceFeatures() {
           className="text-center"
         >
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Everything you need to
+            {t("sectionTitle")}
             <br />
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              streamline maintenance operations
+              {t("sectionTitleHighlight")}
             </span>
           </h2>
         </motion.div>

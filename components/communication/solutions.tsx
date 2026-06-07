@@ -1,61 +1,28 @@
 "use client";
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { CheckCircle2, Bot, Sparkles, ChevronRight, MessageSquare, Bell, Users, Video, Megaphone, Briefcase, Calendar, Settings } from "lucide-react";
 
-const solutionData = [
-  {
-    tag: "Resident Link Platform",
-    title: "Connected Community Network",
-    description: "A dedicated social network for building residents offering a dynamic space for sharing and interaction. Residents can post updates, share announcements, and activate chat features to connect with their neighbors.",
-    features: [
-      "Dynamic social feed for community updates",
-      "Direct messaging between residents",
-      "Group chats for building sections or interests",
-      "Share photos, documents, and announcements",
-      "Real-time notifications for new activity"
-    ]
-  },
-  {
-    tag: "Announcements",
-    title: "Instant Mass Communication",
-    description: "Keep residents informed with instant announcements via email, SMS, or push notifications. Target all residents, specific groups, or individual units with complete control over message delivery and scheduling.",
-    features: [
-      "Multi-channel delivery (email, SMS, push)",
-      "Target specific groups or individuals",
-      "Schedule messages in advance",
-      "Read receipts and delivery tracking",
-      "Template library for common announcements"
-    ]
-  },
-  {
-    tag: "Job & Interest Board",
-    title: "Community Bulletin Board",
-    description: "A dedicated board where residents can share job opportunities, professional services, hobbies, and skills. Connect with neighbors, discover local talents, and stay updated on building bulletins and important news.",
-    features: [
-      "Post job opportunities and services",
-      "Share interests and hobbies",
-      "Find local talents and professionals",
-      "Building bulletins and news",
-      "Categorized listings for easy browsing"
-    ]
-  },
-  {
-    tag: "Virtual Events",
-    title: "Online Community Gatherings",
-    description: "Create and join virtual events seamlessly. Whether it's a community meeting, workshop, or casual gathering, participants can engage in real-time conversations and discussions without meeting in person.",
-    features: [
-      "Create virtual meetings and events",
-      "Real-time video conferencing",
-      "Event calendar and RSVP tracking",
-      "Recording and playback options",
-      "Integrated chat during events"
-    ]
-  }
-];
+const solutionKeys = ["residentLink", "announcements", "jobBoard", "virtualEvents"] as const;
+const featureKeys = ["f1", "f2", "f3", "f4", "f5"] as const;
+const conversationKeys = ["c1", "c2", "c3"] as const;
+const statKeys = ["activeChats", "announcements", "events"] as const;
+const actionKeys = ["email", "sms", "push", "allChannels"] as const;
+const channelKeys = ["ch1", "ch2", "ch3", "ch4"] as const;
+const postKeys = ["p1", "p2", "p3"] as const;
+const eventKeys = ["e1", "e2", "e3"] as const;
 
-// Messaging Dashboard Visual
+const channelEmojis = ["📧", "📱", "🔔", "💬"];
+const channelRecipientCounts = [156, 142, 134, 156];
+const postEngagement = [
+  { likes: 12, comments: 8 },
+  { likes: 45, comments: 15 },
+  { likes: 23, comments: 34 },
+];
+const eventAttendees = [45, 18, 12];
+
 function MessagingDashboardVisual() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showTyping, setShowTyping] = useState(false);
@@ -63,8 +30,9 @@ function MessagingDashboardVisual() {
   const [typedPrompt, setTypedPrompt] = useState("");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const t = useTranslations("communicationPage.solutions.dashboard");
 
-  const fullPrompt = "Send announcement to all";
+  const fullPrompt = t("fullPrompt");
 
   useEffect(() => {
     if (isInView) {
@@ -93,7 +61,7 @@ function MessagingDashboardVisual() {
         clearTimeout(typingStart);
       };
     }
-  }, [isInView]);
+  }, [isInView, fullPrompt]);
 
   const sidebarItems = [
     { icon: MessageSquare, active: true },
@@ -104,16 +72,16 @@ function MessagingDashboardVisual() {
     { icon: Settings },
   ];
 
-  const conversations = [
-    { name: "Building Updates", message: "New elevator schedule posted", time: "2m", unread: 3 },
-    { name: "Maintenance Alerts", message: "Water shut-off tomorrow", time: "1h", unread: 1 },
-    { name: "Community Events", message: "BBQ this Saturday!", time: "3h", unread: 0 },
-  ];
+  const conversations = conversationKeys.map((key) => ({
+    name: t(`conversations.${key}.name`),
+    message: t(`conversations.${key}.message`),
+    time: t(`conversations.${key}.time`),
+    unread: Number(t(`conversations.${key}.unread`)),
+  }));
 
   return (
     <div ref={ref} className="relative">
       <div className="overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl">
-        {/* Browser bar */}
         <div className="flex items-center gap-2 border-b border-border/50 bg-secondary/50 px-3 py-2">
           <div className="flex gap-1">
             <div className="h-2 w-2 rounded-full bg-destructive/60" />
@@ -121,13 +89,11 @@ function MessagingDashboardVisual() {
             <div className="h-2 w-2 rounded-full bg-chart-4/60" />
           </div>
           <div className="ml-2 flex-1 rounded bg-background/50 px-2 py-0.5 text-xs text-muted-foreground">
-            app.propertycare.io/communication
+            {t("browserUrl")}
           </div>
         </div>
 
-        {/* Dashboard content */}
         <div className="relative flex h-[280px] sm:h-[320px]">
-          {/* Mini sidebar */}
           <div className={`hidden sm:flex w-10 flex-col gap-1 border-r border-border/50 bg-secondary/30 py-2 transition-all duration-300 ${showSidebar ? "opacity-40 blur-[1px]" : ""}`}>
             {sidebarItems.map((item, i) => (
               <div
@@ -139,29 +105,23 @@ function MessagingDashboardVisual() {
             ))}
           </div>
 
-          {/* Main area */}
           <div className={`flex-1 overflow-hidden transition-all duration-300 ${showSidebar ? "opacity-30 blur-[2px]" : ""}`}>
-            {/* Header */}
             <div className="border-b border-border/50 px-3 py-2">
-              <div className="text-xs font-semibold">Messages & Announcements</div>
-              <div className="text-[10px] text-muted-foreground">4 unread messages</div>
+              <div className="text-xs font-semibold">{t("headerTitle")}</div>
+              <div className="text-[10px] text-muted-foreground">{t("headerSubtitle")}</div>
             </div>
 
-            {/* Mini stats */}
             <div className="grid grid-cols-3 gap-2 p-2">
-              {[
-                { label: "Active Chats", val: "24", color: "text-primary" },
-                { label: "Announcements", val: "8", color: "text-chart-5" },
-                { label: "Events", val: "3", color: "text-chart-4" },
-              ].map((s) => (
-                <div key={s.label} className="rounded-lg bg-secondary/50 p-2 text-center">
-                  <div className={`text-sm font-bold ${s.color}`}>{s.val}</div>
-                  <div className="text-[9px] text-muted-foreground">{s.label}</div>
+              {statKeys.map((key, i) => (
+                <div key={key} className="rounded-lg bg-secondary/50 p-2 text-center">
+                  <div className={`text-sm font-bold ${i === 0 ? "text-primary" : i === 1 ? "text-chart-5" : "text-chart-4"}`}>
+                    {i === 0 ? "24" : i === 1 ? "8" : "3"}
+                  </div>
+                  <div className="text-[9px] text-muted-foreground">{t(`stats.${key}`)}</div>
                 </div>
               ))}
             </div>
 
-            {/* Conversation list */}
             <div className="px-2">
               <div className="rounded-lg border border-border/50 bg-secondary/20">
                 {conversations.map((conv, i) => (
@@ -187,7 +147,6 @@ function MessagingDashboardVisual() {
             </div>
           </div>
 
-          {/* AI Sidebar overlay */}
           <AnimatePresence>
             {showSidebar && (
               <motion.div
@@ -198,7 +157,6 @@ function MessagingDashboardVisual() {
                 className="absolute inset-0 sm:left-auto sm:right-0 sm:top-0 flex h-full w-full sm:w-[260px] flex-col border-l border-primary/20 bg-card/95 backdrop-blur-xl"
                 style={{ boxShadow: "-10px 0 40px -10px rgba(var(--primary), 0.15)" }}
               >
-                {/* Sidebar header */}
                 <motion.div
                   className="flex items-center gap-2 border-b border-border/50 px-3 py-2"
                   initial={{ opacity: 0 }}
@@ -216,16 +174,14 @@ function MessagingDashboardVisual() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="text-xs font-semibold">Communication AI</div>
-                    <div className="text-[9px] text-muted-foreground">Ready to assist</div>
+                    <div className="text-xs font-semibold">{t("aiTitle")}</div>
+                    <div className="text-[9px] text-muted-foreground">{t("aiReady")}</div>
                   </div>
                   <Sparkles className="h-3.5 w-3.5 text-primary" />
                 </motion.div>
 
-                {/* Chat area */}
                 <div className="flex-1 overflow-hidden p-2">
                   <div className="space-y-2">
-                    {/* User message */}
                     <motion.div
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -237,7 +193,6 @@ function MessagingDashboardVisual() {
                       </div>
                     </motion.div>
 
-                    {/* Typing indicator */}
                     <AnimatePresence>
                       {showTyping && (
                         <motion.div
@@ -262,7 +217,6 @@ function MessagingDashboardVisual() {
                       )}
                     </AnimatePresence>
 
-                    {/* AI Response */}
                     <AnimatePresence>
                       {showResponse && (
                         <motion.div
@@ -282,14 +236,14 @@ function MessagingDashboardVisual() {
                                   <Megaphone className="h-3 w-3" />
                                 </div>
                                 <div>
-                                  <div className="text-[10px] font-medium">Announcement Ready</div>
-                                  <div className="text-[8px] text-muted-foreground">Target: All 156 residents</div>
+                                  <div className="text-[10px] font-medium">{t("announcementReady")}</div>
+                                  <div className="text-[8px] text-muted-foreground">{t("targetResidents")}</div>
                                 </div>
                               </div>
                             </div>
 
                             <div className="p-2 text-[9px] leading-relaxed text-foreground/80">
-                              I&apos;ll prepare an announcement for <span className="font-medium text-primary">all 156 residents</span>. Choose delivery: <span className="font-medium">Email, SMS, or Push</span>.
+                              {t("responseText")}
                             </div>
 
                             <motion.div
@@ -300,10 +254,10 @@ function MessagingDashboardVisual() {
                             >
                               <div className="mb-1 flex items-center gap-1">
                                 <Sparkles className="h-2.5 w-2.5 text-primary" />
-                                <span className="text-[8px] font-medium text-primary">AI Suggestion</span>
+                                <span className="text-[8px] font-medium text-primary">{t("aiSuggestion")}</span>
                               </div>
                               <p className="text-[8px] leading-relaxed text-foreground/70">
-                                Based on past engagement, push notifications have 94% open rate for your building.
+                                {t("aiSuggestionText")}
                               </p>
                             </motion.div>
                           </motion.div>
@@ -314,13 +268,13 @@ function MessagingDashboardVisual() {
                             transition={{ delay: 0.3 }}
                             className="flex flex-wrap gap-1"
                           >
-                            {["Email", "SMS", "Push", "All Channels"].map((action) => (
+                            {actionKeys.map((action) => (
                               <motion.button
                                 key={action}
                                 whileHover={{ scale: 1.02 }}
                                 className="flex items-center gap-1 rounded-lg border border-border/50 bg-secondary/50 px-2 py-1 text-[8px] font-medium transition-colors hover:bg-secondary hover:border-primary/30"
                               >
-                                {action}
+                                {t(`actions.${action}`)}
                                 <ChevronRight className="h-2 w-2" />
                               </motion.button>
                             ))}
@@ -339,23 +293,23 @@ function MessagingDashboardVisual() {
   );
 }
 
-// Announcement Visual
 function AnnouncementVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [sentChannels, setSentChannels] = useState<number[]>([]);
+  const t = useTranslations("communicationPage.solutions.announcement");
 
-  const channels = [
-    { name: "Email", recipients: 156, icon: "📧" },
-    { name: "SMS", recipients: 142, icon: "📱" },
-    { name: "Push Notification", recipients: 134, icon: "🔔" },
-    { name: "In-App Message", recipients: 156, icon: "💬" },
-  ];
+  const channels = channelKeys.map((key, index) => ({
+    key,
+    name: t(`channels.${key}.name`),
+    recipients: channelRecipientCounts[index],
+    icon: channelEmojis[index],
+  }));
 
   useEffect(() => {
     if (isInView) {
       const interval = setInterval(() => {
-        setSentChannels(prev => {
+        setSentChannels((prev) => {
           if (prev.length >= channels.length) {
             return [];
           }
@@ -365,7 +319,7 @@ function AnnouncementVisual() {
 
       return () => clearInterval(interval);
     }
-  }, [isInView]);
+  }, [isInView, channels.length]);
 
   return (
     <div ref={ref} className="relative">
@@ -375,8 +329,8 @@ function AnnouncementVisual() {
             <Megaphone className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Building Announcement</div>
-            <div className="text-xs text-muted-foreground">Multi-channel delivery</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -392,8 +346,8 @@ function AnnouncementVisual() {
               }`}
             >
               <div className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
-                sentChannels.includes(index) 
-                  ? "border-chart-4 bg-chart-4" 
+                sentChannels.includes(index)
+                  ? "border-chart-4 bg-chart-4"
                   : "border-muted-foreground/30"
               }`}>
                 {sentChannels.includes(index) && (
@@ -410,14 +364,16 @@ function AnnouncementVisual() {
               <span className={`text-xs flex-1 ${sentChannels.includes(index) ? "line-through text-muted-foreground" : ""}`}>
                 {channel.name}
               </span>
-              <span className="text-[10px] text-muted-foreground">{channel.recipients} recipients</span>
+              <span className="text-[10px] text-muted-foreground">
+                {t(`channels.${channel.key}.recipients`, { count: channel.recipients })}
+              </span>
             </motion.div>
           ))}
         </div>
 
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-muted-foreground">
-            {sentChannels.length}/{channels.length} Channels Sent
+            {t("channelsSent", { sent: sentChannels.length, total: channels.length })}
           </span>
           <div className="h-2 flex-1 mx-3 rounded-full bg-secondary overflow-hidden">
             <motion.div
@@ -433,16 +389,18 @@ function AnnouncementVisual() {
   );
 }
 
-// Community Feed Visual
 function CommunityFeedVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const t = useTranslations("communicationPage.solutions.communityFeed");
 
-  const posts = [
-    { author: "Sarah M.", content: "Anyone interested in a book club?", likes: 12, comments: 8, time: "2h" },
-    { author: "Building Mgmt", content: "Pool hours extended for summer!", likes: 45, comments: 15, time: "5h" },
-    { author: "John D.", content: "Lost cat - orange tabby, Unit 5B", likes: 23, comments: 34, time: "1d" },
-  ];
+  const posts = postKeys.map((key, index) => ({
+    author: t(`posts.${key}.author`),
+    content: t(`posts.${key}.content`),
+    time: t(`posts.${key}.time`),
+    likes: postEngagement[index].likes,
+    comments: postEngagement[index].comments,
+  }));
 
   return (
     <div ref={ref} className="relative">
@@ -452,8 +410,8 @@ function CommunityFeedVisual() {
             <Users className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Community Feed</div>
-            <div className="text-xs text-muted-foreground">Resident Network</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -486,16 +444,17 @@ function CommunityFeedVisual() {
   );
 }
 
-// Virtual Event Visual
 function VirtualEventVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const t = useTranslations("communicationPage.solutions.virtualEventsVisual");
 
-  const events = [
-    { title: "Monthly Town Hall", date: "Today, 7PM", attendees: 45, status: "Live" },
-    { title: "Yoga in the Park", date: "Saturday, 9AM", attendees: 18, status: "Upcoming" },
-    { title: "Book Club Meeting", date: "Next Wed, 6PM", attendees: 12, status: "Upcoming" },
-  ];
+  const events = eventKeys.map((key, index) => ({
+    title: t(`events.${key}.title`),
+    date: t(`events.${key}.date`),
+    attendees: eventAttendees[index],
+    isLive: index === 0,
+  }));
 
   return (
     <div ref={ref} className="relative">
@@ -505,8 +464,8 @@ function VirtualEventVisual() {
             <Video className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Virtual Events</div>
-            <div className="text-xs text-muted-foreground">Community Gatherings</div>
+            <div className="text-sm font-semibold">{t("title")}</div>
+            <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
           </div>
         </div>
 
@@ -520,9 +479,9 @@ function VirtualEventVisual() {
               className="flex items-center gap-3 p-2 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
             >
               <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${
-                event.status === "Live" ? "bg-destructive/10" : "bg-primary/10"
+                event.isLive ? "bg-destructive/10" : "bg-primary/10"
               }`}>
-                <Calendar className={`h-4 w-4 ${event.status === "Live" ? "text-destructive" : "text-primary"}`} />
+                <Calendar className={`h-4 w-4 ${event.isLive ? "text-destructive" : "text-primary"}`} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-xs font-medium truncate">{event.title}</div>
@@ -530,14 +489,14 @@ function VirtualEventVisual() {
               </div>
               <div className="flex flex-col items-end">
                 <span className={`text-[9px] px-1.5 py-0.5 rounded ${
-                  event.status === "Live" 
-                    ? "bg-destructive/10 text-destructive" 
+                  event.isLive
+                    ? "bg-destructive/10 text-destructive"
                     : "bg-primary/10 text-primary"
                 }`}>
-                  {event.status}
+                  {event.isLive ? t("statusLive") : t("statusUpcoming")}
                 </span>
                 <span className="text-[9px] text-muted-foreground mt-0.5">
-                  {event.attendees} joined
+                  {t("joined", { count: event.attendees })}
                 </span>
               </div>
             </motion.div>
@@ -552,39 +511,41 @@ export function CommunicationSolutions() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeIndex, setActiveIndex] = useState(0);
+  const t = useTranslations("communicationPage.solutions");
+
+  const solutionData = useMemo(
+    () =>
+      solutionKeys.map((key) => ({
+        tag: t(`items.${key}.tag`),
+        title: t(`items.${key}.title`),
+        description: t(`items.${key}.description`),
+        features: featureKeys.map((f) => t(`items.${key}.features.${f}`)),
+      })),
+    [t]
+  );
+
+  const visualComponents = [
+    <MessagingDashboardVisual key="dashboard" />,
+    <AnnouncementVisual key="announcement" />,
+    <CommunityFeedVisual key="community" />,
+    <VirtualEventVisual key="events" />,
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % solutionData.length);
     }, 8000);
     return () => clearInterval(interval);
-  }, []);
-
-  const getVisualComponent = (index: number) => {
-    switch (index) {
-      case 0:
-        return <MessagingDashboardVisual />;
-      case 1:
-        return <AnnouncementVisual />;
-      case 2:
-        return <CommunityFeedVisual />;
-      case 3:
-        return <VirtualEventVisual />;
-      default:
-        return <MessagingDashboardVisual />;
-    }
-  };
+  }, [solutionData.length]);
 
   return (
     <section id="solutions" className="relative py-16 sm:py-24 lg:py-32" ref={ref}>
-      {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[150px]" />
         <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[120px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -592,19 +553,18 @@ export function CommunicationSolutions() {
           className="text-center"
         >
           <h2 className="mt-6 text-balance text-2xl sm:text-4xl font-bold tracking-tight lg:text-5xl">
-            Complete{" "}
+            {t("sectionTitle")}{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              communication toolkit
+              {t("sectionTitleHighlight")}
             </span>
             <br />
-            for connected communities
+            {t("sectionTitleEnd")}
           </h2>
           <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground px-4 sm:px-0">
-            Everything you need to keep residents informed, engaged, and connected with powerful messaging, announcements, and virtual event tools.
+            {t("subtitle")}
           </p>
         </motion.div>
 
-        {/* Solution tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -626,20 +586,17 @@ export function CommunicationSolutions() {
           ))}
         </motion.div>
 
-        {/* Content area */}
         <div className="mt-10 sm:mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-          {/* Left: Visual */}
           <motion.div
-            key={activeIndex}
+            key={`visual-${activeIndex}`}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="order-2 lg:order-1"
           >
-            {getVisualComponent(activeIndex)}
+            {visualComponents[activeIndex]}
           </motion.div>
 
-          {/* Right: Content */}
           <motion.div
             key={`content-${activeIndex}`}
             initial={{ opacity: 0, x: 20 }}

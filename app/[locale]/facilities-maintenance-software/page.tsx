@@ -10,77 +10,46 @@ import { MaintenanceBlogSection } from "@/components/maintenance/blog-section";
 import { MaintenanceFAQSection } from "@/components/maintenance/faq-section";
 import { MaintenanceCTA } from "@/components/maintenance/cta";
 import { Footer } from "@/components/landing/footer";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getMaintenanceBlogPosts } from "@/lib/blog-home-posts";
 import type { Locale } from "@/i18n/config";
 import { buildPageMetadata, type LocalePageProps } from '@/lib/page-metadata';
 import { absoluteLocalizedUrl } from '@/lib/locale-paths';
 
 const PAGE_PATH = '/facilities-maintenance-software';
+const jsonLdFaqKeys = ["q1", "q2", "q3", "q4", "q5"] as const;
 
 export async function generateMetadata({ params }: LocalePageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "maintenancePage.meta" });
+
   return buildPageMetadata({
     locale: locale as Locale,
     path: PAGE_PATH,
-    title: 'Property Maintenance Software | PropertyCareApp',
-    description:
-      'Automate work orders, track technicians, and resolve property maintenance requests faster with AI. The smart solution for building management teams. Try free.',
+    title: t("title"),
+    description: t("description"),
   });
 }
-
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How does the work order management system work?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Residents or staff submit a maintenance request through the app. The system automatically categorizes it, assigns it to the appropriate technician based on skills and availability, and sends real-time status updates to all parties.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can residents track the status of their maintenance requests?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Residents receive push notifications at every stage — from submission to assignment, in-progress updates, and completion. They can also view their request history and provide feedback through the app.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does the platform support vendor and contractor management?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can add external vendors to the platform, assign work orders to them, track their progress, and manage invoices — all without leaving PropertyCareApp.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I set up recurring preventive maintenance tasks?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Absolutely. Define preventive maintenance schedules for any asset or common area. The system automatically creates work orders on schedule and notifies the responsible team member.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What reporting is available for maintenance operations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'PropertyCareApp provides detailed reports on response times, resolution rates, technician performance, recurring issues, and cost breakdowns — helping you continuously improve operations.',
-      },
-    },
-  ],
-};
 
 export default async function MaintenancePage({ params }: LocalePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "maintenancePage" });
   const blogPosts = await getMaintenanceBlogPosts(locale as Locale);
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: jsonLdFaqKeys.map((key) => ({
+      '@type': 'Question',
+      name: t(`jsonLd.faq.${key}.question`),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: t(`jsonLd.faq.${key}.answer`),
+      },
+    })),
+  };
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -89,13 +58,13 @@ export default async function MaintenancePage({ params }: LocalePageProps) {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Home',
+        name: t('meta.breadcrumbHome'),
         item: absoluteLocalizedUrl(locale as Locale, '/'),
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Facilities Maintenance Software',
+        name: t('meta.breadcrumbPage'),
         item: absoluteLocalizedUrl(locale as Locale, PAGE_PATH),
       },
     ],

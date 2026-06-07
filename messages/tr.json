@@ -518,28 +518,57 @@
     "startFreeTrial": "Ücretsiz Deneyin",
     "bookDemo": "Demo Talep Edin",
     "trustedBy": "Önde gelen emlak şirketleri tarafından tercih ediliyor",
-    "trustedCompanies": ["Almadar", "Karaneh", "Siraj", "Tisa", "MinaResidence", "ArakTowers"],
+    "trustedCompanies": [
+      "Almadar",
+      "Karaneh",
+      "Siraj",
+      "Tisa",
+      "MinaResidence",
+      "ArakTowers"
+    ],
     "dashboard": {
       "title": "PropertyCare Paneli",
       "subtitle": "Gerçek Zamanlı Genel Bakış",
       "revenueTrend": "Gelir Trendi",
-      "periods": ["1H", "1Ay", "1Y"],
+      "periods": [
+        "1H",
+        "1Ay",
+        "1Y"
+      ],
       "stats": {
-        "properties": { "label": "Mülkler", "value": "248", "change": "+12%" },
-        "tenants": { "label": "Kiracılar", "value": "1.842", "change": "+8%" },
-        "workOrders": { "label": "İş Emirleri", "value": "56", "change": "-23%" },
-        "revenue": { "label": "Gelir", "value": "$2,4M", "change": "+18%" }
+        "properties": {
+          "label": "Mülkler",
+          "value": "248",
+          "change": "+12%"
+        },
+        "tenants": {
+          "label": "Kiracılar",
+          "value": "1.842",
+          "change": "+8%"
+        },
+        "workOrders": {
+          "label": "İş Emirleri",
+          "value": "56",
+          "change": "-23%"
+        },
+        "revenue": {
+          "label": "Gelir",
+          "value": "$2,4M",
+          "change": "+18%"
+        }
       }
     },
     "floatingCards": {
       "aiInsights": {
         "title": "Yapay Zeka Önerileri",
         "subtitle": "5 yeni öneri",
-        "items": ["Satış taleplerinizi yapay zekanın yönetmesine izin verin",
-      "Bakım ve onarım koordinasyonunu otomatikleştirin",
-      "Talepleri tercih ettiğiniz dilde yanıtlayın",
-      "Satış görüşmeleri için akıllı öneriler alın",
-      "Yönetici görevlerini Yapay Zeka Asistanınıza devredin"]
+        "items": [
+          "Satış taleplerinizi yapay zekanın yönetmesine izin verin",
+          "Bakım ve onarım koordinasyonunu otomatikleştirin",
+          "Talepleri tercih ettiğiniz dilde yanıtlayın",
+          "Satış görüşmeleri için akıllı öneriler alın",
+          "Yönetici görevlerini Yapay Zeka Asistanınıza devredin"
+        ]
       },
       "schedule": {
         "title": "Bugünün Programı",
@@ -560,28 +589,48 @@
         "num": "01",
         "title": "Kesintisiz Satış Deneyimi",
         "description": "İlanları yöneten, talepleri takip eden, teklif gönderen ve üçüncü taraf araçlar olmadan diğer ekiplere sorunsuz devir yapan bir CRM.",
-        "pills": ["Daha yüksek dönüşüm", "Daha az devir", "Daha az manuel iş", "Platforma özgü"],
+        "pills": [
+          "Daha yüksek dönüşüm",
+          "Daha az devir",
+          "Daha az manuel iş",
+          "Platforma özgü"
+        ],
         "cta": "Satışı Keşfet"
       },
       "workorder": {
         "num": "02",
         "title": "Akıcı İş Emirleri",
         "description": "Bakım taleplerini tek yerden takip edin, atayın ve çözün; otomatik iş akışları ve gerçek zamanlı durum güncellemeleriyle.",
-        "pills": ["Hızlı atama", "Durum takibi", "Fotoğraf yükleme", "Tedarikçi yönetimi"],
+        "pills": [
+          "Hızlı atama",
+          "Durum takibi",
+          "Fotoğraf yükleme",
+          "Tedarikçi yönetimi"
+        ],
         "cta": "İş Emirlerini Keşfet"
       },
       "aichat": {
         "num": "03",
         "title": "Dönüşüm Sağlayan Yapay Zeka Sohbeti",
         "description": "Kiracı ve alıcı sorularını anında yanıtlayın — 7/24 — mülkleriniz ve politikalarınız üzerine eğitilmiş bir yapay zeka asistanıyla.",
-        "pills": ["Anında yanıt", "Potansiyel müşteri nitelendirme", "Temsilciye devir", "Çok dilli"],
+        "pills": [
+          "Anında yanıt",
+          "Potansiyel müşteri nitelendirme",
+          "Temsilciye devir",
+          "Çok dilli"
+        ],
         "cta": "Yapay Zeka Sohbetini Keşfet"
       },
       "reservation": {
         "num": "04",
         "title": "Kolay Rezervasyonlar",
         "description": "Adayların ilanınızdan doğrudan tur rezervasyonu yapmasını sağlayın; otomatik takvim senkronizasyonu ve onay akışıyla.",
-        "pills": ["Online rezervasyon", "Takvim senkronu", "Otomatik hatırlatma", "Onay akışı"],
+        "pills": [
+          "Online rezervasyon",
+          "Takvim senkronu",
+          "Otomatik hatırlatma",
+          "Onay akışı"
+        ],
         "cta": "Rezervasyonları Keşfet"
       }
     },
@@ -606,29 +655,87 @@
           "pending": "Beklemede"
         },
         "rows": [
-          { "unit": "Daire 4B", "issue": "Sızıntılı musluk", "assignee": "John M.", "due": "22 May", "statusKey": "inProgress" },
-          { "unit": "Daire 2A", "issue": "Klima soğutmuyor", "assignee": "Sara K.", "due": "20 May", "statusKey": "completed" },
-          { "unit": "Daire 7C", "issue": "Kilit arızası", "assignee": "—", "due": "25 May", "statusKey": "pending" },
-          { "unit": "Daire 1D", "issue": "Su ısıtıcısı", "assignee": "John M.", "due": "28 May", "statusKey": "pending" },
-          { "unit": "Daire 5F", "issue": "Pencere contası", "assignee": "Mike T.", "due": "19 May", "statusKey": "completed" }
+          {
+            "unit": "Daire 4B",
+            "issue": "Sızıntılı musluk",
+            "assignee": "John M.",
+            "due": "22 May",
+            "statusKey": "inProgress"
+          },
+          {
+            "unit": "Daire 2A",
+            "issue": "Klima soğutmuyor",
+            "assignee": "Sara K.",
+            "due": "20 May",
+            "statusKey": "completed"
+          },
+          {
+            "unit": "Daire 7C",
+            "issue": "Kilit arızası",
+            "assignee": "—",
+            "due": "25 May",
+            "statusKey": "pending"
+          },
+          {
+            "unit": "Daire 1D",
+            "issue": "Su ısıtıcısı",
+            "assignee": "John M.",
+            "due": "28 May",
+            "statusKey": "pending"
+          },
+          {
+            "unit": "Daire 5F",
+            "issue": "Pencere contası",
+            "assignee": "Mike T.",
+            "due": "19 May",
+            "statusKey": "completed"
+          }
         ]
       },
       "aiChat": {
         "title": "Yapay Zeka Asistanı",
         "online": "Çevrimiçi",
         "messages": [
-          { "role": "ai", "text": "Merhaba! Mükemmel evinizi bulmanıza yardımcı olmak için buradayım. Ne arıyorsunuz?" },
-          { "role": "user", "text": "3A dairesi hâlâ müsait mi?" },
-          { "role": "ai", "text": "Evet! 3A, 1 Haziran'da müsait 2 yatak odalı/1 banyolu, aylık 2.400 $. Görüntüleme planlamak ister misiniz?" },
-          { "role": "user", "text": "Evet lütfen!" },
-          { "role": "ai", "text": "Harika! Ekibimize bağlıyoruz. Kısa süre içinde onay alacaksınız." }
+          {
+            "role": "ai",
+            "text": "Merhaba! Mükemmel evinizi bulmanıza yardımcı olmak için buradayım. Ne arıyorsunuz?"
+          },
+          {
+            "role": "user",
+            "text": "3A dairesi hâlâ müsait mi?"
+          },
+          {
+            "role": "ai",
+            "text": "Evet! 3A, 1 Haziran'da müsait 2 yatak odalı/1 banyolu, aylık 2.400 $. Görüntüleme planlamak ister misiniz?"
+          },
+          {
+            "role": "user",
+            "text": "Evet lütfen!"
+          },
+          {
+            "role": "ai",
+            "text": "Harika! Ekibimize bağlıyoruz. Kısa süre içinde onay alacaksınız."
+          }
         ]
       },
       "reservation": {
         "title": "Tur Rezervasyonu — Mayıs 2026",
-        "weekdays": ["P", "S", "Ç", "P", "C", "C", "P"],
+        "weekdays": [
+          "P",
+          "S",
+          "Ç",
+          "P",
+          "C",
+          "C",
+          "P"
+        ],
         "availableTimes": "Müsait saatler — Mayıs {day}",
-        "times": ["10:00", "11:30", "14:00", "15:30"],
+        "times": [
+          "10:00",
+          "11:30",
+          "14:00",
+          "15:30"
+        ],
         "confirmBooking": "Rezervasyonu Onayla",
         "demoSelectedTime": "11:30"
       }
@@ -936,9 +1043,24 @@
           "available": "Müsait"
         },
         "properties": [
-          { "name": "Sunset Apartments", "statusKey": "active", "units": 24, "occupancy": 92 },
-          { "name": "Harbor View Tower", "statusKey": "maintenance", "units": 18, "occupancy": 78 },
-          { "name": "Garden Residences", "statusKey": "available", "units": 32, "occupancy": 100 }
+          {
+            "name": "Sunset Apartments",
+            "statusKey": "active",
+            "units": 24,
+            "occupancy": 92
+          },
+          {
+            "name": "Harbor View Tower",
+            "statusKey": "maintenance",
+            "units": 18,
+            "occupancy": 78
+          },
+          {
+            "name": "Garden Residences",
+            "statusKey": "available",
+            "units": 32,
+            "occupancy": 100
+          }
         ],
         "units": "birim",
         "occupancyShort": "% doluluk"
@@ -948,10 +1070,22 @@
         "pageTitle": "Mülklerim",
         "pageSubtitle": "Mülk portföyünüzü yönetin",
         "stats": {
-          "totalUnits": { "label": "Toplam Birim", "value": "74" },
-          "occupancy": { "label": "Doluluk", "value": "%89" },
-          "revenue": { "label": "Gelir", "value": "42 B $" },
-          "requests": { "label": "Talepler", "value": "12" }
+          "totalUnits": {
+            "label": "Toplam Birim",
+            "value": "74"
+          },
+          "occupancy": {
+            "label": "Doluluk",
+            "value": "%89"
+          },
+          "revenue": {
+            "label": "Gelir",
+            "value": "42 B $"
+          },
+          "requests": {
+            "label": "Talepler",
+            "value": "12"
+          }
         }
       },
       "delivery": {
@@ -973,13 +1107,31 @@
         "chatTitle": "Destek Sohbeti",
         "chatStatus": "Çevrimiçi - Ort. yanıt <2 dk",
         "messages": [
-          { "type": "user", "text": "Merhaba, 3A dairesinde kiracı sızıntı bildiriyor" },
-          { "type": "support", "text": "Merhaba! Yardımcı olabilirim. Bakım kuyruğunuzu kontrol edeyim." },
-          { "type": "user", "text": "Bugün müsait bir tesisatçı var mı?" },
-          { "type": "support", "text": "Evet! Mike (Tesisatçı) saat 14:00 için atandı. Kiracı bilgilendirildi." }
+          {
+            "type": "user",
+            "text": "Merhaba, 3A dairesinde kiracı sızıntı bildiriyor"
+          },
+          {
+            "type": "support",
+            "text": "Merhaba! Yardımcı olabilirim. Bakım kuyruğunuzu kontrol edeyim."
+          },
+          {
+            "type": "user",
+            "text": "Bugün müsait bir tesisatçı var mı?"
+          },
+          {
+            "type": "support",
+            "text": "Evet! Mike (Tesisatçı) saat 14:00 için atandı. Kiracı bilgilendirildi."
+          }
         ],
-        "uptime": { "value": "%99,9", "label": "Çalışma Süresi" },
-        "response": { "value": "<2 dk", "label": "Yanıt" }
+        "uptime": {
+          "value": "%99,9",
+          "label": "Çalışma Süresi"
+        },
+        "response": {
+          "value": "<2 dk",
+          "label": "Yanıt"
+        }
       }
     },
     "stats": {
@@ -1022,5 +1174,1210 @@
     "badge": "Entegrasyonlar",
     "title": "Favori Araçlarınızla Çalışır",
     "subtitle": "Zaten kullandığınız ve sevdiğiniz hizmetlerle sorunsuzca bağlanın."
+  },
+  "maintenancePage": {
+    "meta": {
+      "title": "Mülk Bakım Yazılımı | PropertyCareApp",
+      "description": "İş emirlerini otomatikleştirin, teknisyenleri takip edin ve yapay zeka ile mülk bakım taleplerini daha hızlı çözün. Bina yönetim ekipleri için akıllı çözüm. Ücretsiz deneyin.",
+      "breadcrumbHome": "Ana Sayfa",
+      "breadcrumbPage": "Tesis Bakım Yazılımı"
+    },
+    "hero": {
+      "titleLine1": "Yeni Nesil",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "Bakım için",
+      "subtitle": "Bakım modülü, önleyici ve düzeltici bakım görevlerini kolaylaştırmanıza yardımcı olur; otomatik planlama ve performans takibi ile ekipman ve tesislerin optimal çalışma koşullarında kalmasını sağlar.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "bookDemo": "Demo Rezervasyonu",
+      "keyFeatures": "Temel Özellikler",
+      "badges": {
+        "workOrders": "İş Emirleri",
+        "scheduling": "Planlama",
+        "checklists": "Kontrol Listeleri",
+        "tracking": "Takip",
+        "automation": "Otomasyon",
+        "vendors": "Tedarikçiler",
+        "reports": "Raporlar",
+        "mobile": "Mobil"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "Nasıl",
+      "sectionTitleHighlight": "bakım otomasyonunun",
+      "sectionTitleEnd": "operasyonları kolaylaştırdığını görün",
+      "subtitle": "Platformumuzun iş emirlerini nasıl otomatikleştirdiğini, önleyici bakımı planladığını ve ekibinizin daha verimli çalışmasına nasıl yardımcı olduğunu keşfedin.",
+      "videoThumbnailAlt": "Video küçük resmi",
+      "playVideo": "Videoyu oynat",
+      "productDemo": "Bakım Demosu",
+      "iframeTitle": "Bakım Modülü Demosu"
+    },
+    "solutions": {
+      "sectionTitle": "Modern için Akıllı Modüller",
+      "sectionTitleHighlight": "Bakım Yönetimi",
+      "subtitle": "İş emirlerinden tedarikçi yönetimine kadar bakım operasyonlarınızın her yönünü kolaylaştıran kapsamlı araçlar.",
+      "items": {
+        "workOrders": {
+          "tag": "İş Emirleri",
+          "title": "Zamanında Görevler Sağlayın",
+          "description": "İş emirleri, görevleri verimli bir şekilde atamanıza, izlemenize ve tamamlamanıza olanak tanır; doğru işin zamanında yapılmasını sağlar. Gerçek zamanlı ilerleme takibi ve otomatik onay iş akışlarıyla iş emirleri oluşturun, atayın ve önceliklendirin.",
+          "features": {
+            "f1": "İş emirleri oluşturun, atayın ve önceliklendirin",
+            "f2": "Detaylı raporlarla gerçek zamanlı ilerlemeyi takip edin",
+            "f3": "İş emri onay iş akışlarını otomatikleştirin",
+            "f4": "Mobil uyumlu görev yönetimi",
+            "f5": "Atanan teknisyenlere anlık bildirimler"
+          }
+        },
+        "workRequests": {
+          "tag": "İş Talepleri",
+          "title": "Çevrimiçi Talep Onayları",
+          "description": "Çevrimiçi onaylarla talep gönderim sürecini kolaylaştırın. Kiracılar ve personel, hızlı eylem ve çözüm için otomatik olarak doğru ekip üyelerine yönlendirilen bakım talepleri gönderebilir.",
+          "features": {
+            "f1": "Çevrimiçi talep gönderim portalı",
+            "f2": "Uygun ekiplere otomatik yönlendirme",
+            "f3": "Talep önceliklendirme ve kategorilendirme",
+            "f4": "Talep sahipleri için durum takibi",
+            "f5": "Onay iş akışı otomasyonu"
+          }
+        },
+        "workflowAutomation": {
+          "tag": "İş Akışı Otomasyonu",
+          "title": "İş Akışlarınızı Kolaylaştırın",
+          "description": "Tekrarlayan iş akışlarını otomatikleştirerek zaman kazanın, hataları en aza indirin ve süreçlerin organizasyonunuz genelinde sorunsuz çalışmasını sağlayın. Modüller arası sorunsuz entegrasyonla görev otomasyonu için özel iş akışları oluşturun.",
+          "features": {
+            "f1": "Görev otomasyonu için özel iş akışları oluşturun",
+            "f2": "Onayları, bildirimleri ve eskaleleri otomatikleştirin",
+            "f3": "Diğer modüllerle sorunsuz entegrasyon",
+            "f4": "Manuel veri girişini azaltın",
+            "f5": "Tetikleyici tabanlı otomasyon kuralları"
+          }
+        },
+        "timeCostTracking": {
+          "tag": "Zaman ve Maliyet Takibi",
+          "title": "Bütçe Optimizasyonu",
+          "description": "Finansal kontrolü ve verimliliği artırmak için görevlerde veya projelerde harcanan zamanı ve masrafları takip edin. Zaman ve masrafları kaydedin, detaylı raporlar oluşturun ve bütçelere karşı performansı izleyin.",
+          "features": {
+            "f1": "Projeler için zaman ve masraf kaydı",
+            "f2": "Detaylı maliyet ve zaman raporları oluşturun",
+            "f3": "Bütçe belirleyin ve performansı izleyin",
+            "f4": "İşgücü maliyeti analizi",
+            "f5": "Takip edilen zamandan fatura oluşturma"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Gecikmiş iş emirlerini göster",
+        "headerTitle": "İş Emirleri",
+        "headerSubtitle": "3 dikkat gerektiriyor",
+        "stats": {
+          "overdue": "Gecikmiş",
+          "inProgress": "Devam Ediyor",
+          "completed": "Tamamlandı"
+        },
+        "workOrders": {
+          "wo1": {
+            "title": "HVAC Filtre Değişimi",
+            "status": "gecikmiş"
+          },
+          "wo2": {
+            "title": "Asansör Denetimi",
+            "status": "beklemede"
+          },
+          "wo3": {
+            "title": "Tesisat Tamiri - Daire 305",
+            "status": "devam-ediyor"
+          }
+        },
+        "aiTitle": "Bakım Yapay Zekası",
+        "aiReady": "Yardıma hazır",
+        "overdueTitle": "5 Gecikmiş İş Emri",
+        "overdueSubtitle": "Acil müdahale gerektiriyor",
+        "responseText": "{count} gecikmiş iş emri bulundu. En yüksek öncelik: {priority} (3 gün gecikmiş).",
+        "overdueCount": "5",
+        "priorityTask": "HVAC Filtre Değişimi",
+        "recommendedAction": "Önerilen Eylem",
+        "recommendedText": "Müsait teknisyen John'a atayın - HVAC sertifikası var ve sahada.",
+        "actions": {
+          "viewAll": "Tümünü Gör",
+          "autoAssign": "Otomatik Ata",
+          "sendReminders": "Hatırlatma Gönder"
+        }
+      },
+      "checklist": {
+        "title": "Yangın Güvenliği Denetimi",
+        "subtitle": "Aylık Kontrol Listesi",
+        "items": {
+          "c1": "Yangın söndürücüleri denetleyin",
+          "c2": "Acil aydınlatmayı kontrol edin",
+          "c3": "Duman dedektörlerini test edin",
+          "c4": "Çıkış tabelalarını doğrulayın",
+          "c5": "Bulguları belgeleyin"
+        },
+        "complete": "{completed}/{total} Tamamlandı"
+      },
+      "vendor": {
+        "title": "Tedarikçi Dizini",
+        "subtitle": "3 Aktif Tedarikçi",
+        "jobsCompleted": "{count} iş tamamlandı",
+        "vendors": {
+          "v1": {
+            "name": "HVAC Pro Services",
+            "status": "Müsait"
+          },
+          "v2": {
+            "name": "Quick Plumbing Co",
+            "status": "İşte"
+          },
+          "v3": {
+            "name": "Elite Electric",
+            "status": "Müsait"
+          }
+        }
+      },
+      "schedule": {
+        "title": "Bugünün Programı",
+        "subtitle": "3 Planlanmış Görev",
+        "date": "22 Mayıs",
+        "items": {
+          "s1": {
+            "task": "HVAC Üç Aylık Servis",
+            "location": "Bina A",
+            "type": "Önleyici"
+          },
+          "s2": {
+            "task": "Asansör Denetimi",
+            "location": "Kule B",
+            "type": "Uyumluluk"
+          },
+          "s3": {
+            "task": "Yangın Alarmı Testi",
+            "location": "Tüm Binalar",
+            "type": "Güvenlik"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "Yapay Zeka Destekli",
+      "sectionTitleHighlight": "Görev Atama Motoru",
+      "subtitle": "Yapay zekamız teknisyen becerilerini, müsaitliğini ve iş yükünü analiz ederek bakım görevlerini doğru kişiye doğru zamanda otomatik olarak atar.",
+      "assistantTitle": "Bakım Yapay Zekası",
+      "assistantSubtitle": "Akıllı Görev Yönetimi",
+      "conversation": {
+        "step1": "Merhaba! Ben bakım yapay zeka asistanınızım. Bugün size nasıl yardımcı olabilirim?",
+        "step2": "Gecikmiş önleyici bakım görevlerini göster",
+        "step3": "5 gecikmiş PM görevi buldum. En kritik olanı Kule A'daki HVAC filtre değişimi - 3 gün gecikmiş.",
+        "step4": "Bunu kim halledebilir?",
+        "step5": "John (HVAC sertifikalı) müsait ve sahada. Sarah da sertifikalı ancak şu an başka bir işte.",
+        "step6": "John'a ata",
+        "step7": "Tamamlandı! HVAC görevini John'a atadım ve ona bildirim gönderdim. Mobil uygulamasında tüm görev detaylarını ve bakım kontrol listesini alacak."
+      },
+      "continueConversation": "Konuşmaya devam et",
+      "restartDemo": "Demoyu yeniden başlat",
+      "priorityTasks": "Öncelikli Görevler",
+      "aiPrioritized": "YZ Önceliklendirdi",
+      "tasks": {
+        "task1": {
+          "name": "HVAC Filtre Değişimi - Kule A",
+          "dueDate": "Bugün",
+          "priority": "Yüksek"
+        },
+        "task2": {
+          "name": "Asansör Yıllık Denetimi",
+          "dueDate": "Yarın",
+          "priority": "Orta"
+        },
+        "task3": {
+          "name": "Yangın Güvenlik Sistemi Kontrolü",
+          "dueDate": "3 gün içinde",
+          "priority": "Yüksek"
+        }
+      },
+      "assigned": "Atandı",
+      "deferred": "Ertelendi",
+      "match": "eşleşme",
+      "assignTitle": "Ata",
+      "deferTitle": "Ertele",
+      "aiLearning": "YZ Öğrenme Kalıpları",
+      "optimizing": "Görev atamalarını optimize ediyor",
+      "assignedCount": "{count} atandı",
+      "deferredCount": "{count} ertelendi"
+    },
+    "features": {
+      "sectionTitle": "İhtiyacınız olan her şey",
+      "sectionTitleHighlight": "bakım operasyonlarını kolaylaştırmak için",
+      "items": {
+        "workOrders": {
+          "title": "İş Emirleri",
+          "description": "Gerçek zamanlı durum güncellemeleri ve mobil bildirimlerle iş emirleri oluşturun, atayın ve takip edin."
+        },
+        "preventiveMaintenance": {
+          "title": "Önleyici Bakım",
+          "description": "Ekipman arızalarını önlemek ve varlık ömrünü uzatmak için bakım görevlerinin otomatik planlanması."
+        },
+        "checklists": {
+          "title": "Kontrol Listeleri",
+          "description": "Tutarlı ve kapsamlı bakım prosedürleri için özelleştirilebilir denetim kontrol listeleri."
+        },
+        "vendorManagement": {
+          "title": "Tedarikçi Yönetimi",
+          "description": "Tedarikçi performansını takip edin, sözleşmeleri yönetin ve tedarik süreçlerini kolaylaştırın."
+        },
+        "costTracking": {
+          "title": "Maliyet Takibi",
+          "description": "Bakım masraflarını, işgücü maliyetlerini ve bütçe tahsisini gerçek zamanlı izleyin."
+        },
+        "assetTracking": {
+          "title": "Varlık Takibi",
+          "description": "Bakım geçmişi ve belgelerle eksiksiz varlık yaşam döngüsü yönetimi."
+        },
+        "notifications": {
+          "title": "Akıllı Bildirimler",
+          "description": "Gecikmiş görevler, yaklaşan bakım ve kritik sorunlar için otomatik uyarılar."
+        },
+        "reporting": {
+          "title": "Gelişmiş Raporlama",
+          "description": "Özelleştirilebilir raporlar ve KPI takibi ile kapsamlı analitik panolar."
+        },
+        "documentation": {
+          "title": "Dokümantasyon",
+          "description": "Bakım kılavuzlarını, prosedürleri ve uyumluluk belgelerini saklayın ve erişin."
+        },
+        "automation": {
+          "title": "İş Akışı Otomasyonu",
+          "description": "Zaman kazanmak ve hataları azaltmak için rutin görevleri, onayları ve eskaleleri otomatikleştirin."
+        },
+        "scheduling": {
+          "title": "Akıllı Planlama",
+          "description": "Teknisyen rotalarını ve iş yükü dağılımını optimize eden yapay zeka destekli planlama."
+        },
+        "compliance": {
+          "title": "Uyumluluk Takibi",
+          "description": "Denetim izleri ve sertifika takibi ile düzenleyici uyumluluğu sağlayın."
+        },
+        "mobileApp": {
+          "title": "Mobil Uygulama",
+          "description": "Teknisyenlerin hareket halindeyken görevleri yönetmesi için tam özellikli mobil uygulama."
+        },
+        "integration": {
+          "title": "Entegrasyonlar",
+          "description": "Güçlü API ve üçüncü taraf entegrasyonlarıyla mevcut araçlarınıza bağlanın."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Güvenen",
+      "sectionTitleHighlight": "bakım ekipleri",
+      "subtitle": "Tesis yöneticilerinin ve bakım profesyonellerinin PropertyCare hakkında söylediklerini görün.",
+      "roleAt": "{role}, {company}",
+      "items": {
+        "t1": {
+          "author": "David Chen",
+          "company": "Metro Properties",
+          "role": "Tesis Direktörü",
+          "quote": "PropertyCare'ın bakım modülünü uyguladığımızdan beri ekipman arıza süresini %40 azalttık. Sadece önleyici bakım planlaması bile acil onarım maliyetlerinde bize binlerce tasarruf sağladı."
+        },
+        "t2": {
+          "author": "Maria Santos",
+          "company": "Skyline Management",
+          "role": "Operasyon Müdürü",
+          "quote": "İş emri sistemi inanılmaz derecede sezgisel. Teknisyenlerimiz mobil uygulamayı seviyor - atamaları alabilir, durumu güncelleyebilir ve tüm bunları telefonlarından yapabilirler."
+        },
+        "t3": {
+          "author": "James Wilson",
+          "company": "Premier Facilities",
+          "role": "Bakım Süpervizörü",
+          "quote": "Tedarikçi yönetimi özellikleri yüklenici ilişkilerimizi kolaylaştırdı. Performansı takip edebilir, sözleşmeleri yönetebilir ve faturaları tek bir yerden işleyebiliriz."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "Bakım içgörüleri ve kaynaklar",
+      "subtitle": "Uzman içgörüleri, sektör trendleri ve modern bakım yönetimi için pratik rehberlerle önde kalın.",
+      "readArticle": "Makaleyi Oku",
+      "emptyState": "Blog yazıları yüklenemedi. Bağlantınızı kontrol edin veya daha sonra tekrar deneyin."
+    },
+    "faq": {
+      "sectionTitle": "Sıkça Sorulan",
+      "sectionTitleHighlight": "Sorular",
+      "subtitle": "Bakım yönetim platformumuz hakkında bilmeniz gereken her şey. Listede olmayan bir sorunuz mu var? Destek ekibimizle iletişime geçin.",
+      "stillHaveQuestions": "Hala sorularınız mı var?",
+      "getInTouch": "Ekibimizle iletişime geçin",
+      "items": {
+        "q1": {
+          "question": "Bu platformla hangi bakım türlerini yönetebilirim?",
+          "answer": "Platformumuz önleyici, düzeltici, acil ve kestirimci bakım dahil tüm bakım türlerini destekler. Herhangi bir bakım görevi için iş emirleri oluşturabilir, tekrarlayan önleyici bakım planlayabilir ve tüm bakım faaliyetlerini tek bir merkezi sistemde takip edebilirsiniz."
+        },
+        "q2": {
+          "question": "Önleyici bakım planlaması nasıl çalışır?",
+          "answer": "Zaman aralıklarına (günlük, haftalık, aylık, yıllık) veya sayaç okumalarına (çalışma saatleri, kilometre vb.) göre önleyici bakım programları oluşturabilirsiniz. Sistem bakım zamanı geldiğinde otomatik olarak iş emirleri oluşturur ve atanan teknisyenlere bildirim gönderir."
+        },
+        "q3": {
+          "question": "Teknisyenler iş emirlerine mobil cihazlarından erişebilir mi?",
+          "answer": "Evet! Mobil uygulamamız teknisyenlerin atanan iş emirlerini görüntülemesine, görev durumunu güncellemesine, zaman ve malzeme kaydetmesine, fotoğraf eklemesine ve kontrol listelerini doğrudan akıllı telefonlarından veya tabletlerinden tamamlamasına olanak tanır. Uygulama çevrimdışı çalışır ve bağlantı sağlandığında senkronize olur."
+        },
+        "q4": {
+          "question": "Bakım maliyetlerini ve işgücü saatlerini nasıl takip ederim?",
+          "answer": "Platform kapsamlı maliyet takibi özellikleri içerir. Her iş emri için işgücü saatlerini, malzeme maliyetlerini ve yüklenici masraflarını kaydedebilirsiniz. Yerleşik raporlar, harcama kalıplarını analiz etmenize yardımcı olmak için varlık, konum, iş türü ve zaman dilimine göre maliyet dökümlerini gösterir."
+        },
+        "q5": {
+          "question": "Harici tedarikçileri ve yüklenicileri yönetebilir miyim?",
+          "answer": "Kesinlikle. Tedarikçi yönetimi modülümüz yüklenici dizini tutmanıza, sertifikalarını ve sigortalarını takip etmenize, sözleşmeleri yönetmenize, performanslarını değerlendirmenize ve hatta atanan iş emirlerini görüntülemek ve güncellemek için sınırlı erişim vermenize olanak tanır."
+        },
+        "q6": {
+          "question": "Varlık takibi özelliği nasıl çalışır?",
+          "answer": "Özellikler, garanti bilgileri, bakım geçmişi ve belgelerle detaylı varlık kayıtları oluşturabilirsiniz. Edinimden imhaya varlık yaşam döngüsünü takip edin, performans metriklerini izleyin ve onarım ile değiştirme hakkında veriye dayalı kararlar alın."
+        },
+        "q7": {
+          "question": "Özel bakım kontrol listeleri oluşturmanın bir yolu var mı?",
+          "answer": "Evet, onay kutuları, metin girişleri, sayı alanları, fotoğraf yüklemeleri ve imza yakalama dahil çeşitli alan türleriyle özelleştirilebilir denetim kontrol listeleri oluşturabilirsiniz. Kontrol listeleri tutarlı prosedürler sağlar ve uyumluluk amaçlı belgeler oluşturur."
+        },
+        "q8": {
+          "question": "Diğer yazılım sistemleriyle entegre olabilir miyim?",
+          "answer": "Platformumuz API erişimi sunar ve muhasebe yazılımı, ERP sistemleri, kestirimci bakım için IoT sensörleri ve bina yönetim sistemleri dahil popüler araçlarla entegre olur. Ayrıca çeşitli formatlarda veri içe/dışa aktarımını destekliyoruz."
+        },
+        "q9": {
+          "question": "Ne tür raporlar ve analitikler mevcut?",
+          "answer": "İş emri tamamlama oranları, MTTR (Ortalama Onarım Süresi), bakım maliyetleri, teknisyen verimliliği ve daha fazlası gibi KPI'ları gösteren kapsamlı panolara erişim elde edersiniz. Özel raporlar oluşturun, otomatik rapor teslimatı planlayın ve daha fazla analiz için verileri dışa aktarın."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "İş emri yönetim sistemi nasıl çalışır?",
+          "answer": "Sakinler veya personel uygulama üzerinden bakım talebi gönderir. Sistem otomatik olarak kategorize eder, beceri ve müsaitliğe göre uygun teknisyene atar ve tüm taraflara gerçek zamanlı durum güncellemeleri gönderir."
+        },
+        "q2": {
+          "question": "Sakinler bakım taleplerinin durumunu takip edebilir mi?",
+          "answer": "Evet. Sakinler gönderimden atamaya, devam eden güncellemelere ve tamamlanmaya kadar her aşamada anlık bildirimler alır. Ayrıca talep geçmişlerini görüntüleyebilir ve uygulama üzerinden geri bildirim verebilirler."
+        },
+        "q3": {
+          "question": "Platform tedarikçi ve yüklenici yönetimini destekliyor mu?",
+          "answer": "Evet. Harici tedarikçileri platforma ekleyebilir, onlara iş emirleri atayabilir, ilerlemelerini takip edebilir ve faturaları yönetebilirsiniz — hepsi PropertyCareApp'ten ayrılmadan."
+        },
+        "q4": {
+          "question": "Tekrarlayan önleyici bakım görevleri oluşturabilir miyim?",
+          "answer": "Kesinlikle. Herhangi bir varlık veya ortak alan için önleyici bakım programları tanımlayın. Sistem programda otomatik olarak iş emirleri oluşturur ve sorumlu ekip üyesine bildirim gönderir."
+        },
+        "q5": {
+          "question": "Bakım operasyonları için hangi raporlama mevcut?",
+          "answer": "PropertyCareApp, yanıt süreleri, çözüm oranları, teknisyen performansı, tekrarlayan sorunlar ve maliyet dökümleri hakkında detaylı raporlar sunar — operasyonlarınızı sürekli iyileştirmenize yardımcı olur."
+        }
+      }
+    }
+  },
+  "assetsPage": {
+    "meta": {
+      "title": "Varlık ve Parça Yönetim Yazılımı | PropertyCareApp",
+      "description": "Yapay zeka ile bina varlıklarını ve parça envanterini takip edin, yönetin ve optimize edin. Arıza sürelerini azaltın, maliyetleri düşürün ve bakım iş akışlarını otomatikleştirin. Ücretsiz deneyin.",
+      "breadcrumbHome": "Ana Sayfa",
+      "breadcrumbPage": "Mülk Varlık ve Parça Yönetim Yazılımı"
+    },
+    "hero": {
+      "titleLine1": "Yeni Nesil",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "Varlıklar ve Parçalar için",
+      "subtitle": "Varlıklar ve Parçalar modülü, QR kod tarama, envanter yönetimi ve otomatik satın alma emirleri ile ekipman yaşam döngünüzü takip etmenize, yönetmenize ve optimize etmenize yardımcı olur.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "bookDemo": "Demo Rezervasyonu",
+      "keyFeatures": "Temel Özellikler",
+      "badges": {
+        "assetTracking": "Varlık Takibi",
+        "qrCodes": "QR Kodlar",
+        "inventory": "Envanter",
+        "parts": "Parçalar",
+        "locations": "Konumlar",
+        "warranties": "Garantiler",
+        "reports": "Raporlar",
+        "mobile": "Mobil"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "Nasıl",
+      "sectionTitleHighlight": "varlık yönetiminin",
+      "sectionTitleEnd": "operasyonlarınızı optimize ettiğini görün",
+      "subtitle": "Platformumuzun varlıkları nasıl takip ettiğini, envanteri nasıl yönettiğini ve parça yenilemeyi nasıl otomatikleştirdiğini keşfedin.",
+      "videoThumbnailAlt": "Video küçük resmi",
+      "playVideo": "Videoyu oynat",
+      "productDemo": "Varlıklar ve Parçalar Demosu",
+      "iframeTitle": "Varlıklar ve Parçalar Modülü Demosu"
+    },
+    "solutions": {
+      "sectionTitle": "Kapsamlı",
+      "sectionTitleHighlight": "Varlık ve Envanter",
+      "sectionTitleEnd": "Yönetim Paketi",
+      "subtitle": "Mülk yönetimi için tasarlanmış kapsamlı araç setimizle varlıkları takip edin, envanteri yönetin ve tedariki kolaylaştırın.",
+      "items": {
+        "assetTracking": {
+          "tag": "Varlık Takibi",
+          "title": "Kolay Varlık Takibi",
+          "description": "Konumlar, Varlıklar ve Parçalar modülü ile konumları kolayca tanımlayabilir ve varlıkları belirlenen konumlarında sorunsuz takip edebilirsiniz. QR Kodu tarayarak garanti bilgisi, yaklaşık değer ve sorumlu personel gibi kapsamlı detaylara erişin.",
+          "features": {
+            "f1": "Varlık konumlarını tanımlayın ve düzenleyin",
+            "f2": "Anında erişim için QR kod tarama",
+            "f3": "Garanti ve değer bilgilerini takip edin",
+            "f4": "Sorumlu personel atayın",
+            "f5": "Tam varlık yaşam döngüsü yönetimi"
+          }
+        },
+        "partsInventory": {
+          "tag": "Parçalar ve Envanter",
+          "title": "Kolaylaştırılmış Parça Yönetimi",
+          "description": "Parçalar modülü, İş Emri ve İş Talebi sistemleriyle sorunsuz entegre olur; teknisyenlerin envanter kullanımını ve müsaitliğini zahmetsizce takip etmesini sağlar. Stok önceden tanımlanmış minimum seviyeye ulaştığında sistem otomatik olarak fiyat sorguları tetikler.",
+          "features": {
+            "f1": "Gerçek zamanlı envanter takibi",
+            "f2": "Otomatik düşük stok uyarıları",
+            "f3": "İş emirleriyle entegrasyon",
+            "f4": "Maksimum eşiklerle aşırı stoklamayı önleyin",
+            "f5": "Yenileme için akıllı otomasyon"
+          }
+        },
+        "purchaseOrders": {
+          "tag": "Satın Alma Emirleri",
+          "title": "Faturalama ve Ödeme Entegrasyonu",
+          "description": "Parçalar modülü, kullanılan hizmetler ve parçalar için otomatik fatura oluşturma sunarak faturalamayı basitleştirir. Teknisyenler sağlanan tüm hizmetleri ve kullanılan parçaları girebilir; sistem faturayı otomatik oluşturur ve talep sahibine gönderir.",
+          "features": {
+            "f1": "Otomatik fatura oluşturma",
+            "f2": "Kullanılan hizmet ve parçaları takip edin",
+            "f3": "Platform üzerinden doğrudan ödeme",
+            "f4": "Onay iş akışı seçenekleri",
+            "f5": "Kolaylaştırılmış faturalama süreci"
+          }
+        },
+        "locationManagement": {
+          "tag": "Konum Yönetimi",
+          "title": "Alanlarınızı Düzenleyin",
+          "description": "Mülkleriniz, binalarınız, katlarınız ve odalarınız için hiyerarşik konum yapıları tanımlayın. Her konumdaki varlıkları takip edin ve tüm ekipman ve envanter için net bir organizasyon yapısı koruyun.",
+          "features": {
+            "f1": "Hiyerarşik konum yapısı",
+            "f2": "Bina ve kat haritalama",
+            "f3": "Varlık-konum ataması",
+            "f4": "Konum bazlı raporlama",
+            "f5": "Kolay varlık taşıma takibi"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Kule A'daki HVAC ünitesini bul",
+        "headerTitle": "Varlık Kaydı",
+        "headerSubtitle": "156 toplam varlık",
+        "stats": {
+          "active": "Aktif",
+          "maintenance": "Bakımda",
+          "retired": "Emekli"
+        },
+        "assets": {
+          "a1": {
+            "name": "HVAC Ünitesi - Carrier 50XC",
+            "location": "Kule A - Kat 3",
+            "status": "active"
+          },
+          "a2": {
+            "name": "Asansör Motoru #2",
+            "location": "Kule B - Bodrum",
+            "status": "maintenance"
+          },
+          "a3": {
+            "name": "Yangın Alarm Paneli",
+            "location": "Kule A - Lobi",
+            "status": "active"
+          }
+        },
+        "statusLabels": {
+          "active": "aktif",
+          "maintenance": "bakımda"
+        },
+        "aiTitle": "Varlık Yapay Zekası",
+        "aiReady": "Yardıma hazır",
+        "assetFoundTitle": "Varlık Bulundu",
+        "assetFoundName": "HVAC Ünitesi - Carrier 50XC",
+        "responseText": "Konum: {location}. Garanti bitiş: {warranty}. Son bakım: {lastMaintenance}.",
+        "responseLocation": "Kule A - Kat 3",
+        "responseWarranty": "Ara 2025",
+        "responseLastMaintenance": "14 gün önce",
+        "quickAccess": "Hızlı Erişim",
+        "quickAccessText": "Tam detaylar, bakım geçmişi ve belgeler için AST-2024-001 QR kodunu tarayın.",
+        "actions": {
+          "viewDetails": "Detayları Gör",
+          "maintenanceHistory": "Bakım Geçmişi",
+          "generateQr": "QR Oluştur"
+        }
+      },
+      "inventory": {
+        "title": "Parça Envanteri",
+        "subtitle": "Gerçek zamanlı takip",
+        "lowStock": "DÜŞÜK STOK",
+        "overstocked": "AŞIRI STOK",
+        "min": "Min: {count}",
+        "max": "Maks: {count}",
+        "items": {
+          "i1": {
+            "name": "Hava Filtreleri (20x25x1)",
+            "unit": "adet"
+          },
+          "i2": {
+            "name": "Kompresör Yağı",
+            "unit": "gal"
+          },
+          "i3": {
+            "name": "Yedek Kayışlar",
+            "unit": "adet"
+          }
+        }
+      },
+      "qrcode": {
+        "title": "QR Kod Tarama",
+        "subtitle": "Anında varlık erişimi",
+        "scanning": "Varlık etiketi taranıyor...",
+        "identified": "Varlık Tanımlandı!",
+        "resultName": "HVAC Ünitesi - Kule A"
+      },
+      "location": {
+        "title": "Konum Genel Bakış",
+        "subtitle": "Varlık dağılımı",
+        "floors": "{count} kat",
+        "assetsLabel": "varlık",
+        "totalAssets": "Toplam Varlık",
+        "items": {
+          "l1": {
+            "name": "Kule A"
+          },
+          "l2": {
+            "name": "Kule B"
+          },
+          "l3": {
+            "name": "Otopark"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "Yapay Zeka Destekli",
+      "sectionTitleHighlight": "Varlık Zekası Motoru",
+      "subtitle": "Yapay zekamız varlık verilerini, garanti durumunu ve bakım geçmişini analiz ederek proaktif öneriler sunar ve varlık yönetimi kararlarını otomatikleştirir.",
+      "assistantTitle": "Varlık Yapay Zekası",
+      "assistantSubtitle": "Akıllı Varlık Yönetimi",
+      "conversation": {
+        "step1": "Merhaba! Varlık yönetimi yapay zeka asistanınızım. Bugün size nasıl yardımcı olabilirim?",
+        "step2": "Süresi dolan garantili varlıkları göster",
+        "step3": "Önümüzdeki 90 gün içinde garantisi dolacak 12 varlık buldum. En kritik olanı Kule A'daki HVAC Ünitesi - garanti 15 gün içinde doluyor.",
+        "step4": "Değiştirme maliyeti nedir?",
+        "step5": "Carrier 50XC HVAC ünitesinin tahmini değiştirme maliyeti 45.000 $. Yaş ve duruma göre güncel piyasa değeri 28.000 $.",
+        "step6": "Garanti dolmadan önce bir inceleme planla",
+        "step7": "Tamamlandı! Gelecek hafta için HVAC incelemesi iş emri oluşturdum. Sertifikalı teknisyen John bilgilendirildi ve varlık belgeleri ile bakım geçmişini alacak."
+      },
+      "continueConversation": "Konuşmaya devam et",
+      "restartDemo": "Demoyu yeniden başlat",
+      "priorityTasks": "Vadesi Gelen Varlık İncelemeleri",
+      "aiPrioritized": "Yapay Zeka Önceliklendirdi",
+      "tasks": {
+        "task1": {
+          "name": "HVAC Ünitesi Yıllık İncelemesi - Kule A",
+          "dueDate": "Bugün",
+          "priority": "Yüksek"
+        },
+        "task2": {
+          "name": "Jeneratör Yakıt Seviyesi Kontrolü",
+          "dueDate": "Yarın",
+          "priority": "Orta"
+        },
+        "task3": {
+          "name": "Asansör Güvenlik Sertifikası",
+          "dueDate": "3 gün içinde",
+          "priority": "Yüksek"
+        }
+      },
+      "scheduled": "Planlandı",
+      "deferred": "Ertelendi",
+      "match": "eşleşme",
+      "scheduleTitle": "Planla",
+      "deferTitle": "Ertele",
+      "aiLearning": "Yapay Zeka Öğrenme Kalıpları",
+      "optimizing": "Varlık programları optimize ediliyor",
+      "scheduledCount": "{count} planlandı",
+      "deferredCount": "{count} ertelendi"
+    },
+    "features": {
+      "sectionTitle": "İhtiyacınız olan her şey",
+      "sectionTitleHighlight": "varlık ve envanter yönetimi için",
+      "items": {
+        "assetTracking": {
+          "title": "Varlık Takibi",
+          "description": "Tüm ekipmanları QR kodlar, barkodlar ve benzersiz tanımlayıcılarla takip edin; varlık detaylarına anında erişin."
+        },
+        "partsInventory": {
+          "title": "Parçalar ve Envanter",
+          "description": "Otomatik yeniden sipariş uyarıları ve stok seviyesi izleme ile yedek parça envanterini yönetin."
+        },
+        "qrScanning": {
+          "title": "QR Kod Tarama",
+          "description": "Varlık bilgilerine, bakım geçmişine ve belgelere anında erişmek için QR kodları tarayın."
+        },
+        "locationManagement": {
+          "title": "Konum Yönetimi",
+          "description": "Hiyerarşik konum yapılarıyla varlıkları bina, kat ve odaya göre düzenleyin."
+        },
+        "costTracking": {
+          "title": "Değer ve Maliyet Takibi",
+          "description": "Yaşam döngüsü boyunca varlık değerlerini, amortismanı ve toplam sahip olma maliyetini takip edin."
+        },
+        "documentation": {
+          "title": "Dokümantasyon",
+          "description": "Her varlık için garantileri, kılavuzları, sertifikaları ve bakım kayıtlarını saklayın."
+        },
+        "notifications": {
+          "title": "Akıllı Uyarılar",
+          "description": "Süresi dolan garantiler, düşük envanter ve planlanan incelemeler için bildirimler alın."
+        },
+        "reporting": {
+          "title": "Varlık Analitiği",
+          "description": "Varlık kullanımı, maliyetler ve performans metrikleri hakkında raporlar oluşturun."
+        },
+        "warranty": {
+          "title": "Garanti Yönetimi",
+          "description": "Tüm varlıklar için garanti bitiş tarihlerini ve hizmet sözleşmelerini takip edin."
+        },
+        "purchaseOrders": {
+          "title": "Satın Alma Emirleri",
+          "description": "Parçalar ve yeni ekipman için satın alma emirlerini doğrudan sistemde oluşturun ve yönetin."
+        },
+        "lifecycle": {
+          "title": "Yaşam Döngüsü Yönetimi",
+          "description": "Edinimden imhaya kadar tam denetim izleriyle varlıkları takip edin."
+        },
+        "mobileApp": {
+          "title": "Mobil Uygulama",
+          "description": "Varlık bilgilerine her yerden akıllı telefonunuzdan erişin ve QR kodları tarayın."
+        },
+        "integration": {
+          "title": "İş Emri Entegrasyonu",
+          "description": "Tam bakım takibi ve geçmişi için varlıkları iş emirlerine bağlayın."
+        },
+        "maintenance": {
+          "title": "Bakım Planlama",
+          "description": "Varlık yaşı, kullanımı veya zaman aralıklarına göre önleyici bakım planlayın."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Güvenen",
+      "sectionTitleHighlight": "varlık yöneticileri",
+      "subtitle": "Mülk yöneticileri ve envanter uzmanlarının PropertyCare hakkında söylediklerini görün.",
+      "roleAt": "{company} şirketinde {role}",
+      "items": {
+        "t1": {
+          "author": "Robert Martinez",
+          "company": "Gateway Properties",
+          "role": "Varlık Yöneticisi",
+          "quote": "Varlık takip modülü ekipman yönetimimizi kökten değiştirdi. QR kod tarama, bakım geçmişi ve garanti bilgisine anında erişim sağlıyor - değiştirme maliyetlerinde binlerce dolar tasarruf ettirdi."
+        },
+        "t2": {
+          "author": "Jennifer Lee",
+          "company": "Urban Living Management",
+          "role": "Envanter Kontrolörü",
+          "quote": "Parça envanter sistemi harika. Otomatik düşük stok uyarıları ve satın alma emri entegrasyonu acil sipariş maliyetlerini ve stok tükenmelerini ortadan kaldırdı."
+        },
+        "t3": {
+          "author": "Michael Thompson",
+          "company": "Premier Property Group",
+          "role": "Operasyon Direktörü",
+          "quote": "12 mülkte 500'den fazla varlık yönetiyoruz. Bu platform her ekipman parçası, değeri ve yaşam döngüsü hakkında tam görünürlük sağlıyor. Operasyonlarımız için vazgeçilmez."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "Varlık yönetimi içgörüleri ve kaynaklar",
+      "subtitle": "Varlık takibi, envanter yönetimi ve ekipman yaşam döngüsü optimizasyonu hakkında uzman içgörüleriyle önde kalın.",
+      "readArticle": "Makaleyi Oku",
+      "emptyState": "Blog yazıları yüklenemedi. Bağlantınızı kontrol edin veya daha sonra tekrar deneyin."
+    },
+    "faq": {
+      "sectionTitle": "Sıkça Sorulan",
+      "sectionTitleHighlight": "Sorular",
+      "subtitle": "Varlık ve envanter yönetim platformumuz hakkında bilmeniz gereken her şey. Listede olmayan bir sorunuz mu var? Destek ekibimizle iletişime geçin.",
+      "stillHaveQuestions": "Hâlâ sorularınız mı var?",
+      "getInTouch": "Ekibimizle iletişime geçin",
+      "items": {
+        "q1": {
+          "question": "Bu platformla hangi tür varlıkları takip edebilirim?",
+          "answer": "Platformumuz HVAC sistemleri, asansörler, jeneratörler, yangın güvenlik ekipmanları, ev aletleri, mobilyalar, araçlar ve daha fazlası dahil her tür varlığın takibini destekler. Her varlık özel gereksinimlerine göre özelleştirilmiş alanlar, belgeler ve bakım programlarına sahip olabilir."
+        },
+        "q2": {
+          "question": "Varlık tanımlama için QR kod tarama nasıl çalışır?",
+          "answer": "Platformumuz üzerinden her varlık için benzersiz bir QR kodu oluşturun ve ekipmana yapıştırın. Teknisyenler mobil uygulamamızla kodu tarayarak varlık detaylarına, bakım geçmişine, garanti bilgisine ve belgelere anında erişebilir. Temel bilgiler için internet bağlantısı gerekmez."
+        },
+        "q3": {
+          "question": "Parça envanterini takip edip stok seviyelerini yönetebilir miyim?",
+          "answer": "Evet! Parça envanter modülümüz stok seviyelerini gerçek zamanlı takip eder, envanter minimum eşiklerin altına düştüğünde otomatik uyarı verir ve hatta yenileme için satın alma emirleri oluşturabilir. Hangi parçaların hangi iş emirlerinde kullanıldığını da tam maliyet görünürlüğü için takip edebilirsiniz."
+        },
+        "q4": {
+          "question": "Birden fazla konumdaki varlıkları nasıl yönetirim?",
+          "answer": "Platform hiyerarşik konum yapılarını destekler - mülk, bina, kat, oda veya özel hiyerarşiye göre düzenleyebilirsiniz. Varlıkları konuma göre filtreleyip raporlayın, konumlar arası hareketleri takip edin ve konuma özel bakım programları atayın."
+        },
+        "q5": {
+          "question": "Garanti bitiş tarihlerini ve hizmet sözleşmelerini takip edebilir miyim?",
+          "answer": "Kesinlikle. Her varlık kapsam tarihleri, koşulları ve tedarikçi iletişim bilgileri dahil garanti bilgisine sahip olabilir. Sistem garantiler dolmadan önce sizi otomatik bilgilendirir; inceleme planlayabilir veya talepte bulunabilirsiniz. Hizmet sözleşmeleri ve kontratlar da eklenebilir ve takip edilebilir."
+        },
+        "q6": {
+          "question": "Satın alma emri sistemi nasıl çalışır?",
+          "answer": "Parça envanteri azaldığında veya yeni ekipmana ihtiyaç duyduğunuzda satın alma emirlerini doğrudan sistemde oluşturun. Oluşturmadan teslimata kadar PO durumunu takip edin, tedarikçi ilişkilerini yönetin ve ürünler alındığında envanteri otomatik güncelleyin. Faturalama entegrasyonu ödeme sürecini kolaylaştırır."
+        },
+        "q7": {
+          "question": "Varlıklar için toplam sahip olma maliyetini takip edebilir miyim?",
+          "answer": "Evet, platform edinim maliyetlerini, bakım giderlerini, parça değişimlerini ve işçilik saatlerini her varlık için takip eder. Zaman içinde toplam sahip olma maliyetini gösteren raporlar oluşturarak onarım ve değiştirme kararlarını veriye dayalı alın."
+        },
+        "q8": {
+          "question": "Saha teknisyenleri için mobil uygulama var mı?",
+          "answer": "Mobil uygulamamız teknisyenlerin QR kodları taramasına, varlık detaylarını görüntülemesine, bakım kayıtlarını güncellemesine, fotoğraf eklemesine ve kontrol listelerini akıllı telefonlarından tamamlamasına olanak tanır. Uygulama çevrimdışı çalışır ve bağlantı sağlandığında senkronize olur."
+        },
+        "q9": {
+          "question": "Varlık takibi bakım iş emirleriyle nasıl entegre olur?",
+          "answer": "Varlıklar doğrudan iş emirlerine bağlanır; bakım geçmişine tam görünürlük sağlarsınız. İş emri oluştururken varlığı seçmeniz yeterli; tüm ilgili bilgiler otomatik doldurulur. Tamamlanan iş emirleri varlığın bakım geçmişini otomatik günceller."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "PropertyCareApp ile hangi tür varlıkları yönetebilirim?",
+          "answer": "PropertyCareApp, HVAC sistemleri, asansörler, elektrik ekipmanları, tesisat armatürleri, mobilyalar ve tanımladığınız her özel varlık kategorisi dahil tüm bina varlıklarını destekler. Her öğe için konum, durum, garanti ve servis geçmişini takip edebilirsiniz."
+        },
+        "q2": {
+          "question": "Yedek parça ve envanter seviyelerini takip edebilir miyim?",
+          "answer": "Evet. Varlıklar ve Parçalar modülü, stok seviyesi uyarıları, otomatik yeniden sipariş tetikleyicileri, tedarikçi yönetimi ve maliyet takibi ile tam parça envanter yönetimi sunar; doğru parçaların her zaman elinizde olmasını sağlar."
+        },
+        "q3": {
+          "question": "Platform varlıklar için önleyici bakım planlamasını destekliyor mu?",
+          "answer": "Kesinlikle. Zaman aralıkları, kullanım sayaçları veya durum eşiklerine göre tekrarlayan bakım programları oluşturabilirsiniz. Sistem otomatik olarak iş emirleri oluşturur ve uygun teknisyenlere atar."
+        },
+        "q4": {
+          "question": "Varlık performansı ve maliyetleri hakkında rapor oluşturabilir miyim?",
+          "answer": "Evet. PropertyCareApp, toplam sahip olma maliyeti, bakım geçmişi, arıza kayıtları ve amortisman takibi dahil ayrıntılı varlık yaşam döngüsü raporları sunar; bilinçli değiştirme kararları için gereken veriyi sağlar."
+        },
+        "q5": {
+          "question": "Varlıklar modülünü bakım modülüyle entegre etmek mümkün mü?",
+          "answer": "Varlıklar ve Parçalar modülü Bakım modülüyle tam entegredir. Bir varlık için iş emri oluşturulduğunda sistem otomatik olarak varlık kaydına bağlar, servis geçmişini günceller ve kullanılan parçaları envanterden düşer."
+        }
+      }
+    }
+  },
+  "communicationPage": {
+    "meta": {
+      "title": "Sakin İletişim Yazılımı | PropertyCareApp",
+      "description": "Tüm bina iletişimini — duyurular, talepler ve güncellemeler — yapay zeka destekli tek bir platformda merkezileştirin. Sakinleri bilgilendirin ve etkileşimde tutun. Ücretsiz başlayın.",
+      "breadcrumbHome": "Ana Sayfa",
+      "breadcrumbPage": "İletişim Mülk Yazılımı"
+    },
+    "hero": {
+      "titleLine1": "Yeni Nesil",
+      "titleHighlight": "PM SaaS",
+      "titleLine2": "İletişim için",
+      "subtitle": "Sakin bağlantı platformumuzla bağlı bir topluluk oluşturun. Herkesi bilgilendiren ve etkileşimde tutan sohbetler, paylaşımlar, duyurular ve sanal etkinliklerle kesintisiz etkileşim sağlayın.",
+      "startFreeTrial": "Ücretsiz Deneme Başlat",
+      "bookDemo": "Demo Rezervasyonu",
+      "keyFeatures": "Temel Özellikler",
+      "badges": {
+        "messaging": "Mesajlaşma",
+        "announcements": "Duyurular",
+        "residentPortal": "Sakin Portalı",
+        "virtualEvents": "Sanal Etkinlikler",
+        "aiAssistant": "Yapay Zeka Asistanı",
+        "jobBoard": "İş Panosu",
+        "notifications": "Bildirimler",
+        "community": "Topluluk"
+      }
+    },
+    "videoShowcase": {
+      "sectionTitle": "Nasıl",
+      "sectionTitleHighlight": "sakin iletişiminin",
+      "sectionTitleEnd": "bağlı topluluklar kurduğunu görün",
+      "subtitle": "Platformumuzun mesajlaşma, duyurular ve sanal etkinliklerle topluluğunuzu bir araya getiren kesintisiz etkileşimi nasıl sağladığını keşfedin.",
+      "videoThumbnailAlt": "Video küçük resmi",
+      "playVideo": "Videoyu oynat",
+      "productDemo": "İletişim Demosu",
+      "videoDuration": "3:42",
+      "iframeTitle": "İletişim Modülü Demosu"
+    },
+    "solutions": {
+      "sectionTitle": "Kapsamlı",
+      "sectionTitleHighlight": "iletişim araç seti",
+      "sectionTitleEnd": "bağlı topluluklar için",
+      "subtitle": "Sakinleri bilgilendirmek, etkileşimde tutmak ve bağlamak için güçlü mesajlaşma, duyuru ve sanal etkinlik araçlarıyla ihtiyacınız olan her şey.",
+      "items": {
+        "residentLink": {
+          "tag": "Sakin Bağlantı Platformu",
+          "title": "Bağlı Topluluk Ağı",
+          "description": "Bina sakinleri için paylaşım ve etkileşim sunan dinamik bir alana sahip özel bir sosyal ağ. Sakinler güncellemeler paylaşabilir, duyurular yayınlayabilir ve komşularıyla bağlantı kurmak için sohbet özelliklerini kullanabilir.",
+          "features": {
+            "f1": "Topluluk güncellemeleri için dinamik sosyal akış",
+            "f2": "Sakinler arası doğrudan mesajlaşma",
+            "f3": "Bina bölümleri veya ilgi alanları için grup sohbetleri",
+            "f4": "Fotoğraf, belge ve duyuru paylaşımı",
+            "f5": "Yeni etkinlikler için gerçek zamanlı bildirimler"
+          }
+        },
+        "announcements": {
+          "tag": "Duyurular",
+          "title": "Anlık Kitlesel İletişim",
+          "description": "Sakinleri e-posta, SMS veya anlık bildirimlerle anında bilgilendirin. Tüm sakinleri, belirli grupları veya tekil daireleri hedefleyin; mesaj iletimi ve zamanlaması üzerinde tam kontrol sağlayın.",
+          "features": {
+            "f1": "Çok kanallı gönderim (e-posta, SMS, anlık bildirim)",
+            "f2": "Belirli grupları veya kişileri hedefleme",
+            "f3": "Mesajları ileri tarihe planlama",
+            "f4": "Okundu bilgisi ve teslimat takibi",
+            "f5": "Yaygın duyurular için şablon kütüphanesi"
+          }
+        },
+        "jobBoard": {
+          "tag": "İş ve İlgi Panosu",
+          "title": "Topluluk İlan Panosu",
+          "description": "Sakinlerin iş fırsatları, profesyonel hizmetler, hobiler ve beceriler paylaşabileceği özel bir pano. Komşularla bağlantı kurun, yerel yetenekleri keşfedin ve bina duyurularından önemli haberlere kadar güncel kalın.",
+          "features": {
+            "f1": "İş fırsatları ve hizmet ilanları paylaşımı",
+            "f2": "İlgi alanları ve hobilerin paylaşımı",
+            "f3": "Yerel yetenek ve profesyonelleri bulma",
+            "f4": "Bina duyuruları ve haberleri",
+            "f5": "Kolay gezinme için kategorili listeler"
+          }
+        },
+        "virtualEvents": {
+          "tag": "Sanal Etkinlikler",
+          "title": "Çevrimiçi Topluluk Buluşmaları",
+          "description": "Sanal etkinlikler oluşturun ve kolayca katılın. Topluluk toplantısı, atölye veya samimi bir buluşma fark etmeksizin katılımcılar fiziksel olarak bir araya gelmeden gerçek zamanlı sohbetlere katılabilir.",
+          "features": {
+            "f1": "Sanal toplantı ve etkinlik oluşturma",
+            "f2": "Gerçek zamanlı video konferans",
+            "f3": "Etkinlik takvimi ve katılım takibi",
+            "f4": "Kayıt alma ve tekrar izleme seçenekleri",
+            "f5": "Etkinlik sırasında entegre sohbet"
+          }
+        }
+      },
+      "dashboard": {
+        "fullPrompt": "Herkese duyuru gönder",
+        "browserUrl": "app.propertycare.io/communication",
+        "headerTitle": "Mesajlar ve Duyurular",
+        "headerSubtitle": "4 okunmamış mesaj",
+        "stats": {
+          "activeChats": "Aktif Sohbetler",
+          "announcements": "Duyurular",
+          "events": "Etkinlikler"
+        },
+        "conversations": {
+          "c1": {
+            "name": "Bina Güncellemeleri",
+            "message": "Yeni asansör programı yayınlandı",
+            "time": "2 dk",
+            "unread": "3"
+          },
+          "c2": {
+            "name": "Bakım Uyarıları",
+            "message": "Yarın su kesintisi",
+            "time": "1 sa",
+            "unread": "1"
+          },
+          "c3": {
+            "name": "Topluluk Etkinlikleri",
+            "message": "Bu Cumartesi mangal var!",
+            "time": "3 sa",
+            "unread": "0"
+          }
+        },
+        "aiTitle": "İletişim Yapay Zekası",
+        "aiReady": "Yardıma hazır",
+        "announcementReady": "Duyuru Hazır",
+        "targetResidents": "Hedef: Tüm 156 sakin",
+        "responseText": "Tüm 156 sakin için bir duyuru hazırlayacağım. Gönderim kanalını seçin: E-posta, SMS veya Anlık Bildirim.",
+        "aiSuggestion": "YZ Önerisi",
+        "aiSuggestionText": "Geçmiş etkileşime göre binanızda anlık bildirimlerin açılma oranı %94.",
+        "actions": {
+          "email": "E-posta",
+          "sms": "SMS",
+          "push": "Anlık Bildirim",
+          "allChannels": "Tüm Kanallar"
+        }
+      },
+      "announcement": {
+        "title": "Bina Duyurusu",
+        "subtitle": "Çok kanallı gönderim",
+        "channelsSent": "{sent}/{total} Kanal Gönderildi",
+        "channels": {
+          "ch1": {
+            "name": "E-posta",
+            "recipients": "{count} alıcı"
+          },
+          "ch2": {
+            "name": "SMS",
+            "recipients": "{count} alıcı"
+          },
+          "ch3": {
+            "name": "Anlık Bildirim",
+            "recipients": "{count} alıcı"
+          },
+          "ch4": {
+            "name": "Uygulama İçi Mesaj",
+            "recipients": "{count} alıcı"
+          }
+        }
+      },
+      "communityFeed": {
+        "title": "Topluluk Akışı",
+        "subtitle": "Sakin Ağı",
+        "posts": {
+          "p1": {
+            "author": "Sarah M.",
+            "content": "Kitap kulübüne ilgi duyan var mı?",
+            "time": "2 sa"
+          },
+          "p2": {
+            "author": "Bina Yönetimi",
+            "content": "Yaz için havuz saatleri uzatıldı!",
+            "time": "5 sa"
+          },
+          "p3": {
+            "author": "John D.",
+            "content": "Kayıp kedi - turuncu tekir, Daire 5B",
+            "time": "1 g"
+          }
+        }
+      },
+      "virtualEventsVisual": {
+        "title": "Sanal Etkinlikler",
+        "subtitle": "Topluluk Buluşmaları",
+        "joined": "{count} katıldı",
+        "statusLive": "Canlı",
+        "statusUpcoming": "Yaklaşan",
+        "events": {
+          "e1": {
+            "title": "Aylık Halk Toplantısı",
+            "date": "Bugün, 19:00",
+            "status": "Canlı"
+          },
+          "e2": {
+            "title": "Parkta Yoga",
+            "date": "Cumartesi, 09:00",
+            "status": "Yaklaşan"
+          },
+          "e3": {
+            "title": "Kitap Kulübü Buluşması",
+            "date": "Gelecek Çarşamba, 18:00",
+            "status": "Yaklaşan"
+          }
+        }
+      }
+    },
+    "aiMatching": {
+      "sectionTitle": "Yapay Zeka Destekli",
+      "sectionTitleHighlight": "Topluluk Asistanı",
+      "subtitle": "Akıllı yapay zeka asistanımız sakin sorularını yanıtlamaya, kurallar ve etkinlikler hakkında bilgi vermeye ve topluluk tartışmalarına aktif olarak katılmaya yardımcı olur.",
+      "assistantTitle": "İletişim Yapay Zekası",
+      "assistantSubtitle": "Akıllı Sakin Etkileşimi",
+      "conversation": {
+        "step1": "Merhaba! Ben iletişim yapay zeka asistanınızım. Bugün sakinlerinize ulaşmanızda nasıl yardımcı olabilirim?",
+        "step2": "Yarınki su kesintisi hakkında sakinlere bildirim göndermem gerekiyor",
+        "step3": "Acil bir duyuru hazırlayacağım. Su kesintileri için maksimum erişim sağlamak adına tüm kanalların (e-posta, SMS ve anlık bildirim) kullanılmasını öneriyorum.",
+        "step4": "Hangi saatte göndermeliyim?",
+        "step5": "Etkileşim verilerine göre sakinleriniz en çok 18:00-20:00 arasında aktif. Bugün 18:00'de göndermenizi, yarın 07:00'de de hatırlatma geçmenizi öneririm.",
+        "step6": "Harika, planla",
+        "step7": "Tamamlandı! Duyuruyu bugün 18:00 için tüm kanallarda (156 sakin) planladım. Yarın 07:00'de bir hatırlatma daha gönderilecek. Teslimat ve etkileşimi sizin için takip edeceğim."
+      },
+      "continueConversation": "Konuşmaya devam et",
+      "restartDemo": "Demoyu yeniden başlat",
+      "pendingCommunications": "Bekleyen İletişimler",
+      "aiOptimized": "YZ Optimize Etti",
+      "tasks": {
+        "task1": {
+          "name": "Bina genelinde su kesintisi duyurusu",
+          "priority": "Acil",
+          "channel": "Tüm Kanallar",
+          "match": "%98"
+        },
+        "task2": {
+          "name": "Aylık bülten dağıtımı",
+          "priority": "Normal",
+          "channel": "E-posta",
+          "match": "%94"
+        },
+        "task3": {
+          "name": "Topluluk etkinliği hatırlatması",
+          "priority": "Normal",
+          "channel": "Anlık Bildirim",
+          "match": "%91"
+        }
+      },
+      "sent": "Gönderildi",
+      "scheduled": "Planlandı",
+      "reach": "erişim",
+      "sendNowTitle": "Şimdi Gönder",
+      "scheduleTitle": "Planla",
+      "aiTracking": "YZ Etkileşim Takibi",
+      "optimizing": "Gönderim zamanları optimize ediliyor",
+      "sentCount": "{count} gönderildi",
+      "scheduledCount": "{count} planlandı"
+    },
+    "features": {
+      "sectionTitle": "İhtiyacınız olan her şey",
+      "sectionTitleHighlight": "bağlı bir topluluk oluşturmak için",
+      "items": {
+        "messaging": {
+          "title": "Doğrudan Mesajlaşma",
+          "description": "Sakinlerin birbirleriyle ve bina yönetimiyle güvenli mesajlaşma üzerinden doğrudan iletişim kurmasını sağlayın."
+        },
+        "announcements": {
+          "title": "Duyurular",
+          "description": "Tüm sakinlere veya belirli gruplara e-posta, SMS ya da anlık bildirimle anında duyuru gönderin."
+        },
+        "residentPortal": {
+          "title": "Sakin Portalı",
+          "description": "Sakinlerin güncelleme paylaşması, gönderi oluşturması ve komşularıyla bağlantı kurması için özel bir sosyal ağ."
+        },
+        "virtualEvents": {
+          "title": "Sanal Etkinlikler",
+          "description": "Entegre video konferansla çevrimiçi topluluk toplantıları, atölyeler ve buluşmalar düzenleyin."
+        },
+        "jobBoard": {
+          "title": "İş ve Hizmet Panosu",
+          "description": "Sakinlerin iş fırsatlarını, profesyonel hizmetleri ve becerilerini toplulukla paylaşmasına imkan verin."
+        },
+        "eventCalendar": {
+          "title": "Etkinlik Takvimi",
+          "description": "Topluluk etkinlikleri, toplantılar ve önemli bina tarihleri için merkezi takvim."
+        },
+        "emailCampaigns": {
+          "title": "E-posta Kampanyaları",
+          "description": "Sakinleri bilgilendirmek için etkileyici e-posta bültenleri ve güncellemeler oluşturup gönderin."
+        },
+        "mobileApp": {
+          "title": "Mobil Uygulama",
+          "description": "Sakinlerin hareket halindeyken bağlı kalması için tam özellikli mobil uygulama."
+        },
+        "communityFeed": {
+          "title": "Topluluk Akışı",
+          "description": "Sakinlerin güncelleme paylaşabildiği, haber yayımlayabildiği ve etkileşim kurabildiği dinamik sosyal akış."
+        },
+        "documents": {
+          "title": "Belge Paylaşımı",
+          "description": "Bina kurallarını, politikaları, formları ve önemli belgeleri tüm sakinlerle paylaşın."
+        },
+        "privacy": {
+          "title": "Gizlilik Kontrolleri",
+          "description": "Sakinlerin görünürlüklerini ve iletişim tercihlerini yönetebildiği güçlü gizlilik ayarları."
+        },
+        "aiAssistant": {
+          "title": "Yapay Zeka Asistanı",
+          "description": "Sakin sorularını yanıtlayan ve kurallar ile etkinlikler hakkında bilgi sağlayan akıllı yapay zeka."
+        },
+        "surveys": {
+          "title": "Anketler ve Oylamalar",
+          "description": "Sakin geri bildirimini toplamak ve topluluk kararları almak için anketler oluşturun."
+        },
+        "chatGroups": {
+          "title": "Sohbet Grupları",
+          "description": "Sakinlerin bağlantı kurması için ilgi alanı veya konum bazlı sohbet grupları oluşturun."
+        }
+      }
+    },
+    "testimonials": {
+      "sectionTitle": "Güvenen",
+      "sectionTitleHighlight": "topluluk liderleri",
+      "subtitle": "Mülk yöneticilerinin ve site yönetim kurulu liderlerinin iletişim platformumuz hakkında söylediklerini görün.",
+      "roleAt": "{company} şirketinde {role}",
+      "items": {
+        "t1": {
+          "author": "Jennifer Martinez",
+          "company": "Sunset Towers",
+          "role": "Topluluk Yöneticisi",
+          "quote": "İletişim platformu sakinlerle bağlantı kurma biçimimizi tamamen değiştirdi. Çok kanallı gönderimle duyuru açılma oranlarımız %30'dan %94'e çıktı. Sakinler topluluk akışını çok seviyor!"
+        },
+        "t2": {
+          "author": "Robert Kim",
+          "company": "Harbor View Condos",
+          "role": "Site Yönetim Kurulu Başkanı",
+          "quote": "Sanal halk toplantıları oyunun kurallarını değiştirdi. Fiziksel toplantılarda katılım %15 iken çevrimiçi katılım %60'a çıktı. Yapay zeka asistanı rutin soruları üstleniyor, biz de önemli konulara odaklanabiliyoruz."
+        },
+        "t3": {
+          "author": "Amanda Chen",
+          "company": "Riverside Apartments",
+          "role": "Mülk Yöneticisi",
+          "quote": "Sakin portalı gerçek bir topluluk hissi oluşturdu. Komşular bağlantı kuruyor, hizmet paylaşıyor ve birbirine destek oluyor. Sakin memnuniyeti puanlarımız hiç bu kadar yüksek olmamıştı."
+        }
+      }
+    },
+    "blog": {
+      "sectionTitle": "İletişim içgörüleri ve kaynaklar",
+      "subtitle": "Sakin etkileşimi, topluluk oluşturma ve modern iletişim stratejileri hakkında uzman içgörüleriyle önde kalın.",
+      "readArticle": "Makaleyi Oku",
+      "emptyState": "Blog yazıları yüklenemedi. Bağlantınızı kontrol edin veya daha sonra tekrar deneyin."
+    },
+    "faq": {
+      "sectionTitle": "Sıkça Sorulan",
+      "sectionTitleHighlight": "Sorular",
+      "subtitle": "İletişim platformumuz hakkında bilmeniz gereken her şey. Listede olmayan bir sorunuz mu var? Destek ekibimizle iletişime geçin.",
+      "stillHaveQuestions": "Hâlâ sorularınız mı var?",
+      "getInTouch": "Ekibimizle iletişime geçin",
+      "items": {
+        "q1": {
+          "question": "Hangi iletişim kanalları destekleniyor?",
+          "answer": "Platformumuz e-posta, SMS, anlık bildirim, uygulama içi mesajlaşma ve sakinlere özel sosyal akış dahil birden fazla iletişim kanalını destekler. Maksimum erişim için duyuruları bu kanalların herhangi bir kombinasyonuyla gönderebilirsiniz."
+        },
+        "q2": {
+          "question": "Sakin portalı/sosyal ağ nasıl çalışır?",
+          "answer": "Sakin portalı, bina topluluğunuz için özel bir sosyal ağdır. Sakinler güncelleme paylaşabilir, duyuru yayınlayabilir, ilgi alanına göre gruplar oluşturabilir ve komşularıyla sohbet edebilir. Yönetimin tam görünürlük ve moderasyon kontrolüne sahip olmasını sağlarken topluluk bağlarını güçlendirmek için tasarlanmıştır."
+        },
+        "q3": {
+          "question": "Duyurularla belirli grupları hedefleyebilir miyim?",
+          "answer": "Evet! Duyuruları tüm sakinlere, belirli katlara veya binalara, tekil dairelere ya da oluşturduğunuz özel gruplara (ör. evcil hayvan sahipleri, otopark izni olanlar vb.) gönderebilirsiniz. Bu hedefleme, sakinlerin yalnızca ilgili iletişimleri almasını sağlar."
+        },
+        "q4": {
+          "question": "Yapay zeka topluluk asistanı nasıl çalışır?",
+          "answer": "Yapay zeka asistanımız sakin gruplarında sürekli aktiftir ve bina kuralları, olanaklar, etkinlikler ve duyurular hakkında sık sorulan soruları yanıtlar. Binanıza özgü bilgilerden öğrenir ve rutin talepleri 7/24 yöneterek ekibin daha karmaşık konulara odaklanmasını sağlar."
+        },
+        "q5": {
+          "question": "Duyuruları önceden planlayabilir miyim?",
+          "answer": "Kesinlikle! Duyuruları hazırlayıp belirli tarih ve saatlerde gelecekte gönderilecek şekilde planlayabilirsiniz. Bu özellik planlı bakım bildirimleri, etkinlik hatırlatmaları veya önceden hazırlanması gereken tüm iletişimler için idealdir."
+        },
+        "q6": {
+          "question": "Sanal etkinlikler nedir ve nasıl çalışır?",
+          "answer": "Sanal etkinlikler, çevrimiçi topluluk toplantıları, halk buluşmaları, atölyeler veya sosyal etkinlikler düzenlemenizi sağlar. Sakinler herhangi bir cihazdan katılabilir, gerçek zamanlı tartışmalara dahil olabilir ve sohbet üzerinden etkileşime geçebilir. Canlı katılamayanlar için oturumları kaydedebilirsiniz."
+        },
+        "q7": {
+          "question": "Sakinlerin mesajlarımı alıp okuduğunu nasıl takip ederim?",
+          "answer": "Platformumuz her iletişim kanalı için teslimat oranları, açılma oranları ve etkileşim metrikleri dahil ayrıntılı analizler sunar. Hangi sakinlerin duyuruları okuduğunu görebilir ve kritik iletişimler için okumayanlarla takip iletişimi kurabilirsiniz."
+        },
+        "q8": {
+          "question": "İş ve ilgi panosu nedir?",
+          "answer": "İş ve ilgi panosu, sakinlerin iş fırsatları, profesyonel hizmetler, hobiler ve beceriler paylaşabildiği bir topluluk ilan alanıdır. Komşuların bağ kurmasına, yerel yetenekleri keşfetmesine ve birbirini desteklemesine yardımcı olarak daha güçlü bir topluluk oluşturur."
+        },
+        "q9": {
+          "question": "Sakinler için mobil uygulama var mı?",
+          "answer": "Evet! Sakinler mobil uygulamamızı indirerek anlık bildirim alabilir, topluluk akışına katılabilir, komşularla sohbet edebilir, etkinliklere katılım onayı verebilir ve tüm iletişim özelliklerine hareket halindeyken erişebilir. Uygulama hem iOS hem Android cihazlarda çalışır."
+        }
+      }
+    },
+    "jsonLd": {
+      "faq": {
+        "q1": {
+          "question": "PropertyCareApp hangi iletişim kanallarını destekler?",
+          "answer": "PropertyCareApp, iOS ve Android anlık bildirimleri, uygulama içi mesajlaşma, e-posta gönderimleri, SMS uyarıları ve topluluk duyuru panolarını destekler — tümü tek bir panelden yönetilir."
+        },
+        "q2": {
+          "question": "Sakinler iletişim platformu üzerinden talep veya kayıt oluşturabilir mi?",
+          "answer": "Evet. Sakinler uygulama üzerinden servis talepleri, bakım kayıtları ve sorularını doğrudan iletebilir. Yöneticiler anında bildirim alır; aynı platform üzerinden yanıtlayabilir, atama yapabilir veya üst eskalasyon başlatabilir."
+        },
+        "q3": {
+          "question": "Platform çok dilli iletişimi destekliyor mu?",
+          "answer": "Evet. PropertyCareApp, yapay zeka destekli otomatik çeviri içerir; böylece sakinlerle tercih ettikleri dilde manuel iş yükü olmadan iletişim kurabilirsiniz."
+        },
+        "q4": {
+          "question": "Duyuru ve bildirimleri önceden planlayabilir miyim?",
+          "answer": "Kesinlikle. Platform, duyuruları belirli tarih ve saatte gönderilecek şekilde hazırlayıp planlamanıza olanak tanır; böylece sakinler her zaman zamanında ve ilgili güncellemeleri alır."
+        },
+        "q5": {
+          "question": "Sakin verileri gizli ve güvenli tutuluyor mu?",
+          "answer": "Evet. Tüm iletişim ve sakin verileri endüstri standardı şifreleme ile korunur. Her bina özel bir ortamda çalışır ve veriler mülkler arasında asla paylaşılmaz."
+        }
+      }
+    }
   }
 }
