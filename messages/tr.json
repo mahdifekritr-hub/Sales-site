@@ -20,12 +20,12 @@
   },
   "hero": {
     "badge": "Yapay Zeka Destekli Mülk Eşleştirme",
-    "titleLine1": "Mülk yönetiminin",
-    "titleLine2": "geleceği",
-    "titleLine3": "burada.",
+    "titleLine1": "Mülk satışı için",
+    "titleLine2": "yapay zeka ekibiniz",
+    "titleLine3": "her zaman yanınızda.",
     "subtitle": "Misyonumuz, birim sunumu, satış koordinasyonu ve müşteri etkileşimini basitleştiren güçlü, yapay zeka destekli araçlar sağlayarak bina projelerine inovasyon ve otomasyon getirmektir.",
     "startFreeTrial": "Ücretsiz Deneme Başlat",
-    "bookDemo": "Demo Rezervasyonu",
+    "bookDemo": "Demo Talep Edin",
     "integrations": "Entegrasyonlar"
   },
   "features": {
@@ -46,7 +46,7 @@
       },
       "tickets": {
         "title": "Destek Talepleri",
-        "description": "Merkezi bir bilet sistemi ile destek taleplerini ve sorunları yönetin."
+        "description": "Merkezi bir destek talebi sistemi ile destek taleplerini ve sorunları yönetin."
       },
       "payments": {
         "title": "Ödemeler",
@@ -91,9 +91,9 @@
     }
   },
   "testimonials": {
-    "sectionTitle": "Tarafından sevilen",
+    "sectionTitle": "Tercih edilen",
     "sectionTitleHighlight": "sektör liderleri",
-    "subtitle": "Mülk yönetimi profesyonellerinin PropertyCare hakkında ne dediğini görün.",
+    "subtitle": "Mülk yönetimi profesyonellerinin PropertyCareApp hakkında ne söylediğini görün.",
     "items": {
       "ali": {
         "quote": "Bu platformdan önce, birim rezervasyonlarını elektronik tablolarda yönetiyorduk ve neredeyse her hafta çift rezervasyonlarla uğraşıyorduk. Üç ay sonra — tek bir çakışma yok. Sözleşme kapanış süremiz yarıya indi.",
@@ -112,7 +112,7 @@
   "faq": {
     "sectionTitle": "Sıkça Sorulan",
     "sectionTitleHighlight": "Sorular",
-    "subtitle": "PropertyCare hakkında bilmeniz gereken her şey. Listede olmayan bir sorunuz mu var? Destek ekibimizle iletişime geçin.",
+    "subtitle": "PropertyCareApp hakkında bilmeniz gereken her şey. Listede olmayan bir sorunuz mu var? Destek ekibimizle iletişime geçin.",
     "stillHaveQuestions": "Hala sorularınız mı var?",
     "getInTouch": "Ekibimizle iletişime geçin",
     "items": {
@@ -349,8 +349,8 @@
     }
   },
   "solutions": {
-    "sectionTitle": "Modern için Akıllı Modüller",
-    "sectionTitleHighlight": "Mülk Satışları",
+    "sectionTitle": "Modern mülk satışı için",
+    "sectionTitleHighlight": "akıllı modüller",
     "items": {
       "sales": {
         "tag": "Satış Modülü",
@@ -371,7 +371,7 @@
         "features": {
           "askAndDone": "Sorun, yapsın — Görevi tanımlayın, gerisini AI halleder",
           "autoReports": "Raporlar otomatik — Personel performansını anında analiz eder",
-          "multilingual": "Çok dilli özet — CRM, bilet ve emirleri istediğiniz dilde özetler",
+          "multilingual": "Çok dilli özet — CRM, talep ve iş emirlerini istediğiniz dilde özetler",
           "smartComms": "Akıllı iletişim — Müşterilere mesaj gönderin, selamlama oluşturun",
           "noHunting": "Bölüm bölüm gezinmeden — Sadece sorun, yapay zeka halleder"
         }
@@ -382,14 +382,14 @@
         "description": "Sanal turların ötesinde, projeyi yerinde keşfetmek için yüz yüze randevu.",
         "features": {
           "pickSlot": "Tarih & saat seçin — Alıcılar müsait slotları görür, kendileri seçer",
-          "instantNotify": "Anında bildirim —  Tüm ekibe otomatik uyarı",
+          "instantNotify": "Anında bildirim — temsilci, ev sahibi ve güvenlik otomatik bilgilendirilir",
           "noManual": "Sıfır manuel koordinasyon — Sistem her şeyi halleder",
           "proExperience": "Profesyonel deneyim — Planlamadan ziyarete kusursuz akış"
         }
       },
       "buyers": {
-        "tag": "Alıcı Yetenekleri",
-        "title": "Bir Birim Tutun",
+        "tag": "Alıcı Özelliği",
+        "title": "Birim Ayırma",
         "description": "Bu modül hem mülk satışlarını hem de kiralamaları (günlük, yıllık) yönetmek için tasarlanmıştır. Kullanıcılar basit ve sezgisel bir süreç aracılığıyla tercih ettikleri birimi kolayca rezerve edebilir veya satın alabilir. Talepler akıllı bir kuyruk sistemi aracılığıyla otomatik olarak düzenlenir. Bir rezervasyon veya satın alma tamamlanmazsa, bir sonraki ilgili alıcı anında bilgilendirilir ve devam etme fırsatı verilir. Satış ve kiralama operasyonlarını düzene sokarak, sistem ajanslara ve geliştiricilere mülkleri daha verimli yönetmede yardımcı olurken hiçbir fırsatın kaçırılmamasını sağlar."
       }
     },
@@ -470,8 +470,8 @@
   },
   "videoShowcase": {
     "sectionTitle": "İzleyin nasıl",
-    "sectionTitleHighlight": "PropFlow dönüştürüyor",
-    "sectionTitleEnd": "mülk yönetimini",
+    "sectionTitleHighlight": "PropertyCareApp",
+    "sectionTitleEnd": "bakım süreçlerinizi dönüştürüyor",
     "subtitle": "Platformumuzun iş akışınızı nasıl düzene soktuğunu, sıkıcı görevleri otomatikleştirdiğini ve anlaşmaları daha hızlı kapatmanıza nasıl yardımcı olduğunu keşfedin.",
     "productDemo": "Ürün Demosu"
   },
@@ -494,7 +494,7 @@
       "step6": "Otopark, balkon ve modern mutfak",
       "step7": "3 mükemmel uyum ile 12 eşleşme buldum. İşte en iyi önerilerim..."
     },
-    "propertyCareAI": "PropertyCare Yapay Zeka",
+    "propertyCareAI": "PropertyCareApp Yapay Zeka",
     "smartPropertyMatching": "Akıllı Mülk Eşleştirme",
     "continueConversation": "Konuşmaya devam et →",
     "restartDemo": "Demoyu yeniden başlat",
@@ -1185,20 +1185,20 @@
     "hero": {
       "titleLine1": "Yeni Nesil",
       "titleHighlight": "PM SaaS",
-      "titleLine2": "Bakım için",
-      "subtitle": "Bakım modülü, önleyici ve düzeltici bakım görevlerini kolaylaştırmanıza yardımcı olur; otomatik planlama ve performans takibi ile ekipman ve tesislerin optimal çalışma koşullarında kalmasını sağlar.",
+      "titleLine2": "",
+      "subtitle": "Yapay zeka destekli platformumuz bina operasyonlarını dönüştürür — akıllı bakım otomasyonundan ekibinizin sınırsız ölçeklenmesini sağlayan veri odaklı içgörülere kadar.",
       "startFreeTrial": "Ücretsiz Deneme Başlat",
-      "bookDemo": "Demo Rezervasyonu",
-      "keyFeatures": "Temel Özellikler",
+      "bookDemo": "Demo Talep Edin",
+      "keyFeatures": "ENTEGRASYONLAR",
       "badges": {
-        "workOrders": "İş Emirleri",
-        "scheduling": "Planlama",
-        "checklists": "Kontrol Listeleri",
-        "tracking": "Takip",
-        "automation": "Otomasyon",
-        "vendors": "Tedarikçiler",
-        "reports": "Raporlar",
-        "mobile": "Mobil"
+        "workOrders": "Quick Books",
+        "scheduling": "Google Calendar",
+        "checklists": "Amazon Hub",
+        "tracking": "Zego",
+        "automation": "Expert Texting",
+        "vendors": "FCM",
+        "reports": "Google Analytics",
+        "mobile": "Stripe"
       }
     },
     "videoShowcase": {
@@ -1213,56 +1213,56 @@
       "iframeTitle": "Bakım Modülü Demosu"
     },
     "solutions": {
-      "sectionTitle": "Modern için Akıllı Modüller",
-      "sectionTitleHighlight": "Bakım Yönetimi",
+      "sectionTitle": "Modern bakım yönetimi için",
+      "sectionTitleHighlight": "akıllı modüller",
       "subtitle": "İş emirlerinden tedarikçi yönetimine kadar bakım operasyonlarınızın her yönünü kolaylaştıran kapsamlı araçlar.",
       "items": {
         "workOrders": {
           "tag": "İş Emirleri",
-          "title": "Zamanında Görevler Sağlayın",
-          "description": "İş emirleri, görevleri verimli bir şekilde atamanıza, izlemenize ve tamamlamanıza olanak tanır; doğru işin zamanında yapılmasını sağlar. Gerçek zamanlı ilerleme takibi ve otomatik onay iş akışlarıyla iş emirleri oluşturun, atayın ve önceliklendirin.",
+          "title": "En Kapsamlı İş Emri Modülü",
+          "description": "QR kod taramasından otomatik envanter takibine kadar PropertyCareApp İş Emri modülü her detayı kapsar — hiçbir şey gözden kaçmaz.",
           "features": {
-            "f1": "İş emirleri oluşturun, atayın ve önceliklendirin",
-            "f2": "Detaylı raporlarla gerçek zamanlı ilerlemeyi takip edin",
-            "f3": "İş emri onay iş akışlarını otomatikleştirin",
-            "f4": "Mobil uyumlu görev yönetimi",
-            "f5": "Atanan teknisyenlere anlık bildirimler"
+            "f1": "19 yapılandırılmış bölüm + her operasyonel ihtiyaç için özel alanlar",
+            "f2": "Envanteri otomatik düşürün, tedarikçileri bilgilendirin ve çoklu depo stokunu yönetin",
+            "f3": "Herhangi bir varlığın QR kodunu tarayarak anında iş emri oluşturun",
+            "f4": "Ekibe, baş teknisyene veya birden fazla destek teknisyenine atayın",
+            "f5": "Otomatik onay iş akışlarıyla gerçek zamanlı ilerleme takibi"
           }
         },
         "workRequests": {
-          "tag": "İş Talepleri",
-          "title": "Çevrimiçi Talep Onayları",
-          "description": "Çevrimiçi onaylarla talep gönderim sürecini kolaylaştırın. Kiracılar ve personel, hızlı eylem ve çözüm için otomatik olarak doğru ekip üyelerine yönlendirilen bakım talepleri gönderebilir.",
+          "tag": "İş Akışı Otomasyonu",
+          "title": "İş Akışınız, Kurallarınız",
+          "description": "PropertyCareApp'in yerleşik İş Süreci Yönetimi sistemi, bakım iş akışınızın her adımı üzerinde tam kontrol sağlar — kimin neyi göreceğinden kimin ne zaman müdahale edeceğine kadar.",
           "features": {
-            "f1": "Çevrimiçi talep gönderim portalı",
-            "f2": "Uygun ekiplere otomatik yönlendirme",
-            "f3": "Talep önceliklendirme ve kategorilendirme",
-            "f4": "Talep sahipleri için durum takibi",
-            "f5": "Onay iş akışı otomasyonu"
+            "f1": "Rol tabanlı erişim: hangi rollerin her durumu görüntüleyebileceğini, düzenleyebileceğini veya işlem yapabileceğini belirleyin",
+            "f2": "19 form bölümü için role ve duruma özel davranış — düzenlenebilir veya salt okunur",
+            "f3": "Hangi rollerin durumları değiştirebileceğini ve hangi durumlara geçebileceğini tam olarak tanımlayın",
+            "f4": "Ekibiniz genelinde tam şeffaflık için kapsamlı aktivite günlükleri",
+            "f5": "Sorunsuz iş birliği için yerleşik yorumlar ve kullanıcı etiketleme"
           }
         },
         "workflowAutomation": {
-          "tag": "İş Akışı Otomasyonu",
-          "title": "İş Akışlarınızı Kolaylaştırın",
-          "description": "Tekrarlayan iş akışlarını otomatikleştirerek zaman kazanın, hataları en aza indirin ve süreçlerin organizasyonunuz genelinde sorunsuz çalışmasını sağlayın. Modüller arası sorunsuz entegrasyonla görev otomasyonu için özel iş akışları oluşturun.",
+          "tag": "Rezervasyon Sistemi",
+          "title": "Sakinler Tesis Rezervasyonu Yapsın",
+          "description": "Sakinlere ortak alanları ve tesisleri sorunsuz şekilde rezerve etme imkanı sunun; kapasite, ödeme ve erişim kuralları üzerinde tam kontrol sağlayın.",
           "features": {
-            "f1": "Görev otomasyonu için özel iş akışları oluşturun",
-            "f2": "Onayları, bildirimleri ve eskaleleri otomatikleştirin",
-            "f3": "Diğer modüllerle sorunsuz entegrasyon",
-            "f4": "Manuel veri girişini azaltın",
-            "f5": "Tetikleyici tabanlı otomasyon kuralları"
+            "f1": "Saatlik veya günlük rezervasyonlar için esnek planlama pencereleri",
+            "f2": "Eşzamanlı rezervasyon limitleri belirleyin; depozito, ön ödeme ve mahsuplaşmayı yönetin",
+            "f3": "Müsait olmayan slotları otomatik kontrol etmek için teknisyen takvimi entegrasyonu",
+            "f4": "Belirli sakin gruplarına erişimi kısıtlayın veya tesisleri sakinlerden gizleyin",
+            "f5": "Kalemler ve rezervasyon formlarında özel alanlar — her sürece uyarlanabilir"
           }
         },
         "timeCostTracking": {
-          "tag": "Zaman ve Maliyet Takibi",
-          "title": "Bütçe Optimizasyonu",
-          "description": "Finansal kontrolü ve verimliliği artırmak için görevlerde veya projelerde harcanan zamanı ve masrafları takip edin. Zaman ve masrafları kaydedin, detaylı raporlar oluşturun ve bütçelere karşı performansı izleyin.",
+          "tag": "Yapay Zeka Ajanı",
+          "title": "Yapay Zeka Ajanınız — Her Zaman Yanınızda, Her Zaman Hazır",
+          "description": "PropertyCareApp'in yapay zeka asistanı tüm yönetim panelinize gömülüdür — sadece bir chatbot değil, operasyonlarınızı anlayan ve adınıza hareket eden akıllı bir ekip arkadaşıdır.",
           "features": {
-            "f1": "Projeler için zaman ve masraf kaydı",
-            "f2": "Detaylı maliyet ve zaman raporları oluşturun",
-            "f3": "Bütçe belirleyin ve performansı izleyin",
-            "f4": "İşgücü maliyeti analizi",
-            "f5": "Takip edilen zamandan fatura oluşturma"
+            "f1": "Öğe oluşturma, koordinasyon ve yönetim için tüm yönetim panelinde size yardımcı olur",
+            "f2": "İş akışı optimizasyonları önerir ve değişiklikleri doğrudan adınıza uygular",
+            "f3": "Her işlemden önce geçmişi ve devam eden konuşmaları özetler ve inceler",
+            "f4": "En iyi aksiyonu önerir ve bir ajan olarak otonom şekilde uygular",
+            "f5": "Sizin için yanıt taslağı hazırlar ve onayınızdan sonra kullanıcının kendi dilinde gönderir"
           }
         },
         "allInOne": {
@@ -1399,8 +1399,8 @@
     },
     "aiMatching": {
       "sectionTitle": "Yapay Zeka Destekli",
-      "sectionTitleHighlight": "Görev Atama Motoru",
-      "subtitle": "Yapay zekamız teknisyen becerilerini, müsaitliğini ve iş yükünü analiz ederek bakım görevlerini doğru kişiye doğru zamanda otomatik olarak atar.",
+      "sectionTitleHighlight": "Bakım Asistanınız",
+      "subtitle": "Her zaman aktif yapay zeka asistanınızla tanışın. Sadece öneri sunmaz — bağlamı okur, operasyonlarınızı anlar ve tüm platform genelinde işleri halleder.",
       "assistantTitle": "Bakım Yapay Zekası",
       "assistantSubtitle": "Akıllı Görev Yönetimi",
       "conversation": {
@@ -1506,16 +1506,16 @@
       }
     },
     "testimonials": {
-      "sectionTitle": "Güvenen",
-      "sectionTitleHighlight": "bakım ekipleri",
-      "subtitle": "Tesis yöneticilerinin ve bakım profesyonellerinin PropertyCare hakkında söylediklerini görün.",
+      "sectionTitle": "Güvenilen",
+      "sectionTitleHighlight": "mülk yöneticileri",
+      "subtitle": "Tesis yöneticilerinin ve bakım profesyonellerinin PropertyCareApp hakkında ne söylediğini görün.",
       "roleAt": "{role}, {company}",
       "items": {
         "t1": {
           "author": "David Chen",
           "company": "Metro Properties",
           "role": "Tesis Direktörü",
-          "quote": "PropertyCare'ın bakım modülünü uyguladığımızdan beri ekipman arıza süresini %40 azalttık. Sadece önleyici bakım planlaması bile acil onarım maliyetlerinde bize binlerce tasarruf sağladı."
+          "quote": "PropertyCareApp'in bakım modülünü uyguladığımızdan beri ekipman arıza süresini %40 azalttık. Sadece önleyici bakım planlaması bile acil onarım maliyetlerinde bize binlerce lira tasarruf sağladı."
         },
         "t2": {
           "author": "Maria Santos",
@@ -1615,12 +1615,12 @@
       "breadcrumbPage": "Mülk Varlık ve Parça Yönetim Yazılımı"
     },
     "hero": {
-      "titleLine1": "Yeni Nesil",
-      "titleHighlight": "PM SaaS",
-      "titleLine2": "Varlıklar ve Parçalar için",
+      "titleLine1": "Yapay Zekaya Bırakın",
+      "titleHighlight": "Varlıklarınız ve Parçalarınız",
+      "titleLine2": "",
       "subtitle": "Varlıklar ve Parçalar modülü, QR kod tarama, envanter yönetimi ve otomatik satın alma emirleri ile ekipman yaşam döngünüzü takip etmenize, yönetmenize ve optimize etmenize yardımcı olur.",
       "startFreeTrial": "Ücretsiz Deneme Başlat",
-      "bookDemo": "Demo Rezervasyonu",
+      "bookDemo": "Demo Talep Edin",
       "keyFeatures": "Temel Özellikler",
       "badges": {
         "assetTracking": "Varlık Takibi",
@@ -1630,7 +1630,7 @@
         "locations": "Konumlar",
         "warranties": "Garantiler",
         "reports": "Raporlar",
-        "mobile": "Mobil"
+        "mobile": "Talepler"
       }
     },
     "videoShowcase": {
@@ -1654,9 +1654,9 @@
         "assetTracking": {
           "tag": "Varlık Takibi",
           "title": "Kolay Varlık Takibi",
-          "description": "Konumlar, Varlıklar ve Parçalar modülü ile konumları kolayca tanımlayabilir ve varlıkları belirlenen konumlarında sorunsuz takip edebilirsiniz. QR Kodu tarayarak garanti bilgisi, yaklaşık değer ve sorumlu personel gibi kapsamlı detaylara erişin.",
+          "description": "QR kodu tarayarak garanti bilgisi, yaklaşık değer ve her varlık için sorumlu personel gibi kapsamlı detaylara anında erişin.",
           "features": {
-            "f1": "Varlık konumlarını tanımlayın ve düzenleyin",
+            "f1": "Varlıkları tanımlayın ve düzenleyin",
             "f2": "Anında erişim için QR kod tarama",
             "f3": "Garanti ve değer bilgilerini takip edin",
             "f4": "Sorumlu personel atayın",
@@ -1688,15 +1688,15 @@
           }
         },
         "locationManagement": {
-          "tag": "Konum Yönetimi",
+          "tag": "Envanter",
           "title": "Alanlarınızı Düzenleyin",
-          "description": "Mülkleriniz, binalarınız, katlarınız ve odalarınız için hiyerarşik konum yapıları tanımlayın. Her konumdaki varlıkları takip edin ve tüm ekipman ve envanter için net bir organizasyon yapısı koruyun.",
+          "description": "Mülkleriniz, binalarınız, katlarınız ve odalarınız için hiyerarşik konum yapıları tanımlayın. Her konumdaki parçaları takip edin ve tüm ekipman ile envanter için net bir organizasyon yapısı koruyun.",
           "features": {
             "f1": "Hiyerarşik konum yapısı",
             "f2": "Bina ve kat haritalama",
-            "f3": "Varlık-konum ataması",
+            "f3": "Parça-konum ataması",
             "f4": "Konum bazlı raporlama",
-            "f5": "Kolay varlık taşıma takibi"
+            "f5": "Kolay parça taşıma takibi"
           }
         }
       },
@@ -1905,7 +1905,7 @@
     "testimonials": {
       "sectionTitle": "Güvenen",
       "sectionTitleHighlight": "varlık yöneticileri",
-      "subtitle": "Mülk yöneticileri ve envanter uzmanlarının PropertyCare hakkında söylediklerini görün.",
+      "subtitle": "Mülk yöneticilerinin ve envanter uzmanlarının PropertyCareApp hakkında ne söylediğini görün.",
       "roleAt": "{company} şirketinde {role}",
       "items": {
         "t1": {
@@ -2012,12 +2012,12 @@
       "breadcrumbPage": "İletişim Mülk Yazılımı"
     },
     "hero": {
-      "titleLine1": "Yeni Nesil",
-      "titleHighlight": "PM SaaS",
-      "titleLine2": "İletişim için",
+      "titleLine1": "Yapay Zeka Destekli",
+      "titleHighlight": "İletişim",
+      "titleLine2": "",
       "subtitle": "Sakin bağlantı platformumuzla bağlı bir topluluk oluşturun. Herkesi bilgilendiren ve etkileşimde tutan sohbetler, paylaşımlar, duyurular ve sanal etkinliklerle kesintisiz etkileşim sağlayın.",
       "startFreeTrial": "Ücretsiz Deneme Başlat",
-      "bookDemo": "Demo Rezervasyonu",
+      "bookDemo": "Demo Talep Edin",
       "keyFeatures": "Temel Özellikler",
       "badges": {
         "messaging": "Mesajlaşma",
