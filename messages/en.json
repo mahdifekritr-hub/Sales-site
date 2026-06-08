@@ -2093,6 +2093,18 @@
             "f4": "Recording and playback options",
             "f5": "Integrated chat during events"
           }
+        },
+        "liveChat": {
+          "tag": "Live Chat",
+          "title": "Real-Time Resident Chat with AI Moderation",
+          "description": "Residents chat together in real time — one-on-one or in custom groups. AI reads every conversation, joins discussions when helpful, and automatically blocks harmful or inappropriate messages.",
+          "features": {
+            "f1": "Real-time resident-to-resident messaging",
+            "f2": "Create public or private community groups",
+            "f3": "AI reads all conversations for context and safety",
+            "f4": "AI replies on behalf of management when appropriate",
+            "f5": "Automatic blocking of spam, abuse, and policy violations"
+          }
         }
       },
       "dashboard": {
@@ -2204,6 +2216,23 @@
             "title": "Book Club Meeting",
             "date": "Next Wed, 6PM",
             "status": "Upcoming"
+          }
+        }
+      },
+      "liveChatVisual": {
+        "neighborName": "Mike R.",
+        "neighborUnit": "Neighbor · Unit 8B",
+        "inputPlaceholder": "Type a message...",
+        "messages": {
+          "m1": {
+            "author": "You",
+            "text": "Tonight is full moon — r u agree to go pool and make barbecue?",
+            "time": "7:42 PM"
+          },
+          "m2": {
+            "author": "Mike R.",
+            "text": "Yes! Sounds amazing 🌕 Let's meet at the pool at 8!",
+            "time": "7:43 PM"
           }
         }
       }

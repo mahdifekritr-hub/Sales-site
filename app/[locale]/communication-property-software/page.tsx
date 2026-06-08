@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/landing/navbar";
 import { CommunicationHero } from "@/components/communication/hero";
-import { CommunicationVideoShowcase } from "@/components/communication/video-showcase";
 import { CommunicationSolutions } from "@/components/communication/solutions";
 import { CommunicationAIMatching } from "@/components/communication/ai-matching";
 import { CommunicationFeatures } from "@/components/communication/features";
@@ -82,7 +81,6 @@ export default async function CommunicationPage({ params }: LocalePageProps) {
       />
       <Navbar />
       <CommunicationHero />
-      <CommunicationVideoShowcase />
       <CommunicationSolutions />
       <CommunicationAIMatching />
       <CommunicationFeatures />

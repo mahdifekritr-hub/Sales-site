@@ -5,7 +5,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { CheckCircle2, Bot, Sparkles, ChevronRight, MessageSquare, Bell, Users, Video, Megaphone, Briefcase, Calendar, Settings } from "lucide-react";
 
-const solutionKeys = ["residentLink", "announcements", "jobBoard", "virtualEvents"] as const;
+const solutionKeys = ["residentLink", "announcements", "jobBoard", "virtualEvents", "liveChat"] as const;
 const featureKeys = ["f1", "f2", "f3", "f4", "f5"] as const;
 const conversationKeys = ["c1", "c2", "c3"] as const;
 const statKeys = ["activeChats", "announcements", "events"] as const;
@@ -13,6 +13,7 @@ const actionKeys = ["email", "sms", "push", "allChannels"] as const;
 const channelKeys = ["ch1", "ch2", "ch3", "ch4"] as const;
 const postKeys = ["p1", "p2", "p3"] as const;
 const eventKeys = ["e1", "e2", "e3"] as const;
+const chatMessageKeys = ["m1", "m2"] as const;
 
 const channelEmojis = ["📧", "📱", "🔔", "💬"];
 const channelRecipientCounts = [156, 142, 134, 156];
@@ -444,6 +445,145 @@ function CommunityFeedVisual() {
   );
 }
 
+function LiveChatVisual() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [showTyping, setShowTyping] = useState(false);
+  const t = useTranslations("communicationPage.solutions.liveChatVisual");
+
+  const messages = chatMessageKeys.map((key) => ({
+    author: t(`messages.${key}.author`),
+    text: t(`messages.${key}.text`),
+    time: t(`messages.${key}.time`),
+    isOutgoing: key === "m1",
+  }));
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let timers: ReturnType<typeof setTimeout>[] = [];
+
+    const clearAllTimers = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+    };
+
+    const runCycle = () => {
+      clearAllTimers();
+      setVisibleCount(0);
+      setShowTyping(false);
+
+      timers.push(setTimeout(() => setVisibleCount(1), 800));
+      timers.push(setTimeout(() => setShowTyping(true), 2200));
+      timers.push(setTimeout(() => {
+        setShowTyping(false);
+        setVisibleCount(2);
+      }, 3200));
+    };
+
+    runCycle();
+    const loop = setInterval(runCycle, 5000);
+
+    return () => {
+      clearAllTimers();
+      clearInterval(loop);
+    };
+  }, [isInView]);
+
+  return (
+    <div ref={ref} className="relative">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl">
+        <div className="flex h-[280px] sm:h-[300px] flex-col">
+          <div className="flex items-center gap-2 border-b border-border/50 px-3 py-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary/30 to-accent/30 text-xs font-semibold">
+              {t("neighborName").charAt(0)}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-semibold truncate">{t("neighborName")}</div>
+              <div className="text-[9px] text-muted-foreground">{t("neighborUnit")}</div>
+            </div>
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="h-2 w-2 rounded-full bg-chart-4"
+            />
+          </div>
+
+          <div className="flex flex-1 flex-col justify-end space-y-2 overflow-hidden p-3">
+            <AnimatePresence mode="popLayout">
+              {messages.slice(0, visibleCount).map((message, index) => (
+                <motion.div
+                  key={`${message.author}-${index}`}
+                  initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className={`flex ${message.isOutgoing ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-[88%] rounded-xl px-2.5 py-1.5 ${
+                      message.isOutgoing
+                        ? "rounded-tr-sm bg-primary text-primary-foreground"
+                        : "rounded-tl-sm bg-secondary/80"
+                    }`}
+                  >
+                    {!message.isOutgoing && (
+                      <span className="mb-0.5 block text-[8px] font-medium text-muted-foreground">
+                        {message.author}
+                      </span>
+                    )}
+                    <p className="text-[10px] leading-relaxed">{message.text}</p>
+                    <span className={`text-[8px] ${message.isOutgoing ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                      {message.time}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {showTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  className="flex justify-start"
+                >
+                  <div className="flex items-center gap-1.5 rounded-xl rounded-tl-sm bg-secondary/80 px-3 py-2">
+                    <span className="text-[8px] text-muted-foreground">{t("neighborName")}</span>
+                    <div className="flex gap-0.5">
+                      {[0, 0.15, 0.3].map((delay, i) => (
+                        <motion.div
+                          key={i}
+                          className="h-1.5 w-1.5 rounded-full bg-muted-foreground/50"
+                          animate={{ y: [0, -3, 0] }}
+                          transition={{ repeat: Infinity, duration: 0.6, delay }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <div className="border-t border-border/50 bg-secondary/20 p-2">
+            <div className="flex items-center gap-2 rounded-lg border border-border/50 bg-card/80 px-2.5 py-1.5">
+              <span className="flex-1 text-[9px] text-muted-foreground">{t("inputPlaceholder")}</span>
+              <motion.div
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 1 }}
+                className="h-3 w-0.5 rounded-full bg-primary"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function VirtualEventVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -529,14 +669,8 @@ export function CommunicationSolutions() {
     <AnnouncementVisual key="announcement" />,
     <CommunityFeedVisual key="community" />,
     <VirtualEventVisual key="events" />,
+    <LiveChatVisual key="liveChat" />,
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % solutionData.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [solutionData.length]);
 
   return (
     <section id="solutions" className="relative py-16 sm:py-24 lg:py-32" ref={ref}>

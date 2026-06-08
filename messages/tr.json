@@ -2094,6 +2094,18 @@
             "f4": "Kayıt alma ve tekrar izleme seçenekleri",
             "f5": "Etkinlik sırasında entegre sohbet"
           }
+        },
+        "liveChat": {
+          "tag": "Canlı Sohbet",
+          "title": "YZ Moderasyonlu Gerçek Zamanlı Sakin Sohbeti",
+          "description": "Sakinler gerçek zamanlı sohbet eder — bire bir veya özel gruplar halinde. Yapay zeka her konuşmayı okur, gerektiğinde tartışmalara katılır ve zararlı veya uygunsuz mesajları otomatik olarak engeller.",
+          "features": {
+            "f1": "Sakinler arası gerçek zamanlı mesajlaşma",
+            "f2": "Herkese açık veya özel topluluk grupları oluşturma",
+            "f3": "YZ tüm konuşmaları bağlam ve güvenlik için okur",
+            "f4": "YZ gerektiğinde yönetim adına yanıt verir",
+            "f5": "Spam, kötüye kullanım ve politika ihlallerinin otomatik engellenmesi"
+          }
         }
       },
       "dashboard": {
@@ -2205,6 +2217,23 @@
             "title": "Kitap Kulübü Buluşması",
             "date": "Gelecek Çarşamba, 18:00",
             "status": "Yaklaşan"
+          }
+        }
+      },
+      "liveChatVisual": {
+        "neighborName": "Mike R.",
+        "neighborUnit": "Komşu · Daire 8B",
+        "inputPlaceholder": "Mesaj yazın...",
+        "messages": {
+          "m1": {
+            "author": "Sen",
+            "text": "Bu gece dolunay — havuza gidip mangal yapalım mı?",
+            "time": "19:42"
+          },
+          "m2": {
+            "author": "Mike R.",
+            "text": "Evet! Harika fikir 🌕 Saat 8'de havuzda buluşalım!",
+            "time": "19:43"
           }
         }
       }
