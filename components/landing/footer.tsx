@@ -11,14 +11,14 @@ const footerLinksData = {
   Company: {
     key: "company",
     links: [
-      { key: "propertyManagers", href: "https://propertycareapp.com/ai-powered-property-management/" },
+      { key: "propertyManagers", href: "https://blog.propertycareapp.com/en/article/ai-powered-property-management" },
       { key: "salesRentalOffices", href: "https://propertycareapp.com/smart-property-sales-system/" },
-      { key: "realStates", href: "https://propertycareapp.com/digital-marketing-strategies-that-drive-more-leads-for-real-estate-agencies/" },
-      { key: "propertyOwners", href: "https://propertycareapp.com/improving-owner-tenant-communication-through-digital-property-management-tools/" },
-      { key: "facilityManagers", href: "https://propertycareapp.com/predicting-and-preventing-failures-using-data-and-analytics-in-facility-management/" },
-      { key: "securityManagers", href: "https://propertycareapp.com/integrating-security-systems-with-property-management-software-best-practices-for-monitoring-and-reporting/" },
-      { key: "condosCoops", href: "https://propertycareapp.com/the-future-of-condo-co-op-management-how-digital-platforms-reduce-board-workload/" },
-      { key: "hoasCommunities", href: "https://propertycareapp.com/improving-hoa-resident-communication-with-app-based-platforms/" },
+      { key: "realStates", href: "https://blog.propertycareapp.com/en/article/digital-marketing-strategies-that-drive-more-leads-for-real-estate" },
+      { key: "propertyOwners", href: "https://blog.propertycareapp.com/en/article/improving-owner-tenant-communication-through-digital-property-management-tools" },
+      { key: "facilityManagers", href: "https://blog.propertycareapp.com/en/article/predicting-and-preventing-failures-using-data-and-analytics-in-facility-management" },
+      { key: "securityManagers", href: "https://blog.propertycareapp.com/en/article/integrating-security-systems-with-property-management-software-best-practices-for-monitoring-and-reporting" },
+      { key: "condosCoops", href: "https://blog.propertycareapp.com/en/article/the-future-of-condo-co-op-management-how-digital-platforms-reduce-board-workload" },
+      { key: "hoasCommunities", href: "https://blog.propertycareapp.com/en/article/improving-hoa-resident-communication-with-app-based-platforms/" },
     ],
   },
   Resources: {
