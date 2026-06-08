@@ -11,7 +11,7 @@ export function MaintenanceVideoShowcase() {
   const [isPlaying, setIsPlaying] = useState(false);
   const t = useTranslations("maintenancePage.videoShowcase");
 
-  const videoId = "yA8iXWZHHOQ";
+  const videoId = t("videoId");
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (

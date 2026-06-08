@@ -93,7 +93,7 @@
   "testimonials": {
     "sectionTitle": "Loved by",
     "sectionTitleHighlight": "industry leaders",
-    "subtitle": "See what property management professionals say about PropertyCare.",
+    "subtitle": "See what property management professionals say about PropertyCareApp.",
     "items": {
       "ali": {
         "quote": "Before this platform, we were managing unit reservations across spreadsheets and dealing with double-bookings almost every week. Three months in — not a single conflict. Our contract closing time has been cut in half.",
@@ -112,7 +112,7 @@
   "faq": {
     "sectionTitle": "Frequently Asked",
     "sectionTitleHighlight": "Questions",
-    "subtitle": "Everything you need to know about PropertyCare. Have a question not listed? Contact our support team.",
+    "subtitle": "Everything you need to know about PropertyCareApp. Have a question not listed? Contact our support team.",
     "stillHaveQuestions": "Still have questions?",
     "getInTouch": "Get in touch with our team",
     "items": {
@@ -471,7 +471,7 @@
   "videoShowcase": {
     "sectionTitle": "Watch how",
     "sectionTitleHighlight": "PropertyCareApp",
-    "sectionTitleEnd": "Revolutionizes Your Sales",
+    "sectionTitleEnd": "Revolutionizes Your Maintenance",
     "subtitle": "Discover how our platform streamlines your workflow, automates tedious tasks, and helps you close deals faster.",
     "productDemo": "Product Demo"
   },
@@ -494,7 +494,7 @@
       "step6": "Parking, balcony, and modern kitchen",
       "step7": "I found 12 matches with 3 perfect fits. Here are my top recommendations..."
     },
-    "propertyCareAI": "PropertyCare AI",
+    "propertyCareAI": "PropertyCareApp AI",
     "smartPropertyMatching": "Smart Property Matching",
     "continueConversation": "Continue conversation →",
     "restartDemo": "Restart demo",
@@ -527,7 +527,7 @@
       "ArakTowers"
     ],
     "dashboard": {
-      "title": "PropertyCare Dashboard",
+      "title": "PropertyCareApp Dashboard",
       "subtitle": "Real-time Overview",
       "revenueTrend": "Revenue Trend",
       "periods": [
@@ -952,7 +952,7 @@
     }
   },
   "whyChooseUs": {
-    "badge": "Why PropertyCare",
+    "badge": "Why PropertyCareApp",
     "title": "Built for Scale, Designed for You",
     "subtitle": "We combine enterprise-grade reliability with an intuitive experience that your team will love.",
     "items": {
@@ -1143,7 +1143,7 @@
   "homeTestimonials": {
     "badge": "Customer Stories",
     "title": "Loved by Property Managers",
-    "subtitle": "See what our customers have to say about their experience with PropertyCare.",
+    "subtitle": "See what our customers have to say about their experience with PropertyCareApp.",
     "items": {
       "testimonial1": {
         "quote": "This platform has completely transformed how we manage our building operations. The intuitive features and seamless communication tools have made our lives so much easier. The AI assistant is a game-changer!"
@@ -1155,7 +1155,7 @@
         "quote": "The maintenance module alone saved us countless hours every week. The automated scheduling and vendor coordination features are exactly what we needed."
       },
       "testimonial4": {
-        "quote": "PropertyCare's CRM has revolutionized our sales process. We've closed 40% more deals since implementing the platform. The reporting features give us insights we never had before."
+        "quote": "PropertyCareApp's CRM has revolutionized our sales process. We've closed 40% more deals since implementing the platform. The reporting features give us insights we never had before."
       }
     }
   },
@@ -1182,23 +1182,23 @@
       "breadcrumbHome": "Home",
       "breadcrumbPage": "Facilities Maintenance Software"
     },
-    "hero": {
+"hero": {
       "titleLine1": "Next Generation",
       "titleHighlight": "PM SaaS",
-      "titleLine2": "for Maintenance",
-      "subtitle": "The maintenance module helps you streamline preventive and corrective maintenance tasks, ensuring equipment and facilities remain in optimal working condition with automatic scheduling and performance tracking.",
+      "titleLine2": "",
+      "subtitle": "Our AI-powered platform transforms building operations — from intelligent maintenance automation to data-driven insights that help your team scale without limits.",
       "startFreeTrial": "Start Free Trial",
       "bookDemo": "Book a Demo",
-      "keyFeatures": "Key Features",
+      "keyFeatures": "INTEGRATIONS",
       "badges": {
-        "workOrders": "Work Orders",
-        "scheduling": "Scheduling",
-        "checklists": "Checklists",
-        "tracking": "Tracking",
-        "automation": "Automation",
-        "vendors": "Vendors",
-        "reports": "Reports",
-        "mobile": "Mobile"
+        "workOrders": "Quick Books",
+        "scheduling": "Google Calendar",
+        "checklists": "Amazon Hub",
+        "tracking": "Zego",
+        "automation": "Expert Texting",
+        "vendors": "FCM",
+        "reports": "Google Analytics",
+        "mobile": "Stripe"
       }
     },
     "videoShowcase": {
@@ -1206,6 +1206,7 @@
       "sectionTitleHighlight": "maintenance automation",
       "sectionTitleEnd": "streamlines operations",
       "subtitle": "Discover how our platform automates work orders, schedules preventive maintenance, and helps your team work more efficiently.",
+      "videoId": "r_GL9_s77n8",
       "videoThumbnailAlt": "Video thumbnail",
       "playVideo": "Play video",
       "productDemo": "Maintenance Demo",
@@ -1218,50 +1219,49 @@
       "items": {
         "workOrders": {
           "tag": "Work Orders",
-          "title": "Ensure Timely Tasks",
-          "description": "Work orders allow you to assign, monitor, and complete tasks efficiently, ensuring that the right work gets done on time. Create, assign, and prioritize work orders with real-time progress tracking and automated approval workflows.",
+          "title": "The Most Complete Work Order Module",
+          "description": "From QR code scanning to automated inventory tracking, PropertyCareApp's Work Order covers every detail — so nothing falls through the cracks.",
           "features": {
-            "f1": "Create, assign, and prioritize work orders",
-            "f2": "Track progress in real-time with detailed reports",
-            "f3": "Automate work order approval workflows",
-            "f4": "Mobile-friendly task management",
-            "f5": "Instant notifications to assigned technicians"
+            "f1": "19 structured sections + Custom Fields for any operational need",
+            "f2": "Auto-deduct inventory, notify vendors, and manage multi-warehouse stock",
+            "f3": "Scan any asset's QR code to instantly create a Work Order",
+            "f4": "Assign to a team, a lead technician, or multiple supporting techs",
+            "f5": "Real-time progress tracking with automated approval workflows"
           }
         },
         "workRequests": {
-          "tag": "Work Requests",
-          "title": "Online Request Approvals",
-          "description": "Streamline the request submission process with online approvals. Tenants and staff can submit maintenance requests that are automatically routed to the right team members for quick action and resolution.",
+          "tag": "Workflow Automation",
+          "title": "Your Workflow, Your Rules",
+          "description": "PropertyCareApp's built-in Business Process Management System gives you full control over every step of your maintenance workflow — from who sees what, to who can act and when.",
           "features": {
-            "f1": "Online request submission portal",
-            "f2": "Automatic routing to appropriate teams",
-            "f3": "Request prioritization and categorization",
-            "f4": "Status tracking for requesters",
-            "f5": "Approval workflow automation"
-          }
+            "f1": "Role-based access: control which roles can view, edit, or act on each status",
+            "f2": "Per-role, per-status behavior for all 19 form sections — editable or view-only",
+            "f3": "Define exactly which roles can change statuses and where they can move them",
+            "f4": "Full activity logs for complete transparency across your team",
+            "f5": "Built-in commenting and user mentions for seamless collaboration"          }
         },
         "workflowAutomation": {
-          "tag": "Workflow Automation",
-          "title": "Streamline Your Workflows",
-          "description": "Automate repetitive workflows to save time, minimize errors, and keep processes running smoothly across your organization. Create custom workflows for task automation with seamless integration across modules.",
+          "tag": "Booking System",
+          "title": "Let Residents Book Amenities",
+          "description": "Give residents a seamless way to reserve shared spaces and facilities, while staying in full control of capacity, payments, and access rules.",
           "features": {
-            "f1": "Create custom workflows for task automation",
-            "f2": "Automate approvals, notifications, and escalations",
-            "f3": "Seamlessly integrate with other modules",
-            "f4": "Reduce manual data entry",
-            "f5": "Trigger-based automation rules"
+            "f1": "Flexible scheduling with custom booking windows — hourly or daily reservations",
+            "f2": "Set concurrent booking limits and manage deposits, prepayments, and settlements",
+            "f3": "Technician calendar integration to automatically check and block unavailable slots",
+            "f4": "Restrict access to specific resident groups or hide amenities from residents entirely",
+            "f5": "Custom Fields on items and booking forms — fully adaptable to any process"
           }
         },
         "timeCostTracking": {
-          "tag": "Time & Cost Tracking",
-          "title": "Budget Optimization",
-          "description": "Track time spent and expenses incurred on tasks or projects to improve financial control and efficiency. Log time and expenses, generate detailed reports, and monitor performance against budgets.",
+          "tag": "AI Agent",
+          "title": "Your AI Agent — Always Present, Always Ready",
+          "description": "PropertyCareApp's AI agent is embedded across your entire admin panel — not just a chatbot, but an intelligent co-worker that understands your operations and acts on your behalf.",
           "features": {
-            "f1": "Log time and expenses for projects",
-            "f2": "Generate detailed cost and time reports",
-            "f3": "Set budgets and monitor performance",
-            "f4": "Labor cost analysis",
-            "f5": "Invoice generation from tracked time"
+            "f1": "Assists you across the entire admin panel to create, coordinate, and manage items",
+            "f2": "Suggests workflow optimizations and applies changes directly on your behalf",
+            "f3": "Summarize and review history and ongoing conversations before every action",
+            "f4": "Suggests the best course of action and executes it autonomously as an agent",
+            "f5": "Draft responses for you and sends them inxzx the user's own language after approval"
           }
         }
       },
@@ -1359,8 +1359,8 @@
     },
     "aiMatching": {
       "sectionTitle": "AI-Powered",
-      "sectionTitleHighlight": "Task Assignment Engine",
-      "subtitle": "Our AI analyzes technician skills, availability, and workload to automatically assign maintenance tasks to the right person at the right time.",
+      "sectionTitleHighlight": "Your Maintenance Agent",
+      "subtitle": "Meet your always-on AI agent. It doesn't just suggest — it reads the context, understands your operations, and gets the work done across your entire platform.",
       "assistantTitle": "Maintenance AI",
       "assistantSubtitle": "Smart Task Management",
       "conversation": {
@@ -1467,15 +1467,15 @@
     },
     "testimonials": {
       "sectionTitle": "Trusted by",
-      "sectionTitleHighlight": "maintenance teams",
-      "subtitle": "See what facility managers and maintenance professionals say about PropertyCare.",
+      "sectionTitleHighlight": "Property Managers",
+      "subtitle": "See what facility managers and maintenance professionals say about PropertyCareApp.",
       "roleAt": "{role} at {company}",
       "items": {
         "t1": {
           "author": "David Chen",
           "company": "Metro Properties",
           "role": "Facility Director",
-          "quote": "Since implementing PropertyCare's maintenance module, we've reduced equipment downtime by 40%. The preventive maintenance scheduling alone has saved us thousands in emergency repair costs."
+          "quote": "Since implementing PropertyCareApp's maintenance module, we've reduced equipment downtime by 40%. The preventive maintenance scheduling alone has saved us thousands in emergency repair costs."
         },
         "t2": {
           "author": "Maria Santos",
@@ -1863,7 +1863,7 @@
     "testimonials": {
       "sectionTitle": "Trusted by",
       "sectionTitleHighlight": "asset managers",
-      "subtitle": "See what property managers and inventory professionals say about PropertyCare.",
+      "subtitle": "See what property managers and inventory professionals say about PropertyCareApp.",
       "roleAt": "{role} at {company}",
       "items": {
         "t1": {
