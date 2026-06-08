@@ -61,11 +61,11 @@ export function Navbar() {
         <div className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-border/50 bg-background/80 px-6 backdrop-blur-xl">
           <Link href="/" className="flex items-center" aria-label="PropertyCareApp home">
             <Image
-              src="/logo (2).png"
-              alt="Company Logo"
-              width={214}
-              height={80}
-              className="h-20 w-auto object-contain"
+              src="/property-logo.svg"
+              alt="PropertyFlow"
+              width={380}
+              height={96}
+              className="h-52 w-auto object-contain"
               priority
             />
           </Link>
