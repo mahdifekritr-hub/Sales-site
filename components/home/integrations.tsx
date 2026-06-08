@@ -23,7 +23,7 @@ const integrations = [
   },
   {
     name: "ZEGO",
-    logo: "https://www.zegocloud.com/favicon.svg",
+    logo: "/zego.png",
     rotation: 5,
   },
   {
@@ -38,12 +38,12 @@ const integrations = [
   },
   {
     name: "Amazon Hub",
-    logo: "https://cdn.worldvectorlogo.com/logos/amazon-icon-1.svg",
+    logo: "/amazon-hub.png",
     rotation: -5,
   },
   {
     name: "ExpertTexting",
-    logo: "https://cdn.worldvectorlogo.com/logos/sms-1.svg",
+    logo: "/expert-texting-logo.png",
     rotation: 2,
   },
   {
@@ -193,7 +193,7 @@ export function HomeIntegrations() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-serif italic tracking-tight text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground"
           >
             {t("title")}
           </motion.h2>
