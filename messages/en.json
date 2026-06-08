@@ -1263,6 +1263,18 @@
             "f4": "Suggests the best course of action and executes it autonomously as an agent",
             "f5": "Draft responses for you and sends them inxzx the user's own language after approval"
           }
+        },
+        "allInOne": {
+          "tag": "All In One",
+          "title": "One Platform for Your Entire Property",
+          "description": "PropertyCareApp unites Residence Care, Assets, Parts, Communication, and Sales & Rentals in a single platform — so your team works from one workspace with shared data, workflows, and AI across every module.",
+          "features": {
+            "f1": "Residence Care — work orders, amenity bookings, and resident operations",
+            "f2": "Assets — full lifecycle tracking with QR codes and service history",
+            "f3": "Parts — inventory and stock management integrated with maintenance",
+            "f4": "Communication — announcements, community feed, and resident engagement",
+            "f5": "Sales & Rentals — unit sales, leasing, and reservation management"
+          }
         }
       },
       "dashboard": {
@@ -1353,6 +1365,33 @@
             "task": "Fire Alarm Testing",
             "location": "All Buildings",
             "type": "Safety"
+          }
+        }
+      },
+      "allInOneVisual": {
+        "title": "PropertyCareApp Platform",
+        "subtitle": "5 integrated modules",
+        "connected": "All connected",
+        "modules": {
+          "m1": {
+            "name": "Residence Care",
+            "description": "Work orders & resident ops"
+          },
+          "m2": {
+            "name": "Assets",
+            "description": "Lifecycle & QR tracking"
+          },
+          "m3": {
+            "name": "Parts",
+            "description": "Inventory & stock"
+          },
+          "m4": {
+            "name": "Communication",
+            "description": "Announcements & community"
+          },
+          "m5": {
+            "name": "Sales & Rentals",
+            "description": "Sales, leasing & reservations"
           }
         }
       }

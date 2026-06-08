@@ -1264,6 +1264,18 @@
             "f4": "İşgücü maliyeti analizi",
             "f5": "Takip edilen zamandan fatura oluşturma"
           }
+        },
+        "allInOne": {
+          "tag": "Hepsi Bir Arada",
+          "title": "Tüm Mülkünüz İçin Tek Platform",
+          "description": "PropertyCareApp; Residence Care, Varlıklar, Parçalar, İletişim ve Satış & Kiralama modüllerini tek bir platformda birleştirir — ekibiniz paylaşılan veriler, iş akışları ve yapay zeka ile tek bir çalışma alanından yönetir.",
+          "features": {
+            "f1": "Residence Care — iş emirleri, tesis rezervasyonları ve sakin operasyonları",
+            "f2": "Varlıklar — QR kodları ve servis geçmişi ile tam yaşam döngüsü takibi",
+            "f3": "Parçalar — bakım ile entegre envanter ve stok yönetimi",
+            "f4": "İletişim — duyurular, topluluk akışı ve sakin etkileşimi",
+            "f5": "Satış & Kiralama — birim satışı, kiralama ve rezervasyon yönetimi"
+          }
         }
       },
       "dashboard": {
@@ -1354,6 +1366,33 @@
             "task": "Yangın Alarmı Testi",
             "location": "Tüm Binalar",
             "type": "Güvenlik"
+          }
+        }
+      },
+      "allInOneVisual": {
+        "title": "PropertyCareApp Platformu",
+        "subtitle": "5 entegre modül",
+        "connected": "Hepsi bağlı",
+        "modules": {
+          "m1": {
+            "name": "Residence Care",
+            "description": "İş emirleri ve sakin operasyonları"
+          },
+          "m2": {
+            "name": "Varlıklar",
+            "description": "Yaşam döngüsü ve QR takibi"
+          },
+          "m3": {
+            "name": "Parçalar",
+            "description": "Envanter ve stok"
+          },
+          "m4": {
+            "name": "İletişim",
+            "description": "Duyurular ve topluluk"
+          },
+          "m5": {
+            "name": "Satış & Kiralama",
+            "description": "Satış, kiralama ve rezervasyon"
           }
         }
       }

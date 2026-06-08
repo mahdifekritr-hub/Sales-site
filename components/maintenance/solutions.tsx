@@ -3,9 +3,10 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { CheckCircle2, Bot, Sparkles, ChevronRight, User, Wrench, ClipboardList, Calendar, BarChart3, AlertTriangle, Settings } from "lucide-react";
+import { CheckCircle2, Bot, Sparkles, ChevronRight, User, Wrench, ClipboardList, Calendar, BarChart3, AlertTriangle, Settings, Package, Boxes, MessageSquare, Building2 } from "lucide-react";
 
-const solutionKeys = ["workOrders", "workRequests", "workflowAutomation", "timeCostTracking"] as const;
+const solutionKeys = ["workOrders", "workRequests", "workflowAutomation", "timeCostTracking", "allInOne"] as const;
+const moduleKeys = ["m1", "m2", "m3", "m4", "m5"] as const;
 const featureKeys = ["f1", "f2", "f3", "f4", "f5"] as const;
 const workOrderKeys = ["wo1", "wo2", "wo3"] as const;
 const checklistKeys = ["c1", "c2", "c3", "c4", "c5"] as const;
@@ -432,6 +433,128 @@ function VendorVisual() {
   );
 }
 
+const moduleIcons = [Wrench, Package, Boxes, MessageSquare, Building2];
+
+function AllInOneVisual() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [activeModule, setActiveModule] = useState(0);
+  const t = useTranslations("maintenancePage.solutions.allInOneVisual");
+
+  const modules = moduleKeys.map((key, index) => ({
+    key,
+    icon: moduleIcons[index],
+    name: t(`modules.${key}.name`),
+    description: t(`modules.${key}.description`),
+  }));
+
+  useEffect(() => {
+    if (!isInView) return;
+    const interval = setInterval(() => {
+      setActiveModule((prev) => (prev + 1) % modules.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isInView, modules.length]);
+
+  return (
+    <div ref={ref} className="relative">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/80 shadow-xl p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+              <Sparkles className="h-4 w-4 text-primary" />
+            </div>
+            <div>
+              <div className="text-sm font-semibold">{t("title")}</div>
+              <div className="text-xs text-muted-foreground">{t("subtitle")}</div>
+            </div>
+          </div>
+          <span className="rounded-full bg-chart-4/10 px-2 py-0.5 text-[10px] font-medium text-chart-4">
+            {t("connected")}
+          </span>
+        </div>
+
+        <div className="relative mb-4 flex items-center justify-center py-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="h-32 w-32 rounded-full border border-primary/10" />
+            <div className="absolute h-44 w-44 rounded-full border border-dashed border-primary/20" />
+          </div>
+
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/20"
+          >
+            <span className="text-[9px] font-bold text-primary-foreground text-center leading-tight px-1">
+              PCA
+            </span>
+          </motion.div>
+
+          {modules.map((module, index) => {
+            const angle = (index / modules.length) * 2 * Math.PI - Math.PI / 2;
+            const x = Math.cos(angle) * 88;
+            const y = Math.sin(angle) * 72;
+            const Icon = module.icon;
+
+            return (
+              <motion.div
+                key={module.key}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: index * 0.1 }}
+                className="absolute"
+                style={{ transform: `translate(${x}px, ${y}px)` }}
+              >
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all ${
+                    activeModule === index
+                      ? "border-primary bg-primary/10 shadow-md shadow-primary/10"
+                      : "border-border/50 bg-secondary/50"
+                  }`}
+                >
+                  <Icon className={`h-4 w-4 ${activeModule === index ? "text-primary" : "text-muted-foreground"}`} />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="space-y-2">
+          {modules.map((module, index) => {
+            const Icon = module.icon;
+            return (
+              <motion.div
+                key={module.key}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.08 }}
+                className={`flex items-center gap-2 rounded-lg p-2 transition-colors ${
+                  activeModule === index ? "bg-primary/5 border border-primary/20" : "bg-secondary/30"
+                }`}
+              >
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <Icon className="h-3.5 w-3.5 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs font-medium">{module.name}</div>
+                  <div className="text-[10px] text-muted-foreground truncate">{module.description}</div>
+                </div>
+                {activeModule === index && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="h-2 w-2 rounded-full bg-primary"
+                  />
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ScheduleVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -514,6 +637,7 @@ export function MaintenanceSolutions() {
     <ChecklistVisual key="checklist" />,
     <VendorVisual key="vendor" />,
     <ScheduleVisual key="schedule" />,
+    <AllInOneVisual key="allInOne" />,
   ];
 
   return (
