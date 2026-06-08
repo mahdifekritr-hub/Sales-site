@@ -11,8 +11,10 @@ export function AssetsVideoShowcase() {
   const [isPlaying, setIsPlaying] = useState(false);
   const t = useTranslations("assetsPage.videoShowcase");
 
-  const videoId = "yA8iXWZHHOQ";
+  const videoId = t("videoId");
+  const videoStart = t("videoStart");
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1${videoStart ? `&start=${videoStart}` : ""}`;
 
   return (
     <section
@@ -113,7 +115,7 @@ export function AssetsVideoShowcase() {
                 </>
               ) : (
                 <iframe
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  src={embedSrc}
                   title={t("iframeTitle")}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

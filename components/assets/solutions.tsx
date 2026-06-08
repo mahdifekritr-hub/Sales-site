@@ -5,7 +5,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { CheckCircle2, Bot, Sparkles, ChevronRight, Package, QrCode, MapPin, BarChart3, DollarSign, Settings, Boxes } from "lucide-react";
 
-const solutionKeys = ["assetTracking", "partsInventory", "purchaseOrders", "locationManagement"] as const;
+const solutionKeys = ["assetTracking", "partsInventory", "locationManagement", "purchaseOrders"] as const;
 const featureKeys = ["f1", "f2", "f3", "f4", "f5"] as const;
 const assetKeys = ["a1", "a2", "a3"] as const;
 const statKeys = ["active", "maintenance", "retired"] as const;
@@ -595,16 +595,9 @@ export function AssetsSolutions() {
   const visualComponents = [
     <AssetDashboardVisual key="dashboard" />,
     <InventoryVisual key="inventory" />,
-    <QRCodeVisual key="qrcode" />,
     <LocationMapVisual key="location" />,
+    <QRCodeVisual key="qrcode" />,
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % solutionData.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [solutionData.length]);
 
   return (
     <section id="solutions" className="relative py-16 sm:py-24 lg:py-15" ref={ref}>
