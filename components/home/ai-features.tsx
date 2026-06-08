@@ -15,6 +15,10 @@ import {
   Send,
   CheckCircle2,
   Brain,
+  FilePlus2,
+  UserCheck,
+  Calendar,
+  Wrench,
 } from "lucide-react";
 
 const aiFeatures = [
@@ -37,8 +41,16 @@ export function AIFeaturesSection() {
 
   // Simulated chat messages
   const chatMessages = [
-    { role: "user", text: "Show me pending maintenance requests" },
-    { role: "ai", text: "I found 12 pending maintenance requests. 3 are high priority. Would you like me to assign them to available technicians?" },
+    { role: "user", text: "Summarize my last negotiation with Mr. Johnson" },
+    { role: "ai", text: "Client is interested in unit 12F. Main concerns: parking availability and early handover. Last session was close to agreement." },
+  ];
+
+  // Workflow steps shown in the second AI response card
+  const workflowSteps = [
+    { icon: FilePlus2, text: "Resident submits maintenance request" },
+    { icon: UserCheck, text: "Owner reviews and approves" },
+    { icon: Calendar, text: "Resident is asked for available time slots" },
+    { icon: Wrench, text: "Request assigned to technician" },
   ];
 
   // Typing animation
@@ -237,24 +249,99 @@ export function AIFeaturesSection() {
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/20">
                       <Sparkles className="h-4 w-4 text-primary" />
                     </div>
-                    <div className="max-w-[85%]">
-                      <div className="rounded-2xl rounded-tl-md bg-card/80 border border-border/30 px-4 py-3 text-sm shadow-md">
-                        {chatMessages[1].text}
+                    <div className="flex-1 min-w-0 space-y-4">
+                      {/* Negotiation summary card */}
+                      <div className="rounded-2xl rounded-tl-md bg-card/80 border border-border/30 px-4 py-3 shadow-md">
+                        <div className="text-xs font-semibold text-primary mb-1.5">Summary — 4 sessions</div>
+                        <p className="text-sm text-foreground">{chatMessages[1].text}</p>
+                        {/* Quick action buttons */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {["Send as reply", "Next steps"].map((action, i) => (
+                            <motion.button
+                              key={action}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.2 + i * 0.1 }}
+                              className="text-xs px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                            >
+                              {action}
+                            </motion.button>
+                          ))}
+                        </div>
                       </div>
-                      {/* Quick action buttons */}
-                      <div className="flex flex-wrap gap-2 mt-3">
-                        {["Assign All", "View List", "Priority Only"].map((action, i) => (
-                          <motion.button
-                            key={action}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2 + i * 0.1 }}
-                            className="text-xs px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                          >
-                            {action}
-                          </motion.button>
-                        ))}
-                      </div>
+
+                      {/* Deal probability card */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="rounded-2xl rounded-tl-md bg-card/80 border border-border/30 px-4 py-3 shadow-md"
+                      >
+                        <div className="text-xs font-semibold text-primary mb-2">Deal probability</div>
+                        <div className="rounded-xl border border-border/30 bg-secondary/20 px-3 py-3">
+                          <div className="text-sm text-foreground mb-2">Based on negotiation history</div>
+                          <div className="h-2 w-full rounded-full bg-secondary/60 overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: "74%" }}
+                              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                              className="h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.45_0.18_340)]"
+                            />
+                          </div>
+                          <div className="text-sm font-semibold text-primary mt-2">74% likely to close</div>
+                        </div>
+                      </motion.div>
+
+                      {/* Second user message */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="flex justify-end"
+                      >
+                        <div className="max-w-[90%] rounded-2xl rounded-br-md bg-gradient-to-r from-primary to-[oklch(0.45_0.18_340)] px-4 py-3 text-primary-foreground text-sm shadow-lg">
+                          Update the maintenance request workflow — after owner approval, ask the resident for available time slots, then assign to a technician.
+                        </div>
+                      </motion.div>
+
+                      {/* Workflow updated card */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.7 }}
+                        className="rounded-2xl rounded-tl-md bg-card/80 border border-border/30 px-4 py-3 shadow-md"
+                      >
+                        <div className="text-xs font-semibold text-primary mb-3">Workflow updated</div>
+                        <div className="space-y-1">
+                          {workflowSteps.map((step, i) => (
+                            <div key={step.text}>
+                              <div className="flex items-center gap-3">
+                                <div className="h-7 w-7 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 border border-primary/20">
+                                  <step.icon className="h-3.5 w-3.5 text-primary" />
+                                </div>
+                                <span className="text-sm text-foreground">{step.text}</span>
+                              </div>
+                              {i < workflowSteps.length - 1 && (
+                                <div className="ml-[13px] h-3 w-px bg-border/60" />
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                        {/* Workflow action buttons */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {["Activate", "Edit steps"].map((action, i) => (
+                            <motion.button
+                              key={action}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.8 + i * 0.1 }}
+                              className="text-xs px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                            >
+                              {action}
+                            </motion.button>
+                          ))}
+                        </div>
+                      </motion.div>
                     </div>
                   </motion.div>
                 )}
