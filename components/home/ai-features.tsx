@@ -218,7 +218,7 @@ export function AIFeaturesSection() {
               </div>
 
               {/* Chat messages area */}
-              <div className="p-4 space-y-4 min-h-[320px] bg-gradient-to-b from-transparent to-secondary/10">
+              <div className="p-4 space-y-4 h-[440px] overflow-y-auto bg-gradient-to-b from-transparent to-secondary/10">
                 {/* User message */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
