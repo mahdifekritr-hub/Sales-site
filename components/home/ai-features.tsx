@@ -21,6 +21,19 @@ import {
   Wrench,
 } from "lucide-react";
 
+const floatingParticles = [
+  { left: 12, top: 18, duration: 4, delay: 0 },
+  { left: 28, top: 45, duration: 5.5, delay: 0.6 },
+  { left: 45, top: 22, duration: 6, delay: 1.2 },
+  { left: 62, top: 68, duration: 4.8, delay: 0.3 },
+  { left: 78, top: 35, duration: 5.2, delay: 1.8 },
+  { left: 18, top: 72, duration: 6.5, delay: 2.1 },
+  { left: 55, top: 12, duration: 4.2, delay: 0.9 },
+  { left: 72, top: 55, duration: 5.8, delay: 1.5 },
+  { left: 35, top: 82, duration: 4.6, delay: 2.4 },
+  { left: 85, top: 48, duration: 6.2, delay: 0.4 },
+] as const;
+
 const aiFeatures = [
   { key: "assistant", icon: Bot, gradient: "from-primary to-[oklch(0.45_0.18_340)]" },
   { key: "translation", icon: Languages, gradient: "from-[oklch(0.55_0.18_200)] to-[oklch(0.45_0.15_220)]" },
@@ -125,15 +138,15 @@ export function AIFeaturesSection() {
           }}
         />
 
-        {/* Floating particles */}
+        {/* Floating particles — fixed positions to avoid SSR/client hydration mismatch */}
         <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
+          {floatingParticles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute h-1 w-1 rounded-full bg-primary/30"
               style={{
-                left: `${10 + Math.random() * 80}%`,
-                top: `${10 + Math.random() * 80}%`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
               }}
               animate={{
                 y: [0, -20, 0],
@@ -141,9 +154,9 @@ export function AIFeaturesSection() {
                 scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: particle.duration,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: particle.delay,
                 ease: "easeInOut",
               }}
             />

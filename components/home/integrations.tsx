@@ -102,7 +102,7 @@ function IntegrationItem({ name, logo, rotation }: IntegrationItemProps) {
 function ScrollingRow({ items, direction = "left" }: { items: typeof integrations; direction?: "left" | "right" }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const scrollPositionRef = useRef(0);
 
   // Duplicate items for seamless loop
