@@ -29,7 +29,7 @@ const footerLinksData = {
       { key: "changelog", href: "https://docs.propertycareapp.com/changelog?lang=en" },
       { key: "faqs", href: "#faq" },
       { key: "pricing", href: "https://pricing.propertycareapp.com/en" },
-      { key: "contactUs", href: "https://propertycareapp.com/contact-us/" },
+      { key: "contactUs", href: "/contact-propertycareapp" },
     ],
   },
   Platforms: {
