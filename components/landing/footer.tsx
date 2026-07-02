@@ -167,10 +167,10 @@ export function Footer() {
             {new Date().getFullYear()} {t("copyright")}
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <a href="https://propertycareapp.com/privacy-policy/" className="text-muted-foreground transition-colors hover:text-foreground">
+            <a href="https://blog.propertycareapp.com/en/article/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
               {t("privacyPolicy")}
             </a>
-            <a href="https://propertycareapp.com/terms-conditions-propertycareapp/" className="text-muted-foreground transition-colors hover:text-foreground">
+            <a href="https://blog.propertycareapp.com/en/article/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
               {t("termsOfService")}
             </a>
           </div>
